@@ -10,12 +10,12 @@ import styles from '../styles/Home.module.css'
 /**
  * Static room information.
  */
-const DATA_URL = 'https://cdn.berrycamp.com/file/berrycamp/data';
+export const DATA_URL = 'https://cdn.berrycamp.com/file/berrycamp/data';
 
 /**
  * All valid level names.
  */
-const LEVEL_NAMES: string[] = [
+export const LEVEL_NAMES: string[] = [
   "prologue",
   "city",
   "site",

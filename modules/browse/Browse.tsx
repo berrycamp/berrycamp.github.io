@@ -19,7 +19,10 @@ const Browse: NextPage<BrowseProps> = props => {
         {Object.entries(props.data).map(([id, chapter]) => (
           <Grid item key={id} sx={{width: 465}}>
             <Card sx={{height: "100%"}}>
-              <CardActionArea sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}>
+              <CardActionArea
+                sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+                href={`/chapter/${id}`}
+              >
                 <CardMedia
                   component="img"
                   image={`${CHAPTER_IMG_BASE_URL}${id}.png`}
