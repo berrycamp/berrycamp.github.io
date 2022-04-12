@@ -1,0 +1,566 @@
+{
+  "chapter_no": 5,
+  "name": "Mirror Temple",
+  "desc": "An ancient temple in the side of the mountain houses a terrible power. Madeline ventures in to find her friend and learns what lies inside her heart.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Gondola",
+              "id": "a-00x"
+            },
+            {
+              "name": "Into the temple",
+              "id": "a-00b"
+            },
+            {
+              "name": "Tight corridors",
+              "id": "a-00d"
+            },
+            {
+              "name": "Dash platform",
+              "id": "a-00c"
+            },
+            {
+              "name": "Red bubble",
+              "id": "a-00"
+            },
+            {
+              "name": "Central bubble diamond",
+              "id": "a-01"
+            },
+            {
+              "name": "Dash block berry",
+              "id": "a-02"
+            },
+            {
+              "name": "Crystal passage berry",
+              "id": "a-03"
+            },
+            {
+              "name": "Block spring berry",
+              "id": "a-04"
+            },
+            {
+              "name": "Locked rooms",
+              "id": "a-05"
+            },
+            {
+              "name": "Block launch berry",
+              "id": "a-06"
+            },
+            {
+              "name": "Dash block berry",
+              "id": "a-07"
+            },
+            {
+              "name": "Key room",
+              "id": "a-08"
+            },
+            {
+              "name": "Duck",
+              "id": "a-10"
+            },
+            {
+              "name": "Key bubble",
+              "id": "a-09"
+            },
+            {
+              "name": "Berry fling",
+              "id": "a-11"
+            },
+            {
+              "name": "Crystal key tunnel",
+              "id": "a-12"
+            },
+            {
+              "name": "Bubble tunnel",
+              "id": "a-12"
+            },
+            {
+              "name": "Bubble switch berry",
+              "id": "a-15"
+            },
+            {
+              "name": "Dash block berry",
+              "id": "a-14"
+            },
+            {
+              "name": "Locked door",
+              "id": "a-13"
+            }
+          ]
+        },
+        {
+          "name": "Depths",
+          "abbreviation": "DP",
+          "rooms": [
+            {
+              "name": "Theo in the mirror",
+              "id": "b-00"
+            },
+            {
+              "name": "Crystal bubble berry",
+              "id": "b-18"
+            },
+            {
+              "name": "Depths Cornerboost",
+              "id": "b-01"
+            },
+            {
+              "name": "Block fling berry",
+              "id": "b-01c"
+            },
+            {
+              "name": "Rusted gates Left",
+              "id": "b-20"
+            },
+            {
+              "name": "Winged berry",
+              "id": "b-21"
+            },
+            {
+              "name": "Rusted gates Right",
+              "id": "b-20"
+            },
+            {
+              "name": "Dash block pit",
+              "id": "b-01b"
+            },
+            {
+              "name": "Junction room",
+              "id": "b-02"
+            },
+            {
+              "name": "Cool demo bruh",
+              "id": "b-03"
+            },
+            {
+              "name": "Bubble berry",
+              "id": "b-05"
+            },
+            {
+              "name": "Key room",
+              "id": "b-04"
+            },
+            {
+              "name": "Key path I",
+              "id": "b-07"
+            },
+            {
+              "name": "Key path II",
+              "id": "b-08"
+            },
+            {
+              "name": "Key path III",
+              "id": "b-09"
+            },
+            {
+              "name": "Block sandwich berry",
+              "id": "b-10"
+            },
+            {
+              "name": "Button room I",
+              "id": "b-11"
+            },
+            {
+              "name": "Bubble berry",
+              "id": "b-12"
+            },
+            {
+              "name": "Button room II",
+              "id": "b-13"
+            },
+            {
+              "name": "Seed puzzle",
+              "id": "b-17"
+            },
+            {
+              "name": "Strawberry cave",
+              "id": "b-17"
+            },
+            {
+              "name": "Cassette",
+              "id": "b-22"
+            },
+            {
+              "name": "Key skip room",
+              "id": "b-06"
+            },
+            {
+              "name": "Floorless bubble room",
+              "id": "b-19"
+            },
+            {
+              "name": "Extra key door",
+              "id": "b-14"
+            },
+            {
+              "name": "Heart room",
+              "id": "b-15"
+            },
+            {
+              "name": "Mirror room",
+              "id": "b-16"
+            },
+            {
+              "name": "The void",
+              "id": "void"
+            }
+          ]
+        },
+        {
+          "name": "Unravelling",
+          "abbreviation": "UR",
+          "rooms": [
+            {
+              "name": "The fall",
+              "id": "c-00"
+            },
+            {
+              "name": "Victim and the Monster",
+              "id": "c-01"
+            },
+            {
+              "name": "Tentacle passage I",
+              "id": "c-01b"
+            },
+            {
+              "name": "Tentacle passage II",
+              "id": "c-01c"
+            },
+            {
+              "name": "First seeker",
+              "id": "c-08b"
+            },
+            {
+              "name": "Berry block",
+              "id": "c-08"
+            },
+            {
+              "name": "Seeker switches I",
+              "id": "c-10"
+            },
+            {
+              "name": "Seeker switches II",
+              "id": "c-12"
+            },
+            {
+              "name": "Seeker switches III",
+              "id": "c-07"
+            },
+            {
+              "name": "Seeker moonlight",
+              "id": "c-11"
+            },
+            {
+              "name": "Seeker switches VI",
+              "id": "c-09"
+            },
+            {
+              "name": "Seeker switches V",
+              "id": "c-13"
+            }
+          ]
+        },
+        {
+          "name": "Search",
+          "abbreviation": "SC",
+          "rooms": [
+            {
+              "name": "Bubble crystal maze",
+              "id": "d-00"
+            },
+            {
+              "name": "Center room",
+              "id": "d-01"
+            },
+            {
+              "name": "Talk with Theo",
+              "id": "e-00"
+            },
+            {
+              "name": "Upper berry path",
+              "id": "d-09"
+            },
+            {
+              "name": "Search skip",
+              "id": "d-04"
+            },
+            {
+              "name": "Berry under skip",
+              "id": "d-04"
+            },
+            {
+              "name": "Right key path",
+              "id": "d-05"
+            },
+            {
+              "name": "Launch platform",
+              "id": "d-06"
+            },
+            {
+              "name": "Seeker bubble switches",
+              "id": "d-07"
+            },
+            {
+              "name": "Left key path I",
+              "id": "d-02"
+            },
+            {
+              "name": "Left key path II",
+              "id": "d-03"
+            },
+            {
+              "name": "Lefy key path III",
+              "id": "d-06"
+            },
+            {
+              "name": "Gated key path",
+              "id": "d-15"
+            },
+            {
+              "name": "Gated berry path",
+              "id": "d-15"
+            },
+            {
+              "name": "Seeker den berry",
+              "id": "d-13"
+            },
+            {
+              "name": "Exit bubble",
+              "id": "d-15"
+            },
+            {
+              "name": "Spare key berry",
+              "id": "d-19"
+            },
+            {
+              "name": "Seeker scramble",
+              "id": "d-19b"
+            },
+            {
+              "name": "Seeker pit",
+              "id": "d-10"
+            },
+            {
+              "name": "Moonlight barrier",
+              "id": "d-20"
+            }
+          ]
+        },
+        {
+          "name": "Rescue",
+          "abbreviation": "RS",
+          "rooms": [
+            {
+              "name": "I can carry you",
+              "id": "e-00"
+            },
+            {
+              "name": "Theogate",
+              "id": "e-01"
+            },
+            {
+              "name": "Seekers & Theo I",
+              "id": "e-02"
+            },
+            {
+              "name": "Seekers & Theo II",
+              "id": "e-03"
+            },
+            {
+              "name": "Seekers & Theo III",
+              "id": "e-04"
+            },
+            {
+              "name": "Seekers & Theo VI",
+              "id": "e-06"
+            },
+            {
+              "name": "Theo Helps",
+              "id": "e-05"
+            },
+            {
+              "name": "Launch platform",
+              "id": "e-07"
+            },
+            {
+              "name": "Seeker killer",
+              "id": "e-08"
+            },
+            {
+              "name": "Over and under",
+              "id": "e-09"
+            },
+            {
+              "name": "Almost there",
+              "id": "e-10"
+            },
+            {
+              "name": "Eyeball room",
+              "id": "e-11"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "start"
+            },
+            {
+              "name": "Bubble gate",
+              "id": "a-00"
+            },
+            {
+              "name": "Bubble spike tunnel",
+              "id": "a-01"
+            },
+            {
+              "name": "Dash blocks",
+              "id": "a-02"
+            }
+          ]
+        },
+        {
+          "name": "Central Chamber",
+          "abbreviation": "CC",
+          "rooms": [
+            {
+              "name": "Lower chamber",
+              "id": "b-00"
+            },
+            {
+              "name": "Bubsdrop",
+              "id": "b-01"
+            },
+            {
+              "name": "Right key path",
+              "id": "b-04"
+            },
+            {
+              "name": "Central chamber",
+              "id": "b-02"
+            },
+            {
+              "name": "Left key path",
+              "id": "b-05"
+            },
+            {
+              "name": "Zig-zag bubbles",
+              "id": "b-06"
+            },
+            {
+              "name": "Dash block ascent",
+              "id": "b-07"
+            },
+            {
+              "name": "Blades and bubbles",
+              "id": "b-03"
+            },
+            {
+              "name": "Keyskip & Springblock",
+              "id": "b-08"
+            },
+            {
+              "name": "Mirror & bladeshaft",
+              "id": "b-09"
+            }
+          ]
+        },
+        {
+          "name": "Through the Mirror",
+          "abbreviation": "TTM",
+          "rooms": [
+            {
+              "name": "Tentacle drop",
+              "id": "c-00"
+            },
+            {
+              "name": "Seeker switch diamond",
+              "id": "c-01"
+            },
+            {
+              "name": "Two switches & seekers",
+              "id": "c-02"
+            },
+            {
+              "name": "Crumble pillars",
+              "id": "c-03"
+            },
+            {
+              "name": "Crumble blocks",
+              "id": "c-04"
+            }
+          ]
+        },
+        {
+          "name": "Mix Master",
+          "abbreviation": "MM",
+          "rooms": [
+            {
+              "name": "Mix master",
+              "id": "d-00"
+            },
+            {
+              "name": "Seekers and Theo",
+              "id": "d-01"
+            },
+            {
+              "name": "Seeker gauntlet",
+              "id": "d-02"
+            },
+            {
+              "name": "Land on the platform Theo",
+              "id": "d-03"
+            },
+            {
+              "name": "Impossible room",
+              "id": "d-04"
+            },
+            {
+              "name": "Cassette room",
+              "id": "d-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Block bounce",
+              "id": "00"
+            },
+            {
+              "name": "Block fling",
+              "id": "01"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

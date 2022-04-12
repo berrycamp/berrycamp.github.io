@@ -1,0 +1,800 @@
+{
+  "chapter_no": 7,
+  "name": "The Summit",
+  "desc": "Whole again with renewed determination, Madeline begins her final ascent to the summit of the mountain.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Intro cutscene",
+              "id": "a-00-intro"
+            },
+            {
+              "name": "Start",
+              "id": "a-00"
+            },
+            {
+              "name": "Spinners and crystals",
+              "id": "a-01"
+            },
+            {
+              "name": "Wall springs",
+              "id": "a-02"
+            },
+            {
+              "name": "Demo berry",
+              "id": "a-02b"
+            },
+            {
+              "name": "Spring pillars",
+              "id": "a-03"
+            },
+            {
+              "name": "Hanging crystals",
+              "id": "a-04"
+            },
+            {
+              "name": "Dual berries",
+              "id": "a-04b"
+            },
+            {
+              "name": "Scaffold",
+              "id": "a-05"
+            },
+            {
+              "name": "Orb room",
+              "id": "a-06"
+            }
+          ]
+        },
+        {
+          "name": "500 M",
+          "abbreviation": "500M",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "b-00"
+            },
+            {
+              "name": "Conveyor springs",
+              "id": "b-01"
+            },
+            {
+              "name": "Ascent path split",
+              "id": "b-02"
+            },
+            {
+              "name": "Zipper ascent",
+              "id": "b-02b"
+            },
+            {
+              "name": "Conveyor block berry",
+              "id": "b-02e"
+            },
+            {
+              "name": "Return path",
+              "id": "b-02c"
+            },
+            {
+              "name": "Gem room",
+              "id": "b-02d"
+            },
+            {
+              "name": "Tetromino",
+              "id": "b-03"
+            },
+            {
+              "name": "Winged berry",
+              "id": "b-04"
+            },
+            {
+              "name": "City switch",
+              "id": "b-05"
+            },
+            {
+              "name": "Zipper ascent 3",
+              "id": "b-06"
+            },
+            {
+              "name": "Zipper spike path",
+              "id": "b-07"
+            },
+            {
+              "name": "Iceblock springs",
+              "id": "b-08"
+            },
+            {
+              "name": "Orb room",
+              "id": "b-09"
+            }
+          ]
+        },
+        {
+          "name": "1000 M",
+          "abbreviation": "1000M",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "c-00"
+            },
+            {
+              "name": "Dream ascent",
+              "id": "c-01"
+            },
+            {
+              "name": "Dream switch",
+              "id": "c-02"
+            },
+            {
+              "name": "Dream springs",
+              "id": "c-03"
+            },
+            {
+              "name": "Berry dream maze",
+              "id": "c-03b"
+            },
+            {
+              "name": "Moving dreams",
+              "id": "c-04"
+            },
+            {
+              "name": "Berry dream ascent",
+              "id": "c-05"
+            },
+            {
+              "name": "Uniform dreams",
+              "id": "c-06"
+            },
+            {
+              "name": "Snaking ascent",
+              "id": "c-06b"
+            },
+            {
+              "name": "Jewel room",
+              "id": "c-06c"
+            },
+            {
+              "name": "Diagonal dreams",
+              "id": "c-07"
+            },
+            {
+              "name": "Up & down berry",
+              "id": "c-07b"
+            },
+            {
+              "name": "Hanging dreams",
+              "id": "c-08"
+            },
+            {
+              "name": "Orb room",
+              "id": "c-09"
+            }
+          ]
+        },
+        {
+          "name": "1500 M",
+          "abbreviation": "1500M",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "d-00"
+            },
+            {
+              "name": "Sinking platforms",
+              "id": "d-01"
+            },
+            {
+              "name": "Dust bunnies I",
+              "id": "d-01b"
+            },
+            {
+              "name": "Dust berry",
+              "id": "d-01c"
+            },
+            {
+              "name": "Switch berry",
+              "id": "d-01d"
+            },
+            {
+              "name": "Dust bunny diamond",
+              "id": "d-02"
+            },
+            {
+              "name": "Dust bunnies II",
+              "id": "d-03"
+            },
+            {
+              "name": "Cassette room",
+              "id": "d-03b"
+            },
+            {
+              "name": "Dust bunnies III",
+              "id": "d-04"
+            },
+            {
+              "name": "Quad ultra room",
+              "id": "d-05"
+            },
+            {
+              "name": "Jewel room",
+              "id": "d-05b"
+            },
+            {
+              "name": "Dust tunnel",
+              "id": "d-06"
+            },
+            {
+              "name": "Crystal pit berry",
+              "id": "d-07"
+            },
+            {
+              "name": "frankerZ room",
+              "id": "d-08"
+            },
+            {
+              "name": "Dusty chimney",
+              "id": "d-09"
+            },
+            {
+              "name": "Dust serpentine",
+              "id": "d-10"
+            },
+            {
+              "name": "Soaring berry",
+              "id": "d-10b"
+            },
+            {
+              "name": "Orb room",
+              "id": "d-11"
+            }
+          ]
+        },
+        {
+          "name": "2000 M",
+          "abbreviation": "2000M",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "e-00b"
+            },
+            {
+              "name": "Bubble juggle",
+              "id": "e-00"
+            },
+            {
+              "name": "Cliff",
+              "id": "e-01"
+            },
+            {
+              "name": "Rock climb",
+              "id": "e-01b"
+            },
+            {
+              "name": "Jewel room",
+              "id": "e-01c"
+            },
+            {
+              "name": "Berry path",
+              "id": "e-02"
+            },
+            {
+              "name": "Sliding platforms",
+              "id": "e-03"
+            },
+            {
+              "name": "Headwind",
+              "id": "e-04"
+            },
+            {
+              "name": "Snowballs",
+              "id": "e-05"
+            },
+            {
+              "name": "Horizontal scroller",
+              "id": "e-06"
+            },
+            {
+              "name": "Vertical scroller",
+              "id": "e-07"
+            },
+            {
+              "name": "Center room",
+              "id": "e-08"
+            },
+            {
+              "name": "Left berry",
+              "id": "e-09"
+            },
+            {
+              "name": "Crystal maze",
+              "id": "e-11"
+            },
+            {
+              "name": "Seed puzzle",
+              "id": "e-12"
+            },
+            {
+              "name": "Tailwind",
+              "id": "e-10"
+            },
+            {
+              "name": "Scroller jumps",
+              "id": "e-10b"
+            },
+            {
+              "name": "Orb room",
+              "id": "e-13"
+            }
+          ]
+        },
+        {
+          "name": "2500 M",
+          "abbreviation": "2500M",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "f-00"
+            },
+            {
+              "name": "Dash block berry",
+              "id": "f-01"
+            },
+            {
+              "name": "Dash block path",
+              "id": "f-02"
+            },
+            {
+              "name": "Jewel room",
+              "id": "f-02b"
+            },
+            {
+              "name": "Launch platform",
+              "id": "f-04"
+            },
+            {
+              "name": "Up & down blocks",
+              "id": "f-03"
+            },
+            {
+              "name": "Central lock",
+              "id": "f-05"
+            },
+            {
+              "name": "Blade bubbles",
+              "id": "f-06"
+            },
+            {
+              "name": "Key skip room",
+              "id": "f-07"
+            },
+            {
+              "name": "Bubbles & dash blocks",
+              "id": "f-08"
+            },
+            {
+              "name": "Berry route I",
+              "id": "f-08b"
+            },
+            {
+              "name": "Berry route II",
+              "id": "f-08d"
+            },
+            {
+              "name": "Berry route III",
+              "id": "f-08c"
+            },
+            {
+              "name": "Crystal bubble route",
+              "id": "f-09"
+            },
+            {
+              "name": "Thread the needle",
+              "id": "f-10"
+            },
+            {
+              "name": "Door skip",
+              "id": "f-10b"
+            },
+            {
+              "name": "Orb room",
+              "id": "f-11"
+            }
+          ]
+        },
+        {
+          "name": "3000 M",
+          "abbreviation": "3000M",
+          "rooms": [
+            {
+              "name": "Flag 30",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 29",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 28",
+              "id": "g-00b"
+            },
+            {
+              "name": "Heart Room",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 27",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 26",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 25",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 24",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 23",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 22",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 21",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 20",
+              "id": "g-00b"
+            },
+            {
+              "name": "Flag 19",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 18",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 17",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 16",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 15",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 14",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 13",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 12",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 11",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 10",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 9",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 8",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 7",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 6",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 5",
+              "id": "g-03"
+            },
+            {
+              "name": "Flag 4",
+              "id": "g-03"
+            },
+            {
+              "name": "Flag 3",
+              "id": "g-03"
+            },
+            {
+              "name": "Flag 2",
+              "id": "g-03"
+            },
+            {
+              "name": "Flag 1",
+              "id": "g-03"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Intro",
+              "id": "a-00-intro"
+            },
+            {
+              "name": "Crystal dashing",
+              "id": "a-00"
+            },
+            {
+              "name": "Wall springs",
+              "id": "a-01"
+            },
+            {
+              "name": "Spring pillars",
+              "id": "a-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "a-03"
+            }
+          ]
+        },
+        {
+          "name": "500 M",
+          "abbreviation": "500M",
+          "rooms": [
+            {
+              "name": "Zipper ascent I",
+              "id": "b-00"
+            },
+            {
+              "name": "Zipper ascent II",
+              "id": "b-01"
+            },
+            {
+              "name": "Falling ice",
+              "id": "b-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "b-03"
+            }
+          ]
+        },
+        {
+          "name": "1000 M",
+          "abbreviation": "1000M",
+          "rooms": [
+            {
+              "name": "Dream blocks I",
+              "id": "c-01"
+            },
+            {
+              "name": "Dream blocks II",
+              "id": "c-00"
+            },
+            {
+              "name": "Keep off the ground",
+              "id": "c-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "c-03"
+            }
+          ]
+        },
+        {
+          "name": "1500 M",
+          "abbreviation": "1500M",
+          "rooms": [
+            {
+              "name": "Dust springs",
+              "id": "d-00"
+            },
+            {
+              "name": "Dust cycles",
+              "id": "d-01"
+            },
+            {
+              "name": "Dust switch",
+              "id": "d-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "d-03"
+            }
+          ]
+        },
+        {
+          "name": "2000 M",
+          "abbreviation": "2000M",
+          "rooms": [
+            {
+              "name": "Cloud hops",
+              "id": "e-00"
+            },
+            {
+              "name": "Springscroller",
+              "id": "e-01"
+            },
+            {
+              "name": "Headwind snowballs",
+              "id": "e-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "e-03"
+            }
+          ]
+        },
+        {
+          "name": "2500 M",
+          "abbreviation": "2500M",
+          "rooms": [
+            {
+              "name": "Dash block fling",
+              "id": "f-00"
+            },
+            {
+              "name": "Bubble spike maze",
+              "id": "f-01"
+            },
+            {
+              "name": "Crystals & dash blocks",
+              "id": "f-02"
+            },
+            {
+              "name": "Orb room",
+              "id": "f-03"
+            }
+          ]
+        },
+        {
+          "name": "3000 M",
+          "abbreviation": "3000M",
+          "rooms": [
+            {
+              "name": "Flag 20",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 19",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 18",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 17",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 16",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 15",
+              "id": "g-00"
+            },
+            {
+              "name": "Flag 14",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 13",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 12",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 11",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 10",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 9",
+              "id": "g-01"
+            },
+            {
+              "name": "Flag 8",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 7",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 6",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 5",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 4",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 3",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 2",
+              "id": "g-02"
+            },
+            {
+              "name": "Flag 1",
+              "id": "g-02"
+            },
+            {
+              "name": "Cassette",
+              "id": "g-03"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Wallbounces",
+              "id": "01"
+            },
+            {
+              "name": "Springs",
+              "id": "02"
+            },
+            {
+              "name": "Crystal maze",
+              "id": "03"
+            },
+            {
+              "name": "Heart room",
+              "id": "04"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

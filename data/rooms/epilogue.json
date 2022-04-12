@@ -1,0 +1,33 @@
+{
+  "name": "Epilogue",
+  "desc": "Back in the Old Woman's home at the end of her journey, Madeline enjoys the warmth of good company.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Granny's house",
+              "id": "outside"
+            },
+            {
+              "name": "Inside",
+              "id": "inside"
+            },
+            {
+              "name": "The bridge",
+              "id": "bridge"
+            },
+            {
+              "name": "The nest",
+              "id": "secret"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

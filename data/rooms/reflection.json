@@ -1,0 +1,476 @@
+{
+  "chapter_no": 6,
+  "name": "Reflection",
+  "desc": "Madeline opens up to Theo under the stars and discovers that discarding your problems isn't easy. You can't climb out of a hole you dug yourself without facing your own reflection.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Aurora",
+              "id": "start"
+            }
+          ]
+        },
+        {
+          "name": "Lake",
+          "abbreviation": "LK",
+          "rooms": [
+            {
+              "name": "Lake",
+              "id": "00"
+            },
+            {
+              "name": "Feather maze I",
+              "id": "01"
+            },
+            {
+              "name": "Feather maze II",
+              "id": "02"
+            },
+            {
+              "name": "U-turn",
+              "id": "03"
+            },
+            {
+              "name": "Feather maze III",
+              "id": "02"
+            },
+            {
+              "name": "Kevin ascent",
+              "id": "02b"
+            }
+          ]
+        },
+        {
+          "name": "Hollows",
+          "abbreviation": "HL",
+          "rooms": [
+            {
+              "name": "The Hollow",
+              "id": "04"
+            },
+            {
+              "name": "Heart tunnel",
+              "id": "04b"
+            },
+            {
+              "name": "Heart puzzle",
+              "id": "04c"
+            },
+            {
+              "name": "My reflection",
+              "id": "04d"
+            },
+            {
+              "name": "Cassette Room",
+              "id": "04e"
+            },
+            {
+              "name": "Solid Kevin",
+              "id": "05"
+            },
+            {
+              "name": "Kevin's taller brother",
+              "id": "06"
+            },
+            {
+              "name": "Path split",
+              "id": "07"
+            },
+            {
+              "name": "Bottom route I",
+              "id": "08a"
+            },
+            {
+              "name": "Top route I",
+              "id": "08b"
+            },
+            {
+              "name": "Open bumpers",
+              "id": "09"
+            },
+            {
+              "name": "Bottom route II",
+              "id": "10a"
+            },
+            {
+              "name": "Top route II",
+              "id": "10b"
+            },
+            {
+              "name": "Narrow bumpers",
+              "id": "11"
+            },
+            {
+              "name": "Bottom route III",
+              "id": "12a"
+            },
+            {
+              "name": "Top route III",
+              "id": "12b"
+            },
+            {
+              "name": "Wall break room",
+              "id": "13"
+            },
+            {
+              "name": "Bottom route IV",
+              "id": "14a"
+            },
+            {
+              "name": "Top route IV",
+              "id": "14b"
+            },
+            {
+              "name": "Bumper rows",
+              "id": "15"
+            },
+            {
+              "name": "Bottom route V",
+              "id": "16a"
+            },
+            {
+              "name": "Top route V",
+              "id": "16b"
+            },
+            {
+              "name": "Kevin in the way",
+              "id": "17"
+            },
+            {
+              "name": "Bottom VI",
+              "id": "18a"
+            },
+            {
+              "name": "Top VI",
+              "id": "18b"
+            },
+            {
+              "name": "Feather room",
+              "id": "19"
+            },
+            {
+              "name": "Feathers & bumpers",
+              "id": "20"
+            }
+          ]
+        },
+        {
+          "name": "Reflection",
+          "abbreviation": "RF",
+          "rooms": [
+            {
+              "name": "She's here too",
+              "id": "b-00"
+            },
+            {
+              "name": "Secret climb",
+              "id": "b-00b"
+            },
+            {
+              "name": "Secret room",
+              "id": "b-00c"
+            },
+            {
+              "name": "Haircut",
+              "id": "b-01"
+            },
+            {
+              "name": "The fall",
+              "id": "b-02"
+            },
+            {
+              "name": "Dive",
+              "id": "b-02b"
+            },
+            {
+              "name": "Big Kev",
+              "id": "b-03"
+            }
+          ]
+        },
+        {
+          "name": "Rock Bottom",
+          "abbreviation": "RB",
+          "rooms": [
+            {
+              "name": "Confronting myself",
+              "id": "boss-00"
+            },
+            {
+              "name": "Plasma balls",
+              "id": "boss-01"
+            },
+            {
+              "name": "Lazer beams",
+              "id": "boss-02"
+            },
+            {
+              "name": "Vanishing platform",
+              "id": "boss-03"
+            },
+            {
+              "name": "Rapid fire",
+              "id": "boss-04"
+            },
+            {
+              "name": "Serpentine columns",
+              "id": "boss-05"
+            },
+            {
+              "name": "Falling pillar stairs",
+              "id": "boss-06"
+            },
+            {
+              "name": "Feather skip",
+              "id": "boss-07"
+            },
+            {
+              "name": "Falling I",
+              "id": "boss-08"
+            },
+            {
+              "name": "Serpentine feathers",
+              "id": "boss-09"
+            },
+            {
+              "name": "The lonely bumper",
+              "id": "boss-10"
+            },
+            {
+              "name": "Spike bunker",
+              "id": "boss-11"
+            },
+            {
+              "name": "Falling II",
+              "id": "boss-12"
+            },
+            {
+              "name": "Mountain climber",
+              "id": "boss-13"
+            },
+            {
+              "name": "Badeline learned psychic!",
+              "id": "boss-14"
+            },
+            {
+              "name": "Block launch",
+              "id": "boss-15"
+            },
+            {
+              "name": "Psychic platforms",
+              "id": "boss-16"
+            },
+            {
+              "name": "Block trampoline",
+              "id": "boss-17"
+            },
+            {
+              "name": "Falling III",
+              "id": "boss-18"
+            },
+            {
+              "name": "Feather room",
+              "id": "boss-19"
+            },
+            {
+              "name": "Together",
+              "id": "boss-20"
+            }
+          ]
+        },
+        {
+          "name": "Resolution",
+          "abbreviation": "RL",
+          "rooms": [
+            {
+              "name": "Double dash",
+              "id": "after-01"
+            },
+            {
+              "name": "Ascent",
+              "id": "after-02"
+            },
+            {
+              "name": "Hold my bag",
+              "id": "after-03"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Kevin's tour",
+              "id": "a-00"
+            },
+            {
+              "name": "Feather tunnel",
+              "id": "a-01"
+            },
+            {
+              "name": "Sketchy bumpers",
+              "id": "a-02"
+            },
+            {
+              "name": "Kevin launch",
+              "id": "a-03"
+            },
+            {
+              "name": "V bumper",
+              "id": "a-04"
+            },
+            {
+              "name": "Crumble blocks",
+              "id": "a-05"
+            },
+            {
+              "name": "Kevin switches",
+              "id": "a-06"
+            }
+          ]
+        },
+        {
+          "name": "Reflection",
+          "abbreviation": "RF",
+          "rooms": [
+            {
+              "name": "Haircut",
+              "id": "b-00"
+            },
+            {
+              "name": "Falling I - Crystals I",
+              "id": "b-01"
+            },
+            {
+              "name": "Falling II - Kevins",
+              "id": "b-02"
+            },
+            {
+              "name": "Falling III - Bumpers",
+              "id": "b-03"
+            },
+            {
+              "name": "Falling IV - Crystals II",
+              "id": "b-04"
+            },
+            {
+              "name": "Falling V - 2D Kevin",
+              "id": "b-05"
+            },
+            {
+              "name": "Falling VI - Save dash",
+              "id": "b-06"
+            },
+            {
+              "name": "Falling VII - Feather",
+              "id": "b-07"
+            },
+            {
+              "name": "Falling VIII - Crystals III",
+              "id": "b-08"
+            },
+            {
+              "name": "Haircut dashes",
+              "id": "b-10"
+            }
+          ]
+        },
+        {
+          "name": "Rock Bottom",
+          "abbreviation": "RB",
+          "rooms": [
+            {
+              "name": "Badeline",
+              "id": "c-00"
+            },
+            {
+              "name": "Falling block jumps",
+              "id": "c-01"
+            },
+            {
+              "name": "Three dash crystals",
+              "id": "c-02"
+            },
+            {
+              "name": "Badeline and the seven keys",
+              "id": "c-03"
+            },
+            {
+              "name": "Step off & downwards",
+              "id": "c-04"
+            }
+          ]
+        },
+        {
+          "name": "Reprieve",
+          "abbreviation": "RP",
+          "rooms": [
+            {
+              "name": "Kevin family",
+              "id": "d-00"
+            },
+            {
+              "name": "Badeline returns",
+              "id": "d-01"
+            },
+            {
+              "name": "Hold fire",
+              "id": "d-02"
+            },
+            {
+              "name": "To the bottom",
+              "id": "d-03"
+            },
+            {
+              "name": "Final feather",
+              "id": "d-04"
+            },
+            {
+              "name": "Cassette room",
+              "id": "d-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Wallbounces",
+              "id": "00"
+            },
+            {
+              "name": "Falling",
+              "id": "01"
+            },
+            {
+              "name": "Kevin",
+              "id": "02"
+            },
+            {
+              "name": "Heart Room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

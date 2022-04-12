@@ -1,0 +1,344 @@
+{
+  "chapter_no": 8,
+  "name": "Core",
+  "desc": "One year later, Madeline returns to discover the mountain's final secret; that which lies at the heart of everything.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Car",
+              "id": "0x"
+            },
+            {
+              "name": "Reunion with granny",
+              "id": "00"
+            },
+            {
+              "name": "Dash loss",
+              "id": "01"
+            },
+            {
+              "name": "Granny's warning",
+              "id": "02"
+            }
+          ]
+        },
+        {
+          "name": "Into the Core",
+          "abbreviation": "ITC",
+          "rooms": [
+            {
+              "name": "Gaps and conveyors",
+              "id": "a-00"
+            },
+            {
+              "name": "Fireballs and spring",
+              "id": "a-01"
+            },
+            {
+              "name": "Core block",
+              "id": "a-02"
+            },
+            {
+              "name": "Ascent I",
+              "id": "a-03"
+            },
+            {
+              "name": "Ice skip",
+              "id": "b-00"
+            },
+            {
+              "name": "Rising balls I",
+              "id": "b-01"
+            },
+            {
+              "name": "Rising balls II",
+              "id": "b-02"
+            },
+            {
+              "name": "Fire snake",
+              "id": "b-03"
+            },
+            {
+              "name": "Ice switch",
+              "id": "b-04"
+            },
+            {
+              "name": "Ice Snake",
+              "id": "b-05"
+            },
+            {
+              "name": "Left berry",
+              "id": "b-06"
+            },
+            {
+              "name": "Ascent II",
+              "id": "b-07b"
+            },
+            {
+              "name": "Ascent III",
+              "id": "b-07"
+            }
+          ]
+        },
+        {
+          "name": "Hot and Cold",
+          "abbreviation": "HAC",
+          "rooms": [
+            {
+              "name": "Conveyor and blocks",
+              "id": "c-00"
+            },
+            {
+              "name": "Berry bumpers",
+              "id": "c-00b"
+            },
+            {
+              "name": "Circling balls",
+              "id": "c-01"
+            },
+            {
+              "name": "Bumper segments",
+              "id": "c-02"
+            },
+            {
+              "name": "Ice bouncing",
+              "id": "c-03"
+            },
+            {
+              "name": "Thawed berry",
+              "id": "c-03b"
+            },
+            {
+              "name": "Fire and conveyors",
+              "id": "c-04"
+            }
+          ]
+        },
+        {
+          "name": "Heart of the Mountain",
+          "abbreviation": "HOTM",
+          "rooms": [
+            {
+              "name": "Rising lava I",
+              "id": "d-00"
+            },
+            {
+              "name": "Rising lava II",
+              "id": "d-01"
+            },
+            {
+              "name": "Rising ice I",
+              "id": "d-02"
+            },
+            {
+              "name": "Rising ice II",
+              "id": "d-03"
+            },
+            {
+              "name": "Rising lava III",
+              "id": "d-04"
+            },
+            {
+              "name": "Serpentine",
+              "id": "d-05"
+            },
+            {
+              "name": "Core block ascent",
+              "id": "d-06"
+            },
+            {
+              "name": "Orb room",
+              "id": "d-07"
+            },
+            {
+              "name": "Sealed room",
+              "id": "d-08"
+            },
+            {
+              "name": "Fire pillar switches",
+              "id": "d-09"
+            },
+            {
+              "name": "Bumper boosts",
+              "id": "d-10"
+            },
+            {
+              "name": "One Crystal passage",
+              "id": "d-10b"
+            },
+            {
+              "name": "Feathers",
+              "id": "d-10c"
+            },
+            {
+              "name": "Cassette room",
+              "id": "d-11"
+            },
+            {
+              "name": "Heart of the mountain",
+              "id": "space"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "00"
+            },
+            {
+              "name": "Heart gate",
+              "id": "01"
+            }
+          ]
+        },
+        {
+          "name": "Into the Core",
+          "abbreviation": "ITC",
+          "rooms": [
+            {
+              "name": "Fireballs",
+              "id": "a-00"
+            },
+            {
+              "name": "Fire conveyors",
+              "id": "a-01"
+            },
+            {
+              "name": "Ice switch",
+              "id": "a-02"
+            },
+            {
+              "name": "Ice bouncing I",
+              "id": "a-03"
+            },
+            {
+              "name": "Ice blocks",
+              "id": "a-04"
+            },
+            {
+              "name": "Ice bumpers",
+              "id": "a-05"
+            }
+          ]
+        },
+        {
+          "name": "Burning or Freezing",
+          "abbreviation": "BOF",
+          "rooms": [
+            {
+              "name": "Fire tunnel",
+              "id": "b-00"
+            },
+            {
+              "name": "Fire & ice segments",
+              "id": "b-01"
+            },
+            {
+              "name": "Ice bouncing II",
+              "id": "b-02"
+            },
+            {
+              "name": "Crystal conveyors",
+              "id": "b-03"
+            },
+            {
+              "name": "Fireball conveyors",
+              "id": "b-04"
+            },
+            {
+              "name": "Circling balls",
+              "id": "b-05"
+            }
+          ]
+        },
+        {
+          "name": "Heartbeat",
+          "abbreviation": "HB",
+          "rooms": [
+            {
+              "name": "Rising fire",
+              "id": "c-01"
+            },
+            {
+              "name": "Rising ice",
+              "id": "c-02"
+            },
+            {
+              "name": "Wall conveyors",
+              "id": "c-03"
+            },
+            {
+              "name": "Compendium",
+              "id": "c-04"
+            },
+            {
+              "name": "Floor and ceiling",
+              "id": "c-05"
+            },
+            {
+              "name": "Ball snake",
+              "id": "c-06"
+            },
+            {
+              "name": "Conveyor switch",
+              "id": "c-08"
+            },
+            {
+              "name": "Jank blocks",
+              "id": "c-07"
+            },
+            {
+              "name": "Cassette room",
+              "id": "space"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Heart gate",
+              "id": "intro"
+            },
+            {
+              "name": "Hyper tutorial",
+              "id": "00"
+            },
+            {
+              "name": "Blocks and bumpers",
+              "id": "01"
+            },
+            {
+              "name": "Hot and cold",
+              "id": "02"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

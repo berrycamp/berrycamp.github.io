@@ -1,0 +1,336 @@
+{
+  "chapter_no": 2,
+  "name": "Old Site",
+  "desc": "Madeline awakens to find the mountain betraying its disturbing nature. She unearths a mysterious chamber where a familar presence is fettered.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Monument",
+              "id": "start"
+            },
+            {
+              "name": "Sheer wall",
+              "id": "s0"
+            },
+            {
+              "name": "Transition overhang",
+              "id": "s1"
+            },
+            {
+              "name": "Heart room",
+              "id": "s2"
+            },
+            {
+              "name": "Fork",
+              "id": "0"
+            },
+            {
+              "name": "Shaft entrance",
+              "id": "1"
+            },
+            {
+              "name": "Iced in",
+              "id": "2"
+            },
+            {
+              "name": "Shaft",
+              "id": "d0"
+            },
+            {
+              "name": "Mirror path I",
+              "id": "d7"
+            },
+            {
+              "name": "Mirror path II",
+              "id": "d8"
+            },
+            {
+              "name": "Berry Tunnel",
+              "id": "d3"
+            },
+            {
+              "name": "Mirror",
+              "id": "d3"
+            },
+            {
+              "name": "Dream blocks intro",
+              "id": "d2"
+            },
+            {
+              "name": "Cassette room",
+              "id": "d9"
+            },
+            {
+              "name": "Seed puzzle",
+              "id": "d1"
+            },
+            {
+              "name": "Lower left berry",
+              "id": "d6"
+            },
+            {
+              "name": "Zipper dream berry",
+              "id": "d4"
+            },
+            {
+              "name": "Dream column berry",
+              "id": "d5"
+            },
+            {
+              "name": "Well, what now?",
+              "id": "1"
+            },
+            {
+              "name": "Dream puzzle",
+              "id": "3x"
+            }
+          ]
+        },
+        {
+          "name": "Intervention",
+          "abbreviation": "IV",
+          "rooms": [
+            {
+              "name": "Part of you",
+              "id": "3"
+            },
+            {
+              "name": "Case and berry",
+              "id": "4"
+            },
+            {
+              "name": "Chase and berry tunnel",
+              "id": "5"
+            },
+            {
+              "name": "Chase and switch",
+              "id": "6"
+            },
+            {
+              "name": "Chase and switches",
+              "id": "7"
+            },
+            {
+              "name": "Chase and spring",
+              "id": "8"
+            },
+            {
+              "name": "Chase and ice",
+              "id": "9"
+            },
+            {
+              "name": "Berry and peace",
+              "id": "9b"
+            },
+            {
+              "name": "Chase downwards",
+              "id": "10"
+            },
+            {
+              "name": "Chased outside",
+              "id": "2"
+            },
+            {
+              "name": "Dreaming of awake I",
+              "id": "11"
+            },
+            {
+              "name": "Dreaming of awake II",
+              "id": "12b"
+            },
+            {
+              "name": "High dream berry",
+              "id": "12c"
+            },
+            {
+              "name": "Low dream berry",
+              "id": "12d"
+            },
+            {
+              "name": "Dreaming of awake 3",
+              "id": "12"
+            },
+            {
+              "name": "Unknown caller",
+              "id": "13"
+            }
+          ]
+        },
+        {
+          "name": "Awake",
+          "abbreviation": "AW",
+          "rooms": [
+            {
+              "name": "Awake monumnet",
+              "id": "end_0"
+            },
+            {
+              "name": "Climbing the ruins",
+              "id": "end_s0"
+            },
+            {
+              "name": "My heart is a fortress",
+              "id": "end_s1"
+            },
+            {
+              "name": "Tunnel and climb",
+              "id": "end_1"
+            },
+            {
+              "name": "By the fire",
+              "id": "end_2"
+            },
+            {
+              "name": "Venture into night",
+              "id": "end_3"
+            },
+            {
+              "name": "Empty",
+              "id": "end_4"
+            },
+            {
+              "name": "Springs",
+              "id": "end_3b"
+            },
+            {
+              "name": "Accending shaft",
+              "id": "end_3cb"
+            },
+            {
+              "name": "Crumbling winged berry",
+              "id": "end_3c"
+            },
+            {
+              "name": "Emptier",
+              "id": "end_5"
+            },
+            {
+              "name": "Calling family",
+              "id": "end_6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Monument",
+              "id": "start"
+            },
+            {
+              "name": "One way dreams",
+              "id": "00"
+            },
+            {
+              "name": "Dream jump tutorial",
+              "id": "01"
+            },
+            {
+              "name": "Dream jumps I",
+              "id": "01b"
+            },
+            {
+              "name": "Dream jumps II",
+              "id": "02b"
+            },
+            {
+              "name": "Dream jumps III",
+              "id": "02"
+            }
+          ]
+        },
+        {
+          "name": "Combination Lock",
+          "abbreviation": "CL",
+          "rooms": [
+            {
+              "name": "Three keys",
+              "id": "03"
+            },
+            {
+              "name": "Over and under",
+              "id": "04"
+            },
+            {
+              "name": "Spike maze",
+              "id": "05"
+            },
+            {
+              "name": "Combination lock",
+              "id": "06"
+            },
+            {
+              "name": "Mickey Mouse",
+              "id": "07"
+            }
+          ]
+        },
+        {
+          "name": "Dream Altar",
+          "abbreviation": "DA",
+          "rooms": [
+            {
+              "name": "Spikes, Springs and Dreams",
+              "id": "08b"
+            },
+            {
+              "name": "One way dream tunnel",
+              "id": "08"
+            },
+            {
+              "name": "Up and down",
+              "id": "09"
+            },
+            {
+              "name": "Dream puzzle 1",
+              "id": "10"
+            },
+            {
+              "name": "Dream puzzle 2",
+              "id": "11"
+            },
+            {
+              "name": "Cassette room",
+              "id": "end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Dream spikes",
+              "id": "00"
+            },
+            {
+              "name": "Badeline switches",
+              "id": "01"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

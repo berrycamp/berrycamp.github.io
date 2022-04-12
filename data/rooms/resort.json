@@ -1,0 +1,444 @@
+{
+  "chapter_no": 3,
+  "name": "Celestial Resort",
+  "desc": "Seeking passage through an abandoned estate, Madeline takes an unwise detour and encounters more than dust and echos.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Outside I",
+              "id": "s0"
+            },
+            {
+              "name": "Outside II",
+              "id": "s1"
+            },
+            {
+              "name": "Outside berries",
+              "id": "s2"
+            },
+            {
+              "name": "Outside key",
+              "id": "s3"
+            },
+            {
+              "name": "Ring the bell",
+              "id": "0x-a"
+            },
+            {
+              "name": "Dust bunny intro",
+              "id": "00-a"
+            },
+            {
+              "name": "Locked door",
+              "id": "02-a"
+            },
+            {
+              "name": "Dust bunnies and key",
+              "id": "02-b"
+            },
+            {
+              "name": "Three falling shelves",
+              "id": "01-b"
+            },
+            {
+              "name": "Dust berry",
+              "id": "00-b"
+            },
+            {
+              "name": "Cassette teaser",
+              "id": "00-c"
+            },
+            {
+              "name": "Berry balcony interior",
+              "id": "0x-b"
+            },
+            {
+              "name": "Pressure platforms intro",
+              "id": "03-a"
+            },
+            {
+              "name": "Dash around berry",
+              "id": "04-b"
+            },
+            {
+              "name": "Dust pillars",
+              "id": "05-a"
+            },
+            {
+              "name": "Winged berry",
+              "id": "06-a"
+            },
+            {
+              "name": "Locked door",
+              "id": "07-a"
+            },
+            {
+              "name": "Key room",
+              "id": "07-b"
+            },
+            {
+              "name": "Circling dust platforms",
+              "id": "06-b"
+            },
+            {
+              "name": "Spiked moss walls",
+              "id": "06-c"
+            },
+            {
+              "name": "Berry loop",
+              "id": "05-c"
+            },
+            {
+              "name": "Locked spring platforms",
+              "id": "08-c"
+            },
+            {
+              "name": "Weaving platform",
+              "id": "08-b"
+            }
+          ]
+        },
+        {
+          "name": "Huge Mess",
+          "abbreviation": "HM",
+          "rooms": [
+            {
+              "name": "Book bridge",
+              "id": "08-a"
+            },
+            {
+              "name": "Huge mess",
+              "id": "09-b"
+            },
+            {
+              "name": "Crates I",
+              "id": "11-x"
+            },
+            {
+              "name": "Crates II",
+              "id": "11-y"
+            },
+            {
+              "name": "Crates III",
+              "id": "12-y"
+            },
+            {
+              "name": "Crates IV",
+              "id": "11-z"
+            },
+            {
+              "name": "Crates V",
+              "id": "10-z"
+            },
+            {
+              "name": "Crates VI",
+              "id": "10-y"
+            },
+            {
+              "name": "Crates button",
+              "id": "10-x"
+            },
+            {
+              "name": "Books I",
+              "id": "10-c"
+            },
+            {
+              "name": "Books II",
+              "id": "11-c"
+            },
+            {
+              "name": "Books III",
+              "id": "12-c"
+            },
+            {
+              "name": "Books IV",
+              "id": "12-d"
+            },
+            {
+              "name": "Books V",
+              "id": "11-d"
+            },
+            {
+              "name": "Books button",
+              "id": "10-d"
+            },
+            {
+              "name": "Towels I",
+              "id": "11-b"
+            },
+            {
+              "name": "Towels II",
+              "id": "12-b"
+            },
+            {
+              "name": "Towels III",
+              "id": "13-b"
+            },
+            {
+              "name": "Towels IV",
+              "id": "13-a"
+            },
+            {
+              "name": "Towels V",
+              "id": "13-x"
+            },
+            {
+              "name": "Towels button",
+              "id": "12-x"
+            },
+            {
+              "name": "Flooding & pico-8",
+              "id": "11-a"
+            },
+            {
+              "name": "Bridge berry",
+              "id": "08-x"
+            }
+          ]
+        },
+        {
+          "name": "Elevator Shaft",
+          "abbreviation": "ES",
+          "rooms": [
+            {
+              "name": "Elevator shaft",
+              "id": "09-d"
+            },
+            {
+              "name": "Switch columns",
+              "id": "08-d"
+            },
+            {
+              "name": "Dusty room",
+              "id": "06-d"
+            },
+            {
+              "name": "Serpentine",
+              "id": "04-d"
+            },
+            {
+              "name": "Dust Demo",
+              "id": "04-d"
+            },
+            {
+              "name": "Lock room",
+              "id": "04-c"
+            },
+            {
+              "name": "Quad hyper",
+              "id": "02-c"
+            },
+            {
+              "name": "Tight berries",
+              "id": "03-b"
+            },
+            {
+              "name": "Cassette room",
+              "id": "01-c"
+            },
+            {
+              "name": "TAS cycle",
+              "id": "02-d"
+            }
+          ]
+        },
+        {
+          "name": "Presidential Suite",
+          "abbreviation": "PS",
+          "rooms": [
+            {
+              "name": "Presidential Suite",
+              "id": "00-d"
+            },
+            {
+              "name": "Oshiro",
+              "id": "roof00"
+            },
+            {
+              "name": "Dust pile jump",
+              "id": "roof01"
+            },
+            {
+              "name": "Dust tunnel",
+              "id": "roof02"
+            },
+            {
+              "name": "Dust switches",
+              "id": "roof03"
+            },
+            {
+              "name": "Oshiro inside",
+              "id": "roof04"
+            },
+            {
+              "name": "Dust springs",
+              "id": "roof05"
+            },
+            {
+              "name": "Dash crystal race",
+              "id": "roof06b"
+            },
+            {
+              "name": "Inside and outside",
+              "id": "roof06"
+            },
+            {
+              "name": "Walk the plank",
+              "id": "roof07"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Mind the gap",
+              "id": "00"
+            },
+            {
+              "name": "Jumps off fragments",
+              "id": "01"
+            },
+            {
+              "name": "Dusty crates",
+              "id": "02"
+            },
+            {
+              "name": "Wall dust cycle",
+              "id": "03"
+            },
+            {
+              "name": "Elephant room",
+              "id": "04"
+            },
+            {
+              "name": "Three switch spring",
+              "id": "05"
+            }
+          ]
+        },
+        {
+          "name": "Staff Quarters",
+          "abbreviation": "SQ",
+          "rooms": [
+            {
+              "name": "Dusty platforms",
+              "id": "06"
+            },
+            {
+              "name": "Stamina room",
+              "id": "07"
+            },
+            {
+              "name": "Towel room",
+              "id": "08"
+            },
+            {
+              "name": "Flooded laundry",
+              "id": "09"
+            },
+            {
+              "name": "Up and down",
+              "id": "10"
+            }
+          ]
+        },
+        {
+          "name": "Library",
+          "abbreviation": "LB",
+          "rooms": [
+            {
+              "name": "Dusty walls I",
+              "id": "11"
+            },
+            {
+              "name": "Outside dust pillars",
+              "id": "13"
+            },
+            {
+              "name": "Dusty walls II",
+              "id": "14"
+            },
+            {
+              "name": "Dust Elevator",
+              "id": "15"
+            },
+            {
+              "name": "Dusty springs",
+              "id": "12"
+            }
+          ]
+        },
+        {
+          "name": "Rooftop",
+          "abbreviation": "RT",
+          "rooms": [
+            {
+              "name": "Chimney",
+              "id": "16"
+            },
+            {
+              "name": "Oshiro returns",
+              "id": "17"
+            },
+            {
+              "name": "Ground dashing",
+              "id": "18"
+            },
+            {
+              "name": "Dust cave",
+              "id": "19"
+            },
+            {
+              "name": "Dash crystal race",
+              "id": "21"
+            },
+            {
+              "name": "Locked hatch",
+              "id": "20"
+            },
+            {
+              "name": "Cassette room",
+              "id": "end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Cycle",
+              "id": "00"
+            },
+            {
+              "name": "Platforms",
+              "id": "01"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "chapter_no": 4,
+  "name": "Golden Ridge",
+  "desc": "Madeline scales the sheer cliffs of the ridge; through a tempest that pushes back her every step. A single slip and she will be lost like a feather in the wind.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Cloud intro",
+              "id": "a-00"
+            },
+            {
+              "name": "Green bubble intro",
+              "id": "a-01"
+            },
+            {
+              "name": "Water and Granny",
+              "id": "a-01x"
+            },
+            {
+              "name": "Wind intro",
+              "id": "a-02"
+            },
+            {
+              "name": "Bubbles and pillars",
+              "id": "a-03"
+            },
+            {
+              "name": "Quad clouds",
+              "id": "a-04"
+            },
+            {
+              "name": "Windy platforms",
+              "id": "a-05"
+            },
+            {
+              "name": "Stamina berry",
+              "id": "a-06"
+            },
+            {
+              "name": "Archie",
+              "id": "a-07"
+            },
+            {
+              "name": "Cloud stairs",
+              "id": "a-08"
+            },
+            {
+              "name": "Seed puzzle",
+              "id": "a-10"
+            },
+            {
+              "name": "Cassette room",
+              "id": "a-11"
+            },
+            {
+              "name": "Wind wall",
+              "id": "a-09"
+            }
+          ]
+        },
+        {
+          "name": "Shrine",
+          "abbreviation": "SH",
+          "rooms": [
+            {
+              "name": "Central room",
+              "id": "b-00"
+            },
+            {
+              "name": "Double berry",
+              "id": "b-01"
+            },
+            {
+              "name": "Push blocks",
+              "id": "b-02"
+            },
+            {
+              "name": "Cube scroller",
+              "id": "b-05"
+            },
+            {
+              "name": "Weave scroller",
+              "id": "b-04"
+            },
+            {
+              "name": "Up and around",
+              "id": "b-06"
+            },
+            {
+              "name": "Backwards berry",
+              "id": "b-07"
+            },
+            {
+              "name": "Low scroller",
+              "id": "b-03"
+            },
+            {
+              "name": "Grotto",
+              "id": "b-02"
+            },
+            {
+              "name": "Heart room",
+              "id": "b-sec"
+            },
+            {
+              "name": "Collision berry",
+              "id": "b-secb"
+            },
+            {
+              "name": "Main path scroller",
+              "id": "b-05"
+            },
+            {
+              "name": "Scroller tracks",
+              "id": "b-08b"
+            },
+            {
+              "name": "Autoscroller",
+              "id": "b-08"
+            }
+          ]
+        },
+        {
+          "name": "Old Trail",
+          "abbreviation": "OT",
+          "rooms": [
+            {
+              "name": "Old trail start",
+              "id": "c-00"
+            },
+            {
+              "name": "Winged berry",
+              "id": "c-01"
+            },
+            {
+              "name": "Windy bubbles",
+              "id": "c-02"
+            },
+            {
+              "name": "Safety flag",
+              "id": "c-04"
+            },
+            {
+              "name": "Narrow windy platforms",
+              "id": "c-05"
+            },
+            {
+              "name": "Autoscroller puzzle",
+              "id": "c-06"
+            },
+            {
+              "name": "Wind return berry",
+              "id": "c-06b"
+            },
+            {
+              "name": "Second autoscroller",
+              "id": "c-09"
+            },
+            {
+              "name": "Tiny crumble blocks",
+              "id": "c-07"
+            },
+            {
+              "name": "Spring up",
+              "id": "c-08"
+            },
+            {
+              "name": "Bubble up",
+              "id": "c-10"
+            }
+          ]
+        },
+        {
+          "name": "Cliff Face",
+          "abbreviation": "CF",
+          "rooms": [
+            {
+              "name": "Cliff face entry",
+              "id": "d-00"
+            },
+            {
+              "name": "Scroller loop berry",
+              "id": "d-00b"
+            },
+            {
+              "name": "Windy crumble blocks",
+              "id": "d-01"
+            },
+            {
+              "name": "Scroller switch",
+              "id": "d-02"
+            },
+            {
+              "name": "Snowball intro",
+              "id": "d-03"
+            },
+            {
+              "name": "Snowballs are jerks",
+              "id": "d-04"
+            },
+            {
+              "name": "Quad springs",
+              "id": "d-05"
+            },
+            {
+              "name": "Small platforms",
+              "id": "d-06"
+            },
+            {
+              "name": "Six bubbles",
+              "id": "d-07"
+            },
+            {
+              "name": "Up to tailwind",
+              "id": "d-08"
+            },
+            {
+              "name": "Tailwind",
+              "id": "d-09"
+            },
+            {
+              "name": "Gondola",
+              "id": "d-10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "a-00"
+            },
+            {
+              "name": "Platforms & crystals",
+              "id": "a-01"
+            },
+            {
+              "name": "Stamina puzzle",
+              "id": "a-02"
+            },
+            {
+              "name": "Autoscroller slots",
+              "id": "a-03"
+            },
+            {
+              "name": "Tallscroller",
+              "id": "a-04"
+            }
+          ]
+        },
+        {
+          "name": "Stepping Stones",
+          "abbreviation": "SS",
+          "rooms": [
+            {
+              "name": "Crumbling headwind",
+              "id": "b-00"
+            },
+            {
+              "name": "Tailwind bubbles",
+              "id": "b-01"
+            },
+            {
+              "name": "Scrollershaft",
+              "id": "b-02"
+            },
+            {
+              "name": "Tailwind switches",
+              "id": "b-03"
+            },
+            {
+              "name": "Headwind & tiny blocks",
+              "id": "b-04"
+            }
+          ]
+        },
+        {
+          "name": "Gusty Canyon",
+          "abbreviation": "GC",
+          "rooms": [
+            {
+              "name": "Tailwind & stamina",
+              "id": "c-00"
+            },
+            {
+              "name": "Crystal platforms",
+              "id": "c-01"
+            },
+            {
+              "name": "Crystal tri-scroller",
+              "id": "c-02"
+            },
+            {
+              "name": "Scroller ascent race",
+              "id": "c-03"
+            },
+            {
+              "name": "Snaking crystals",
+              "id": "c-04"
+            }
+          ]
+        },
+        {
+          "name": "Eye of the Storm",
+          "abbreviation": "EOTS",
+          "rooms": [
+            {
+              "name": "Alternating wind",
+              "id": "d-00"
+            },
+            {
+              "name": "Cloud hopping",
+              "id": "d-01"
+            },
+            {
+              "name": "Switches and bubbles",
+              "id": "d-02"
+            },
+            {
+              "name": "Long tailwind",
+              "id": "d-03"
+            },
+            {
+              "name": "Cassette room",
+              "id": "end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Bubble jumps",
+              "id": "00"
+            },
+            {
+              "name": "Vertical scroller",
+              "id": "01"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

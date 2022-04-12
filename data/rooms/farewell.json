@@ -1,0 +1,518 @@
+{
+  "chapter_no": 9,
+  "name": "Farewell",
+  "desc": "Denial. Anger. Depression. Bargaining. Acceptance. Sometimes, one of the hardest things in life is saying farewell.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Past",
+              "id": "intro-00-past"
+            },
+            {
+              "name": "Present",
+              "id": "intro-01-future"
+            },
+            {
+              "name": "Clouds",
+              "id": "intro-02-launch"
+            },
+            {
+              "name": "Space",
+              "id": "intro-03-space"
+            }
+          ]
+        },
+        {
+          "name": "Singular",
+          "abbreviation": "SI",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "a-00"
+            },
+            {
+              "name": "Crystal tunnel",
+              "id": "a-01"
+            },
+            {
+              "name": "Sliding block",
+              "id": "a-02"
+            },
+            {
+              "name": "Block toss",
+              "id": "a-03"
+            },
+            {
+              "name": "Spring blocks I",
+              "id": "a-04"
+            },
+            {
+              "name": "Spring blocks II",
+              "id": "a-05"
+            },
+            {
+              "name": "Fish intro",
+              "id": "b-00"
+            },
+            {
+              "name": "Fish bounce I",
+              "id": "b-01"
+            },
+            {
+              "name": "Fish bounce II",
+              "id": "b-02"
+            },
+            {
+              "name": "Dream fish",
+              "id": "b-03"
+            },
+            {
+              "name": "Fish cave",
+              "id": "b-04"
+            },
+            {
+              "name": "Fish spring I",
+              "id": "b-05"
+            },
+            {
+              "name": "Fish spring II",
+              "id": "b-06"
+            },
+            {
+              "name": "Electric maze",
+              "id": "b-07"
+            }
+          ]
+        },
+        {
+          "name": "Power Source",
+          "abbreviation": "PS",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "c-00"
+            },
+            {
+              "name": "Top route I",
+              "id": "c-alt-00"
+            },
+            {
+              "name": "Top route II",
+              "id": "c-alt-01"
+            },
+            {
+              "name": "Bottom route I",
+              "id": "c-00b"
+            },
+            {
+              "name": "Bottom route II",
+              "id": "c-01"
+            },
+            {
+              "name": "Bottom route III",
+              "id": "c-02"
+            },
+            {
+              "name": "Keyskip Jelly",
+              "id": "c-03"
+            },
+            {
+              "name": "Locked room",
+              "id": "d-00"
+            },
+            {
+              "name": "Bottom left key",
+              "id": "d-01"
+            },
+            {
+              "name": "Top left key",
+              "id": "d-02"
+            },
+            {
+              "name": "Bottom right key",
+              "id": "d-03"
+            },
+            {
+              "name": "Top right key",
+              "id": "d-04"
+            },
+            {
+              "name": "Top key",
+              "id": "d-05"
+            },
+            {
+              "name": "Keyskip I",
+              "id": "d-05"
+            },
+            {
+              "name": "Keyskip II / Bubble stars",
+              "id": "e-00y"
+            },
+            {
+              "name": "Keyskip III",
+              "id": "e-00yb"
+            }
+          ]
+        },
+        {
+          "name": "Remembered",
+          "abbreviation": "RM",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "e-00z"
+            },
+            {
+              "name": "Cloud fish switch",
+              "id": "e-00"
+            },
+            {
+              "name": "Jelly up",
+              "id": "e-00b"
+            },
+            {
+              "name": "Sawmill",
+              "id": "e-01"
+            },
+            {
+              "name": "Limbo",
+              "id": "e-02"
+            },
+            {
+              "name": "Fish springs",
+              "id": "e-03"
+            },
+            {
+              "name": "Jelly gates",
+              "id": "e-04"
+            },
+            {
+              "name": "Fish push",
+              "id": "e-05"
+            },
+            {
+              "name": "Aloft fish",
+              "id": "e-05b"
+            },
+            {
+              "name": "Fish bounce",
+              "id": "e-05c"
+            },
+            {
+              "name": "Glide springs",
+              "id": "e-06"
+            },
+            {
+              "name": "Fishscroller",
+              "id": "e-07"
+            },
+            {
+              "name": "Jellyscroller",
+              "id": "e-08"
+            }
+          ]
+        },
+        {
+          "name": "Event Horizon",
+          "abbreviation": "EH",
+          "rooms": [
+            {
+              "name": "Heart gate",
+              "id": "f-door"
+            },
+            {
+              "name": "Wavedash Tutorial I",
+              "id": "f-00"
+            },
+            {
+              "name": "Wavedash Tutorial II",
+              "id": "f-00"
+            },
+            {
+              "name": "Wavedash Tutorial III",
+              "id": "f-01"
+            },
+            {
+              "name": "Bird",
+              "id": "f-02"
+            },
+            {
+              "name": "Beyond the heart",
+              "id": "f-03"
+            },
+            {
+              "name": "Wavedash blocks",
+              "id": "f-04"
+            },
+            {
+              "name": "Conveyor",
+              "id": "f-05"
+            },
+            {
+              "name": "Kevin",
+              "id": "f-06"
+            },
+            {
+              "name": "Wavedash zippers",
+              "id": "f-07"
+            },
+            {
+              "name": "Autoscroller",
+              "id": "f-08"
+            },
+            {
+              "name": "Bounce switch",
+              "id": "f-09"
+            },
+            {
+              "name": "Vertical Zipper",
+              "id": "g-00"
+            },
+            {
+              "name": "Wavedash bubbles",
+              "id": "g-01"
+            },
+            {
+              "name": "Dream switch",
+              "id": "g-03"
+            },
+            {
+              "name": "Moving dream blocks",
+              "id": "g-02"
+            },
+            {
+              "name": "Comb",
+              "id": "g-04"
+            },
+            {
+              "name": "Cloud gap",
+              "id": "g-05"
+            },
+            {
+              "name": "Bird trail",
+              "id": "g-06"
+            }
+          ]
+        },
+        {
+          "name": "Determination",
+          "abbreviation": "DT",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "h-00b"
+            },
+            {
+              "name": "Trash Compactor",
+              "id": "h-00"
+            },
+            {
+              "name": "Spring scroller",
+              "id": "h-01"
+            },
+            {
+              "name": "Wind bubbles",
+              "id": "h-02"
+            },
+            {
+              "name": "Airlock",
+              "id": "h-03"
+            },
+            {
+              "name": "Core block",
+              "id": "h-03b"
+            },
+            {
+              "name": "Starshaft",
+              "id": "h-04"
+            },
+            {
+              "name": "Demo room",
+              "id": "h-04b"
+            },
+            {
+              "name": "Cheese",
+              "id": "h-05"
+            },
+            {
+              "name": "Falling pillars",
+              "id": "h-06"
+            },
+            {
+              "name": "Fire & Ice",
+              "id": "h-06b"
+            },
+            {
+              "name": "Wind dash",
+              "id": "h-07"
+            },
+            {
+              "name": "Windsprings",
+              "id": "h-07"
+            },
+            {
+              "name": "Conveyor",
+              "id": "h-08"
+            },
+            {
+              "name": "Kevin",
+              "id": "h-09"
+            },
+            {
+              "name": "Star road",
+              "id": "h-10"
+            }
+          ]
+        },
+        {
+          "name": "Stubbornness",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "i-00"
+            },
+            {
+              "name": "Hubris",
+              "id": "i-00b"
+            },
+            {
+              "name": "Spring blocks",
+              "id": "i-01"
+            },
+            {
+              "name": "Horseshoe",
+              "id": "i-02"
+            },
+            {
+              "name": "Crystal columns",
+              "id": "i-03"
+            },
+            {
+              "name": "Bubble lock",
+              "id": "i-04"
+            },
+            {
+              "name": "Underhang",
+              "id": "i-05"
+            }
+          ]
+        },
+        {
+          "name": "Reconciliation",
+          "abbreviation": "RC",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "j-00"
+            },
+            {
+              "name": "Jelly throw",
+              "id": "j-00b"
+            },
+            {
+              "name": "Bird & Badeline",
+              "id": "j-01"
+            },
+            {
+              "name": "Social distancing",
+              "id": "j-02"
+            },
+            {
+              "name": "Moving pillars",
+              "id": "j-03"
+            },
+            {
+              "name": "Jelly dash",
+              "id": "j-04"
+            },
+            {
+              "name": "Feather pillars",
+              "id": "j-05"
+            },
+            {
+              "name": "Shifting maze",
+              "id": "j-06"
+            },
+            {
+              "name": "Aquarium",
+              "id": "j-07"
+            },
+            {
+              "name": "Whoosh",
+              "id": "j-08"
+            },
+            {
+              "name": "Electric press",
+              "id": "j-09"
+            },
+            {
+              "name": "Dash block maze",
+              "id": "j-10"
+            },
+            {
+              "name": "Sping scroller",
+              "id": "j-11"
+            },
+            {
+              "name": "Wavedash blocks",
+              "id": "j-12"
+            },
+            {
+              "name": "Windfeather",
+              "id": "j-13"
+            },
+            {
+              "name": "Chokefish",
+              "id": "j-14"
+            },
+            {
+              "name": "Jelly bounce",
+              "id": "j-14b"
+            },
+            {
+              "name": "Kevin",
+              "id": "j-15"
+            }
+          ]
+        },
+        {
+          "name": "Farewell",
+          "abbreviation": "FW",
+          "rooms": [
+            {
+              "name": "Farewell",
+              "id": "j-16"
+            },
+            {
+              "name": "Moonberry path",
+              "id": "j-16"
+            },
+            {
+              "name": "Forced death",
+              "id": "j-17"
+            },
+            {
+              "name": "Spawn set",
+              "id": "j-18"
+            },
+            {
+              "name": "Moonberry room",
+              "id": "j-19"
+            },
+            {
+              "name": "Golden room",
+              "id": "end-golden"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

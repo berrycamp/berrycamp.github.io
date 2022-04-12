@@ -1,0 +1,296 @@
+{
+  "chapter_no": 1,
+  "name": "Forsaken City",
+  "desc": "A deserted city stands in Madeline's path. The deep pits and crumbling wreckage give her pause, but she finds comfort in the companionship of a fellow traveler.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Begin",
+              "id": "1"
+            },
+            {
+              "name": "Berry and spring",
+              "id": "2"
+            },
+            {
+              "name": "Floating platforms",
+              "id": "3"
+            },
+            {
+              "name": "Zipper intro",
+              "id": "4"
+            },
+            {
+              "name": "Crumbling winged berry",
+              "id": "3b"
+            },
+            {
+              "name": "Zipper and top-left berry",
+              "id": "5"
+            },
+            {
+              "name": "Up and around berry",
+              "id": "5z"
+            },
+            {
+              "name": "Launch berry",
+              "id": "5a"
+            }
+          ]
+        },
+        {
+          "name": "Crossing",
+          "abbreviation": "CR",
+          "rooms": [
+            {
+              "name": "Dashless is hard",
+              "id": "6"
+            },
+            {
+              "name": "Over spike pit",
+              "id": "6z"
+            },
+            {
+              "name": "Theo the Adventurer",
+              "id": "6zb"
+            },
+            {
+              "name": "Berry above Theo",
+              "id": "7zb"
+            },
+            {
+              "name": "Coffee shop",
+              "id": "6a"
+            },
+            {
+              "name": "Zippers & Spikes",
+              "id": "6b"
+            },
+            {
+              "name": "Zipper gate",
+              "id": "s0"
+            },
+            {
+              "name": "Heart puzzle",
+              "id": "s1"
+            },
+            {
+              "name": "Springs and path fork",
+              "id": "6c"
+            },
+            {
+              "name": "Falling ice",
+              "id": "7"
+            },
+            {
+              "name": "Berry path I",
+              "id": "7z"
+            },
+            {
+              "name": "Berry path II",
+              "id": "8z"
+            },
+            {
+              "name": "Berry path III",
+              "id": "8zb"
+            },
+            {
+              "name": "Junction",
+              "id": "8"
+            },
+            {
+              "name": "Tri-zip berry",
+              "id": "7a"
+            },
+            {
+              "name": "Zip around berry",
+              "id": "9z"
+            },
+            {
+              "name": "Ceiling zippers",
+              "id": "8b"
+            },
+            {
+              "name": "Up and right",
+              "id": "9"
+            }
+          ]
+        },
+        {
+          "name": "Chasm",
+          "abbreviation": "CH",
+          "rooms": [
+            {
+              "name": "Mind the gap",
+              "id": "9b"
+            },
+            {
+              "name": "Winged zip berry",
+              "id": "9c"
+            },
+            {
+              "name": "Narrow spike shaft",
+              "id": "10"
+            },
+            {
+              "name": "One way spikes",
+              "id": "10z"
+            },
+            {
+              "name": "Cliff berry",
+              "id": "10zb"
+            },
+            {
+              "name": "Underpass",
+              "id": "11"
+            },
+            {
+              "name": "Cassette room",
+              "id": "11z"
+            },
+            {
+              "name": "Around and up",
+              "id": "10a"
+            },
+            {
+              "name": "Overpass",
+              "id": "11"
+            },
+            {
+              "name": "Snow blocks",
+              "id": "12"
+            },
+            {
+              "name": "Dash crystal berry",
+              "id": "12z"
+            },
+            {
+              "name": "Hanging platforms",
+              "id": "12a"
+            },
+            {
+              "name": "Monument",
+              "id": "end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "checkpoints": [
+        {
+          "name": "Start",
+          "abbreviation": "ST",
+          "rooms": [
+            {
+              "name": "Start",
+              "id": "00"
+            },
+            {
+              "name": "Dual zippers",
+              "id": "01"
+            },
+            {
+              "name": "Over and under",
+              "id": "02"
+            },
+            {
+              "name": "Three zipper jumps",
+              "id": "02b"
+            },
+            {
+              "name": "Stamina jumps",
+              "id": "03"
+            }
+          ]
+        },
+        {
+          "name": "Contraption",
+          "abbreviation": "CT",
+          "rooms": [
+            {
+              "name": "Contraption",
+              "id": "04"
+            },
+            {
+              "name": "Zip over and up",
+              "id": "05"
+            },
+            {
+              "name": "One way spikes",
+              "id": "05b"
+            },
+            {
+              "name": "Stamina jump puzzle",
+              "id": "06"
+            },
+            {
+              "name": "Obstacle spikes",
+              "id": "07"
+            }
+          ]
+        },
+        {
+          "name": "Scrap Pit",
+          "abbreviation": "SP",
+          "rooms": [
+            {
+              "name": "Crumble block dash",
+              "id": "08"
+            },
+            {
+              "name": "Little zippers",
+              "id": "08b"
+            },
+            {
+              "name": "Hanging Zippers",
+              "id": "09"
+            },
+            {
+              "name": "One way zip",
+              "id": "10"
+            },
+            {
+              "name": "Zipper launches",
+              "id": "11"
+            },
+            {
+              "name": "Cassette room",
+              "id": "end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Zipper jumps",
+              "id": "00"
+            },
+            {
+              "name": "Open space",
+              "id": "01"
+            },
+            {
+              "name": "Heart room",
+              "id": "02"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

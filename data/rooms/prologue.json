@@ -1,0 +1,41 @@
+{
+  "name": "Prologue",
+  "desc": "Madeline arrives at the foot of the mountain. A lone cabin stands at the top of a broken driveway, housing an unlikely resident. And so she begins... a long, long upward climb.",
+  "sides": [
+    {
+      "name": "A",
+      "checkpoints": [
+        {
+          "name": "Begin",
+          "abbreviation": "BG",
+          "rooms": [
+            {
+              "name": "Drive up",
+              "id": "-1"
+            },
+            {
+              "name": "Broken driveway I",
+              "id": "0"
+            },
+            {
+              "name": "Birds",
+              "id": "0b"
+            },
+            {
+              "name": "Broken driveway II",
+              "id": "1"
+            },
+            {
+              "name": "Old Woman",
+              "id": "2"
+            },
+            {
+              "name": "Dash tutorial",
+              "id": "3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
