@@ -1,4 +1,5 @@
 {
+  "id": "6-Reflection",
   "chapter_no": 6,
   "name": "Reflection",
   "desc": "Madeline opens up to Theo under the stars and discovers that discarding your problems isn't easy. You can't climb out of a hole you dug yourself without facing your own reflection.",
@@ -30,7 +31,8 @@
             },
             {
               "name": "Feather maze II",
-              "id": "02"
+              "id": "02",
+              "subroom": 1
             },
             {
               "name": "U-turn",
@@ -38,7 +40,8 @@
             },
             {
               "name": "Feather maze III",
-              "id": "02"
+              "id": "02",
+              "subroom": 2
             },
             {
               "name": "Kevin ascent",
@@ -462,11 +465,13 @@
             },
             {
               "name": "Kevin",
-              "id": "02"
+              "id": "02",
+              "subroom": 1
             },
             {
-              "name": "Heart Room",
-              "id": "02"
+              "name": "Heart",
+              "id": "02",
+              "subroom": 2
             }
           ]
         }

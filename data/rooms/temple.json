@@ -1,4 +1,5 @@
 {
+  "id": "5-MirrorTemple",
   "chapter_no": 5,
   "name": "Mirror Temple",
   "desc": "An ancient temple in the side of the mountain houses a terrible power. Madeline ventures in to find her friend and learns what lies inside her heart.",
@@ -76,11 +77,13 @@
             },
             {
               "name": "Crystal key tunnel",
-              "id": "a-12"
+              "id": "a-12",
+              "subroom": 1
             },
             {
               "name": "Bubble tunnel",
-              "id": "a-12"
+              "id": "a-12",
+              "subroom": 2
             },
             {
               "name": "Bubble switch berry",
@@ -118,7 +121,8 @@
             },
             {
               "name": "Rusted gates Left",
-              "id": "b-20"
+              "id": "b-20",
+              "subroom": 1
             },
             {
               "name": "Winged berry",
@@ -126,7 +130,8 @@
             },
             {
               "name": "Rusted gates Right",
-              "id": "b-20"
+              "id": "b-20",
+              "subroom": 2
             },
             {
               "name": "Dash block pit",
@@ -178,11 +183,13 @@
             },
             {
               "name": "Seed puzzle",
-              "id": "b-17"
+              "id": "b-17",
+              "subroom": 1
             },
             {
               "name": "Strawberry cave",
-              "id": "b-17"
+              "id": "b-17",
+              "subroom": 2
             },
             {
               "name": "Cassette",
@@ -282,7 +289,8 @@
             },
             {
               "name": "Talk with Theo",
-              "id": "e-00"
+              "id": "e-00",
+              "subroom": 1
             },
             {
               "name": "Upper berry path",
@@ -290,11 +298,13 @@
             },
             {
               "name": "Search skip",
-              "id": "d-04"
+              "id": "d-04",
+              "subroom": 1
             },
             {
               "name": "Berry under skip",
-              "id": "d-04"
+              "id": "d-04",
+              "subroom": 2
             },
             {
               "name": "Right key path",
@@ -302,7 +312,8 @@
             },
             {
               "name": "Launch platform",
-              "id": "d-06"
+              "id": "d-06",
+              "subroom": 1
             },
             {
               "name": "Seeker bubble switches",
@@ -318,15 +329,18 @@
             },
             {
               "name": "Lefy key path III",
-              "id": "d-06"
+              "id": "d-06",
+              "subroom": 2
             },
             {
               "name": "Gated key path",
-              "id": "d-15"
+              "id": "d-15",
+              "subroom": 1
             },
             {
               "name": "Gated berry path",
-              "id": "d-15"
+              "id": "d-15",
+              "subroom": 2
             },
             {
               "name": "Seeker den berry",
@@ -360,7 +374,8 @@
           "rooms": [
             {
               "name": "I can carry you",
-              "id": "e-00"
+              "id": "e-00",
+              "subroom": 2
             },
             {
               "name": "Theogate",

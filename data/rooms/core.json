@@ -1,4 +1,5 @@
 {
+  "id": "9-Core",
   "chapter_no": 8,
   "name": "Core",
   "desc": "One year later, Madeline returns to discover the mountain's final secret; that which lies at the heart of everything.",
@@ -330,11 +331,13 @@
             },
             {
               "name": "Hot and cold",
-              "id": "02"
+              "id": "02",
+              "subroom": 1
             },
             {
               "name": "Heart room",
-              "id": "02"
+              "id": "02",
+              "subroom": 2
             }
           ]
         }

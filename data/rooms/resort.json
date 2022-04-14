@@ -1,4 +1,5 @@
 {
+  "id": "3-CelestialResort",
   "chapter_no": 3,
   "name": "Celestial Resort",
   "desc": "Seeking passage through an abandoned estate, Madeline takes an unwise detour and encounters more than dust and echos.",
@@ -220,11 +221,13 @@
             },
             {
               "name": "Serpentine",
-              "id": "04-d"
+              "id": "04-d",
+              "subroom": 1
             },
             {
               "name": "Dust Demo",
-              "id": "04-d"
+              "id": "04-d",
+              "subroom": 2
             },
             {
               "name": "Lock room",

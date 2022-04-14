@@ -1,4 +1,5 @@
 {
+  "id": "2-OldSite",
   "chapter_no": 2,
   "name": "Old Site",
   "desc": "Madeline awakens to find the mountain betraying its disturbing nature. She unearths a mysterious chamber where a familar presence is fettered.",
@@ -36,7 +37,8 @@
             },
             {
               "name": "Iced in",
-              "id": "2"
+              "id": "2",
+              "subroom": 1
             },
             {
               "name": "Shaft",
@@ -52,11 +54,13 @@
             },
             {
               "name": "Berry Tunnel",
-              "id": "d3"
+              "id": "d3",
+              "subroom": 1
             },
             {
               "name": "Mirror",
-              "id": "d3"
+              "id": "d3",
+              "subroom": 2
             },
             {
               "name": "Dream blocks intro",
@@ -134,7 +138,8 @@
             },
             {
               "name": "Chased outside",
-              "id": "2"
+              "id": "2",
+              "subroom": 2
             },
             {
               "name": "Dreaming of awake I",

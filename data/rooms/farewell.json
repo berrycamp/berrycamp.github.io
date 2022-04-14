@@ -1,4 +1,5 @@
 {
+  "id": "LostLevels",
   "chapter_no": 9,
   "name": "Farewell",
   "desc": "Denial. Anger. Depression. Bargaining. Acceptance. Sometimes, one of the hardest things in life is saying farewell.",
@@ -144,11 +145,13 @@
             },
             {
               "name": "Top key",
-              "id": "d-05"
+              "id": "d-05",
+              "subroom": 1
             },
             {
               "name": "Keyskip I",
-              "id": "d-05"
+              "id": "d-05",
+              "subroom": 2
             },
             {
               "name": "Keyskip II / Bubble stars",
@@ -228,11 +231,13 @@
             },
             {
               "name": "Wavedash Tutorial I",
-              "id": "f-00"
+              "id": "f-00",
+              "subroom": 1
             },
             {
               "name": "Wavedash Tutorial II",
-              "id": "f-00"
+              "id": "f-00",
+              "subroom": 2
             },
             {
               "name": "Wavedash Tutorial III",
@@ -350,11 +355,13 @@
             },
             {
               "name": "Wind dash",
-              "id": "h-07"
+              "id": "h-07",
+              "subroom": 1
             },
             {
               "name": "Windsprings",
-              "id": "h-07"
+              "id": "h-07",
+              "subroom": 2
             },
             {
               "name": "Conveyor",
@@ -488,11 +495,13 @@
           "rooms": [
             {
               "name": "Farewell",
-              "id": "j-16"
+              "id": "j-16",
+              "subroom": 1
             },
             {
               "name": "Moonberry path",
-              "id": "j-16"
+              "id": "j-16",
+              "subroom": 2
             },
             {
               "name": "Forced death",

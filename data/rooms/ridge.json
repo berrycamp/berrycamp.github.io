@@ -1,4 +1,5 @@
 {
+  "id": "4-GoldenRidge",
   "chapter_no": 4,
   "name": "Golden Ridge",
   "desc": "Madeline scales the sheer cliffs of the ridge; through a tempest that pushes back her every step. A single slip and she will be lost like a feather in the wind.",
@@ -78,11 +79,13 @@
             },
             {
               "name": "Push blocks",
-              "id": "b-02"
+              "id": "b-02",
+              "subroom": 1
             },
             {
               "name": "Cube scroller",
-              "id": "b-05"
+              "id": "b-05",
+              "subroom": 1
             },
             {
               "name": "Weave scroller",
@@ -102,7 +105,8 @@
             },
             {
               "name": "Grotto",
-              "id": "b-02"
+              "id": "b-02",
+              "subroom": 2
             },
             {
               "name": "Heart room",
@@ -114,7 +118,8 @@
             },
             {
               "name": "Main path scroller",
-              "id": "b-05"
+              "id": "b-05",
+              "subroom": 2
             },
             {
               "name": "Scroller tracks",
