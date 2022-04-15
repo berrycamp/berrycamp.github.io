@@ -11,7 +11,7 @@ import {AreaData, ChapterData} from "../../logic/data/dataTree";
 
 export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
 
-const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mode, toggleMode, view, toggleView}) => {
+const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [sideNo, setSideNo] = useState<number>(0);
 
   return (
@@ -22,7 +22,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mod
       mode={mode}
       toggleMode={toggleMode}
       view={view}
-      toggleView={toggleView}
+      setView={setView}
     >
       <Container>
         <Box paddingTop={8} paddingBottom={4}>

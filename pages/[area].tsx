@@ -10,7 +10,7 @@ import {AppNextPage} from './_app'
 
 export const CHAPTER_IMG_BASE_URL = 'https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/'
 
-const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, toggleView}) => {
+const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, setView}) => {
   return (
     <Layout
       title={area.name}
@@ -19,7 +19,7 @@ const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view,
       mode={mode}
       toggleMode={toggleMode}
       view={view}
-      toggleView={toggleView}
+      setView={setView}
     >
       <Area areaId={areaId} area={area} />
     </Layout >

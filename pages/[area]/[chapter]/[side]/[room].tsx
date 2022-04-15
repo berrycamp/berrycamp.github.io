@@ -28,7 +28,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
   mode,
   toggleMode,
   view,
-  toggleView,
+  setView,
 }) => {
   const roomImageUrl: string = `${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`;
 
@@ -87,7 +87,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
       mode={mode}
       toggleMode={toggleMode}
       view={view}
-      toggleView={toggleView}
+      setView={setView}
     >
       <Container maxWidth="md">
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
@@ -125,24 +125,24 @@ const RoomPage: AppNextPage<RoomProps> = ({
             </Button>
           </Tooltip>
         </Box>
-        <Typography color="GrayText">{chapter.name}</Typography>
-        <Typography color="GrayText">{side.name} Side</Typography>
-        <Typography color="GrayText">{checkpoint.name}</Typography>
+        <Typography color="text.secondary">{chapter.name}</Typography>
+        <Typography color="text.secondary">{side.name} Side</Typography>
+        <Typography color="text.secondary">{checkpoint.name}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
-        <Typography color="GrayText">Debug id: {room.id}</Typography>
-        <Typography color="GrayText">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
-        <Typography color="GrayText" sx={{marginTop: 1}}>Checkpoint Room: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography color="GrayText">Side Room: {sideRoomNo}/{sideRoomTotal}</Typography>
+        <Typography color="text.secondary">Debug id: {room.id}</Typography>
+        <Typography color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
+        <Typography color="text.secondary" sx={{marginTop: 1}}>Checkpoint Room: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
+        <Typography color="text.secondary">Side Room: {sideRoomNo}/{sideRoomTotal}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
-            {prevRoom && (
+            {prevRoom && prevRoomLink && (
               <Link passHref href={prevRoomLink}>
                 <Button size="small" variant="contained" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
               </Link>
             )}
           </Box>
           <Box>
-            {nextRoom && (
+            {nextRoom && nextRoomLink && (
               <Link passHref href={nextRoomLink}>
                 <Button size="small" variant="contained" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
               </Link>

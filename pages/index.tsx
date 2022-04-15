@@ -6,7 +6,7 @@ import {AppNextPage} from "./_app";
 
 const DEFAULT_AREA = "celeste";
 
-export const HomePage: AppNextPage = ({mode, toggleMode, view, toggleView}) => {
+export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
   const area: AreaType | undefined = DATA[DEFAULT_AREA];
   if (area === undefined) {
     return null;
@@ -20,7 +20,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, toggleView}) => {
       mode={mode}
       toggleMode={toggleMode}
       view={view}
-      toggleView={toggleView}
+      setView={setView}
     >
       <Area areaId="celeste" area={area} />
     </Layout>

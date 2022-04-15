@@ -45,7 +45,7 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
     mode,
     toggleMode: () => setMode(mode === "light" ? "dark" : "light"),
     view,
-    toggleView: () => setView(view === "grid" ? "list" : "grid"),
+    setView: (view: "grid" | "list") => setView(view),
   }
 
   return (
@@ -57,7 +57,7 @@ export interface GlobalAppProps {
   mode: "light" | "dark";
   toggleMode: () => void;
   view: "grid" | "list";
-  toggleView: () => void;
+  setView: (view: "grid" | "list") => void;
 }
 
 export type AppNextPage<P = {}, IP = P> = NextPage<P & GlobalAppProps, IP>;

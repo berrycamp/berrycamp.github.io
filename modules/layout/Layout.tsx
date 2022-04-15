@@ -8,7 +8,7 @@ import Link from "next/link";
 import styles from "pages/Common.module.css";
 import {FC, Fragment, useMemo} from "react";
 
-export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggleMode, view, toggleView, children}) => {
+export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggleMode, view, setView, children}) => {
   const theme: Theme = useMemo(() => createTheme({
     palette: {
       mode,
@@ -80,7 +80,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
               </Box>
               <Box display="flex" alignItems="center" gap={0.5}>
                 <Paper elevation={0} sx={{padding: 0, margin: 0}}>
-                  <ToggleButtonGroup size="small" value={view} onChange={toggleView}>
+                  <ToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
                     <ToggleButton value="grid">
                       <GridView fontSize="small" />
                     </ToggleButton>
@@ -111,5 +111,5 @@ interface LayoutProps {
   mode: "light" | "dark";
   toggleMode: () => void;
   view: "grid" | "list"
-  toggleView: () => void;
+  setView: (view: "grid" | "list") => void;
 }
