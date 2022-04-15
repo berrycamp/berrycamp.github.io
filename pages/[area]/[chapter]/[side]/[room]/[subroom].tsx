@@ -2,11 +2,11 @@ import {DATA} from "logic/data/data";
 import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {ParsedUrlQuery} from "querystring";
-import Room from "../[room]";
+import RoomPage from "../[room]";
 
-const Subroom: NextPage<SubroomProps> = (props) => {
+const SubroomPage: NextPage<SubroomProps> = (props) => {
   return (
-    <Room {...props} />
+    <RoomPage {...props} />
   )
 }
 
@@ -124,4 +124,4 @@ const getRoomData = (side: SideData, roomId: string, subroom: string): {checkpoi
   return undefined;
 }
 
-export default Subroom;
+export default SubroomPage;

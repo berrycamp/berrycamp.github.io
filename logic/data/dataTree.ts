@@ -3,6 +3,8 @@ export type DataTree = Record<string, AreaData>;
 export interface AreaData {
   id: string;
   name: string;
+  desc: string;
+  imageUrl: string;
   chapters: Record<string, ChapterData>
 }
 

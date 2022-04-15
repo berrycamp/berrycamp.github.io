@@ -3,17 +3,18 @@ import {Box, Button, Container, Dialog, Divider, Theme, Tooltip, Typography, use
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
-import {getTitle} from "logic/utils/title";
+import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "pages/Common.module.css";
 import {IMAGE_URL} from "pages/[area]/[chapter]";
 import {ParsedUrlQuery} from "querystring";
-import {Fragment, useState} from "react";
-import styles from "../../../Common.module.css";
+import {useState} from "react";
 
-const Room: NextPage<RoomProps> = (props) => {
+const RoomPage: NextPage<RoomProps> = (props) => {
+  const roomImageUrl: string = `${IMAGE_URL}/${props.chapterId}/${props.sideIndex + 1}/${props.checkpointIndex + 1}/${props.roomIndex + 1}.png`;
+
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
@@ -45,40 +46,38 @@ const Room: NextPage<RoomProps> = (props) => {
     }
   }
 
-  console.log(JSON.stringify(prevRoom));
-  console.log(JSON.stringify(nextRoom));
-
   return (
-    <Fragment>
-      <Head>
-        <title>{getTitle(props.room.name)}</title>
-      </Head>
+    <Layout
+      title={props.room.name}
+      description={props.room.id}
+      imgUrl={roomImageUrl}
+    >
       <Container maxWidth="md">
-        <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)}>
+        <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <AspectBox>
             <Image
               className={styles.roomimage}
               unoptimized
-              src={`${IMAGE_URL}/${props.chapterId}/${props.sideIndex + 1}/${props.checkpointIndex + 1}/${props.roomIndex + 1}.png`}
+              src={roomImageUrl}
               alt={`${props.room.name} image`}
               layout="fill"
             />
           </AspectBox>
         </Dialog>
-        <AspectBox marginTop={1} marginBottom={1}>
+        <AspectBox marginTop={2} marginBottom={2}>
           <Image
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
             className={styles.roomimage}
             unoptimized
-            src={`${IMAGE_URL}/${props.chapterId}/${props.sideIndex + 1}/${props.checkpointIndex + 1}/${props.roomIndex + 1}.png`}
+            src={roomImageUrl}
             alt={`${props.room.name} image`}
             layout="fill"
           />
         </AspectBox>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h4">{(props.subroom === undefined && props.room.subroom && props.room.fullRoomName) ? props.room.fullRoomName : props.room.name}</Typography>
-          <Tooltip enterDelay={750} title={Number(props.room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running."}>
+          <Tooltip enterDelay={750} title={Number(props.room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running"}>
             <Button
               variant="contained"
               color={Number(props.room.subroom) - 1 ? "warning" : "primary"}
@@ -114,7 +113,7 @@ const Room: NextPage<RoomProps> = (props) => {
           </Box>
         </Box>
       </Container >
-    </Fragment>
+    </Layout>
   )
 }
 
@@ -226,4 +225,4 @@ const getRoomData = (side: SideData, roomId: string): {checkpointIndex: number, 
   return undefined;
 }
 
-export default Room;
+export default RoomPage;
