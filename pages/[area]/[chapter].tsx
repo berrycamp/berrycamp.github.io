@@ -1,9 +1,8 @@
-import {Box, Container, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardMedia, Container, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {Layout} from "modules/layout/Layout";
-import Image from "next/image";
-import Link from "next/link";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next/types";
+import styles from "pages/Common.module.css";
 import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useState} from "react";
@@ -35,16 +34,18 @@ const ChapterPage: NextPage<ChapterProps> = (props) => {
           {props.chapter.sides[sideNo]?.checkpoints.map((checkpoint, checkpointNo) => (
             <Fragment key={checkpoint.name}>
               {checkpoint.rooms.map((room, roomNo) => (
-                <Box key={room.id} width={320} height={180} position="relative">
-                  <Link passHref href={`/${props.areaId}/${props.chapterId}/${props.chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}>
-                    <Image
-                      unoptimized
-                      src={`${IMAGE_URL}/${props.chapterId}/${sideNo + 1}/${checkpointNo + 1}/${roomNo + 1}.png`}
-                      alt={`${room.name} image`}
-                      layout="fill"
+                <Card key={roomNo} sx={{width: 320, height: 180}}>
+                  <CardActionArea
+                    className={styles.roomimage as never}
+                    sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+                    href={`/${props.areaId}/${props.chapterId}/${props.chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                  >
+                    <CardMedia
+                      component="img"
+                      image={`${IMAGE_URL}/${props.chapterId}/${sideNo + 1}/${checkpointNo + 1}/${roomNo + 1}.png`}
                     />
-                  </Link>
-                </Box>
+                  </CardActionArea>
+                </Card>
               ))}
             </Fragment>
           ))}
