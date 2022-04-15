@@ -1,22 +1,27 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, ToggleButton, ToggleButtonGroup, Typography} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
 import {pluralize} from 'logic/utils/pluralize'
 import {Layout} from 'modules/layout/Layout'
-import {GetStaticPaths, GetStaticProps, NextPage} from 'next/types'
+import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC} from 'react'
 import {AreaData} from '../logic/data/dataTree'
+import {AppNextPage} from './_app'
 
 export const CHAPTER_IMG_BASE_URL = 'https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/'
 
-const AreaPage: NextPage<AreaProps> = (props) => {
+const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, toggleView}) => {
   return (
     <Layout
-      title={props.area.name}
-      description={props.area.desc}
-      imgUrl={props.area.imageUrl}
+      title={area.name}
+      description={area.desc}
+      imgUrl={area.imageUrl}
+      mode={mode}
+      toggleMode={toggleMode}
+      view={view}
+      toggleView={toggleView}
     >
-      <Area {...props} />
+      <Area areaId={areaId} area={area} />
     </Layout >
   )
 }
@@ -25,10 +30,6 @@ export const Area: FC<AreaProps> = (props) => {
   return (
     <Container>
       <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", padding: 2}}>
-        <ToggleButtonGroup sx={{marginBottom: 2}}>
-          <ToggleButton value="card">Card View</ToggleButton>
-          <ToggleButton value="list">List View</ToggleButton>
-        </ToggleButtonGroup>
         <Grid container spacing={2} justifyContent="center">
           {Object.entries(props.area.chapters).map(([chapterId, chapter]) => (
             <Grid item key={chapterId} sx={{width: 300}}>

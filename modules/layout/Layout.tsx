@@ -1,16 +1,14 @@
 import {ThemeProvider} from "@emotion/react";
-import {DarkMode, LightMode} from "@mui/icons-material";
-import {AppBar, Box, createTheme, CssBaseline, IconButton, Theme, Toolbar, Tooltip, Typography} from "@mui/material";
+import {DarkMode, GridView, LightMode, ViewList} from "@mui/icons-material";
+import {AppBar, Box, createTheme, CssBaseline, IconButton, Paper, Theme, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
 import {getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "pages/Common.module.css";
-import {FC, Fragment, useEffect, useMemo, useState} from "react";
+import {FC, Fragment, useMemo} from "react";
 
-const MODE_KEY = "theme";
-
-export const Layout: FC<LayoutProps> = ({title, description, imgUrl, children}) => {
-  const [mode, setMode] = useState<"dark" | "light">("light");
+export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggleMode, view, toggleView, children}) => {
   const theme: Theme = useMemo(() => createTheme({
     palette: {
       mode,
@@ -19,37 +17,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, children}) 
       },
     }
   }), [mode]);
-
-  /**
-   * Get the prefered mode from the user or the system.
-   * @returns The prefered mode.
-   */
-  const getModePreference = (): "dark" | "light" => {
-    const mql: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof mql.matches === "boolean") {
-      return mql.matches ? "dark" : "light";
-    };
-    return "light";
-  }
-
-  /**
-   * Get the user or media mode preference. Default to light if not provided.
-   */
-  useEffect(() => {
-    const userMode: string | null = window.localStorage.getItem(MODE_KEY);
-    if (userMode !== null) {
-      setMode("dark");
-    } else {
-      setMode(getModePreference());
-    }
-  }, [])
-
-  /**
-   * Store mode in local storage.
-   */
-  useEffect(() => {
-    window.localStorage.setItem(MODE_KEY, mode);
-  }, [mode]);
 
   return (
     <Fragment>
@@ -79,52 +46,70 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, children}) 
               }}
             >
               <Box flexGrow={1}>
-                <Box height={48} width={288} position="relative" display="flex" alignItems="center">
-                  <Image
-                    className={styles.roomimage}
-                    src={'/img/logo.png'}
-                    alt='Animation of madeline in a campsite in game'
-                    layout="fill"
-                  />
-                  <Box display="flex" position="absolute" left={12}>
-                    <Typography
-                      sx={{
-                        fontSize: 28,
-                        paddingRight: 1,
-                      }}
-                    >
-                      <span role='img' aria-label='Berry'>🍓</span>
-                    </Typography>
-                    <Typography
-                      component="div"
-                      sx={{
-                        letterSpacing: 4,
-                        color: "white",
-                        fontSize: 28,
-                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                      }}
-                    >
-                      camp
-                    </Typography>
+                <Link passHref href="/">
+                  <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
+                    <Image
+                      className={styles.roomimage}
+                      src={'/img/logo.png'}
+                      alt='Animation of madeline in a campsite in game'
+                      layout="fill"
+                    />
+                    <Box display="flex" position="absolute" left={12}>
+                      <Typography
+                        sx={{
+                          fontSize: 28,
+                          paddingRight: 1,
+                        }}
+                      >
+                        <span role='img' aria-label='Berry'>🍓</span>
+                      </Typography>
+                      <Typography
+                        component="div"
+                        sx={{
+                          letterSpacing: 4,
+                          color: "white",
+                          fontSize: 28,
+                          textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                        }}
+                      >
+                        camp
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
+                </Link>
               </Box>
-              <Tooltip title="Toggle theme" enterDelay={500}>
-                <IconButton onClick={() => setMode(mode === "light" ? "dark" : "light")} color="inherit">
-                  {mode === "light" ? <LightMode /> : <DarkMode />}
-                </IconButton>
-              </Tooltip>
+              <Box display="flex" alignItems="center" gap={0.5}>
+                <Paper elevation={0} sx={{padding: 0, margin: 0}}>
+                  <ToggleButtonGroup size="small" value={view} onChange={toggleView}>
+                    <ToggleButton value="grid">
+                      <GridView fontSize="small" />
+                    </ToggleButton>
+                    <ToggleButton value="list">
+                      <ViewList fontSize="small" />
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </Paper>
+                <Tooltip title="Toggle theme" enterDelay={500}>
+                  <IconButton onClick={toggleMode} color="inherit">
+                    {mode === "light" ? <LightMode /> : <DarkMode />}
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Toolbar>
           </AppBar>
           {children}
         </ThemeProvider>
       </main>
-    </Fragment >
-  )
+    </Fragment>
+  );
 }
 
 interface LayoutProps {
   title: string;
   description: string;
   imgUrl: string;
+  mode: "light" | "dark";
+  toggleMode: () => void;
+  view: "grid" | "list"
+  toggleView: () => void;
 }

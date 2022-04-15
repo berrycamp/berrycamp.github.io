@@ -4,53 +4,90 @@ import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
+import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "pages/Common.module.css";
 import {IMAGE_URL} from "pages/[area]/[chapter]";
+import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-const RoomPage: NextPage<RoomProps> = (props) => {
-  const roomImageUrl: string = `${IMAGE_URL}/${props.chapterId}/${props.sideIndex + 1}/${props.checkpointIndex + 1}/${props.roomIndex + 1}.png`;
+const RoomPage: AppNextPage<RoomProps> = ({
+  areaId,
+  area,
+  chapterId,
+  chapter,
+  sideIndex,
+  side,
+  checkpointIndex,
+  checkpoint,
+  roomIndex,
+  room,
+  subroom,
+  mode,
+  toggleMode,
+  view,
+  toggleView,
+}) => {
+  const roomImageUrl: string = `${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`;
 
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  let prevRoom: RoomData | undefined = props.checkpoint.rooms[props.roomIndex - 1] ?? props.side.checkpoints[props.checkpointIndex - 1]?.rooms.at(-1);
-  let nextRoom: RoomData | undefined = props.checkpoint.rooms[props.roomIndex + 1] ?? props.side.checkpoints[props.checkpointIndex + 1]?.rooms.at(0);
+  let prevRoom: RoomData | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.at(-1);
+  let nextRoom: RoomData | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms.at(0);
 
-  let sideRoomNo: number = props.roomIndex;
-  const sideRoomTotal: number = props.side.checkpoints.reduce<number>((prev, curr, index) => {
-    if (index < props.checkpointIndex) {
+  let sideRoomNo: number = roomIndex;
+  const sideRoomTotal: number = side.checkpoints.reduce<number>((prev, curr, index) => {
+    if (index < checkpointIndex) {
       sideRoomNo += curr.rooms.length;
     }
     return prev + curr.rooms.length;
   }, 0);
 
+  const prevRoomLink: string | undefined = prevRoom ? `/${areaId}/${chapterId}/${side.name.toLowerCase()}/${prevRoom.id}${prevRoom.subroom ? `/${prevRoom.subroom}` : ""}` : undefined;
+  const nextRoomLink: string | undefined = nextRoom ? `/${areaId}/${chapterId}/${side.name.toLowerCase()}/${nextRoom.id}${nextRoom.subroom ? `/${nextRoom.subroom}` : ""}` : undefined;
+
   /**
    * Send a request to open the room in Everest.
    */
   const handleOpenRoom = async (): Promise<void> => {
-    const sideId: string | undefined = props.chapter.sides[props.sideIndex]?.name;
+    const sideId: string | undefined = chapter.sides[sideIndex]?.name;
     if (sideId === undefined) {
       return;
     }
 
     try {
-      await fetch(`http://localhost:32270/tp?area=${props.area.id}/${props.chapter.id}&side=${sideId}&level=${props.room.id}`);
+      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.id}&side=${sideId}&level=${room.id}`);
     } catch (e) {
       // Do nothing.
     }
   }
 
+  useEffect(() => {
+    const listener = (event: WindowEventMap["keydown"]) => {
+      if (event.key === "ArrowLeft" && prevRoomLink) {
+        window.location.href = prevRoomLink;
+      } else if (event.key === "ArrowRight" && nextRoomLink) {
+        window.location.href = nextRoomLink;
+      }
+    }
+
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, [nextRoomLink, prevRoomLink])
+
   return (
     <Layout
-      title={props.room.name}
-      description={props.room.id}
+      title={room.name}
+      description={room.id}
       imgUrl={roomImageUrl}
+      mode={mode}
+      toggleMode={toggleMode}
+      view={view}
+      toggleView={toggleView}
     >
       <Container maxWidth="md">
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
@@ -59,7 +96,7 @@ const RoomPage: NextPage<RoomProps> = (props) => {
               className={styles.roomimage}
               unoptimized
               src={roomImageUrl}
-              alt={`${props.room.name} image`}
+              alt={`${room.name} image`}
               layout="fill"
             />
           </AspectBox>
@@ -71,43 +108,43 @@ const RoomPage: NextPage<RoomProps> = (props) => {
             className={styles.roomimage}
             unoptimized
             src={roomImageUrl}
-            alt={`${props.room.name} image`}
+            alt={`${room.name} image`}
             layout="fill"
           />
         </AspectBox>
         <Box display="flex" justifyContent="space-between">
-          <Typography variant="h4">{(props.subroom === undefined && props.room.subroom && props.room.fullRoomName) ? props.room.fullRoomName : props.room.name}</Typography>
-          <Tooltip enterDelay={750} title={Number(props.room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running"}>
+          <Typography variant="h4">{(subroom === undefined && room.subroom && room.fullRoomName) ? room.fullRoomName : room.name}</Typography>
+          <Tooltip enterDelay={750} title={Number(room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running"}>
             <Button
               variant="contained"
-              color={Number(props.room.subroom) - 1 ? "warning" : "primary"}
-              endIcon={Number(props.room.subroom) - 1 ? <Info /> : <Launch />}
+              color={Number(room.subroom) - 1 ? "warning" : "primary"}
+              endIcon={Number(room.subroom) - 1 ? <Info /> : <Launch />}
               onClick={handleOpenRoom}
             >
               Open
             </Button>
           </Tooltip>
         </Box>
-        <Typography color="GrayText">{props.chapter.name}</Typography>
-        <Typography color="GrayText">{props.side.name} Side</Typography>
-        <Typography color="GrayText">{props.checkpoint.name}</Typography>
+        <Typography color="GrayText">{chapter.name}</Typography>
+        <Typography color="GrayText">{side.name} Side</Typography>
+        <Typography color="GrayText">{checkpoint.name}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
-        <Typography color="GrayText">Debug id: {props.room.id}</Typography>
-        <Typography color="GrayText">Room id: {props.checkpoint.abbreviation}-{props.roomIndex + 1}</Typography>
-        <Typography color="GrayText" sx={{marginTop: 1}}>Checkpoint Room: {props.roomIndex + 1}/{props.checkpoint.rooms.length}</Typography>
+        <Typography color="GrayText">Debug id: {room.id}</Typography>
+        <Typography color="GrayText">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
+        <Typography color="GrayText" sx={{marginTop: 1}}>Checkpoint Room: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
         <Typography color="GrayText">Side Room: {sideRoomNo}/{sideRoomTotal}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
             {prevRoom && (
-              <Link passHref href={`/${props.areaId}/${props.chapterId}/${props.side.name.toLowerCase()}/${prevRoom.id}${prevRoom.subroom ? `/${prevRoom.subroom}` : ""}`}>
-                <Button size="small" variant="outlined" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
+              <Link passHref href={prevRoomLink}>
+                <Button size="small" variant="contained" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
               </Link>
             )}
           </Box>
           <Box>
             {nextRoom && (
-              <Link passHref href={`/${props.areaId}/${props.chapterId}/${props.side.name.toLowerCase()}/${nextRoom.id}${nextRoom.subroom ? `/${nextRoom.subroom}` : ""}`}>
-                <Button size="small" variant="outlined" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
+              <Link passHref href={nextRoomLink}>
+                <Button size="small" variant="contained" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
               </Link>
             )}
           </Box>

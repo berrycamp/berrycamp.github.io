@@ -1,48 +1,53 @@
 import {Box, Card, CardActionArea, CardMedia, Container, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {Layout} from "modules/layout/Layout";
-import {GetStaticPaths, GetStaticProps, NextPage} from "next/types";
+import {GetStaticPaths, GetStaticProps} from "next/types";
 import styles from "pages/Common.module.css";
 import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
+import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useState} from "react";
 import {AreaData, ChapterData} from "../../logic/data/dataTree";
 
 export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
 
-const ChapterPage: NextPage<ChapterProps> = (props) => {
+const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mode, toggleMode, view, toggleView}) => {
   const [sideNo, setSideNo] = useState<number>(0);
 
   return (
     <Layout
-      title={`${props.chapter.chapter_no ? `Chp${props.chapter.chapter_no} - ` : ""}${props.chapter.name}`}
-      description={props.chapter.desc}
-      imgUrl={`${CHAPTER_IMG_BASE_URL}${props.chapterId}.png`}
+      title={chapter.name}
+      description={chapter.desc}
+      imgUrl={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
+      mode={mode}
+      toggleMode={toggleMode}
+      view={view}
+      toggleView={toggleView}
     >
       <Container>
         <Box paddingTop={8} paddingBottom={4}>
-          <Typography variant="h4">{`${props.chapter.chapter_no ? `Chapter ${props.chapter.chapter_no} - ` : ""}${props.chapter.name}`}</Typography>
-          <Typography variant="overline">{props.chapter.sides.length} Sides</Typography>
-          <Typography variant="body1">{props.chapter.desc}</Typography>
+          <Typography variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
+          <Typography variant="overline">{chapter.sides.length} Sides</Typography>
+          <Typography variant="body1">{chapter.desc}</Typography>
         </Box>
         <Tabs variant="fullWidth" value={sideNo} onChange={(_, value) => setSideNo(value)}>
-          {props.chapter.sides.map((side, newSideNo) => (
+          {chapter.sides.map((side, newSideNo) => (
             <Tab key={side.name} value={newSideNo} label={`${side.name}-side`} />
           ))}
         </Tabs>
         <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-          {props.chapter.sides[sideNo]?.checkpoints.map((checkpoint, checkpointNo) => (
+          {chapter.sides[sideNo]?.checkpoints.map((checkpoint, checkpointNo) => (
             <Fragment key={checkpoint.name}>
               {checkpoint.rooms.map((room, roomNo) => (
                 <Card key={roomNo} sx={{width: 320, height: 180}}>
                   <CardActionArea
                     className={styles.roomimage as never}
                     sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-                    href={`/${props.areaId}/${props.chapterId}/${props.chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                    href={`/${areaId}/${chapterId}/${chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
                   >
                     <CardMedia
                       component="img"
-                      image={`${IMAGE_URL}/${props.chapterId}/${sideNo + 1}/${checkpointNo + 1}/${roomNo + 1}.png`}
+                      image={`${IMAGE_URL}/${chapterId}/${sideNo + 1}/${checkpointNo + 1}/${roomNo + 1}.png`}
                     />
                   </CardActionArea>
                 </Card>
