@@ -5,7 +5,7 @@ import Head from 'next/head'
 import {GetStaticPaths, GetStaticProps, NextPage} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {Fragment} from 'react'
-import {Area} from '../logic/data/dataTree'
+import {AreaData} from '../logic/data/dataTree'
 
 /**
  * Static room information.
@@ -65,7 +65,7 @@ const Area: NextPage<AreaProps> = (props) => {
 
 interface AreaProps {
   areaId: string;
-  area: Area;
+  area: AreaData;
 }
 
 interface AreaParams extends ParsedUrlQuery {
@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
     throw Error("Params is not defined");
   }
 
-  const area: Area | undefined = DATA[params.area];
+  const area: AreaData | undefined = DATA[params.area];
   if (area === undefined) {
     throw Error(`Area ${params.area} is not defined`);
   }
@@ -97,4 +97,4 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
   }
 };
 
-export default Area
+export default Area;

@@ -150,7 +150,8 @@
             {
               "name": "Underpass",
               "id": "11",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Overpass/Underpass"
             },
             {
               "name": "Cassette room",

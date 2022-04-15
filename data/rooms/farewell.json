@@ -146,7 +146,8 @@
             {
               "name": "Top key",
               "id": "d-05",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Top key and Keyskip"
             },
             {
               "name": "Keyskip I",
@@ -232,7 +233,8 @@
             {
               "name": "Wavedash Tutorial I",
               "id": "f-00",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Wavedash Tutorial I & II"
             },
             {
               "name": "Wavedash Tutorial II",
@@ -354,9 +356,10 @@
               "id": "h-06b"
             },
             {
-              "name": "Wind dash",
+              "name": "Wind blocks",
               "id": "h-07",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Blocks and Windsprings"
             },
             {
               "name": "Windsprings",
@@ -496,7 +499,8 @@
             {
               "name": "Farewell",
               "id": "j-16",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Farewell and Moonberry path"
             },
             {
               "name": "Moonberry path",

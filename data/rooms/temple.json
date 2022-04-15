@@ -122,7 +122,8 @@
             {
               "name": "Rusted gates Left",
               "id": "b-20",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Rusted gates"
             },
             {
               "name": "Winged berry",
@@ -290,7 +291,8 @@
             {
               "name": "Talk with Theo",
               "id": "e-00",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Theo"
             },
             {
               "name": "Upper berry path",

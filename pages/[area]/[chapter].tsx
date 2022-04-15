@@ -7,27 +7,14 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next/types";
 import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useState} from "react";
-import {Area, Chapter, Room} from "../../logic/data/dataTree";
+import {AreaData, ChapterData, RoomData} from "../../logic/data/dataTree";
 
-const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
+export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
 
 const Chapter: NextPage<ChapterProps> = (props) => {
   const title = `${props.chapter.chapter_no ? `Chapter ${props.chapter.chapter_no} - ` : ""}${props.chapter.name}`;
 
   const [sideNo, setSideNo] = useState<number>(0);
-
-  const handleLevelLoad = async (room: Room) => {
-    const sideId: string | undefined = props.chapter.sides[sideNo]?.name;
-    if (sideId === undefined) {
-      return;
-    }
-
-    try {
-      await fetch(`http://localhost:32270/tp?area=${props.area.id}/${props.chapter.id}&side=${sideId}&level=${room.id}`);
-    } catch (e) {
-      // do nothing
-    }
-  }
 
   return (
     <Fragment>
@@ -35,7 +22,7 @@ const Chapter: NextPage<ChapterProps> = (props) => {
         <title>{title}</title>
         <meta property="og:title" content={title} />
         <meta property="og:description" content={props.chapter.desc} />
-        <meta property="og:image" content={`${CHAPTER_IMG_BASE_URL}${props.id}.png`} />
+        <meta property="og:image" content={`${CHAPTER_IMG_BASE_URL}${props.chapterId}.png`} />
         <meta name="theme-color" content="#c800c8" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
@@ -58,7 +45,7 @@ const Chapter: NextPage<ChapterProps> = (props) => {
             {props.chapter.sides[sideNo]?.checkpoints.map((checkpoint, checkpointNo) => (
               <Fragment key={checkpoint.name}>
                 {checkpoint.rooms.map((room, roomNo) => (
-                  <Box key={room.name} width={320} height={180} position="relative">
+                  <Box key={room.id} width={320} height={180} position="relative">
                     <Link passHref href={`/${props.areaId}/${props.chapterId}/${props.chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}>
                       <Image
                         unoptimized
@@ -80,9 +67,9 @@ const Chapter: NextPage<ChapterProps> = (props) => {
 
 interface ChapterProps {
   areaId: string;
-  area: Area;
+  area: AreaData;
   chapterId: string;
-  chapter: Chapter;
+  chapter: ChapterData;
 }
 
 interface ChapterParams extends ParsedUrlQuery {
@@ -111,12 +98,12 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
     throw Error("Params was not defined.")
   }
 
-  const area: Area | undefined = DATA[params.area];
+  const area: AreaData | undefined = DATA[params.area];
   if (area === undefined) {
     throw Error(`Area ${params.area} is not valid.`)
   }
 
-  const chapter: Chapter | undefined = area.chapters[params.chapter];
+  const chapter: ChapterData | undefined = area.chapters[params.chapter];
   if (chapter === undefined) {
     throw Error(`Chapter ${params.chapter} is not valid`);
   }

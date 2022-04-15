@@ -414,7 +414,8 @@
             {
               "name": "Flag 30",
               "id": "g-00",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 30 - 29"
             },
             {
               "name": "Flag 29",
@@ -424,7 +425,8 @@
             {
               "name": "Flag 28",
               "id": "g-00b",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 28 - 20"
             },
             {
               "name": "Heart Room",
@@ -474,7 +476,8 @@
             {
               "name": "Flag 19",
               "id": "g-01",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 19 - 6"
             },
             {
               "name": "Flag 18",
@@ -544,7 +547,8 @@
             {
               "name": "Flag 5",
               "id": "g-03",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 5 - 1"
             },
             {
               "name": "Flag 4",
@@ -716,7 +720,8 @@
             {
               "name": "Flag 20",
               "id": "g-00",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 20 - 15"
             },
             {
               "name": "Flag 19",
@@ -746,7 +751,8 @@
             {
               "name": "Flag 14",
               "id": "g-01",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 14 - 9"
             },
             {
               "name": "Flag 13",
@@ -776,7 +782,8 @@
             {
               "name": "Flag 8",
               "id": "g-02",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Flags 8 - 1"
             },
             {
               "name": "Flag 7",
@@ -839,7 +846,8 @@
             {
               "name": "Crystal maze",
               "id": "03",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Crystal maze and Heart"
             },
             {
               "name": "Heart",

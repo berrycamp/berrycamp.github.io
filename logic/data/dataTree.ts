@@ -1,32 +1,33 @@
-export type DataTree = Record<string, Area>;
+export type DataTree = Record<string, AreaData>;
 
-export interface Area {
+export interface AreaData {
   id: string;
   name: string;
-  chapters: Record<string, Chapter>
+  chapters: Record<string, ChapterData>
 }
 
-export interface Chapter {
+export interface ChapterData {
   id: string;
   name: string
   chapter_no?: number;
   desc: string;
-  sides: Side[];
+  sides: SideData[];
 }
 
-export interface Side {
+export interface SideData {
   name: string
-  checkpoints: Checkpoint[];
+  checkpoints: CheckpointData[];
 }
 
-export interface Checkpoint {
+export interface CheckpointData {
   name: string
   abbreviation: string;
-  rooms: Room[];
+  rooms: RoomData[];
 }
 
-export interface Room {
+export interface RoomData {
   name: string
   id: string;
   subroom?: number;
+  fullRoomName?: string;
 }

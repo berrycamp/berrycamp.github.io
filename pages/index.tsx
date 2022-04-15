@@ -1,5 +1,5 @@
 import {DATA} from "logic/data/data";
-import {Area as AreaType} from "logic/data/dataTree";
+import {AreaData as AreaType} from "logic/data/dataTree";
 import {NextPage} from "next/types";
 import Area from "./[area]";
 

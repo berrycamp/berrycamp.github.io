@@ -32,7 +32,8 @@
             {
               "name": "Feather maze II",
               "id": "02",
-              "subroom": 1
+              "subroom": 1,
+              "fullRoomName": "Feather maze II and III"
             },
             {
               "name": "U-turn",
