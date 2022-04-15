@@ -1,18 +1,20 @@
-import {Box, Card, CardActionArea, CardMedia, Container, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {Layout} from "modules/layout/Layout";
+import Image from "next/image";
+import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import styles from "pages/Common.module.css";
 import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {Fragment, useState} from "react";
-import {AreaData, ChapterData} from "../../logic/data/dataTree";
+import {FC, Fragment, useState} from "react";
+import {AreaData, ChapterData, RoomData} from "../../logic/data/dataTree";
 
 export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
 
-const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mode, toggleMode, view, setView}) => {
-  const [sideNo, setSideNo] = useState<number>(0);
+const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
+  const [sideIndex, setSideIndex] = useState<number>(0);
 
   return (
     <Layout
@@ -30,34 +32,109 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, chapterId, chapter, mod
           <Typography variant="overline">{chapter.sides.length} Sides</Typography>
           <Typography variant="body1">{chapter.desc}</Typography>
         </Box>
-        <Tabs variant="fullWidth" value={sideNo} onChange={(_, value) => setSideNo(value)}>
+        <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
           {chapter.sides.map((side, newSideNo) => (
             <Tab key={side.name} value={newSideNo} label={`${side.name}-side`} />
           ))}
         </Tabs>
-        <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-          {chapter.sides[sideNo]?.checkpoints.map((checkpoint, checkpointNo) => (
-            <Fragment key={checkpoint.name}>
-              {checkpoint.rooms.map((room, roomNo) => (
-                <Card key={roomNo} sx={{width: 320, height: 180}}>
-                  <CardActionArea
-                    className={styles.roomimage as never}
-                    sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-                    href={`/${areaId}/${chapterId}/${chapter.sides[sideNo]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={`${IMAGE_URL}/${chapterId}/${sideNo + 1}/${checkpointNo + 1}/${roomNo + 1}.png`}
-                    />
-                  </CardActionArea>
-                </Card>
-              ))}
-            </Fragment>
-          ))}
-        </Box>
+        {view === "grid" ? (
+          <GridChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideIndex={sideIndex} />
+        ) : (view === "list") && (
+          <ListChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideIndex={sideIndex} />
+        )}
       </Container>
     </Layout>
   )
+}
+
+const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapterId, chapter, sideIndex}) => {
+  return (
+    <Fragment>
+      {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
+        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 4}}>
+          <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
+            {checkpointIndex + 1}. {checkpoint.name}
+          </Typography>
+          <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
+            {checkpoint.rooms.map((room, roomIndex) => (
+              <GridChapterItem
+                key={roomIndex}
+                room={room}
+                href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                imageUrl={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
+              />
+            ))}
+          </Box>
+          <Divider flexItem/>
+        </Box>
+      ))}
+    </Fragment>
+  );
+}
+
+const GridChapterItem: FC<{room: RoomData, href: string, imageUrl: string}> = ({room, href, imageUrl}) => {
+  const [hover, setHover] = useState<boolean>(false);
+
+  return (
+    <Card sx={{width: 320, height: 180}}>
+      <CardActionArea
+        className={styles.roomimage as never}
+        sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+        href={href}
+        onMouseOver={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <CardMedia
+          component="img"
+          image={imageUrl}
+        />
+        {hover && (
+          <ImageListItemBar
+            title={room.name}
+            subtitle={room.id}
+            sx={{fontSize: 26}}
+          />
+        )}
+      </CardActionArea>
+    </Card>
+  );
+}
+
+const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapterId, chapter, sideIndex}) => {
+  return (
+    <Fragment>
+      {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
+        <Fragment key={checkpointIndex}>
+          <Typography variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
+            {checkpointIndex + 1}. {checkpoint.name}
+          </Typography>
+          <List>
+            {checkpoint.rooms.map((room, roomIndex) => (
+              <Link
+                key={roomIndex}
+                passHref href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+              >
+                <ListItemButton>
+                  <Image
+                    className={styles.roomimage}
+                    unoptimized
+                    src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
+                    alt={`${room.name} image`}
+                    width={128}
+                    height={72}
+                  />
+                  <Typography variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
+                  <Typography variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
+                  <Typography variant="h6" color="text.secondary"         >{room.id}</Typography>
+                </ListItemButton>
+              </Link>
+            ))}
+          </List>
+          <Divider />
+        </Fragment>
+      ))}
+    </Fragment>
+  );
 }
 
 interface ChapterProps {
