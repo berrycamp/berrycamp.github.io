@@ -1,4 +1,4 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography, useTheme} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
@@ -111,7 +111,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
               />
               <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapter_no ? chapter.chapter_no : ""}</Typography>
               <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
-              <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{chapter.id}</Typography>
+              <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.id}</Typography>
             </ListItemButton>
           ))}
         </List>

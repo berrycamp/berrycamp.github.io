@@ -98,6 +98,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
               <Image
                 priority
                 unoptimized
+                objectFit="cover"
                 className={styles.roomimage}
                 src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}
                 alt='Animation of madeline in a campsite in game'
@@ -127,13 +128,13 @@ interface LayoutProps {
 
 const StyledToggleButton = styled(ToggleButton)(({theme}) => ({
   ...theme.palette.mode === "light" && {
-    '& .MuiToggleButton-root': {
+    '&.MuiToggleButton-root': {
       borderColor: "rgb(255, 255, 255, 0.2)",
       "&:hover": {
         backgroundColor: "rgb(255, 255, 255, 0.2)",
       }
     },
-    '& .MuiButtonBase-root': {
+    '&.MuiButtonBase-root': {
       color: "white",
       '&.Mui-selected': {
         color: "white",

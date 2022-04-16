@@ -22,18 +22,18 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
       setView={setView}
     >
       <Container sx={{marginTop: 4}}>
-        <Paper sx={{padding: 2}}>
+        <Paper elevation={2} sx={{padding: 2}}>
           <Typography component="div" variant="h6">
-            Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>!
+            Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>,
           </Typography>
           <Typography marginTop={1}>
-            This is an index of all rooms in the video game Celeste. Website links have rich embeds for discord sharing and you can directly
-            open the rooms in Celeste if you have <Link href="https://everestapi.github.io/">Everest</Link> installed and running.
+            an index of all rooms in the video game Celeste, with rich embeds for sharing on Discord and the ability to load rooms
+            in-game if <Link underline="hover" href="https://everestapi.github.io/">Everest</Link> is running.
           </Typography>
           <Typography color="text.secondary" marginTop={2}>
             Send any feedback to
             <Typography component="strong" color="secondary"> wishcresp#0141 </Typography>
-            on the Celeste discord.
+            on the <Link underline="hover" href="https://discord.gg/Celeste">Celeste Discord</Link>.
           </Typography>
         </Paper>
       </Container>
