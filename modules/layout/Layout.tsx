@@ -89,7 +89,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                   </ToggleButton>
                 </StyledToggleButtonGroup>
                 {/* </Paper> */}
-                <Tooltip title="Toggle theme" enterDelay={500}>
+                <Tooltip title={mode === "light" ? "Switch to dark mode" : "Switch to light mode"} enterDelay={500}>
                   <IconButton onClick={toggleMode} color="inherit">
                     {mode === "light" ? <LightMode /> : <DarkMode />}
                   </IconButton>
@@ -115,14 +115,23 @@ interface LayoutProps {
 }
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({theme}) => ({
-  color: "white",
   ...theme.palette.mode === "light" && {
     '& .MuiToggleButton-root': {
-      color: "white",
-      borderColor: theme.palette.grey[300],
-      '& .Mui-selected': {
-        backgroundColor: theme.palette.background.paper,
+      borderColor: "rgb(255, 255, 255, 0.2)",
+      "&:hover": {
+        backgroundColor: "rgb(255, 255, 255, 0.2)",
       }
+    },
+    '& .MuiButtonBase-root': {
+      color: "white",
+      '&.Mui-selected': {
+        color: "white",
+        backgroundColor: "rgb(255, 255, 255, 0.3)",
+        borderColor: "rgb(255, 255, 255, 0.2)",
+        "&:hover": {
+          backgroundColor: "rgb(255, 255, 255, 0.4)",
+        }
+      },
     },
   },
 }));
