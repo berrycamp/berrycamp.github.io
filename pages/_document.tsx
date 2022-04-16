@@ -2,7 +2,7 @@ import {Head, Html, Main, NextScript} from 'next/document';
 
 const Document = () => {
   return (
-    <Html>
+    <Html lang='en'>
       <Head>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://berrycamp.com" />

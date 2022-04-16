@@ -107,6 +107,7 @@ const GridChapterItem: FC<{room: RoomData, href: string, imageUrl: string}> = ({
         <CardMedia
           component="img"
           image={imageUrl}
+          alt={`Thumbnail for room ${room.name}`}
         />
         {hover && (
           <ImageListItemBar
@@ -142,7 +143,7 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
                   className="pixelated-image"
                   unoptimized
                   src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
-                  alt={`${room.name} image`}
+                  alt={`Image of room ${room.name}`}
                   width={128}
                   height={72}
                 />

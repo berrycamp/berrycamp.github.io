@@ -106,7 +106,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
               className="pixelated-image"
               unoptimized
               src={roomImageUrl}
-              alt={`${room.name} image`}
+              alt={`Very large image of room ${room.name}`}
               layout="fill"
             />
           </AspectBox>
@@ -118,7 +118,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
             className="pixelated-image"
             unoptimized
             src={roomImageUrl}
-            alt={`${room.name} image`}
+            alt={`Large image of room ${room.name}`}
             layout="fill"
           />
         </AspectBox>
