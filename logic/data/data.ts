@@ -15,7 +15,7 @@ export const DATA: DataTree = {
   celeste: {
     id: "Celeste",
     name: "Celeste",
-    desc: "Includes the base game from 2018 and the Farewell expansion from 2019.",
+    desc: "Levels from the base game released in 2018 and the Farewell expansion from 2019.",
     imageUrl: "https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/ridge.png",
     chapters: {
       prologue,

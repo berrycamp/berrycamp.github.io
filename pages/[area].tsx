@@ -1,10 +1,12 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
-import {pluralize} from 'logic/utils/pluralize'
 import {Layout} from 'modules/layout/Layout'
+import Image from "next/image"
+import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
+import styles from "pages/Common.module.css"
 import {ParsedUrlQuery} from 'querystring'
-import {FC} from 'react'
+import {FC, Fragment} from 'react'
 import {AreaData} from '../logic/data/dataTree'
 import {AppNextPage} from './_app'
 
@@ -21,22 +23,38 @@ const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view,
       view={view}
       setView={setView}
     >
-      <Area areaId={areaId} area={area} />
+      {view === "grid" ? (
+        <GridArea areaId={areaId} area={area} />
+      ) : (view === "list") && (
+        <ListArea areaId={areaId} area={area} />
+      )}
     </Layout >
   )
 }
 
-export const Area: FC<AreaProps> = (props) => {
+const GridArea: FC<AreaProps> = ({areaId, area}) => {
   return (
-    <Container>
-      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", padding: 2}}>
-        <Grid container spacing={2} justifyContent="center">
-          {Object.entries(props.area.chapters).map(([chapterId, chapter]) => (
-            <Grid item key={chapterId} sx={{width: 300}}>
-              <Card sx={{height: "100%"}}>
+    <Fragment>
+      <Container>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(285px, 1fr))",
+              gridGap: "0.5rem",
+              width: "100%",
+              marginBottom: "0.5rem",
+            }}
+          >
+            <Box gridColumn="1 / -1">
+              <Typography variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
+              <Typography variant="body2">{area.desc}</Typography>
+            </Box>
+            {Object.entries(area.chapters).map(([chapterId, chapter]) => (
+              <Card key={chapterId}>
                 <CardActionArea
                   sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-                  href={`/${props.areaId}/${chapterId}`}
+                  href={`/${areaId}/${chapterId}`}
                 >
                   <CardMedia
                     component="img"
@@ -47,16 +65,50 @@ export const Area: FC<AreaProps> = (props) => {
                       {chapter.chapter_no && `Chapter ${chapter.chapter_no} - `}
                       {chapter.name}
                     </Typography>
-                    <Typography variant="body2">{pluralize(chapter.sides.length, "side")}</Typography>
+                    <Typography variant="body2" color="textSecondary">{chapter.id}</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    </Container>
+            ))}
+          </Box>
+        </Box>
+      </Container>
+    </Fragment>
   );
+}
+
+const ListArea: FC<AreaProps> = ({areaId, area}) => {
+  return (
+    <Fragment>
+      <Container>
+        <Typography variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
+        <Typography variant="body2">{area.desc}</Typography>
+        <List>
+          {Object.entries(area.chapters).map(([chapterId, chapter]) => (
+            <Link
+              key={chapterId}
+              passHref
+              href={`/${areaId}/${chapterId}`}
+            >
+              <ListItemButton>
+                <Image
+                  className={styles.roomimage}
+                  unoptimized
+                  src={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
+                  alt={`${chapter.name} image`}
+                  width={128}
+                  height={72}
+                />
+                <Typography variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapter_no ? chapter.chapter_no : ""}</Typography>
+                <Typography variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
+                <Typography variant="h6" color="text.secondary">{chapter.id}</Typography>
+              </ListItemButton>
+            </Link>
+          ))}
+        </List>
+      </Container>
+    </Fragment>
+  )
 }
 
 interface AreaProps {

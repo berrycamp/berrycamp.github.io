@@ -51,7 +51,7 @@ const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
   return (
     <Fragment>
       {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
-        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 4}}>
+        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 4, padding: 0}}>
           <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
@@ -65,7 +65,7 @@ const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
               />
             ))}
           </Box>
-          <Divider flexItem/>
+          <Divider flexItem />
         </Box>
       ))}
     </Fragment>

@@ -131,8 +131,8 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
         <Typography color="text.secondary">Debug id: {room.id}</Typography>
         <Typography color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
-        <Typography color="text.secondary" sx={{marginTop: 1}}>Checkpoint Room: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography color="text.secondary">Side Room: {sideRoomNo}/{sideRoomTotal}</Typography>
+        <Typography color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
+        <Typography color="text.secondary">Room in level: {sideRoomNo}/{sideRoomTotal}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
             {prevRoom && prevRoomLink && (
