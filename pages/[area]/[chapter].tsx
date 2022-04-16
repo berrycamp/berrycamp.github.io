@@ -108,29 +108,30 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
           <Typography variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
-          <List>
+          <List disablePadding>
             {checkpoint.rooms.map((room, roomIndex) => (
-              <Link
+              <ListItemButton
                 key={roomIndex}
-                passHref href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                disableGutters
+                sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+                component="a"
+                LinkComponent={Link}
+                href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
               >
-                <ListItemButton>
-                  <Image
-                    className={styles.roomimage}
-                    unoptimized
-                    src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
-                    alt={`${room.name} image`}
-                    width={128}
-                    height={72}
-                  />
-                  <Typography variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
-                  <Typography variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
-                  <Typography variant="h6" color="text.secondary"         >{room.id}</Typography>
-                </ListItemButton>
-              </Link>
+                <Image
+                  className={styles.roomimage}
+                  unoptimized
+                  src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
+                  alt={`${room.name} image`}
+                  width={128}
+                  height={72}
+                />
+                <Typography variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
+                <Typography variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
+                <Typography variant="h6" color="text.secondary" marginRight={0.5}>{room.id}</Typography>
+              </ListItemButton>
             ))}
           </List>
-          <Divider />
         </Fragment>
       ))}
     </Fragment>

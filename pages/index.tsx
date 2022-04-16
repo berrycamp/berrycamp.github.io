@@ -1,7 +1,7 @@
 import {DATA} from "logic/data/data";
 import {AreaData as AreaType} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
-import {Area} from "./[area]";
+import {AreaView} from "./[area]";
 import {AppNextPage} from "./_app";
 
 const DEFAULT_AREA = "celeste";
@@ -22,7 +22,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
       view={view}
       setView={setView}
     >
-      <Area areaId="celeste" area={area} />
+      <AreaView areaId="celeste" area={area} view={view} />
     </Layout>
   )
 }

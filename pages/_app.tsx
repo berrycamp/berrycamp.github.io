@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import '../styles/globals.css';
 
 const MODE_KEY = "theme";
+const VIEW_KEY = "view";
 
 const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -26,10 +27,19 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
    */
   useEffect(() => {
     const userMode: string | null = window.localStorage.getItem(MODE_KEY);
-    if (userMode !== null) {
-      setMode("dark");
+    if (userMode !== null && userMode === "dark") {
+      setMode(userMode);
     } else {
       setMode(getModePreference());
+    }
+  }, [])
+
+  useEffect(() => {
+    const userView: string | null = window.localStorage.getItem(VIEW_KEY);
+    if (userView !== null && userView === "list") {
+      setView(userView);
+    } else {
+      setView("grid");
     }
   }, [])
 
@@ -40,6 +50,12 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
     window.localStorage.setItem(MODE_KEY, mode);
   }, [mode]);
 
+  /**
+   * Set the view in local storage.
+   */
+  useEffect(() => {
+    window.localStorage.setItem(VIEW_KEY, view);
+  }, [view]);
 
   const globalAppProps: GlobalAppProps = {
     mode,

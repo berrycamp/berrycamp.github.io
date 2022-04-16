@@ -55,6 +55,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 <Link passHref href="/">
                   <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
                     <Image
+                      priority
                       className={styles.roomimage}
                       src={'/img/logo.png'}
                       alt='Animation of madeline in a campsite in game'
