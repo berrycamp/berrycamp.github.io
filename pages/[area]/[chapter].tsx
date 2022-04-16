@@ -1,5 +1,6 @@
 import {Box, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
+import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +17,15 @@ export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screen
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [sideIndex, setSideIndex] = useState<number>(0);
 
+  const roomCount: number | undefined = chapter.sides[sideIndex]?.checkpoints.reduce<number>((total, checkpoint) => total + checkpoint.rooms.length, 0);
+
+  const roomSet: Set<string> | undefined = chapter.sides[sideIndex]?.checkpoints.reduce<Set<string>>((prev, checkpoint) => {
+    checkpoint.rooms.forEach(room => prev.add(room.id));
+    return prev;
+  }, new Set());
+
+  const debugRoomCount: number | undefined = roomSet !== undefined ? roomSet.size : undefined;
+
   return (
     <Layout
       title={chapter.name}
@@ -28,15 +38,20 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
     >
       <Container>
         <Box paddingTop={8} paddingBottom={4}>
-          <Typography variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
-          <Typography variant="body1" color="text.secondary">{chapter.sides.length} Sides</Typography>
-          <Typography variant="body1" color="text.secondary">{chapter.desc}</Typography>
+          <Typography component="div" variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
+          <Typography component="div" variant="body1" color="text.secondary">{chapter.sides.length} Sides</Typography>
+          <Typography component="div" variant="body1" color="text.secondary">{chapter.desc}</Typography>
         </Box>
         <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
           {chapter.sides.map((side, newSideNo) => (
             <Tab key={side.name} value={newSideNo} label={`${side.name}-side`} />
           ))}
         </Tabs>
+        {roomCount && debugRoomCount && (
+          <Typography component="div" variant="h6" color="text.secondary" marginTop={4} textAlign="center">
+            {pluralize(roomCount, "room")}{`, ${debugRoomCount} unique`}
+          </Typography>
+        )}
         {view === "grid" ? (
           <GridChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideIndex={sideIndex} />
         ) : (view === "list") && (
@@ -51,7 +66,7 @@ const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
   return (
     <Fragment>
       {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
-        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 4, padding: 0}}>
+        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
           <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
@@ -105,7 +120,7 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
     <Fragment>
       {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
         <Fragment key={checkpointIndex}>
-          <Typography variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
+          <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
           <List disablePadding>
@@ -126,12 +141,13 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
                   width={128}
                   height={72}
                 />
-                <Typography variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
-                <Typography variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
-                <Typography variant="h6" color="text.secondary" marginRight={0.5}>{room.id}</Typography>
+                <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
+                <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
+                <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{room.id}</Typography>
               </ListItemButton>
             ))}
           </List>
+          <Divider sx={{marginTop: 2, marginBottom: 1}} />
         </Fragment>
       ))}
     </Fragment>

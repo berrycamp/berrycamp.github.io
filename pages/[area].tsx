@@ -55,8 +55,8 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
             }}
           >
             <Box gridColumn="1 / -1">
-              <Typography variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
-              <Typography variant="body2">{area.desc}</Typography>
+              <Typography component="div" variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
+              <Typography component="div" variant="body2">{area.desc}</Typography>
             </Box>
             {Object.entries(area.chapters).map(([chapterId, chapter]) => (
               <Card key={chapterId}>
@@ -69,11 +69,11 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                     image={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
                   />
                   <CardContent sx={{flex: "1"}}>
-                    <Typography variant="h6">
+                    <Typography component="div" variant="h6">
                       {chapter.chapter_no && `Chapter ${chapter.chapter_no} - `}
                       {chapter.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">{chapter.id}</Typography>
+                    <Typography component="div" variant="body2" color="textSecondary">{chapter.id}</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -89,8 +89,8 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
   return (
     <Fragment>
       <Container>
-        <Typography variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
-        <Typography variant="body2">{area.desc}</Typography>
+        <Typography component="div" variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
+        <Typography component="div" variant="body2">{area.desc}</Typography>
         <List disablePadding>
           {Object.entries(area.chapters).map(([chapterId, chapter]) => (
             <ListItemButton
@@ -109,9 +109,9 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
                 width={128}
                 height={72}
               />
-              <Typography variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapter_no ? chapter.chapter_no : ""}</Typography>
-              <Typography variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
-              <Typography variant="h6" color="text.secondary" marginRight={0.5}>{chapter.id}</Typography>
+              <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapter_no ? chapter.chapter_no : ""}</Typography>
+              <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
+              <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{chapter.id}</Typography>
             </ListItemButton>
           ))}
         </List>

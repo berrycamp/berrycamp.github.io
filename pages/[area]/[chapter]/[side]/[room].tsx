@@ -113,7 +113,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
           />
         </AspectBox>
         <Box display="flex" justifyContent="space-between">
-          <Typography variant="h4">{(subroom === undefined && room.subroom && room.fullRoomName) ? room.fullRoomName : room.name}</Typography>
+          <Typography component="div" variant="h4">{(subroom === undefined && room.subroom && room.fullRoomName) ? room.fullRoomName : room.name}</Typography>
           <Tooltip enterDelay={750} title={Number(room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running"}>
             <Button
               variant="contained"
@@ -125,14 +125,14 @@ const RoomPage: AppNextPage<RoomProps> = ({
             </Button>
           </Tooltip>
         </Box>
-        <Typography color="text.secondary">{chapter.name}</Typography>
-        <Typography color="text.secondary">{side.name} Side</Typography>
-        <Typography color="text.secondary">{checkpoint.name}</Typography>
+        <Typography component="div" color="text.secondary">{chapter.name}</Typography>
+        <Typography component="div" color="text.secondary">{side.name} Side</Typography>
+        <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
-        <Typography color="text.secondary">Debug id: {room.id}</Typography>
-        <Typography color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
-        <Typography color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography color="text.secondary">Room in level: {sideRoomNo}/{sideRoomTotal}</Typography>
+        <Typography component="div" color="text.secondary">Debug id: {room.id}</Typography>
+        <Typography component="div" color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
+        <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
+        <Typography component="div" color="text.secondary">Room in level: {sideRoomNo}/{sideRoomTotal}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
             {prevRoom && prevRoomLink && (
