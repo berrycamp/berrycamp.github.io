@@ -39,10 +39,10 @@ const RoomPage: AppNextPage<RoomProps> = ({
   let prevRoom: RoomData | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.at(-1);
   let nextRoom: RoomData | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms.at(0);
 
-  let sideRoomNo: number = roomIndex;
+  let sideRoomIndex: number = roomIndex;
   const sideRoomTotal: number = side.checkpoints.reduce<number>((prev, curr, index) => {
     if (index < checkpointIndex) {
-      sideRoomNo += curr.rooms.length;
+      sideRoomIndex += curr.rooms.length;
     }
     return prev + curr.rooms.length;
   }, 0);
@@ -143,7 +143,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Debug id: {room.id}</Typography>
         <Typography component="div" color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
         <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography component="div" color="text.secondary">Room in level: {sideRoomNo}/{sideRoomTotal}</Typography>
+        <Typography component="div" color="text.secondary">Room in level: {sideRoomIndex + 1}/{sideRoomTotal}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
             {prevRoom && prevRoomLink && (
