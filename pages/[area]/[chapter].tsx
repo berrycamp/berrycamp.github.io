@@ -1,11 +1,11 @@
-import {Box, Breadcrumbs, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {NavigateBefore, NavigateNext} from "@mui/icons-material";
+import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
-import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
@@ -25,11 +25,17 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
 
   const debugRoomCount: number | undefined = roomSet !== undefined ? roomSet.size : undefined;
 
+  const chapterKeys: string[] = Object.keys(area.chapters);
+  const prevChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) - 1];
+  const prevChapter: ChapterData | undefined = prevChapterId ? area.chapters[prevChapterId] : undefined;
+  const nextChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) + 1];
+  const nextChapter: ChapterData | undefined = nextChapterId ? area.chapters[nextChapterId] : undefined;
+
   return (
     <Layout
       title={chapter.name}
       description={chapter.desc}
-      imgUrl={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
+      imgUrl={chapter.imageUrl}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -42,10 +48,52 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
           </MuiLink>
           <Typography color="text.primary">{chapter.name}</Typography>
         </Breadcrumbs>
-        <Box paddingTop={4} paddingBottom={4}>
-          <Typography component="div" variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
-          <Typography component="div" color="text.secondary">{chapter.id}</Typography>
-          <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
+        <Box display="flex" alignItems="center" paddingTop={2} paddingBottom={2}>
+          <Box flexShrink={0} position="relative" width={240} height={135}>
+            <Image
+              className="pixelated-image"
+              unoptimized
+              src={chapter.imageUrl}
+              alt={`Image of chapter ${chapter.name}`}
+              width={240}
+              height={135}
+            />
+          </Box>
+          <Box marginLeft={2}>
+            <Typography component="div" variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
+            <Typography component="div" color="text.secondary">{chapter.id}</Typography>
+            <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
+          </Box>
+        </Box>
+        <Box display="flex" justifyContent="space-between">
+          <Box>
+            {prevChapter && prevChapterId && (
+              <Link passHref href={`/${areaId}/${prevChapterId}`}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  endIcon={<NavigateBefore />}
+                  aria-label={`Go to previous chapter ${prevChapter.name}`}
+                >
+                  {prevChapter.name}
+                </Button>
+              </Link>
+            )}
+          </Box>
+          <Box>
+            {nextChapter && nextChapterId && (
+              <Link passHref href={`/${areaId}/${nextChapterId}`}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  startIcon={<NavigateNext />}
+                  aria-label={`Go to previous chapter ${nextChapter.name}`}
+                >
+                  {nextChapter.name}
+                </Button>
+              </Link>
+            )}
+          </Box>
         </Box>
         <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
           {chapter.sides.map((side, newSideNo) => (
