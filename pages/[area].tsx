@@ -1,4 +1,4 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography, useTheme} from '@mui/material'
 import {DATA} from 'logic/data/data'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
@@ -55,8 +55,8 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
             }}
           >
             <Box gridColumn="1 / -1">
-              <Typography component="div" variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
-              <Typography component="div" variant="body2">{area.desc}</Typography>
+              <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
+              <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
             </Box>
             {Object.entries(area.chapters).map(([chapterId, chapter]) => (
               <Card key={chapterId}>
@@ -89,8 +89,8 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
   return (
     <Fragment>
       <Container>
-        <Typography component="div" variant="h4" color="text.secondary" marginTop={4} marginBottom={1}>{area.name}</Typography>
-        <Typography component="div" variant="body2">{area.desc}</Typography>
+        <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
+        <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
         <List disablePadding>
           {Object.entries(area.chapters).map(([chapterId, chapter]) => (
             <ListItemButton

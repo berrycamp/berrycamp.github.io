@@ -1,5 +1,5 @@
 import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Button, Container, Dialog, Divider, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
@@ -90,6 +90,17 @@ const RoomPage: AppNextPage<RoomProps> = ({
       setView={setView}
     >
       <Container maxWidth="md">
+        <Breadcrumbs separator="›" sx={{marginTop: 2}}>
+          <MuiLink href={`/${areaId}`} underline="always">
+            {area.name}
+          </MuiLink>
+          <MuiLink href={`/${areaId}/${chapterId}`} underline="always">
+            {chapter.name}
+          </MuiLink>
+          <Typography color="text.secondary">{side.name}</Typography>
+          <Typography color="text.secondary">{checkpoint.name}</Typography>
+          <Typography color="text.primary">{room.name} ({room.id}{room.subroom ? ` / ${room.subroom}` : ""})</Typography>
+        </Breadcrumbs>
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <AspectBox>
             <Image
@@ -137,14 +148,14 @@ const RoomPage: AppNextPage<RoomProps> = ({
           <Box>
             {prevRoom && prevRoomLink && (
               <Link passHref href={prevRoomLink}>
-                <Button size="small" variant="contained" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
+                <Button size="small" variant="outlined" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
               </Link>
             )}
           </Box>
           <Box>
             {nextRoom && nextRoomLink && (
               <Link passHref href={nextRoomLink}>
-                <Button size="small" variant="contained" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
+                <Button size="small" variant="outlined" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
               </Link>
             )}
           </Box>

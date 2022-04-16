@@ -1,6 +1,8 @@
+import {Theme, ThemeProvider} from '@emotion/react';
+import {createTheme, CssBaseline} from '@mui/material';
 import {NextPage} from 'next';
 import type {AppProps} from 'next/app';
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import '../styles/globals.css';
 
 const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
@@ -38,6 +40,9 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
     }
   }, [mode])
 
+  /**
+   * Load the prefered view from local storage or default to grid.
+   */
   useEffect(() => {
     const userView: string | null = window.localStorage.getItem("view");
     if (userView !== null && userView === "list") {
@@ -61,8 +66,23 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
     setView: (view: "grid" | "list") => setView(view),
   }
 
+  const theme: Theme = useMemo(() => createTheme({
+    palette: {
+      mode,
+      primary: {
+        main: "#c800c8",
+      },
+      secondary: {
+        main: "#cc252c",
+      },
+    }
+  }), [mode]);
+
   return (
-    <Component {...pageProps} {...globalAppProps} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Component {...pageProps} {...globalAppProps} />
+    </ThemeProvider>
   );
 }
 

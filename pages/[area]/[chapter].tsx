@@ -1,4 +1,4 @@
-import {Box, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
@@ -37,10 +37,16 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
       setView={setView}
     >
       <Container>
-        <Box paddingTop={8} paddingBottom={4}>
+        <Breadcrumbs separator="›" sx={{marginTop: 2}}>
+          <MuiLink href={`/${areaId}`} underline="always">
+            {area.name}
+          </MuiLink>
+          <Typography color="text.primary">{chapter.name}</Typography>
+        </Breadcrumbs>
+        <Box paddingTop={4} paddingBottom={4}>
           <Typography component="div" variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
-          <Typography component="div" variant="body1" color="text.secondary">{chapter.sides.length} Sides</Typography>
-          <Typography component="div" variant="body1" color="text.secondary">{chapter.desc}</Typography>
+          <Typography component="div" color="text.secondary">{chapter.id}</Typography>
+          <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
         </Box>
         <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
           {chapter.sides.map((side, newSideNo) => (
@@ -48,8 +54,8 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
           ))}
         </Tabs>
         {roomCount && debugRoomCount && (
-          <Typography component="div" variant="h6" color="text.secondary" marginTop={4} textAlign="center">
-            {pluralize(roomCount, "room")}{`, ${debugRoomCount} unique`}
+          <Typography component="div" variant="body1" color="text.secondary" marginTop={2} textAlign="center">
+            {roomCount === debugRoomCount ? pluralize(roomCount, "room") : `${pluralize(debugRoomCount, "unique room")}, ${roomCount} including subrooms`}
           </Typography>
         )}
         {view === "grid" ? (

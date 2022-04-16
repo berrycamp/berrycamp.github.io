@@ -16,9 +16,10 @@ const Document = () => {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c800c8" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="google-site-verification" content="he_SfQ-Snedr2UJcL5v_VRcO6kuSTkPP5ZSUjSLAm1w" />
+        <script dangerouslySetInnerHTML={{__html: blockingSetTheme}} />
       </Head>
       <body>
-        <script dangerouslySetInnerHTML={{__html: blockingSetTheme}} />
         <Main />
         <NextScript />
       </body>
