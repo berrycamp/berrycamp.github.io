@@ -1,6 +1,6 @@
 import {ThemeProvider} from "@emotion/react";
-import {DarkMode, GridView, LightMode, ViewList} from "@mui/icons-material";
-import {AppBar, Box, createTheme, CssBaseline, IconButton, Paper, Theme, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
+import {DarkMode, GridViewSharp, LightMode, ViewListSharp} from "@mui/icons-material";
+import {AppBar, Box, createTheme, CssBaseline, IconButton, styled, Theme, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
 import {getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
@@ -79,16 +79,16 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 </Link>
               </Box>
               <Box display="flex" alignItems="center" gap={0.5}>
-                <Paper elevation={0} sx={{padding: 0, margin: 0}}>
-                  <ToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
-                    <ToggleButton value="grid">
-                      <GridView fontSize="small" />
-                    </ToggleButton>
-                    <ToggleButton value="list">
-                      <ViewList fontSize="small" />
-                    </ToggleButton>
-                  </ToggleButtonGroup>
-                </Paper>
+                {/* <Paper elevation={0} sx={{padding: 0, margin: 0}}> */}
+                <StyledToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
+                  <ToggleButton value="grid">
+                    <GridViewSharp fontSize="small" />
+                  </ToggleButton>
+                  <ToggleButton value="list">
+                    <ViewListSharp fontSize="small" />
+                  </ToggleButton>
+                </StyledToggleButtonGroup>
+                {/* </Paper> */}
                 <Tooltip title="Toggle theme" enterDelay={500}>
                   <IconButton onClick={toggleMode} color="inherit">
                     {mode === "light" ? <LightMode /> : <DarkMode />}
@@ -113,3 +113,16 @@ interface LayoutProps {
   view: "grid" | "list"
   setView: (view: "grid" | "list") => void;
 }
+
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({theme}) => ({
+  color: "white",
+  ...theme.palette.mode === "light" && {
+    '& .MuiToggleButton-root': {
+      color: "white",
+      borderColor: theme.palette.grey[300],
+      '& .Mui-selected': {
+        backgroundColor: theme.palette.background.paper,
+      }
+    },
+  },
+}));
