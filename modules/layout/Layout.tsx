@@ -21,6 +21,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
         <meta property="og:title" content={getTitle(title)} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imgUrl} />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <main>
         <AppBar position="static">
