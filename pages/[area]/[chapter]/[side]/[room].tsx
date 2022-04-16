@@ -130,6 +130,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
               color={Number(room.subroom) - 1 ? "warning" : "primary"}
               endIcon={Number(room.subroom) - 1 ? <Info /> : <Launch />}
               onClick={handleOpenRoom}
+              aria-label="Open the current room in Celeste"
             >
               Open
             </Button>
@@ -147,14 +148,28 @@ const RoomPage: AppNextPage<RoomProps> = ({
           <Box>
             {prevRoom && prevRoomLink && (
               <Link passHref href={prevRoomLink}>
-                <Button size="small" variant="outlined" startIcon={<NavigateBefore />}>{prevRoom.name}</Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  startIcon={<NavigateBefore />}
+                  aria-label={`Go to previous room ${prevRoom.name}`}
+                >
+                  {prevRoom.name}
+                </Button>
               </Link>
             )}
           </Box>
           <Box>
             {nextRoom && nextRoomLink && (
               <Link passHref href={nextRoomLink}>
-                <Button size="small" variant="outlined" endIcon={<NavigateNext />}>{nextRoom.name}</Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  endIcon={<NavigateNext />}
+                  aria-label={`Go to next room ${nextRoom.name}`}
+                >
+                  {nextRoom.name}
+                </Button>
               </Link>
             )}
           </Box>

@@ -70,16 +70,22 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
             </Box>
             <Box display="flex" alignItems="center" gap={0.5}>
               <Tooltip title={cozyMode ? "Turn off cozy mode" : "Turn on cozy mode"}>
-                <StyledToggleButton size="small" value="check" selected={cozyMode} onClick={() => setCozyMode(!cozyMode)} sx={{marginRight: 1}}>
+                <StyledToggleButton
+                  size="small"
+                  value="check"
+                  selected={cozyMode}
+                  onClick={() => setCozyMode(!cozyMode)} sx={{marginRight: 1}}
+                  aria-label="Toggle comfy mode"
+                >
                   <Fireplace fontSize="small" />
                 </StyledToggleButton>
               </Tooltip>
               <Tooltip title="Change view">
                 <ToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
-                  <StyledToggleButton value="grid">
+                  <StyledToggleButton value="grid" aria-label="Enable grid view mode">
                     <GridViewSharp fontSize="small" />
                   </StyledToggleButton>
-                  <StyledToggleButton value="list">
+                  <StyledToggleButton value="list" aria-label="Enable list view mode">
                     <ViewListSharp fontSize="small" />
                   </StyledToggleButton>
                 </ToggleButtonGroup>
@@ -101,7 +107,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 objectFit="cover"
                 className="pixelated-image"
                 src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}
-                alt='In-game animation of Madeline near a campfire'
+                alt='A large comfy animation of Madeline near a campfire in-game'
                 layout="fill"
               />
             </Box>
