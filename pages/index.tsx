@@ -13,7 +13,6 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
 
   return (
     <Layout
-      title={"An index of Celeste rooms"}
       description={"Browse rooms from the video game Celeste"}
       imgUrl={"https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png"}
       mode={mode}

@@ -123,7 +123,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
 }
 
 interface LayoutProps {
-  title: string;
+  title?: string;
   description: string;
   imgUrl: string;
   mode: "light" | "dark";
