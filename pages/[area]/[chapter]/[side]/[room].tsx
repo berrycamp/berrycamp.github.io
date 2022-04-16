@@ -35,8 +35,8 @@ const RoomPage: AppNextPage<RoomProps> = ({
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  let prevRoom: RoomData | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.at(-1);
-  let nextRoom: RoomData | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms.at(0);
+  let prevRoom: RoomData | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.slice(-1)[0];
+  let nextRoom: RoomData | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms[0];
 
   let sideRoomIndex: number = roomIndex;
   const sideRoomTotal: number = side.checkpoints.reduce<number>((prev, curr, index) => {
