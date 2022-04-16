@@ -29,8 +29,8 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
       <Container>
         <Box paddingTop={8} paddingBottom={4}>
           <Typography variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
-          <Typography variant="overline">{chapter.sides.length} Sides</Typography>
-          <Typography variant="body1">{chapter.desc}</Typography>
+          <Typography variant="body1" color="text.secondary">{chapter.sides.length} Sides</Typography>
+          <Typography variant="body1" color="text.secondary">{chapter.desc}</Typography>
         </Box>
         <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
           {chapter.sides.map((side, newSideNo) => (

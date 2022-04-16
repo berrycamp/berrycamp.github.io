@@ -3,9 +3,6 @@ import type {AppProps} from 'next/app';
 import {useEffect, useState} from 'react';
 import '../styles/globals.css';
 
-const MODE_KEY = "theme";
-const VIEW_KEY = "view";
-
 const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
   const [mode, setMode] = useState<"light" | "dark">("light");
   const [view, setView] = useState<"grid" | "list">("grid");
@@ -23,19 +20,26 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
   }
 
   /**
+   * Set the initial theme from the script.
+   */
+  useEffect(() => {
+    setMode(document.documentElement.style.getPropertyValue("--initial-theme") === "dark" ? "dark" : "light")
+  }, [])
+
+  /**
    * Get the user or media mode preference. Default to light if not provided.
    */
   useEffect(() => {
-    const userMode: string | null = window.localStorage.getItem(MODE_KEY);
-    if (userMode !== null && userMode === "dark") {
-      setMode(userMode);
+    window.localStorage.setItem("theme", mode);
+    if (mode === "dark") {
+      document.documentElement.setAttribute("data-theme", mode);
     } else {
-      setMode(getModePreference());
+      document.documentElement.removeAttribute("data-theme");
     }
-  }, [])
+  }, [mode])
 
   useEffect(() => {
-    const userView: string | null = window.localStorage.getItem(VIEW_KEY);
+    const userView: string | null = window.localStorage.getItem("view");
     if (userView !== null && userView === "list") {
       setView(userView);
     } else {
@@ -44,17 +48,10 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
   }, [])
 
   /**
-   * Store mode in local storage.
-   */
-  useEffect(() => {
-    window.localStorage.setItem(MODE_KEY, mode);
-  }, [mode]);
-
-  /**
    * Set the view in local storage.
    */
   useEffect(() => {
-    window.localStorage.setItem(VIEW_KEY, view);
+    window.localStorage.setItem("view", view);
   }, [view]);
 
   const globalAppProps: GlobalAppProps = {

@@ -26,18 +26,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
         <meta property="og:title" content={getTitle(title)} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imgUrl} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://berrycamp.com" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="msapplication-TileColor" content="#c800c8" />
-        <meta name="theme-color" content="#c800c8" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c800c8" />
       </Head>
       <main>
         <ThemeProvider theme={theme}>
@@ -56,6 +44,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                   <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
                     <Image
                       priority
+                      unoptimized
                       className={styles.roomimage}
                       src={'/img/logo.png'}
                       alt='Animation of madeline in a campsite in game'
