@@ -81,7 +81,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
   return (
     <Layout
       title={`${room.name} (${room.id})`}
-      description={`${area.name} - ${chapter.name} - ${side.name} - ${checkpoint.name}`}
+      description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpoint.name}`}
       imgUrl={roomImageUrl}
       mode={mode}
       toggleMode={toggleMode}
