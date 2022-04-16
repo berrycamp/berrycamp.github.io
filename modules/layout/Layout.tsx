@@ -26,12 +26,18 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
         <meta property="og:title" content={getTitle(title)} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imgUrl} />
-        <meta name="theme-color" content="#c800c8" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://berrycamp.com" />
-        <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="msapplication-TileColor" content="#c800c8" />
+        <meta name="theme-color" content="#c800c8" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c800c8" />
       </Head>
       <main>
         <ThemeProvider theme={theme}>
@@ -79,7 +85,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 </Link>
               </Box>
               <Box display="flex" alignItems="center" gap={0.5}>
-                {/* <Paper elevation={0} sx={{padding: 0, margin: 0}}> */}
                 <StyledToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
                   <ToggleButton value="grid">
                     <GridViewSharp fontSize="small" />
@@ -88,7 +93,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                     <ViewListSharp fontSize="small" />
                   </ToggleButton>
                 </StyledToggleButtonGroup>
-                {/* </Paper> */}
                 <Tooltip title={mode === "light" ? "Switch to dark mode" : "Switch to light mode"} enterDelay={500}>
                   <IconButton onClick={toggleMode} color="inherit">
                     {mode === "light" ? <LightMode /> : <DarkMode />}
