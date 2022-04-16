@@ -15,7 +15,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
     <Layout
       title={"An index of Celeste rooms"}
       description={"Browse rooms from the video game Celeste"}
-      imgUrl={"https://cdn.berrycamp.com/file/berrycamp/static/welcome/images/1.png"}
+      imgUrl={"https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png"}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -30,10 +30,13 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
             an index of all rooms in the video game Celeste, with rich embeds for sharing on Discord and the ability to load rooms
             in-game if <Link underline="hover" href="https://everestapi.github.io/">Everest</Link> is running.
           </Typography>
-          <Typography color="text.secondary" marginTop={2}>
+          <Typography color="text.secondary" marginTop={1}>
             Send any feedback to
             <Typography component="strong" color="secondary"> wishcresp#0141 </Typography>
             on the <Link underline="hover" href="https://discord.gg/Celeste">Celeste Discord</Link>.
+          </Typography>
+          <Typography marginTop={4}>
+            <strong>This website contains spoilers for Celeste.</strong>
           </Typography>
         </Paper>
       </Container>

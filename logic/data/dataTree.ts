@@ -11,8 +11,9 @@ export interface AreaData {
 export interface ChapterData {
   id: string;
   name: string
-  chapter_no?: number;
   desc: string;
+  imageUrl: string;
+  chapter_no?: number;
   sides: SideData[];
 }
 

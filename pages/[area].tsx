@@ -9,8 +9,6 @@ import {FC, Fragment} from 'react'
 import {AreaData} from '../logic/data/dataTree'
 import {AppNextPage} from './_app'
 
-export const CHAPTER_IMG_BASE_URL = 'https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/'
-
 const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, setView}) => {
   return (
     <Layout
@@ -64,8 +62,10 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                   href={`/${areaId}/${chapterId}`}
                 >
                   <CardMedia
+                    className="pixelated-image"
                     component="img"
-                    image={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
+                    image={chapter.imageUrl}
+                    alt={`An image of chapter ${chapter.name}`}
                   />
                   <CardContent sx={{flex: "1"}}>
                     <Typography component="div" variant="h6">
