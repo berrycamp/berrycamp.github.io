@@ -1,6 +1,6 @@
 import {DarkMode, Fireplace, GridViewSharp, LightMode, ViewListSharp} from "@mui/icons-material";
 import {AppBar, Box, IconButton, styled, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
-import {getTitle} from "logic/utils/title";
+import {getMetadataTitle, getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +18,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
       <Head>
         <title>{getTitle(title)}</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={getTitle(title)} />
+        <meta property="og:title" content={getMetadataTitle(title)} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imgUrl} />
         <meta name="viewport" content="initial-scale=1, width=device-width" />

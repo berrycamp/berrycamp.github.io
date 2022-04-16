@@ -59,7 +59,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
     }
 
     try {
-      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.id}&side=${sideId}&level=${room.id}`);
+      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.id}&side=${sideId}&level=${room.id}`, {mode: "no-cors"});
     } catch (e) {
       // Do nothing.
     }
@@ -80,8 +80,8 @@ const RoomPage: AppNextPage<RoomProps> = ({
 
   return (
     <Layout
-      title={room.name}
-      description={room.id}
+      title={`${room.name} (${room.id})`}
+      description={`${area.name} - ${chapter.name} - ${side.name} - ${checkpoint.name}`}
       imgUrl={roomImageUrl}
       mode={mode}
       toggleMode={toggleMode}
