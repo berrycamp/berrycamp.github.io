@@ -4,7 +4,6 @@ import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
 import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
-import styles from "pages/Common.module.css"
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
 import {AreaData} from '../logic/data/dataTree'
@@ -102,7 +101,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
               href={`/${areaId}/${chapterId}`}
             >
               <Image
-                className={styles.roomimage}
+                className="pixelated-image"
                 unoptimized
                 src={`${CHAPTER_IMG_BASE_URL}${chapterId}.png`}
                 alt={`${chapter.name} image`}

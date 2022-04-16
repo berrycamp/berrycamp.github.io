@@ -4,7 +4,6 @@ import {getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "pages/Common.module.css";
 import {FC, Fragment, useState} from "react";
 
 export const COZY_IMAGE_URL = "https://cdn.berrycamp.com/file/berrycamp/static/welcome/images"
@@ -39,7 +38,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                   <Image
                     priority
                     unoptimized
-                    className={styles.roomimage}
+                    className="pixelated-image"
                     src={'/img/logo.png'}
                     alt='Animation of madeline in a campsite in game'
                     layout="fill"
@@ -99,7 +98,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 priority
                 unoptimized
                 objectFit="cover"
-                className={styles.roomimage}
+                className="pixelated-image"
                 src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}
                 alt='Animation of madeline in a campsite in game'
                 layout="fill"

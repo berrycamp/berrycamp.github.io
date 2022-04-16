@@ -5,7 +5,6 @@ import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
-import styles from "pages/Common.module.css";
 import {CHAPTER_IMG_BASE_URL} from "pages/[area]";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
@@ -99,7 +98,7 @@ const GridChapterItem: FC<{room: RoomData, href: string, imageUrl: string}> = ({
   return (
     <Card sx={{width: 320, height: 180}}>
       <CardActionArea
-        className={styles.roomimage as never}
+        className="pixelated-image"
         sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
         href={href}
         onMouseOver={() => setHover(true)}
@@ -140,7 +139,7 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
                 href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
               >
                 <Image
-                  className={styles.roomimage}
+                  className="pixelated-image"
                   unoptimized
                   src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
                   alt={`${room.name} image`}

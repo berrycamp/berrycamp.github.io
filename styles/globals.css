@@ -30,3 +30,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.pixelated-image {
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}

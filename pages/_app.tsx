@@ -10,18 +10,6 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
   const [view, setView] = useState<"grid" | "list">("grid");
 
   /**
- * Get the prefered mode from the user or the system.
- * @returns The prefered mode.
- */
-  const getModePreference = (): "dark" | "light" => {
-    const mql: MediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof mql.matches === "boolean") {
-      return mql.matches ? "dark" : "light";
-    };
-    return "light";
-  }
-
-  /**
    * Set the initial theme from the script.
    */
   useEffect(() => {
@@ -59,12 +47,12 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
     window.localStorage.setItem("view", view);
   }, [view]);
 
-  const globalAppProps: GlobalAppProps = {
+  const globalAppProps: GlobalAppProps = useMemo(() => ({
     mode,
     toggleMode: () => setMode(mode === "light" ? "dark" : "light"),
     view,
     setView: (view: "grid" | "list") => setView(view),
-  }
+  }), [mode, view]);
 
   const theme: Theme = useMemo(() => createTheme({
     palette: {

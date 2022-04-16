@@ -7,7 +7,6 @@ import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "pages/Common.module.css";
 import {IMAGE_URL} from "pages/[area]/[chapter]";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
@@ -104,7 +103,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <AspectBox>
             <Image
-              className={styles.roomimage}
+              className="pixelated-image"
               unoptimized
               src={roomImageUrl}
               alt={`${room.name} image`}
@@ -116,7 +115,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
           <Image
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
-            className={styles.roomimage}
+            className="pixelated-image"
             unoptimized
             src={roomImageUrl}
             alt={`${room.name} image`}
