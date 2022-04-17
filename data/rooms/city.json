@@ -116,9 +116,11 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/3.png"
         },
         "11": {
-          "name": "Overpass/Underpass",
+          "name": "Overpass and Underpass",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/9.png",
+          "x": 368,
+          "y": 248,
           "subrooms": [
             {
               "name": "Underpass",

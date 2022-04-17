@@ -88,6 +88,8 @@
           "name": "Escape room",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/2/10.png",
+          "x": 32,
+          "y": 40,
           "subrooms": [
             {
               "name": "Iced in",
@@ -197,6 +199,8 @@
           "name": "Mirror room",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/12.png",
+          "x": 16,
+          "y": 232,
           "subrooms": [
             {
               "name": "Berry Tunnel",

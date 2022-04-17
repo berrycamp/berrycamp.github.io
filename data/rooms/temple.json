@@ -353,6 +353,8 @@
           "name": "Seed puzzle",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/20.png",
+          "x": 8,
+          "y": 232,
           "subrooms": [
             {
               "name": "Seed puzzle",
@@ -477,6 +479,8 @@
           "name": "Theo",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/1.png",
+          "x": 136,
+          "y": 112,
           "subrooms": [
             {
               "name": "Talk with Theo",
@@ -501,6 +505,8 @@
           "name": "Search skip",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/5.png",
+          "x": 648,
+          "y": 88,
           "subrooms": [
             {
               "name": "Search skip",
@@ -561,6 +567,8 @@
           "name": "Search right side",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/13.png",
+          "x": 8,
+          "y": 16428,
           "subrooms": [
             {
               "name": "Gated key path",

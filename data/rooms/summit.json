@@ -1240,7 +1240,7 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/2.png"
         },
         "03": {
-          "name": "Heart maze",
+          "name": "Heart room",
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/3.png",
           "x": 48,
@@ -1253,7 +1253,7 @@
               "y": 176
             },
             {
-              "name": "Granny and heart",
+              "name": "Granny and Heart",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/4.png",
               "x": 2600,
               "y": 120
