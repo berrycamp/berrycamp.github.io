@@ -60,7 +60,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
             />
           </Box>
           <Box marginLeft={2}>
-            <Typography component="div" variant="h4">{`${chapter.chapter_no ? `Chapter ${chapter.chapter_no} - ` : ""}${chapter.name}`}</Typography>
+            <Typography component="div" variant="h4">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
             <Typography component="div" color="text.secondary">{chapter.id}</Typography>
             <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
           </Box>

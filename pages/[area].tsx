@@ -69,7 +69,7 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                   />
                   <CardContent sx={{flex: "1"}}>
                     <Typography component="div" variant="h6">
-                      {chapter.chapter_no && `Chapter ${chapter.chapter_no} - `}
+                      {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
                       {chapter.name}
                     </Typography>
                     <Typography component="div" variant="body2" color="textSecondary">{chapter.id}</Typography>
@@ -108,7 +108,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
                 width={128}
                 height={72}
               />
-              <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapter_no ? chapter.chapter_no : ""}</Typography>
+              <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
               <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
               <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.id}</Typography>
             </ListItemButton>
