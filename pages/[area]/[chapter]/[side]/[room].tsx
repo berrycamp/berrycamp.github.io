@@ -65,6 +65,9 @@ const RoomPage: AppNextPage<RoomProps> = ({
     }
   }
 
+  /**
+   * Listen for left and right presses to navigate rooms.
+   */
   useEffect(() => {
     const listener = (event: WindowEventMap["keydown"]) => {
       if (event.key === "ArrowLeft" && prevRoomLink) {
