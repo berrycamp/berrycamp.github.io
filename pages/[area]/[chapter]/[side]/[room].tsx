@@ -59,7 +59,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
     }
 
     try {
-      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.id}&side=${sideId}&level=${room.id}`, {mode: "no-cors"});
+      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.gameId}&side=${sideId}&level=${room.id}`, {mode: "no-cors"});
     } catch (e) {
       // Do nothing.
     }
