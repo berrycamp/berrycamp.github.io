@@ -6,7 +6,7 @@
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/core/1/4/8.png",
   "sideCount": 3,
   "sides": {
-    "A": {
+    "a": {
       "name": "A",
       "checkpoints": [
         {
@@ -266,7 +266,7 @@
         }
       }
     },
-    "B": {
+    "b": {
       "name": "B",
       "checkpoints": [
         {
@@ -430,7 +430,7 @@
         }
       }
     },
-    "C": {
+    "c": {
       "name": "C",
       "checkpoints": [
         {
