@@ -1,8 +1,10 @@
 {
   "gameId": "2-OldSite",
+  "chapterNo": 2,
   "name": "Old Site",
   "desc": "Madeline awakens to find the mountain betraying its disturbing nature. She unearths a mysterious chamber where a familar presence is fettered.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/12.png",
+  "sideCount": 3,
   "sides": {
     "A": {
       "name": "A",
@@ -19,6 +21,57 @@
           "name": "Awake",
           "abbreviation": "AW"
         }
+      ],
+      "roomCount": 45,
+      "roomOrder": [
+        "start",
+        "s0",
+        "s1",
+        "s2",
+        "0",
+        "1",
+        "2",
+        "d0",
+        "d7",
+        "d8",
+        "d3",
+        "d3",
+        "d2",
+        "d9",
+        "d1",
+        "d6",
+        "d4",
+        "d5",
+        "1",
+        "3x",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "9b",
+        "10",
+        "2",
+        "11",
+        "12b",
+        "12c",
+        "12d",
+        "12",
+        "13",
+        "end_0",
+        "end_s0",
+        "end_s1",
+        "end_1",
+        "end_2",
+        "end_3",
+        "end_4",
+        "end_3b",
+        "end_3cb",
+        "end_3c",
+        "end_5",
+        "end_6"
       ],
       "rooms": {
         "0": {
@@ -274,57 +327,7 @@
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/3/12.png"
         }
-      },
-      "roomOrder": [
-        "start",
-        "s0",
-        "s1",
-        "s2",
-        "0",
-        "1",
-        "2",
-        "d0",
-        "d7",
-        "d8",
-        "d3",
-        "d3",
-        "d2",
-        "d9",
-        "d1",
-        "d6",
-        "d4",
-        "d5",
-        "1",
-        "3x",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "9b",
-        "10",
-        "2",
-        "11",
-        "12b",
-        "12c",
-        "12d",
-        "12",
-        "13",
-        "end_0",
-        "end_s0",
-        "end_s1",
-        "end_1",
-        "end_2",
-        "end_3",
-        "end_4",
-        "end_3b",
-        "end_3cb",
-        "end_3c",
-        "end_5",
-        "end_6"
-      ]
+      }
     },
     "B": {
       "name": "B",
@@ -341,6 +344,26 @@
           "name": "Dream Altar",
           "abbreviation": "DA"
         }
+      ],
+      "roomCount": 17,
+      "roomOrder": [
+        "start",
+        "00",
+        "01",
+        "01b",
+        "02b",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08b",
+        "08",
+        "09",
+        "10",
+        "11",
+        "end"
       ],
       "rooms": {
         "10": {
@@ -428,26 +451,7 @@
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/2/3/6.png"
         }
-      },
-      "roomOrder": [
-        "start",
-        "00",
-        "01",
-        "01b",
-        "02b",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08b",
-        "08",
-        "09",
-        "10",
-        "11",
-        "end"
-      ]
+      }
     },
     "C": {
       "name": "C",
@@ -456,6 +460,12 @@
           "name": "Begin",
           "abbreviation": "BG"
         }
+      ],
+      "roomCount": 3,
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ],
       "rooms": {
         "00": {
@@ -473,12 +483,7 @@
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/3/1/3.png"
         }
-      },
-      "roomOrder": [
-        "00",
-        "01",
-        "02"
-      ]
+      }
     }
   }
 }

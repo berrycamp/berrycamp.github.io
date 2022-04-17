@@ -1,8 +1,10 @@
 {
   "gameId": "4-GoldenRidge",
+  "chapterNo": 4,
   "name": "Golden Ridge",
   "desc": "Madeline scales the sheer cliffs of the ridge; through a tempest that pushes back her every step. A single slip and she will be lost like a feather in the wind.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/4/12.png",
+  "sideCount": 3,
   "sides": {
     "A": {
       "name": "A",
@@ -23,6 +25,59 @@
           "name": "Cliff Face",
           "abbreviation": "CF"
         }
+      ],
+      "roomCount": 48,
+      "roomOrder": [
+        "a-00",
+        "a-01",
+        "a-01x",
+        "a-02",
+        "a-03",
+        "a-04",
+        "a-05",
+        "a-06",
+        "a-07",
+        "a-08",
+        "a-10",
+        "a-11",
+        "a-09",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-05",
+        "b-04",
+        "b-06",
+        "b-07",
+        "b-03",
+        "b-02",
+        "b-sec",
+        "b-secb",
+        "b-05",
+        "b-08b",
+        "b-08",
+        "c-00",
+        "c-01",
+        "c-02",
+        "c-04",
+        "c-05",
+        "c-06",
+        "c-06b",
+        "c-09",
+        "c-07",
+        "c-08",
+        "c-10",
+        "d-00",
+        "d-00b",
+        "d-01",
+        "d-02",
+        "d-03",
+        "d-04",
+        "d-05",
+        "d-06",
+        "d-07",
+        "d-08",
+        "d-09",
+        "d-10"
       ],
       "rooms": {
         "a-00": {
@@ -293,59 +348,7 @@
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/4/12.png"
         }
-      },
-      "roomOrder": [
-        "a-00",
-        "a-01",
-        "a-01x",
-        "a-02",
-        "a-03",
-        "a-04",
-        "a-05",
-        "a-06",
-        "a-07",
-        "a-08",
-        "a-10",
-        "a-11",
-        "a-09",
-        "b-00",
-        "b-01",
-        "b-02",
-        "b-05",
-        "b-04",
-        "b-06",
-        "b-07",
-        "b-03",
-        "b-02",
-        "b-sec",
-        "b-secb",
-        "b-05",
-        "b-08b",
-        "b-08",
-        "c-00",
-        "c-01",
-        "c-02",
-        "c-04",
-        "c-05",
-        "c-06",
-        "c-06b",
-        "c-09",
-        "c-07",
-        "c-08",
-        "c-10",
-        "d-00",
-        "d-00b",
-        "d-01",
-        "d-02",
-        "d-03",
-        "d-04",
-        "d-05",
-        "d-06",
-        "d-07",
-        "d-08",
-        "d-09",
-        "d-10"
-      ]
+      }
     },
     "B": {
       "name": "B",
@@ -366,6 +369,29 @@
           "name": "Eye of the Storm",
           "abbreviation": "EOTS"
         }
+      ],
+      "roomCount": 20,
+      "roomOrder": [
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "a-04",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-03",
+        "b-04",
+        "c-00",
+        "c-01",
+        "c-02",
+        "c-03",
+        "c-04",
+        "d-00",
+        "d-01",
+        "d-02",
+        "d-03",
+        "end"
       ],
       "rooms": {
         "a-00": {
@@ -468,29 +494,7 @@
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/2/4/5.png"
         }
-      },
-      "roomOrder": [
-        "a-00",
-        "a-01",
-        "a-02",
-        "a-03",
-        "a-04",
-        "b-00",
-        "b-01",
-        "b-02",
-        "b-03",
-        "b-04",
-        "c-00",
-        "c-01",
-        "c-02",
-        "c-03",
-        "c-04",
-        "d-00",
-        "d-01",
-        "d-02",
-        "d-03",
-        "end"
-      ]
+      }
     },
     "C": {
       "name": "C",
@@ -499,6 +503,12 @@
           "name": "Begin",
           "abbreviation": "BG"
         }
+      ],
+      "roomCount": 3,
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ],
       "rooms": {
         "00": {
@@ -516,12 +526,7 @@
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/3/1/3.png"
         }
-      },
-      "roomOrder": [
-        "00",
-        "01",
-        "02"
-      ]
+      }
     }
   }
 }

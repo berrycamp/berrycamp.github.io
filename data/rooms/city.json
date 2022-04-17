@@ -1,8 +1,10 @@
 {
   "gameId": "1-ForsakenCity",
+  "chapterNo": 1,
   "name": "Forsaken City",
   "desc": "A deserted city stands in Madeline's path. The deep pits and crumbling wreckage give her pause, but she finds comfort in the companionship of a fellow traveler.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png",
+  "sideCount": 3,
   "sides": {
     "A": {
       "name": "A",
@@ -19,6 +21,48 @@
           "name": "Chasm",
           "abbreviation": "CH"
         }
+      ],
+      "roomCount": 38,
+      "roomOrder": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "3b",
+        "5",
+        "5z",
+        "5a",
+        "6",
+        "6z",
+        "6zb",
+        "7zb",
+        "6a",
+        "6b",
+        "s0",
+        "s1",
+        "6c",
+        "7",
+        "7z",
+        "8z",
+        "8zb",
+        "8",
+        "7a",
+        "9z",
+        "8b",
+        "9",
+        "9b",
+        "9c",
+        "10",
+        "10z",
+        "10zb",
+        "11",
+        "11z",
+        "10a",
+        "11",
+        "12",
+        "12z",
+        "12a",
+        "end"
       ],
       "rooms": {
         "1": {
@@ -72,7 +116,7 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/3.png"
         },
         "11": {
-          "name": "Underpass",
+          "name": "Underpass/Overpass",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/6.png",
           "subrooms": [
@@ -225,48 +269,7 @@
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/13.png"
         }
-      },
-      "roomOrder": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "3b",
-        "5",
-        "5z",
-        "5a",
-        "6",
-        "6z",
-        "6zb",
-        "7zb",
-        "6a",
-        "6b",
-        "s0",
-        "s1",
-        "6c",
-        "7",
-        "7z",
-        "8z",
-        "8zb",
-        "8",
-        "7a",
-        "9z",
-        "8b",
-        "9",
-        "9b",
-        "9c",
-        "10",
-        "10z",
-        "10zb",
-        "11",
-        "11z",
-        "10a",
-        "11",
-        "12",
-        "12z",
-        "12a",
-        "end"
-      ]
+      }
     },
     "B": {
       "name": "B",
@@ -283,6 +286,25 @@
           "name": "Scrap Pit",
           "abbreviation": "SP"
         }
+      ],
+      "roomCount": 16,
+      "roomOrder": [
+        "00",
+        "01",
+        "02",
+        "02b",
+        "03",
+        "04",
+        "05",
+        "05b",
+        "06",
+        "07",
+        "08",
+        "08b",
+        "09",
+        "10",
+        "11",
+        "end"
       ],
       "rooms": {
         "10": {
@@ -365,25 +387,7 @@
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/6.png"
         }
-      },
-      "roomOrder": [
-        "00",
-        "01",
-        "02",
-        "02b",
-        "03",
-        "04",
-        "05",
-        "05b",
-        "06",
-        "07",
-        "08",
-        "08b",
-        "09",
-        "10",
-        "11",
-        "end"
-      ]
+      }
     },
     "C": {
       "name": "C",
@@ -392,6 +396,12 @@
           "name": "Begin",
           "abbreviation": "BG"
         }
+      ],
+      "roomCount": 3,
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ],
       "rooms": {
         "00": {
@@ -409,12 +419,7 @@
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/3/1/3.png"
         }
-      },
-      "roomOrder": [
-        "00",
-        "01",
-        "02"
-      ]
+      }
     }
   }
 }

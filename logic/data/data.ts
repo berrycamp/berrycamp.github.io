@@ -17,6 +17,7 @@ export const DATA: DataTree = {
     name: "Celeste",
     desc: "Madelines journey to the summit of Celeste Mountain.",
     imageUrl: "https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/ridge.png",
+    chapterCount: 11,
     chapters: {
       prologue,
       city,

@@ -3,6 +3,7 @@
   "name": "Epilogue",
   "desc": "Back in the Old Woman's home at the end of her journey, Madeline enjoys the warmth of good company.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/2.png",
+  "sideCount": 1,
   "sides": {
     "A": {
       "name": "A",
@@ -11,6 +12,13 @@
           "name": "Begin",
           "abbreviation": "BG"
         }
+      ],
+      "roomCount": 4,
+      "roomOrder": [
+        "outside",
+        "inside",
+        "bridge",
+        "secret"
       ],
       "rooms": {
         "outside": {
@@ -33,13 +41,7 @@
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/4.png"
         }
-      },
-      "roomOrder": [
-        "outside",
-        "inside",
-        "bridge",
-        "secret"
-      ]
+      }
     }
   }
 }

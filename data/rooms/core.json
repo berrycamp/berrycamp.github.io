@@ -1,8 +1,10 @@
 {
   "gameId": "9-Core",
+  "chapterNo": 8,
   "name": "Core",
   "desc": "One year later, Madeline returns to discover the mountain's final secret; that which lies at the heart of everything.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/core/1/4/8.png",
+  "sideCount": 3,
   "sides": {
     "A": {
       "name": "A",
@@ -23,6 +25,48 @@
           "name": "Heart of the Mountain",
           "abbreviation": "HOTM"
         }
+      ],
+      "roomCount": 39,
+      "roomOrder": [
+        "0x",
+        "00",
+        "01",
+        "02",
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-03",
+        "b-04",
+        "b-05",
+        "b-06",
+        "b-07b",
+        "b-07",
+        "c-00",
+        "c-00b",
+        "c-01",
+        "c-02",
+        "c-03",
+        "c-03b",
+        "c-04",
+        "d-00",
+        "d-01",
+        "d-02",
+        "d-03",
+        "d-04",
+        "d-05",
+        "d-06",
+        "d-07",
+        "d-08",
+        "d-09",
+        "d-10",
+        "d-10b",
+        "d-10c",
+        "d-11",
+        "space"
       ],
       "rooms": {
         "0x": {
@@ -220,48 +264,7 @@
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/core/1/4/15.png"
         }
-      },
-      "roomOrder": [
-        "0x",
-        "00",
-        "01",
-        "02",
-        "a-00",
-        "a-01",
-        "a-02",
-        "a-03",
-        "b-00",
-        "b-01",
-        "b-02",
-        "b-03",
-        "b-04",
-        "b-05",
-        "b-06",
-        "b-07b",
-        "b-07",
-        "c-00",
-        "c-00b",
-        "c-01",
-        "c-02",
-        "c-03",
-        "c-03b",
-        "c-04",
-        "d-00",
-        "d-01",
-        "d-02",
-        "d-03",
-        "d-04",
-        "d-05",
-        "d-06",
-        "d-07",
-        "d-08",
-        "d-09",
-        "d-10",
-        "d-10b",
-        "d-10c",
-        "d-11",
-        "space"
-      ]
+      }
     },
     "B": {
       "name": "B",
@@ -282,6 +285,32 @@
           "name": "Heartbeat",
           "abbreviation": "HB"
         }
+      ],
+      "roomCount": 23,
+      "roomOrder": [
+        "00",
+        "01",
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "a-04",
+        "a-05",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-03",
+        "b-04",
+        "b-05",
+        "c-01",
+        "c-02",
+        "c-03",
+        "c-04",
+        "c-05",
+        "c-06",
+        "c-08",
+        "c-07",
+        "space"
       ],
       "rooms": {
         "00": {
@@ -399,32 +428,7 @@
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/core/2/4/9.png"
         }
-      },
-      "roomOrder": [
-        "00",
-        "01",
-        "a-00",
-        "a-01",
-        "a-02",
-        "a-03",
-        "a-04",
-        "a-05",
-        "b-00",
-        "b-01",
-        "b-02",
-        "b-03",
-        "b-04",
-        "b-05",
-        "c-01",
-        "c-02",
-        "c-03",
-        "c-04",
-        "c-05",
-        "c-06",
-        "c-08",
-        "c-07",
-        "space"
-      ]
+      }
     },
     "C": {
       "name": "C",
@@ -433,6 +437,14 @@
           "name": "Begin",
           "abbreviation": "BG"
         }
+      ],
+      "roomCount": 4,
+      "roomOrder": [
+        "intro",
+        "00",
+        "01",
+        "02",
+        "02"
       ],
       "rooms": {
         "intro": {
@@ -469,14 +481,7 @@
             }
           ]
         }
-      },
-      "roomOrder": [
-        "intro",
-        "00",
-        "01",
-        "02",
-        "02"
-      ]
+      }
     }
   }
 }
