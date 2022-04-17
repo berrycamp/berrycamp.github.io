@@ -1,5 +1,5 @@
 import {DATA} from "logic/data/data";
-import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
@@ -13,15 +13,15 @@ const SubroomPage: AppNextPage<SubroomProps> = (props) => {
 
 interface SubroomProps {
   areaId: string;
-  area: AreaData;
+  area: Area;
   chapterId: string;
-  chapter: ChapterData;
+  chapter: Chapter;
   sideIndex: number;
-  side: SideData;
+  side: Side;
   checkpointIndex: number;
-  checkpoint: CheckpointData;
+  checkpoint: Checkpoint;
   roomIndex: number;
-  room: RoomData;
+  room: Room;
   subroom: number;
 }
 
@@ -62,23 +62,23 @@ export const getStaticProps: GetStaticProps<SubroomProps, SubroomParams> = async
   }
 
   const {area: areaId, chapter: chapterId, side: sideId, room: roomId, subroom} = params;
-  const area: AreaData | undefined = DATA[areaId];
+  const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
     throw Error(`Area ${areaId} is not valid`);
   }
 
-  const chapter: ChapterData | undefined = area.chapters[chapterId];
+  const chapter: Chapter | undefined = area.chapters[chapterId];
   if (chapter === undefined) {
     throw Error(`Chapter ${chapterId} is not valid`);
   }
 
   const sideIndex: number = chapter.sides.findIndex(s => s.name.toLowerCase() === sideId.toLowerCase())
-  const side: SideData | undefined = chapter.sides[sideIndex];
+  const side: Side | undefined = chapter.sides[sideIndex];
   if (side === undefined) {
     throw Error("Side not defined");
   }
 
-  const roomData: {checkpointIndex: number, checkpoint: CheckpointData, roomIndex: number, room: RoomData} | undefined = getRoomData(side, roomId, subroom);
+  const roomData: {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined = getRoomData(side, roomId, subroom);
   if (roomData === undefined) {
     throw Error(`Could not find room ${roomId} in side ${side.name}`);
   }
@@ -111,11 +111,11 @@ export const getStaticProps: GetStaticProps<SubroomProps, SubroomParams> = async
  * @param subroom The subroom.
  * @returns The room data.
  */
-const getRoomData = (side: SideData, roomId: string, subroom: string): {checkpointIndex: number, checkpoint: CheckpointData, roomIndex: number, room: RoomData} | undefined => {
+const getRoomData = (side: Side, roomId: string, subroom: string): {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined => {
   for (let checkpointIndex = 0; checkpointIndex < side.checkpoints.length; checkpointIndex++) {
-    const checkpoint: CheckpointData = side.checkpoints[checkpointIndex] as CheckpointData;
+    const checkpoint: Checkpoint = side.checkpoints[checkpointIndex] as Checkpoint;
     for (let roomIndex = 0; roomIndex < checkpoint.rooms.length; roomIndex++) {
-      const room: RoomData = checkpoint.rooms[roomIndex] as RoomData;
+      const room: Room = checkpoint.rooms[roomIndex] as Room;
       if (room.id === roomId && room.subroom === Number(subroom)) {
         return {checkpointIndex, checkpoint, roomIndex, room}
       }

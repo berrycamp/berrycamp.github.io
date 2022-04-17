@@ -2,7 +2,7 @@ import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
-import {AreaData, ChapterData, CheckpointData, RoomData, SideData} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
@@ -35,8 +35,8 @@ const RoomPage: AppNextPage<RoomProps> = ({
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  let prevRoom: RoomData | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.slice(-1)[0];
-  let nextRoom: RoomData | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms[0];
+  let prevRoom: Room | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.slice(-1)[0];
+  let nextRoom: Room | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms[0];
 
   let sideRoomIndex: number = roomIndex;
   const sideRoomTotal: number = side.checkpoints.reduce<number>((prev, curr, index) => {
@@ -185,15 +185,15 @@ const RoomPage: AppNextPage<RoomProps> = ({
 
 interface RoomProps {
   areaId: string;
-  area: AreaData;
+  area: Area;
   chapterId: string;
-  chapter: ChapterData;
+  chapter: Chapter;
   sideIndex: number;
-  side: SideData;
+  side: Side;
   checkpointIndex: number;
-  checkpoint: CheckpointData;
+  checkpoint: Checkpoint;
   roomIndex: number;
-  room: RoomData;
+  room: Room;
   subroom?: number;
 }
 
@@ -232,23 +232,23 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
   }
 
   const {area: areaId, chapter: chapterId, side: sideId, room: roomId} = params;
-  const area: AreaData | undefined = DATA[areaId];
+  const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
     throw Error(`Area ${areaId} is not valid`);
   }
 
-  const chapter: ChapterData | undefined = area.chapters[chapterId];
+  const chapter: Chapter | undefined = area.chapters[chapterId];
   if (chapter === undefined) {
     throw Error(`Chapter ${chapterId} is not valid`);
   }
 
   const sideIndex: number = chapter.sides.findIndex(s => s.name.toLowerCase() === sideId.toLowerCase())
-  const side: SideData | undefined = chapter.sides[sideIndex];
+  const side: Side | undefined = chapter.sides[sideIndex];
   if (side === undefined) {
     throw Error("Side not defined");
   }
 
-  const roomData: {checkpointIndex: number, checkpoint: CheckpointData, roomIndex: number, room: RoomData} | undefined = getRoomData(side, roomId);
+  const roomData: {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined = getRoomData(side, roomId);
   if (roomData === undefined) {
     throw Error(`Could not find room ${roomId} in side ${side.name}`);
   }
@@ -277,11 +277,11 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
  * @param roomId The room id.
  * @returns The room data.
  */
-const getRoomData = (side: SideData, roomId: string): {checkpointIndex: number, checkpoint: CheckpointData, roomIndex: number, room: RoomData} | undefined => {
+const getRoomData = (side: Side, roomId: string): {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined => {
   for (let checkpointIndex = 0; checkpointIndex < side.checkpoints.length; checkpointIndex++) {
-    const checkpoint: CheckpointData = side.checkpoints[checkpointIndex] as CheckpointData;
+    const checkpoint: Checkpoint = side.checkpoints[checkpointIndex] as Checkpoint;
     for (let roomIndex = 0; roomIndex < checkpoint.rooms.length; roomIndex++) {
-      const room: RoomData = checkpoint.rooms[roomIndex] as RoomData;
+      const room: Room = checkpoint.rooms[roomIndex] as Room;
       if (room.id === roomId) {
         return {checkpointIndex, checkpoint, roomIndex, room}
       }

@@ -1,301 +1,420 @@
 {
-  "id": "1-ForsakenCity",
-  "chapter_no": 1,
+  "gameId": "1-ForsakenCity",
   "name": "Forsaken City",
   "desc": "A deserted city stands in Madeline's path. The deep pits and crumbling wreckage give her pause, but she finds comfort in the companionship of a fellow traveler.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Begin",
-              "id": "1"
-            },
-            {
-              "name": "Berry and spring",
-              "id": "2"
-            },
-            {
-              "name": "Floating platforms",
-              "id": "3"
-            },
-            {
-              "name": "Zipper intro",
-              "id": "4"
-            },
-            {
-              "name": "Crumbling winged berry",
-              "id": "3b"
-            },
-            {
-              "name": "Zipper and top-left berry",
-              "id": "5"
-            },
-            {
-              "name": "Up and around berry",
-              "id": "5z"
-            },
-            {
-              "name": "Launch berry",
-              "id": "5a"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Crossing",
-          "abbreviation": "CR",
-          "rooms": [
-            {
-              "name": "Dashless is hard",
-              "id": "6"
-            },
-            {
-              "name": "Over spike pit",
-              "id": "6z"
-            },
-            {
-              "name": "Theo the Adventurer",
-              "id": "6zb"
-            },
-            {
-              "name": "Berry above Theo",
-              "id": "7zb"
-            },
-            {
-              "name": "Coffee shop",
-              "id": "6a"
-            },
-            {
-              "name": "Zippers & Spikes",
-              "id": "6b"
-            },
-            {
-              "name": "Zipper gate",
-              "id": "s0"
-            },
-            {
-              "name": "Heart puzzle",
-              "id": "s1"
-            },
-            {
-              "name": "Springs and path fork",
-              "id": "6c"
-            },
-            {
-              "name": "Falling ice",
-              "id": "7"
-            },
-            {
-              "name": "Berry path I",
-              "id": "7z"
-            },
-            {
-              "name": "Berry path II",
-              "id": "8z"
-            },
-            {
-              "name": "Berry path III",
-              "id": "8zb"
-            },
-            {
-              "name": "Junction",
-              "id": "8"
-            },
-            {
-              "name": "Tri-zip berry",
-              "id": "7a"
-            },
-            {
-              "name": "Zip around berry",
-              "id": "9z"
-            },
-            {
-              "name": "Ceiling zippers",
-              "id": "8b"
-            },
-            {
-              "name": "Up and right",
-              "id": "9"
-            }
-          ]
+          "abbreviation": "CR"
         },
         {
           "name": "Chasm",
-          "abbreviation": "CH",
-          "rooms": [
-            {
-              "name": "Mind the gap",
-              "id": "9b"
-            },
-            {
-              "name": "Winged zip berry",
-              "id": "9c"
-            },
-            {
-              "name": "Narrow spike shaft",
-              "id": "10"
-            },
-            {
-              "name": "One way spikes",
-              "id": "10z"
-            },
-            {
-              "name": "Cliff berry",
-              "id": "10zb"
-            },
+          "abbreviation": "CH"
+        }
+      ],
+      "rooms": {
+        "1": {
+          "name": "Begin",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/1.png"
+        },
+        "2": {
+          "name": "Berry and spring",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/2.png"
+        },
+        "3": {
+          "name": "Floating platforms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/3.png"
+        },
+        "4": {
+          "name": "Zipper intro",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/4.png"
+        },
+        "5": {
+          "name": "Zipper and top-left berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/6.png"
+        },
+        "6": {
+          "name": "Dashless is hard",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/1.png"
+        },
+        "7": {
+          "name": "Falling ice",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/10.png"
+        },
+        "8": {
+          "name": "Junction",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/14.png"
+        },
+        "9": {
+          "name": "Up and right",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/18.png"
+        },
+        "10": {
+          "name": "Narrow spike shaft",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/3.png"
+        },
+        "11": {
+          "name": "Underpass",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/6.png",
+          "subrooms": [
             {
               "name": "Underpass",
-              "id": "11",
-              "subroom": 1,
-              "fullRoomName": "Overpass/Underpass"
-            },
-            {
-              "name": "Cassette room",
-              "id": "11z"
-            },
-            {
-              "name": "Around and up",
-              "id": "10a",
-              "subroom": 2
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/6.png",
+              "x": 99999,
+              "y": 99999
             },
             {
               "name": "Overpass",
-              "id": "11"
-            },
-            {
-              "name": "Snow blocks",
-              "id": "12"
-            },
-            {
-              "name": "Dash crystal berry",
-              "id": "12z"
-            },
-            {
-              "name": "Hanging platforms",
-              "id": "12a"
-            },
-            {
-              "name": "Monument",
-              "id": "end"
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/9.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
+        },
+        "12": {
+          "name": "Snow blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/10.png"
+        },
+        "3b": {
+          "name": "Crumbling winged berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/5.png"
+        },
+        "5z": {
+          "name": "Up and around berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/7.png"
+        },
+        "5a": {
+          "name": "Launch berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/1/8.png"
+        },
+        "6z": {
+          "name": "Over spike pit",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/2.png"
+        },
+        "6zb": {
+          "name": "Theo the Adventurer",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png"
+        },
+        "7zb": {
+          "name": "Berry above Theo",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/4.png"
+        },
+        "6a": {
+          "name": "Coffee shop",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/5.png"
+        },
+        "6b": {
+          "name": "Zippers & Spikes",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/6.png"
+        },
+        "s0": {
+          "name": "Zipper gate",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/7.png"
+        },
+        "s1": {
+          "name": "Heart puzzle",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/8.png"
+        },
+        "6c": {
+          "name": "Springs and path fork",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/9.png"
+        },
+        "7z": {
+          "name": "Berry path I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/11.png"
+        },
+        "8z": {
+          "name": "Berry path II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/12.png"
+        },
+        "8zb": {
+          "name": "Berry path III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/13.png"
+        },
+        "7a": {
+          "name": "Tri-zip berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/15.png"
+        },
+        "9z": {
+          "name": "Zip around berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/16.png"
+        },
+        "8b": {
+          "name": "Ceiling zippers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/17.png"
+        },
+        "9b": {
+          "name": "Mind the gap",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/1.png"
+        },
+        "9c": {
+          "name": "Winged zip berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/2.png"
+        },
+        "10z": {
+          "name": "One way spikes",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/4.png"
+        },
+        "10zb": {
+          "name": "Cliff berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/5.png"
+        },
+        "11z": {
+          "name": "Cassette room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/7.png"
+        },
+        "10a": {
+          "name": "Around and up",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/8.png"
+        },
+        "12z": {
+          "name": "Dash crystal berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/11.png"
+        },
+        "12a": {
+          "name": "Hanging platforms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/12.png"
+        },
+        "end": {
+          "name": "Monument",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/3/13.png"
         }
+      },
+      "roomOrder": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "3b",
+        "5",
+        "5z",
+        "5a",
+        "6",
+        "6z",
+        "6zb",
+        "7zb",
+        "6a",
+        "6b",
+        "s0",
+        "s1",
+        "6c",
+        "7",
+        "7z",
+        "8z",
+        "8zb",
+        "8",
+        "7a",
+        "9z",
+        "8b",
+        "9",
+        "9b",
+        "9c",
+        "10",
+        "10z",
+        "10zb",
+        "11",
+        "11z",
+        "10a",
+        "11",
+        "12",
+        "12z",
+        "12a",
+        "end"
       ]
     },
-    {
+    "B": {
       "name": "B",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "00"
-            },
-            {
-              "name": "Dual zippers",
-              "id": "01"
-            },
-            {
-              "name": "Over and under",
-              "id": "02"
-            },
-            {
-              "name": "Three zipper jumps",
-              "id": "02b"
-            },
-            {
-              "name": "Stamina jumps",
-              "id": "03"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Contraption",
-          "abbreviation": "CT",
-          "rooms": [
-            {
-              "name": "Contraption",
-              "id": "04"
-            },
-            {
-              "name": "Zip over and up",
-              "id": "05"
-            },
-            {
-              "name": "One way spikes",
-              "id": "05b"
-            },
-            {
-              "name": "Stamina jump puzzle",
-              "id": "06"
-            },
-            {
-              "name": "Obstacle spikes",
-              "id": "07"
-            }
-          ]
+          "abbreviation": "CT"
         },
         {
           "name": "Scrap Pit",
-          "abbreviation": "SP",
-          "rooms": [
-            {
-              "name": "Crumble block dash",
-              "id": "08"
-            },
-            {
-              "name": "Little zippers",
-              "id": "08b"
-            },
-            {
-              "name": "Hanging Zippers",
-              "id": "09"
-            },
-            {
-              "name": "One way zip",
-              "id": "10"
-            },
-            {
-              "name": "Zipper launches",
-              "id": "11"
-            },
-            {
-              "name": "Cassette room",
-              "id": "end"
-            }
-          ]
+          "abbreviation": "SP"
         }
+      ],
+      "rooms": {
+        "10": {
+          "name": "One way zip",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/4.png"
+        },
+        "11": {
+          "name": "Zipper launches",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/5.png"
+        },
+        "00": {
+          "name": "Start",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/1/1.png"
+        },
+        "01": {
+          "name": "Dual zippers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/1/2.png"
+        },
+        "02": {
+          "name": "Over and under",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/1/3.png"
+        },
+        "02b": {
+          "name": "Three zipper jumps",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/1/4.png"
+        },
+        "03": {
+          "name": "Stamina jumps",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/1/5.png"
+        },
+        "04": {
+          "name": "Contraption",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/2/1.png"
+        },
+        "05": {
+          "name": "Zip over and up",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/2/2.png"
+        },
+        "05b": {
+          "name": "One way spikes",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/2/3.png"
+        },
+        "06": {
+          "name": "Stamina jump puzzle",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/2/4.png"
+        },
+        "07": {
+          "name": "Obstacle spikes",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/2/5.png"
+        },
+        "08": {
+          "name": "Crumble block dash",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/1.png"
+        },
+        "08b": {
+          "name": "Little zippers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/2.png"
+        },
+        "09": {
+          "name": "Hanging Zippers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/3.png"
+        },
+        "end": {
+          "name": "Cassette room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/2/3/6.png"
+        }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02",
+        "02b",
+        "03",
+        "04",
+        "05",
+        "05b",
+        "06",
+        "07",
+        "08",
+        "08b",
+        "09",
+        "10",
+        "11",
+        "end"
       ]
     },
-    {
+    "C": {
       "name": "C",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Zipper jumps",
-              "id": "00"
-            },
-            {
-              "name": "Open space",
-              "id": "01"
-            },
-            {
-              "name": "Heart room",
-              "id": "02"
-            }
-          ]
+          "abbreviation": "BG"
         }
+      ],
+      "rooms": {
+        "00": {
+          "name": "Zipper jumps",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/3/1/1.png"
+        },
+        "01": {
+          "name": "Open space",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/3/1/2.png"
+        },
+        "02": {
+          "name": "Heart room",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/city/3/1/3.png"
+        }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ]
     }
-  ]
+  }
 }

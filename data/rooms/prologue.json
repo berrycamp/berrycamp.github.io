@@ -1,43 +1,57 @@
 {
-  "id": "0-Intro",
+  "gameId": "0-Intro",
   "name": "Prologue",
   "desc": "Madeline arrives at the foot of the mountain. A lone cabin stands at the top of a broken driveway, housing an unlikely resident. And so she begins... a long, long upward climb.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/5.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Drive up",
-              "id": "-1"
-            },
-            {
-              "name": "Broken driveway I",
-              "id": "0"
-            },
-            {
-              "name": "Birds",
-              "id": "0b"
-            },
-            {
-              "name": "Broken driveway II",
-              "id": "1"
-            },
-            {
-              "name": "Old Woman",
-              "id": "2"
-            },
-            {
-              "name": "Dash tutorial",
-              "id": "3"
-            }
-          ]
+          "abbreviation": "BG"
         }
+      ],
+      "rooms": {
+        "0": {
+          "name": "Broken driveway I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/2.png"
+        },
+        "1": {
+          "name": "Broken driveway II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/4.png"
+        },
+        "2": {
+          "name": "Old Woman",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/5.png"
+        },
+        "3": {
+          "name": "Dash tutorial",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/6.png"
+        },
+        "-1": {
+          "name": "Drive up",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/1.png"
+        },
+        "0b": {
+          "name": "Birds",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/prologue/1/1/3.png"
+        }
+      },
+      "roomOrder": [
+        "-1",
+        "0",
+        "0b",
+        "1",
+        "2",
+        "3"
       ]
     }
-  ]
+  }
 }

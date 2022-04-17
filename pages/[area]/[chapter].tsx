@@ -9,7 +9,7 @@ import {GetStaticPaths, GetStaticProps} from "next/types";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
-import {AreaData, ChapterData, RoomData} from "../../logic/data/dataTree";
+import {Area, Chapter, Room} from "../../logic/data/dataTree";
 
 export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
 
@@ -27,9 +27,9 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
 
   const chapterKeys: string[] = Object.keys(area.chapters);
   const prevChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) - 1];
-  const prevChapter: ChapterData | undefined = prevChapterId ? area.chapters[prevChapterId] : undefined;
+  const prevChapter: Chapter | undefined = prevChapterId ? area.chapters[prevChapterId] : undefined;
   const nextChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) + 1];
-  const nextChapter: ChapterData | undefined = nextChapterId ? area.chapters[nextChapterId] : undefined;
+  const nextChapter: Chapter | undefined = nextChapterId ? area.chapters[nextChapterId] : undefined;
 
   return (
     <Layout
@@ -140,7 +140,7 @@ const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
   );
 }
 
-const GridChapterItem: FC<{room: RoomData, href: string, imageUrl: string}> = ({room, href, imageUrl}) => {
+const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room, href, imageUrl}) => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
@@ -210,9 +210,9 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
 
 interface ChapterProps {
   areaId: string;
-  area: AreaData;
+  area: Area;
   chapterId: string;
-  chapter: ChapterData;
+  chapter: Chapter;
 }
 
 interface ChapterParams extends ParsedUrlQuery {
@@ -241,12 +241,12 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
     throw Error("Params was not defined.")
   }
 
-  const area: AreaData | undefined = DATA[params.area];
+  const area: Area | undefined = DATA[params.area];
   if (area === undefined) {
     throw Error(`Area ${params.area} is not valid.`)
   }
 
-  const chapter: ChapterData | undefined = area.chapters[params.chapter];
+  const chapter: Chapter | undefined = area.chapters[params.chapter];
   if (chapter === undefined) {
     throw Error(`Chapter ${params.chapter} is not valid`);
   }

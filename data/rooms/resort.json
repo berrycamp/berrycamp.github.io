@@ -1,448 +1,632 @@
 {
-  "id": "3-CelestialResort",
-  "chapter_no": 3,
+  "gameId": "3-CelestialResort",
   "name": "Celestial Resort",
   "desc": "Seeking passage through an abandoned estate, Madeline takes an unwise detour and encounters more than dust and echos.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/2.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Outside I",
-              "id": "s0"
-            },
-            {
-              "name": "Outside II",
-              "id": "s1"
-            },
-            {
-              "name": "Outside berries",
-              "id": "s2"
-            },
-            {
-              "name": "Outside key",
-              "id": "s3"
-            },
-            {
-              "name": "Ring the bell",
-              "id": "0x-a"
-            },
-            {
-              "name": "Dust bunny intro",
-              "id": "00-a"
-            },
-            {
-              "name": "Locked door",
-              "id": "02-a"
-            },
-            {
-              "name": "Dust bunnies and key",
-              "id": "02-b"
-            },
-            {
-              "name": "Three falling shelves",
-              "id": "01-b"
-            },
-            {
-              "name": "Dust berry",
-              "id": "00-b"
-            },
-            {
-              "name": "Cassette teaser",
-              "id": "00-c"
-            },
-            {
-              "name": "Berry balcony interior",
-              "id": "0x-b"
-            },
-            {
-              "name": "Pressure platforms intro",
-              "id": "03-a"
-            },
-            {
-              "name": "Dash around berry",
-              "id": "04-b"
-            },
-            {
-              "name": "Dust pillars",
-              "id": "05-a"
-            },
-            {
-              "name": "Winged berry",
-              "id": "06-a"
-            },
-            {
-              "name": "Locked door",
-              "id": "07-a"
-            },
-            {
-              "name": "Key room",
-              "id": "07-b"
-            },
-            {
-              "name": "Circling dust platforms",
-              "id": "06-b"
-            },
-            {
-              "name": "Spiked moss walls",
-              "id": "06-c"
-            },
-            {
-              "name": "Berry loop",
-              "id": "05-c"
-            },
-            {
-              "name": "Locked spring platforms",
-              "id": "08-c"
-            },
-            {
-              "name": "Weaving platform",
-              "id": "08-b"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Huge Mess",
-          "abbreviation": "HM",
-          "rooms": [
-            {
-              "name": "Book bridge",
-              "id": "08-a"
-            },
-            {
-              "name": "Huge mess",
-              "id": "09-b"
-            },
-            {
-              "name": "Crates I",
-              "id": "11-x"
-            },
-            {
-              "name": "Crates II",
-              "id": "11-y"
-            },
-            {
-              "name": "Crates III",
-              "id": "12-y"
-            },
-            {
-              "name": "Crates IV",
-              "id": "11-z"
-            },
-            {
-              "name": "Crates V",
-              "id": "10-z"
-            },
-            {
-              "name": "Crates VI",
-              "id": "10-y"
-            },
-            {
-              "name": "Crates button",
-              "id": "10-x"
-            },
-            {
-              "name": "Books I",
-              "id": "10-c"
-            },
-            {
-              "name": "Books II",
-              "id": "11-c"
-            },
-            {
-              "name": "Books III",
-              "id": "12-c"
-            },
-            {
-              "name": "Books IV",
-              "id": "12-d"
-            },
-            {
-              "name": "Books V",
-              "id": "11-d"
-            },
-            {
-              "name": "Books button",
-              "id": "10-d"
-            },
-            {
-              "name": "Towels I",
-              "id": "11-b"
-            },
-            {
-              "name": "Towels II",
-              "id": "12-b"
-            },
-            {
-              "name": "Towels III",
-              "id": "13-b"
-            },
-            {
-              "name": "Towels IV",
-              "id": "13-a"
-            },
-            {
-              "name": "Towels V",
-              "id": "13-x"
-            },
-            {
-              "name": "Towels button",
-              "id": "12-x"
-            },
-            {
-              "name": "Flooding & pico-8",
-              "id": "11-a"
-            },
-            {
-              "name": "Bridge berry",
-              "id": "08-x"
-            }
-          ]
+          "abbreviation": "HM"
         },
         {
           "name": "Elevator Shaft",
-          "abbreviation": "ES",
-          "rooms": [
-            {
-              "name": "Elevator shaft",
-              "id": "09-d"
-            },
-            {
-              "name": "Switch columns",
-              "id": "08-d"
-            },
-            {
-              "name": "Dusty room",
-              "id": "06-d"
-            },
-            {
-              "name": "Serpentine",
-              "id": "04-d",
-              "subroom": 1
-            },
-            {
-              "name": "Dust Demo",
-              "id": "04-d",
-              "subroom": 2
-            },
-            {
-              "name": "Lock room",
-              "id": "04-c"
-            },
-            {
-              "name": "Quad hyper",
-              "id": "02-c"
-            },
-            {
-              "name": "Tight berries",
-              "id": "03-b"
-            },
-            {
-              "name": "Cassette room",
-              "id": "01-c"
-            },
-            {
-              "name": "TAS cycle",
-              "id": "02-d"
-            }
-          ]
+          "abbreviation": "ES"
         },
         {
           "name": "Presidential Suite",
-          "abbreviation": "PS",
-          "rooms": [
+          "abbreviation": "PS"
+        }
+      ],
+      "rooms": {
+        "s0": {
+          "name": "Outside I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/1.png"
+        },
+        "s1": {
+          "name": "Outside II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/2.png"
+        },
+        "s2": {
+          "name": "Outside berries",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/3.png"
+        },
+        "s3": {
+          "name": "Outside key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/4.png"
+        },
+        "0x-a": {
+          "name": "Ring the bell",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/5.png"
+        },
+        "00-a": {
+          "name": "Dust bunny intro",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/6.png"
+        },
+        "02-a": {
+          "name": "Locked door",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/7.png"
+        },
+        "02-b": {
+          "name": "Dust bunnies and key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/8.png"
+        },
+        "01-b": {
+          "name": "Three falling shelves",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/9.png"
+        },
+        "00-b": {
+          "name": "Dust berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/10.png"
+        },
+        "00-c": {
+          "name": "Cassette teaser",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/11.png"
+        },
+        "0x-b": {
+          "name": "Berry balcony interior",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/12.png"
+        },
+        "03-a": {
+          "name": "Pressure platforms intro",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/13.png"
+        },
+        "04-b": {
+          "name": "Dash around berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/14.png"
+        },
+        "05-a": {
+          "name": "Dust pillars",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/15.png"
+        },
+        "06-a": {
+          "name": "Winged berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/16.png"
+        },
+        "07-a": {
+          "name": "Locked door",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/17.png"
+        },
+        "07-b": {
+          "name": "Key room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/18.png"
+        },
+        "06-b": {
+          "name": "Circling dust platforms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/19.png"
+        },
+        "06-c": {
+          "name": "Spiked moss walls",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/20.png"
+        },
+        "05-c": {
+          "name": "Berry loop",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/21.png"
+        },
+        "08-c": {
+          "name": "Locked spring platforms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/22.png"
+        },
+        "08-b": {
+          "name": "Weaving platform",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/1/23.png"
+        },
+        "08-a": {
+          "name": "Book bridge",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/1.png"
+        },
+        "09-b": {
+          "name": "Huge mess",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/2.png"
+        },
+        "11-x": {
+          "name": "Crates I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/3.png"
+        },
+        "11-y": {
+          "name": "Crates II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/4.png"
+        },
+        "12-y": {
+          "name": "Crates III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/5.png"
+        },
+        "11-z": {
+          "name": "Crates IV",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/6.png"
+        },
+        "10-z": {
+          "name": "Crates V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/7.png"
+        },
+        "10-y": {
+          "name": "Crates VI",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/8.png"
+        },
+        "10-x": {
+          "name": "Crates button",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/9.png"
+        },
+        "10-c": {
+          "name": "Books I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/10.png"
+        },
+        "11-c": {
+          "name": "Books II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/11.png"
+        },
+        "12-c": {
+          "name": "Books III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/12.png"
+        },
+        "12-d": {
+          "name": "Books IV",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/13.png"
+        },
+        "11-d": {
+          "name": "Books V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/14.png"
+        },
+        "10-d": {
+          "name": "Books button",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/15.png"
+        },
+        "11-b": {
+          "name": "Towels I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/16.png"
+        },
+        "12-b": {
+          "name": "Towels II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/17.png"
+        },
+        "13-b": {
+          "name": "Towels III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/18.png"
+        },
+        "13-a": {
+          "name": "Towels IV",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/19.png"
+        },
+        "13-x": {
+          "name": "Towels V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/20.png"
+        },
+        "12-x": {
+          "name": "Towels button",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/21.png"
+        },
+        "11-a": {
+          "name": "Flooding & pico-8",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/22.png"
+        },
+        "08-x": {
+          "name": "Bridge berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/2/23.png"
+        },
+        "09-d": {
+          "name": "Elevator shaft",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/1.png"
+        },
+        "08-d": {
+          "name": "Switch columns",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/2.png"
+        },
+        "06-d": {
+          "name": "Dusty room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/3.png"
+        },
+        "04-d": {
+          "name": "Serpentine",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/4.png",
+          "subrooms": [
             {
-              "name": "Presidential Suite",
-              "id": "00-d"
+              "name": "Serpentine",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/4.png",
+              "x": 99999,
+              "y": 99999
             },
             {
-              "name": "Oshiro",
-              "id": "roof00"
-            },
-            {
-              "name": "Dust pile jump",
-              "id": "roof01"
-            },
-            {
-              "name": "Dust tunnel",
-              "id": "roof02"
-            },
-            {
-              "name": "Dust switches",
-              "id": "roof03"
-            },
-            {
-              "name": "Oshiro inside",
-              "id": "roof04"
-            },
-            {
-              "name": "Dust springs",
-              "id": "roof05"
-            },
-            {
-              "name": "Dash crystal race",
-              "id": "roof06b"
-            },
-            {
-              "name": "Inside and outside",
-              "id": "roof06"
-            },
-            {
-              "name": "Walk the plank",
-              "id": "roof07"
+              "name": "Dust Demo",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/5.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
+        },
+        "04-c": {
+          "name": "Lock room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/6.png"
+        },
+        "02-c": {
+          "name": "Quad hyper",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/7.png"
+        },
+        "03-b": {
+          "name": "Tight berries",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/8.png"
+        },
+        "01-c": {
+          "name": "Cassette room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/9.png"
+        },
+        "02-d": {
+          "name": "TAS cycle",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/10.png"
+        },
+        "00-d": {
+          "name": "Presidential Suite",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/1.png"
+        },
+        "roof00": {
+          "name": "Oshiro",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/2.png"
+        },
+        "roof01": {
+          "name": "Dust pile jump",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/3.png"
+        },
+        "roof02": {
+          "name": "Dust tunnel",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/4.png"
+        },
+        "roof03": {
+          "name": "Dust switches",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/5.png"
+        },
+        "roof04": {
+          "name": "Oshiro inside",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/6.png"
+        },
+        "roof05": {
+          "name": "Dust springs",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/7.png"
+        },
+        "roof06b": {
+          "name": "Dash crystal race",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/8.png"
+        },
+        "roof06": {
+          "name": "Inside and outside",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/9.png"
+        },
+        "roof07": {
+          "name": "Walk the plank",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/4/10.png"
         }
+      },
+      "roomOrder": [
+        "s0",
+        "s1",
+        "s2",
+        "s3",
+        "0x-a",
+        "00-a",
+        "02-a",
+        "02-b",
+        "01-b",
+        "00-b",
+        "00-c",
+        "0x-b",
+        "03-a",
+        "04-b",
+        "05-a",
+        "06-a",
+        "07-a",
+        "07-b",
+        "06-b",
+        "06-c",
+        "05-c",
+        "08-c",
+        "08-b",
+        "08-a",
+        "09-b",
+        "11-x",
+        "11-y",
+        "12-y",
+        "11-z",
+        "10-z",
+        "10-y",
+        "10-x",
+        "10-c",
+        "11-c",
+        "12-c",
+        "12-d",
+        "11-d",
+        "10-d",
+        "11-b",
+        "12-b",
+        "13-b",
+        "13-a",
+        "13-x",
+        "12-x",
+        "11-a",
+        "08-x",
+        "09-d",
+        "08-d",
+        "06-d",
+        "04-d",
+        "04-d",
+        "04-c",
+        "02-c",
+        "03-b",
+        "01-c",
+        "02-d",
+        "00-d",
+        "roof00",
+        "roof01",
+        "roof02",
+        "roof03",
+        "roof04",
+        "roof05",
+        "roof06b",
+        "roof06",
+        "roof07"
       ]
     },
-    {
+    "B": {
       "name": "B",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Mind the gap",
-              "id": "00"
-            },
-            {
-              "name": "Jumps off fragments",
-              "id": "01"
-            },
-            {
-              "name": "Dusty crates",
-              "id": "02"
-            },
-            {
-              "name": "Wall dust cycle",
-              "id": "03"
-            },
-            {
-              "name": "Elephant room",
-              "id": "04"
-            },
-            {
-              "name": "Three switch spring",
-              "id": "05"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Staff Quarters",
-          "abbreviation": "SQ",
-          "rooms": [
-            {
-              "name": "Dusty platforms",
-              "id": "06"
-            },
-            {
-              "name": "Stamina room",
-              "id": "07"
-            },
-            {
-              "name": "Towel room",
-              "id": "08"
-            },
-            {
-              "name": "Flooded laundry",
-              "id": "09"
-            },
-            {
-              "name": "Up and down",
-              "id": "10"
-            }
-          ]
+          "abbreviation": "SQ"
         },
         {
           "name": "Library",
-          "abbreviation": "LB",
-          "rooms": [
-            {
-              "name": "Dusty walls I",
-              "id": "11"
-            },
-            {
-              "name": "Outside dust pillars",
-              "id": "13"
-            },
-            {
-              "name": "Dusty walls II",
-              "id": "14"
-            },
-            {
-              "name": "Dust Elevator",
-              "id": "15"
-            },
-            {
-              "name": "Dusty springs",
-              "id": "12"
-            }
-          ]
+          "abbreviation": "LB"
         },
         {
           "name": "Rooftop",
-          "abbreviation": "RT",
-          "rooms": [
-            {
-              "name": "Chimney",
-              "id": "16"
-            },
-            {
-              "name": "Oshiro returns",
-              "id": "17"
-            },
-            {
-              "name": "Ground dashing",
-              "id": "18"
-            },
-            {
-              "name": "Dust cave",
-              "id": "19"
-            },
-            {
-              "name": "Dash crystal race",
-              "id": "21"
-            },
-            {
-              "name": "Locked hatch",
-              "id": "20"
-            },
-            {
-              "name": "Cassette room",
-              "id": "end"
-            }
-          ]
+          "abbreviation": "RT"
         }
+      ],
+      "rooms": {
+        "10": {
+          "name": "Up and down",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/2/5.png"
+        },
+        "11": {
+          "name": "Dusty walls I",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/3/1.png"
+        },
+        "12": {
+          "name": "Dusty springs",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/3/5.png"
+        },
+        "13": {
+          "name": "Outside dust pillars",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/3/2.png"
+        },
+        "14": {
+          "name": "Dusty walls II",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/3/3.png"
+        },
+        "15": {
+          "name": "Dust Elevator",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/3/4.png"
+        },
+        "16": {
+          "name": "Chimney",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/1.png"
+        },
+        "17": {
+          "name": "Oshiro returns",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/2.png"
+        },
+        "18": {
+          "name": "Ground dashing",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/3.png"
+        },
+        "19": {
+          "name": "Dust cave",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/4.png"
+        },
+        "20": {
+          "name": "Locked hatch",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/6.png"
+        },
+        "21": {
+          "name": "Dash crystal race",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/5.png"
+        },
+        "00": {
+          "name": "Mind the gap",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/1.png"
+        },
+        "01": {
+          "name": "Jumps off fragments",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/2.png"
+        },
+        "02": {
+          "name": "Dusty crates",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/3.png"
+        },
+        "03": {
+          "name": "Wall dust cycle",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/4.png"
+        },
+        "04": {
+          "name": "Elephant room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/5.png"
+        },
+        "05": {
+          "name": "Three switch spring",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/1/6.png"
+        },
+        "06": {
+          "name": "Dusty platforms",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/2/1.png"
+        },
+        "07": {
+          "name": "Stamina room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/2/2.png"
+        },
+        "08": {
+          "name": "Towel room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/2/3.png"
+        },
+        "09": {
+          "name": "Flooded laundry",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/2/4.png"
+        },
+        "end": {
+          "name": "Cassette room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/2/4/7.png"
+        }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "13",
+        "14",
+        "15",
+        "12",
+        "16",
+        "17",
+        "18",
+        "19",
+        "21",
+        "20",
+        "end"
       ]
     },
-    {
+    "C": {
       "name": "C",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Cycle",
-              "id": "00"
-            },
-            {
-              "name": "Platforms",
-              "id": "01"
-            },
-            {
-              "name": "Heart room",
-              "id": "02"
-            }
-          ]
+          "abbreviation": "BG"
         }
+      ],
+      "rooms": {
+        "00": {
+          "name": "Cycle",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/3/1/1.png"
+        },
+        "01": {
+          "name": "Platforms",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/3/1/2.png"
+        },
+        "02": {
+          "name": "Heart room",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/3/1/3.png"
+        }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ]
     }
-  ]
+  }
 }

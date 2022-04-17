@@ -1,483 +1,679 @@
 {
-  "id": "6-Reflection",
-  "chapter_no": 6,
+  "gameId": "6-Reflection",
   "name": "Reflection",
   "desc": "Madeline opens up to Theo under the stars and discovers that discarding your problems isn't easy. You can't climb out of a hole you dug yourself without facing your own reflection.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/10.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Aurora",
-              "id": "start"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Lake",
-          "abbreviation": "LK",
-          "rooms": [
-            {
-              "name": "Lake",
-              "id": "00"
-            },
-            {
-              "name": "Feather maze I",
-              "id": "01"
-            },
-            {
-              "name": "Feather maze II",
-              "id": "02",
-              "subroom": 1,
-              "fullRoomName": "Feather maze II and III"
-            },
-            {
-              "name": "U-turn",
-              "id": "03"
-            },
-            {
-              "name": "Feather maze III",
-              "id": "02",
-              "subroom": 2
-            },
-            {
-              "name": "Kevin ascent",
-              "id": "02b"
-            }
-          ]
+          "abbreviation": "LK"
         },
         {
           "name": "Hollows",
-          "abbreviation": "HL",
-          "rooms": [
-            {
-              "name": "The Hollow",
-              "id": "04"
-            },
-            {
-              "name": "Heart tunnel",
-              "id": "04b"
-            },
-            {
-              "name": "Heart puzzle",
-              "id": "04c"
-            },
-            {
-              "name": "My reflection",
-              "id": "04d"
-            },
-            {
-              "name": "Cassette Room",
-              "id": "04e"
-            },
-            {
-              "name": "Solid Kevin",
-              "id": "05"
-            },
-            {
-              "name": "Kevin's taller brother",
-              "id": "06"
-            },
-            {
-              "name": "Path split",
-              "id": "07"
-            },
-            {
-              "name": "Bottom route I",
-              "id": "08a"
-            },
-            {
-              "name": "Top route I",
-              "id": "08b"
-            },
-            {
-              "name": "Open bumpers",
-              "id": "09"
-            },
-            {
-              "name": "Bottom route II",
-              "id": "10a"
-            },
-            {
-              "name": "Top route II",
-              "id": "10b"
-            },
-            {
-              "name": "Narrow bumpers",
-              "id": "11"
-            },
-            {
-              "name": "Bottom route III",
-              "id": "12a"
-            },
-            {
-              "name": "Top route III",
-              "id": "12b"
-            },
-            {
-              "name": "Wall break room",
-              "id": "13"
-            },
-            {
-              "name": "Bottom route IV",
-              "id": "14a"
-            },
-            {
-              "name": "Top route IV",
-              "id": "14b"
-            },
-            {
-              "name": "Bumper rows",
-              "id": "15"
-            },
-            {
-              "name": "Bottom route V",
-              "id": "16a"
-            },
-            {
-              "name": "Top route V",
-              "id": "16b"
-            },
-            {
-              "name": "Kevin in the way",
-              "id": "17"
-            },
-            {
-              "name": "Bottom VI",
-              "id": "18a"
-            },
-            {
-              "name": "Top VI",
-              "id": "18b"
-            },
-            {
-              "name": "Feather room",
-              "id": "19"
-            },
-            {
-              "name": "Feathers & bumpers",
-              "id": "20"
-            }
-          ]
+          "abbreviation": "HL"
         },
         {
           "name": "Reflection",
-          "abbreviation": "RF",
-          "rooms": [
-            {
-              "name": "She's here too",
-              "id": "b-00"
-            },
-            {
-              "name": "Secret climb",
-              "id": "b-00b"
-            },
-            {
-              "name": "Secret room",
-              "id": "b-00c"
-            },
-            {
-              "name": "Haircut",
-              "id": "b-01"
-            },
-            {
-              "name": "The fall",
-              "id": "b-02"
-            },
-            {
-              "name": "Dive",
-              "id": "b-02b"
-            },
-            {
-              "name": "Big Kev",
-              "id": "b-03"
-            }
-          ]
+          "abbreviation": "RF"
         },
         {
           "name": "Rock Bottom",
-          "abbreviation": "RB",
-          "rooms": [
-            {
-              "name": "Confronting myself",
-              "id": "boss-00"
-            },
-            {
-              "name": "Plasma balls",
-              "id": "boss-01"
-            },
-            {
-              "name": "Lazer beams",
-              "id": "boss-02"
-            },
-            {
-              "name": "Vanishing platform",
-              "id": "boss-03"
-            },
-            {
-              "name": "Rapid fire",
-              "id": "boss-04"
-            },
-            {
-              "name": "Serpentine columns",
-              "id": "boss-05"
-            },
-            {
-              "name": "Falling pillar stairs",
-              "id": "boss-06"
-            },
-            {
-              "name": "Feather skip",
-              "id": "boss-07"
-            },
-            {
-              "name": "Falling I",
-              "id": "boss-08"
-            },
-            {
-              "name": "Serpentine feathers",
-              "id": "boss-09"
-            },
-            {
-              "name": "The lonely bumper",
-              "id": "boss-10"
-            },
-            {
-              "name": "Spike bunker",
-              "id": "boss-11"
-            },
-            {
-              "name": "Falling II",
-              "id": "boss-12"
-            },
-            {
-              "name": "Mountain climber",
-              "id": "boss-13"
-            },
-            {
-              "name": "Badeline learned psychic!",
-              "id": "boss-14"
-            },
-            {
-              "name": "Block launch",
-              "id": "boss-15"
-            },
-            {
-              "name": "Psychic platforms",
-              "id": "boss-16"
-            },
-            {
-              "name": "Block trampoline",
-              "id": "boss-17"
-            },
-            {
-              "name": "Falling III",
-              "id": "boss-18"
-            },
-            {
-              "name": "Feather room",
-              "id": "boss-19"
-            },
-            {
-              "name": "Together",
-              "id": "boss-20"
-            }
-          ]
+          "abbreviation": "RB"
         },
         {
           "name": "Resolution",
-          "abbreviation": "RL",
-          "rooms": [
+          "abbreviation": "RL"
+        }
+      ],
+      "rooms": {
+        "11": {
+          "name": "Narrow bumpers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/14.png"
+        },
+        "13": {
+          "name": "Wall break room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/17.png"
+        },
+        "15": {
+          "name": "Bumper rows",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/20.png"
+        },
+        "17": {
+          "name": "Kevin in the way",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/23.png"
+        },
+        "19": {
+          "name": "Feather room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/26.png"
+        },
+        "20": {
+          "name": "Feathers & bumpers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/27.png"
+        },
+        "start": {
+          "name": "Aurora",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/1/1.png"
+        },
+        "00": {
+          "name": "Lake",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/1.png"
+        },
+        "01": {
+          "name": "Feather maze I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/2.png"
+        },
+        "02": {
+          "name": "Feather maze II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/3.png",
+          "subrooms": [
             {
-              "name": "Double dash",
-              "id": "after-01"
+              "name": "Feather maze II",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/3.png",
+              "x": 99999,
+              "y": 99999
             },
             {
-              "name": "Ascent",
-              "id": "after-02"
-            },
-            {
-              "name": "Hold my bag",
-              "id": "after-03"
+              "name": "Feather maze III",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/5.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
+        },
+        "03": {
+          "name": "U-turn",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/4.png"
+        },
+        "02b": {
+          "name": "Kevin ascent",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/6.png"
+        },
+        "04": {
+          "name": "The Hollow",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/1.png"
+        },
+        "04b": {
+          "name": "Heart tunnel",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/2.png"
+        },
+        "04c": {
+          "name": "Heart puzzle",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/3.png"
+        },
+        "04d": {
+          "name": "My reflection",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/4.png"
+        },
+        "04e": {
+          "name": "Cassette Room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/5.png"
+        },
+        "05": {
+          "name": "Solid Kevin",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/6.png"
+        },
+        "06": {
+          "name": "Kevin's taller brother",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/7.png"
+        },
+        "07": {
+          "name": "Path split",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/8.png"
+        },
+        "08a": {
+          "name": "Bottom route I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/9.png"
+        },
+        "08b": {
+          "name": "Top route I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/10.png"
+        },
+        "09": {
+          "name": "Open bumpers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/11.png"
+        },
+        "10a": {
+          "name": "Bottom route II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/12.png"
+        },
+        "10b": {
+          "name": "Top route II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/13.png"
+        },
+        "12a": {
+          "name": "Bottom route III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/15.png"
+        },
+        "12b": {
+          "name": "Top route III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/16.png"
+        },
+        "14a": {
+          "name": "Bottom route IV",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/18.png"
+        },
+        "14b": {
+          "name": "Top route IV",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/19.png"
+        },
+        "16a": {
+          "name": "Bottom route V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/21.png"
+        },
+        "16b": {
+          "name": "Top route V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/22.png"
+        },
+        "18a": {
+          "name": "Bottom VI",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/24.png"
+        },
+        "18b": {
+          "name": "Top VI",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/3/25.png"
+        },
+        "b-00": {
+          "name": "She's here too",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/1.png"
+        },
+        "b-00b": {
+          "name": "Secret climb",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/2.png"
+        },
+        "b-00c": {
+          "name": "Secret room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/3.png"
+        },
+        "b-01": {
+          "name": "Haircut",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/4.png"
+        },
+        "b-02": {
+          "name": "The fall",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/5.png"
+        },
+        "b-02b": {
+          "name": "Dive",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/6.png"
+        },
+        "b-03": {
+          "name": "Big Kev",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/4/7.png"
+        },
+        "boss-00": {
+          "name": "Confronting myself",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/1.png"
+        },
+        "boss-01": {
+          "name": "Plasma balls",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/2.png"
+        },
+        "boss-02": {
+          "name": "Lazer beams",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/3.png"
+        },
+        "boss-03": {
+          "name": "Vanishing platform",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/4.png"
+        },
+        "boss-04": {
+          "name": "Rapid fire",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/5.png"
+        },
+        "boss-05": {
+          "name": "Serpentine columns",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/6.png"
+        },
+        "boss-06": {
+          "name": "Falling pillar stairs",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/7.png"
+        },
+        "boss-07": {
+          "name": "Feather skip",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/8.png"
+        },
+        "boss-08": {
+          "name": "Falling I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/9.png"
+        },
+        "boss-09": {
+          "name": "Serpentine feathers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/10.png"
+        },
+        "boss-10": {
+          "name": "The lonely bumper",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/11.png"
+        },
+        "boss-11": {
+          "name": "Spike bunker",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/12.png"
+        },
+        "boss-12": {
+          "name": "Falling II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/13.png"
+        },
+        "boss-13": {
+          "name": "Mountain climber",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/14.png"
+        },
+        "boss-14": {
+          "name": "Badeline learned psychic!",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/15.png"
+        },
+        "boss-15": {
+          "name": "Block launch",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/16.png"
+        },
+        "boss-16": {
+          "name": "Psychic platforms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/17.png"
+        },
+        "boss-17": {
+          "name": "Block trampoline",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/18.png"
+        },
+        "boss-18": {
+          "name": "Falling III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/19.png"
+        },
+        "boss-19": {
+          "name": "Feather room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/20.png"
+        },
+        "boss-20": {
+          "name": "Together",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/5/21.png"
+        },
+        "after-01": {
+          "name": "Double dash",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/6/1.png"
+        },
+        "after-02": {
+          "name": "Ascent",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/6/2.png"
+        },
+        "after-03": {
+          "name": "Hold my bag",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/6/3.png"
         }
+      },
+      "roomOrder": [
+        "start",
+        "00",
+        "01",
+        "02",
+        "03",
+        "02",
+        "02b",
+        "04",
+        "04b",
+        "04c",
+        "04d",
+        "04e",
+        "05",
+        "06",
+        "07",
+        "08a",
+        "08b",
+        "09",
+        "10a",
+        "10b",
+        "11",
+        "12a",
+        "12b",
+        "13",
+        "14a",
+        "14b",
+        "15",
+        "16a",
+        "16b",
+        "17",
+        "18a",
+        "18b",
+        "19",
+        "20",
+        "b-00",
+        "b-00b",
+        "b-00c",
+        "b-01",
+        "b-02",
+        "b-02b",
+        "b-03",
+        "boss-00",
+        "boss-01",
+        "boss-02",
+        "boss-03",
+        "boss-04",
+        "boss-05",
+        "boss-06",
+        "boss-07",
+        "boss-08",
+        "boss-09",
+        "boss-10",
+        "boss-11",
+        "boss-12",
+        "boss-13",
+        "boss-14",
+        "boss-15",
+        "boss-16",
+        "boss-17",
+        "boss-18",
+        "boss-19",
+        "boss-20",
+        "after-01",
+        "after-02",
+        "after-03"
       ]
     },
-    {
+    "B": {
       "name": "B",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Kevin's tour",
-              "id": "a-00"
-            },
-            {
-              "name": "Feather tunnel",
-              "id": "a-01"
-            },
-            {
-              "name": "Sketchy bumpers",
-              "id": "a-02"
-            },
-            {
-              "name": "Kevin launch",
-              "id": "a-03"
-            },
-            {
-              "name": "V bumper",
-              "id": "a-04"
-            },
-            {
-              "name": "Crumble blocks",
-              "id": "a-05"
-            },
-            {
-              "name": "Kevin switches",
-              "id": "a-06"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Reflection",
-          "abbreviation": "RF",
-          "rooms": [
-            {
-              "name": "Haircut",
-              "id": "b-00"
-            },
-            {
-              "name": "Falling I - Crystals I",
-              "id": "b-01"
-            },
-            {
-              "name": "Falling II - Kevins",
-              "id": "b-02"
-            },
-            {
-              "name": "Falling III - Bumpers",
-              "id": "b-03"
-            },
-            {
-              "name": "Falling IV - Crystals II",
-              "id": "b-04"
-            },
-            {
-              "name": "Falling V - 2D Kevin",
-              "id": "b-05"
-            },
-            {
-              "name": "Falling VI - Save dash",
-              "id": "b-06"
-            },
-            {
-              "name": "Falling VII - Feather",
-              "id": "b-07"
-            },
-            {
-              "name": "Falling VIII - Crystals III",
-              "id": "b-08"
-            },
-            {
-              "name": "Haircut dashes",
-              "id": "b-10"
-            }
-          ]
+          "abbreviation": "RF"
         },
         {
           "name": "Rock Bottom",
-          "abbreviation": "RB",
-          "rooms": [
-            {
-              "name": "Badeline",
-              "id": "c-00"
-            },
-            {
-              "name": "Falling block jumps",
-              "id": "c-01"
-            },
-            {
-              "name": "Three dash crystals",
-              "id": "c-02"
-            },
-            {
-              "name": "Badeline and the seven keys",
-              "id": "c-03"
-            },
-            {
-              "name": "Step off & downwards",
-              "id": "c-04"
-            }
-          ]
+          "abbreviation": "RB"
         },
         {
           "name": "Reprieve",
-          "abbreviation": "RP",
-          "rooms": [
-            {
-              "name": "Kevin family",
-              "id": "d-00"
-            },
-            {
-              "name": "Badeline returns",
-              "id": "d-01"
-            },
-            {
-              "name": "Hold fire",
-              "id": "d-02"
-            },
-            {
-              "name": "To the bottom",
-              "id": "d-03"
-            },
-            {
-              "name": "Final feather",
-              "id": "d-04"
-            },
-            {
-              "name": "Cassette room",
-              "id": "d-05"
-            }
-          ]
+          "abbreviation": "RP"
         }
+      ],
+      "rooms": {
+        "a-00": {
+          "name": "Kevin's tour",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/1.png"
+        },
+        "a-01": {
+          "name": "Feather tunnel",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/2.png"
+        },
+        "a-02": {
+          "name": "Sketchy bumpers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/3.png"
+        },
+        "a-03": {
+          "name": "Kevin launch",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/4.png"
+        },
+        "a-04": {
+          "name": "V bumper",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/5.png"
+        },
+        "a-05": {
+          "name": "Crumble blocks",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/6.png"
+        },
+        "a-06": {
+          "name": "Kevin switches",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/1/7.png"
+        },
+        "b-00": {
+          "name": "Haircut",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/1.png"
+        },
+        "b-01": {
+          "name": "Falling I - Crystals I",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/2.png"
+        },
+        "b-02": {
+          "name": "Falling II - Kevins",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/3.png"
+        },
+        "b-03": {
+          "name": "Falling III - Bumpers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/4.png"
+        },
+        "b-04": {
+          "name": "Falling IV - Crystals II",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/5.png"
+        },
+        "b-05": {
+          "name": "Falling V - 2D Kevin",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/6.png"
+        },
+        "b-06": {
+          "name": "Falling VI - Save dash",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/7.png"
+        },
+        "b-07": {
+          "name": "Falling VII - Feather",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/8.png"
+        },
+        "b-08": {
+          "name": "Falling VIII - Crystals III",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/9.png"
+        },
+        "b-10": {
+          "name": "Haircut dashes",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/2/10.png"
+        },
+        "c-00": {
+          "name": "Badeline",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/3/1.png"
+        },
+        "c-01": {
+          "name": "Falling block jumps",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/3/2.png"
+        },
+        "c-02": {
+          "name": "Three dash crystals",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/3/3.png"
+        },
+        "c-03": {
+          "name": "Badeline and the seven keys",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/3/4.png"
+        },
+        "c-04": {
+          "name": "Step off & downwards",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/3/5.png"
+        },
+        "d-00": {
+          "name": "Kevin family",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/1.png"
+        },
+        "d-01": {
+          "name": "Badeline returns",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/2.png"
+        },
+        "d-02": {
+          "name": "Hold fire",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/3.png"
+        },
+        "d-03": {
+          "name": "To the bottom",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/4.png"
+        },
+        "d-04": {
+          "name": "Final feather",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/5.png"
+        },
+        "d-05": {
+          "name": "Cassette room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/2/4/6.png"
+        }
+      },
+      "roomOrder": [
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "a-04",
+        "a-05",
+        "a-06",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-03",
+        "b-04",
+        "b-05",
+        "b-06",
+        "b-07",
+        "b-08",
+        "b-10",
+        "c-00",
+        "c-01",
+        "c-02",
+        "c-03",
+        "c-04",
+        "d-00",
+        "d-01",
+        "d-02",
+        "d-03",
+        "d-04",
+        "d-05"
       ]
     },
-    {
+    "C": {
       "name": "C",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Wallbounces",
-              "id": "00"
-            },
-            {
-              "name": "Falling",
-              "id": "01"
-            },
+          "abbreviation": "BG"
+        }
+      ],
+      "rooms": {
+        "00": {
+          "name": "Wallbounces",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/1.png"
+        },
+        "01": {
+          "name": "Falling",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/2.png"
+        },
+        "02": {
+          "name": "Kevin",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/3.png",
+          "subrooms": [
             {
               "name": "Kevin",
-              "id": "02",
-              "subroom": 1
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/3.png",
+              "x": 99999,
+              "y": 99999
             },
             {
               "name": "Heart",
-              "id": "02",
-              "subroom": 2
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/4.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
         }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02",
+        "02"
       ]
     }
-  ]
+  }
 }

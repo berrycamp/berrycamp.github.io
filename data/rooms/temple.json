@@ -1,584 +1,865 @@
 {
-  "id": "5-MirrorTemple",
-  "chapter_no": 5,
+  "gameId": "5-MirrorTemple",
   "name": "Mirror Temple",
   "desc": "An ancient temple in the side of the mountain houses a terrible power. Madeline ventures in to find her friend and learns what lies inside her heart.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/3.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Gondola",
-              "id": "a-00x"
-            },
-            {
-              "name": "Into the temple",
-              "id": "a-00b"
-            },
-            {
-              "name": "Tight corridors",
-              "id": "a-00d"
-            },
-            {
-              "name": "Dash platform",
-              "id": "a-00c"
-            },
-            {
-              "name": "Red bubble",
-              "id": "a-00"
-            },
-            {
-              "name": "Central bubble diamond",
-              "id": "a-01"
-            },
-            {
-              "name": "Dash block berry",
-              "id": "a-02"
-            },
-            {
-              "name": "Crystal passage berry",
-              "id": "a-03"
-            },
-            {
-              "name": "Block spring berry",
-              "id": "a-04"
-            },
-            {
-              "name": "Locked rooms",
-              "id": "a-05"
-            },
-            {
-              "name": "Block launch berry",
-              "id": "a-06"
-            },
-            {
-              "name": "Dash block berry",
-              "id": "a-07"
-            },
-            {
-              "name": "Key room",
-              "id": "a-08"
-            },
-            {
-              "name": "Duck",
-              "id": "a-10"
-            },
-            {
-              "name": "Key bubble",
-              "id": "a-09"
-            },
-            {
-              "name": "Berry fling",
-              "id": "a-11"
-            },
-            {
-              "name": "Crystal key tunnel",
-              "id": "a-12",
-              "subroom": 1
-            },
-            {
-              "name": "Bubble tunnel",
-              "id": "a-12",
-              "subroom": 2
-            },
-            {
-              "name": "Bubble switch berry",
-              "id": "a-15"
-            },
-            {
-              "name": "Dash block berry",
-              "id": "a-14"
-            },
-            {
-              "name": "Locked door",
-              "id": "a-13"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Depths",
-          "abbreviation": "DP",
-          "rooms": [
-            {
-              "name": "Theo in the mirror",
-              "id": "b-00"
-            },
-            {
-              "name": "Crystal bubble berry",
-              "id": "b-18"
-            },
-            {
-              "name": "Depths Cornerboost",
-              "id": "b-01"
-            },
-            {
-              "name": "Block fling berry",
-              "id": "b-01c"
-            },
-            {
-              "name": "Rusted gates Left",
-              "id": "b-20",
-              "subroom": 1,
-              "fullRoomName": "Rusted gates"
-            },
-            {
-              "name": "Winged berry",
-              "id": "b-21"
-            },
-            {
-              "name": "Rusted gates Right",
-              "id": "b-20",
-              "subroom": 2
-            },
-            {
-              "name": "Dash block pit",
-              "id": "b-01b"
-            },
-            {
-              "name": "Junction room",
-              "id": "b-02"
-            },
-            {
-              "name": "Cool demo bruh",
-              "id": "b-03"
-            },
-            {
-              "name": "Bubble berry",
-              "id": "b-05"
-            },
-            {
-              "name": "Key room",
-              "id": "b-04"
-            },
-            {
-              "name": "Key path I",
-              "id": "b-07"
-            },
-            {
-              "name": "Key path II",
-              "id": "b-08"
-            },
-            {
-              "name": "Key path III",
-              "id": "b-09"
-            },
-            {
-              "name": "Block sandwich berry",
-              "id": "b-10"
-            },
-            {
-              "name": "Button room I",
-              "id": "b-11"
-            },
-            {
-              "name": "Bubble berry",
-              "id": "b-12"
-            },
-            {
-              "name": "Button room II",
-              "id": "b-13"
-            },
-            {
-              "name": "Seed puzzle",
-              "id": "b-17",
-              "subroom": 1
-            },
-            {
-              "name": "Strawberry cave",
-              "id": "b-17",
-              "subroom": 2
-            },
-            {
-              "name": "Cassette",
-              "id": "b-22"
-            },
-            {
-              "name": "Key skip room",
-              "id": "b-06"
-            },
-            {
-              "name": "Floorless bubble room",
-              "id": "b-19"
-            },
-            {
-              "name": "Extra key door",
-              "id": "b-14"
-            },
-            {
-              "name": "Heart room",
-              "id": "b-15"
-            },
-            {
-              "name": "Mirror room",
-              "id": "b-16"
-            },
-            {
-              "name": "The void",
-              "id": "void"
-            }
-          ]
+          "abbreviation": "DP"
         },
         {
           "name": "Unravelling",
-          "abbreviation": "UR",
-          "rooms": [
-            {
-              "name": "The fall",
-              "id": "c-00"
-            },
-            {
-              "name": "Victim and the Monster",
-              "id": "c-01"
-            },
-            {
-              "name": "Tentacle passage I",
-              "id": "c-01b"
-            },
-            {
-              "name": "Tentacle passage II",
-              "id": "c-01c"
-            },
-            {
-              "name": "First seeker",
-              "id": "c-08b"
-            },
-            {
-              "name": "Berry block",
-              "id": "c-08"
-            },
-            {
-              "name": "Seeker switches I",
-              "id": "c-10"
-            },
-            {
-              "name": "Seeker switches II",
-              "id": "c-12"
-            },
-            {
-              "name": "Seeker switches III",
-              "id": "c-07"
-            },
-            {
-              "name": "Seeker moonlight",
-              "id": "c-11"
-            },
-            {
-              "name": "Seeker switches VI",
-              "id": "c-09"
-            },
-            {
-              "name": "Seeker switches V",
-              "id": "c-13"
-            }
-          ]
+          "abbreviation": "UR"
         },
         {
           "name": "Search",
-          "abbreviation": "SC",
-          "rooms": [
-            {
-              "name": "Bubble crystal maze",
-              "id": "d-00"
-            },
-            {
-              "name": "Center room",
-              "id": "d-01"
-            },
-            {
-              "name": "Talk with Theo",
-              "id": "e-00",
-              "subroom": 1,
-              "fullRoomName": "Theo"
-            },
-            {
-              "name": "Upper berry path",
-              "id": "d-09"
-            },
-            {
-              "name": "Search skip",
-              "id": "d-04",
-              "subroom": 1
-            },
-            {
-              "name": "Berry under skip",
-              "id": "d-04",
-              "subroom": 2
-            },
-            {
-              "name": "Right key path",
-              "id": "d-05"
-            },
-            {
-              "name": "Launch platform",
-              "id": "d-06",
-              "subroom": 1
-            },
-            {
-              "name": "Seeker bubble switches",
-              "id": "d-07"
-            },
-            {
-              "name": "Left key path I",
-              "id": "d-02"
-            },
-            {
-              "name": "Left key path II",
-              "id": "d-03"
-            },
-            {
-              "name": "Lefy key path III",
-              "id": "d-06",
-              "subroom": 2
-            },
-            {
-              "name": "Gated key path",
-              "id": "d-15",
-              "subroom": 1
-            },
-            {
-              "name": "Gated berry path",
-              "id": "d-15",
-              "subroom": 2
-            },
-            {
-              "name": "Seeker den berry",
-              "id": "d-13"
-            },
-            {
-              "name": "Exit bubble",
-              "id": "d-15"
-            },
-            {
-              "name": "Spare key berry",
-              "id": "d-19"
-            },
-            {
-              "name": "Seeker scramble",
-              "id": "d-19b"
-            },
-            {
-              "name": "Seeker pit",
-              "id": "d-10"
-            },
-            {
-              "name": "Moonlight barrier",
-              "id": "d-20"
-            }
-          ]
+          "abbreviation": "SC"
         },
         {
           "name": "Rescue",
-          "abbreviation": "RS",
-          "rooms": [
+          "abbreviation": "RS"
+        }
+      ],
+      "rooms": {
+        "a-00x": {
+          "name": "Gondola",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/1.png"
+        },
+        "a-00b": {
+          "name": "Into the temple",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/2.png"
+        },
+        "a-00d": {
+          "name": "Tight corridors",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/3.png"
+        },
+        "a-00c": {
+          "name": "Dash platform",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/4.png"
+        },
+        "a-00": {
+          "name": "Red bubble",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/5.png"
+        },
+        "a-01": {
+          "name": "Central bubble diamond",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/6.png"
+        },
+        "a-02": {
+          "name": "Dash block berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/7.png"
+        },
+        "a-03": {
+          "name": "Crystal passage berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/8.png"
+        },
+        "a-04": {
+          "name": "Block spring berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/9.png"
+        },
+        "a-05": {
+          "name": "Locked rooms",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/10.png"
+        },
+        "a-06": {
+          "name": "Block launch berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/11.png"
+        },
+        "a-07": {
+          "name": "Dash block berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/12.png"
+        },
+        "a-08": {
+          "name": "Key room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/13.png"
+        },
+        "a-10": {
+          "name": "Duck",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/14.png"
+        },
+        "a-09": {
+          "name": "Key bubble",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/15.png"
+        },
+        "a-11": {
+          "name": "Berry fling",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/16.png"
+        },
+        "a-12": {
+          "name": "Crystal key tunnel",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/17.png",
+          "subrooms": [
             {
-              "name": "I can carry you",
-              "id": "e-00",
-              "subroom": 2
+              "name": "Crystal key tunnel",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/17.png",
+              "x": 99999,
+              "y": 99999
             },
             {
-              "name": "Theogate",
-              "id": "e-01"
-            },
-            {
-              "name": "Seekers & Theo I",
-              "id": "e-02"
-            },
-            {
-              "name": "Seekers & Theo II",
-              "id": "e-03"
-            },
-            {
-              "name": "Seekers & Theo III",
-              "id": "e-04"
-            },
-            {
-              "name": "Seekers & Theo VI",
-              "id": "e-06"
-            },
-            {
-              "name": "Theo Helps",
-              "id": "e-05"
-            },
-            {
-              "name": "Launch platform",
-              "id": "e-07"
-            },
-            {
-              "name": "Seeker killer",
-              "id": "e-08"
-            },
-            {
-              "name": "Over and under",
-              "id": "e-09"
-            },
-            {
-              "name": "Almost there",
-              "id": "e-10"
-            },
-            {
-              "name": "Eyeball room",
-              "id": "e-11"
+              "name": "Bubble tunnel",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/18.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
+        },
+        "a-15": {
+          "name": "Bubble switch berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/19.png"
+        },
+        "a-14": {
+          "name": "Dash block berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/20.png"
+        },
+        "a-13": {
+          "name": "Locked door",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/21.png"
+        },
+        "b-00": {
+          "name": "Theo in the mirror",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/1.png"
+        },
+        "b-18": {
+          "name": "Crystal bubble berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/2.png"
+        },
+        "b-01": {
+          "name": "Depths Cornerboost",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/3.png"
+        },
+        "b-01c": {
+          "name": "Block fling berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/4.png"
+        },
+        "b-20": {
+          "name": "Rusted gates Left",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/5.png",
+          "subrooms": [
+            {
+              "name": "Rusted gates Left",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/5.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Rusted gates Right",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/7.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "b-21": {
+          "name": "Winged berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/6.png"
+        },
+        "b-01b": {
+          "name": "Dash block pit",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/8.png"
+        },
+        "b-02": {
+          "name": "Junction room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/9.png"
+        },
+        "b-03": {
+          "name": "Cool demo bruh",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/10.png"
+        },
+        "b-05": {
+          "name": "Bubble berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/11.png"
+        },
+        "b-04": {
+          "name": "Key room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/12.png"
+        },
+        "b-07": {
+          "name": "Key path I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/13.png"
+        },
+        "b-08": {
+          "name": "Key path II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/14.png"
+        },
+        "b-09": {
+          "name": "Key path III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/15.png"
+        },
+        "b-10": {
+          "name": "Block sandwich berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/16.png"
+        },
+        "b-11": {
+          "name": "Button room I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/17.png"
+        },
+        "b-12": {
+          "name": "Bubble berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/18.png"
+        },
+        "b-13": {
+          "name": "Button room II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/19.png"
+        },
+        "b-17": {
+          "name": "Seed puzzle",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/20.png",
+          "subrooms": [
+            {
+              "name": "Seed puzzle",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/20.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Strawberry cave",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/21.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "b-22": {
+          "name": "Cassette",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/22.png"
+        },
+        "b-06": {
+          "name": "Key skip room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/23.png"
+        },
+        "b-19": {
+          "name": "Floorless bubble room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/24.png"
+        },
+        "b-14": {
+          "name": "Extra key door",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/25.png"
+        },
+        "b-15": {
+          "name": "Heart room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/26.png"
+        },
+        "b-16": {
+          "name": "Mirror room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/27.png"
+        },
+        "void": {
+          "name": "The void",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/28.png"
+        },
+        "c-00": {
+          "name": "The fall",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/1.png"
+        },
+        "c-01": {
+          "name": "Victim and the Monster",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/2.png"
+        },
+        "c-01b": {
+          "name": "Tentacle passage I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/3.png"
+        },
+        "c-01c": {
+          "name": "Tentacle passage II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/4.png"
+        },
+        "c-08b": {
+          "name": "First seeker",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/5.png"
+        },
+        "c-08": {
+          "name": "Berry block",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/6.png"
+        },
+        "c-10": {
+          "name": "Seeker switches I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/7.png"
+        },
+        "c-12": {
+          "name": "Seeker switches II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/8.png"
+        },
+        "c-07": {
+          "name": "Seeker switches III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/9.png"
+        },
+        "c-11": {
+          "name": "Seeker moonlight",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/10.png"
+        },
+        "c-09": {
+          "name": "Seeker switches VI",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/11.png"
+        },
+        "c-13": {
+          "name": "Seeker switches V",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/3/12.png"
+        },
+        "d-00": {
+          "name": "Bubble crystal maze",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/1.png"
+        },
+        "d-01": {
+          "name": "Center room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/2.png"
+        },
+        "e-00": {
+          "name": "Talk with Theo",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/3.png",
+          "subrooms": [
+            {
+              "name": "Talk with Theo",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/3.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "I can carry you",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/1.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "d-09": {
+          "name": "Upper berry path",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/4.png"
+        },
+        "d-04": {
+          "name": "Search skip",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/5.png",
+          "subrooms": [
+            {
+              "name": "Search skip",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/5.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Berry under skip",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/6.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "d-05": {
+          "name": "Right key path",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/7.png"
+        },
+        "d-06": {
+          "name": "Launch platform",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/8.png",
+          "subrooms": [
+            {
+              "name": "Launch platform",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/8.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Lefy key path III",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/12.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "d-07": {
+          "name": "Seeker bubble switches",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/9.png"
+        },
+        "d-02": {
+          "name": "Left key path I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/10.png"
+        },
+        "d-03": {
+          "name": "Left key path II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/11.png"
+        },
+        "d-15": {
+          "name": "Gated key path",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/13.png",
+          "subrooms": [
+            {
+              "name": "Gated key path",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/13.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Gated berry path",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/14.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Exit bubble",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/16.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "d-13": {
+          "name": "Seeker den berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/15.png"
+        },
+        "d-19": {
+          "name": "Spare key berry",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/17.png"
+        },
+        "d-19b": {
+          "name": "Seeker scramble",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/18.png"
+        },
+        "d-10": {
+          "name": "Seeker pit",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/19.png"
+        },
+        "d-20": {
+          "name": "Moonlight barrier",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/20.png"
+        },
+        "e-01": {
+          "name": "Theogate",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/2.png"
+        },
+        "e-02": {
+          "name": "Seekers & Theo I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/3.png"
+        },
+        "e-03": {
+          "name": "Seekers & Theo II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/4.png"
+        },
+        "e-04": {
+          "name": "Seekers & Theo III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/5.png"
+        },
+        "e-06": {
+          "name": "Seekers & Theo VI",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/6.png"
+        },
+        "e-05": {
+          "name": "Theo Helps",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/7.png"
+        },
+        "e-07": {
+          "name": "Launch platform",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/8.png"
+        },
+        "e-08": {
+          "name": "Seeker killer",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/9.png"
+        },
+        "e-09": {
+          "name": "Over and under",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/10.png"
+        },
+        "e-10": {
+          "name": "Almost there",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/11.png"
+        },
+        "e-11": {
+          "name": "Eyeball room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/12.png"
         }
+      },
+      "roomOrder": [
+        "a-00x",
+        "a-00b",
+        "a-00d",
+        "a-00c",
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "a-04",
+        "a-05",
+        "a-06",
+        "a-07",
+        "a-08",
+        "a-10",
+        "a-09",
+        "a-11",
+        "a-12",
+        "a-12",
+        "a-15",
+        "a-14",
+        "a-13",
+        "b-00",
+        "b-18",
+        "b-01",
+        "b-01c",
+        "b-20",
+        "b-21",
+        "b-20",
+        "b-01b",
+        "b-02",
+        "b-03",
+        "b-05",
+        "b-04",
+        "b-07",
+        "b-08",
+        "b-09",
+        "b-10",
+        "b-11",
+        "b-12",
+        "b-13",
+        "b-17",
+        "b-17",
+        "b-22",
+        "b-06",
+        "b-19",
+        "b-14",
+        "b-15",
+        "b-16",
+        "void",
+        "c-00",
+        "c-01",
+        "c-01b",
+        "c-01c",
+        "c-08b",
+        "c-08",
+        "c-10",
+        "c-12",
+        "c-07",
+        "c-11",
+        "c-09",
+        "c-13",
+        "d-00",
+        "d-01",
+        "e-00",
+        "d-09",
+        "d-04",
+        "d-04",
+        "d-05",
+        "d-06",
+        "d-07",
+        "d-02",
+        "d-03",
+        "d-06",
+        "d-15",
+        "d-15",
+        "d-13",
+        "d-15",
+        "d-19",
+        "d-19b",
+        "d-10",
+        "d-20",
+        "e-00",
+        "e-01",
+        "e-02",
+        "e-03",
+        "e-04",
+        "e-06",
+        "e-05",
+        "e-07",
+        "e-08",
+        "e-09",
+        "e-10",
+        "e-11"
       ]
     },
-    {
+    "B": {
       "name": "B",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "start"
-            },
-            {
-              "name": "Bubble gate",
-              "id": "a-00"
-            },
-            {
-              "name": "Bubble spike tunnel",
-              "id": "a-01"
-            },
-            {
-              "name": "Dash blocks",
-              "id": "a-02"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Central Chamber",
-          "abbreviation": "CC",
-          "rooms": [
-            {
-              "name": "Lower chamber",
-              "id": "b-00"
-            },
-            {
-              "name": "Bubsdrop",
-              "id": "b-01"
-            },
-            {
-              "name": "Right key path",
-              "id": "b-04"
-            },
-            {
-              "name": "Central chamber",
-              "id": "b-02"
-            },
-            {
-              "name": "Left key path",
-              "id": "b-05"
-            },
-            {
-              "name": "Zig-zag bubbles",
-              "id": "b-06"
-            },
-            {
-              "name": "Dash block ascent",
-              "id": "b-07"
-            },
-            {
-              "name": "Blades and bubbles",
-              "id": "b-03"
-            },
-            {
-              "name": "Keyskip & Springblock",
-              "id": "b-08"
-            },
-            {
-              "name": "Mirror & bladeshaft",
-              "id": "b-09"
-            }
-          ]
+          "abbreviation": "CC"
         },
         {
           "name": "Through the Mirror",
-          "abbreviation": "TTM",
-          "rooms": [
-            {
-              "name": "Tentacle drop",
-              "id": "c-00"
-            },
-            {
-              "name": "Seeker switch diamond",
-              "id": "c-01"
-            },
-            {
-              "name": "Two switches & seekers",
-              "id": "c-02"
-            },
-            {
-              "name": "Crumble pillars",
-              "id": "c-03"
-            },
-            {
-              "name": "Crumble blocks",
-              "id": "c-04"
-            }
-          ]
+          "abbreviation": "TTM"
         },
         {
           "name": "Mix Master",
-          "abbreviation": "MM",
-          "rooms": [
-            {
-              "name": "Mix master",
-              "id": "d-00"
-            },
-            {
-              "name": "Seekers and Theo",
-              "id": "d-01"
-            },
-            {
-              "name": "Seeker gauntlet",
-              "id": "d-02"
-            },
-            {
-              "name": "Land on the platform Theo",
-              "id": "d-03"
-            },
-            {
-              "name": "Impossible room",
-              "id": "d-04"
-            },
-            {
-              "name": "Cassette room",
-              "id": "d-05"
-            }
-          ]
+          "abbreviation": "MM"
         }
+      ],
+      "rooms": {
+        "start": {
+          "name": "Start",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/1/1.png"
+        },
+        "a-00": {
+          "name": "Bubble gate",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/1/2.png"
+        },
+        "a-01": {
+          "name": "Bubble spike tunnel",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/1/3.png"
+        },
+        "a-02": {
+          "name": "Dash blocks",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/1/4.png"
+        },
+        "b-00": {
+          "name": "Lower chamber",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/1.png"
+        },
+        "b-01": {
+          "name": "Bubsdrop",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/2.png"
+        },
+        "b-04": {
+          "name": "Right key path",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/3.png"
+        },
+        "b-02": {
+          "name": "Central chamber",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/4.png"
+        },
+        "b-05": {
+          "name": "Left key path",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/5.png"
+        },
+        "b-06": {
+          "name": "Zig-zag bubbles",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/6.png"
+        },
+        "b-07": {
+          "name": "Dash block ascent",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/7.png"
+        },
+        "b-03": {
+          "name": "Blades and bubbles",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/8.png"
+        },
+        "b-08": {
+          "name": "Keyskip & Springblock",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/9.png"
+        },
+        "b-09": {
+          "name": "Mirror & bladeshaft",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/2/10.png"
+        },
+        "c-00": {
+          "name": "Tentacle drop",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/3/1.png"
+        },
+        "c-01": {
+          "name": "Seeker switch diamond",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/3/2.png"
+        },
+        "c-02": {
+          "name": "Two switches & seekers",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/3/3.png"
+        },
+        "c-03": {
+          "name": "Crumble pillars",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/3/4.png"
+        },
+        "c-04": {
+          "name": "Crumble blocks",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/3/5.png"
+        },
+        "d-00": {
+          "name": "Mix master",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/1.png"
+        },
+        "d-01": {
+          "name": "Seekers and Theo",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/2.png"
+        },
+        "d-02": {
+          "name": "Seeker gauntlet",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/3.png"
+        },
+        "d-03": {
+          "name": "Land on the platform Theo",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/4.png"
+        },
+        "d-04": {
+          "name": "Impossible room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/5.png"
+        },
+        "d-05": {
+          "name": "Cassette room",
+          "checkpointNo": 1,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/2/4/6.png"
+        }
+      },
+      "roomOrder": [
+        "start",
+        "a-00",
+        "a-01",
+        "a-02",
+        "b-00",
+        "b-01",
+        "b-04",
+        "b-02",
+        "b-05",
+        "b-06",
+        "b-07",
+        "b-03",
+        "b-08",
+        "b-09",
+        "c-00",
+        "c-01",
+        "c-02",
+        "c-03",
+        "c-04",
+        "d-00",
+        "d-01",
+        "d-02",
+        "d-03",
+        "d-04",
+        "d-05"
       ]
     },
-    {
+    "C": {
       "name": "C",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Block bounce",
-              "id": "00"
-            },
-            {
-              "name": "Block fling",
-              "id": "01"
-            },
-            {
-              "name": "Heart room",
-              "id": "02"
-            }
-          ]
+          "abbreviation": "BG"
         }
+      ],
+      "rooms": {
+        "00": {
+          "name": "Block bounce",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/3/1/1.png"
+        },
+        "01": {
+          "name": "Block fling",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/3/1/2.png"
+        },
+        "02": {
+          "name": "Heart room",
+          "checkpointNo": 2,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/3/1/3.png"
+        }
+      },
+      "roomOrder": [
+        "00",
+        "01",
+        "02"
       ]
     }
-  ]
+  }
 }

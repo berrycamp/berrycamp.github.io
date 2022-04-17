@@ -1,532 +1,767 @@
 {
-  "id": "LostLevels",
-  "chapter_no": 9,
+  "gameId": "LostLevels",
   "name": "Farewell",
   "desc": "Denial. Anger. Depression. Bargaining. Acceptance. Sometimes, one of the hardest things in life is saying farewell.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/1/1.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Past",
-              "id": "intro-00-past"
-            },
-            {
-              "name": "Present",
-              "id": "intro-01-future"
-            },
-            {
-              "name": "Clouds",
-              "id": "intro-02-launch"
-            },
-            {
-              "name": "Space",
-              "id": "intro-03-space"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Singular",
-          "abbreviation": "SI",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "a-00"
-            },
-            {
-              "name": "Crystal tunnel",
-              "id": "a-01"
-            },
-            {
-              "name": "Sliding block",
-              "id": "a-02"
-            },
-            {
-              "name": "Block toss",
-              "id": "a-03"
-            },
-            {
-              "name": "Spring blocks I",
-              "id": "a-04"
-            },
-            {
-              "name": "Spring blocks II",
-              "id": "a-05"
-            },
-            {
-              "name": "Fish intro",
-              "id": "b-00"
-            },
-            {
-              "name": "Fish bounce I",
-              "id": "b-01"
-            },
-            {
-              "name": "Fish bounce II",
-              "id": "b-02"
-            },
-            {
-              "name": "Dream fish",
-              "id": "b-03"
-            },
-            {
-              "name": "Fish cave",
-              "id": "b-04"
-            },
-            {
-              "name": "Fish spring I",
-              "id": "b-05"
-            },
-            {
-              "name": "Fish spring II",
-              "id": "b-06"
-            },
-            {
-              "name": "Electric maze",
-              "id": "b-07"
-            }
-          ]
+          "abbreviation": "SI"
         },
         {
           "name": "Power Source",
-          "abbreviation": "PS",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "c-00"
-            },
-            {
-              "name": "Top route I",
-              "id": "c-alt-00"
-            },
-            {
-              "name": "Top route II",
-              "id": "c-alt-01"
-            },
-            {
-              "name": "Bottom route I",
-              "id": "c-00b"
-            },
-            {
-              "name": "Bottom route II",
-              "id": "c-01"
-            },
-            {
-              "name": "Bottom route III",
-              "id": "c-02"
-            },
-            {
-              "name": "Keyskip Jelly",
-              "id": "c-03"
-            },
-            {
-              "name": "Locked room",
-              "id": "d-00"
-            },
-            {
-              "name": "Bottom left key",
-              "id": "d-01"
-            },
-            {
-              "name": "Top left key",
-              "id": "d-02"
-            },
-            {
-              "name": "Bottom right key",
-              "id": "d-03"
-            },
-            {
-              "name": "Top right key",
-              "id": "d-04"
-            },
-            {
-              "name": "Top key",
-              "id": "d-05",
-              "subroom": 1,
-              "fullRoomName": "Top key and Keyskip"
-            },
-            {
-              "name": "Keyskip I",
-              "id": "d-05",
-              "subroom": 2
-            },
-            {
-              "name": "Keyskip II / Bubble stars",
-              "id": "e-00y"
-            },
-            {
-              "name": "Keyskip III",
-              "id": "e-00yb"
-            }
-          ]
+          "abbreviation": "PS"
         },
         {
           "name": "Remembered",
-          "abbreviation": "RM",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "e-00z"
-            },
-            {
-              "name": "Cloud fish switch",
-              "id": "e-00"
-            },
-            {
-              "name": "Jelly up",
-              "id": "e-00b"
-            },
-            {
-              "name": "Sawmill",
-              "id": "e-01"
-            },
-            {
-              "name": "Limbo",
-              "id": "e-02"
-            },
-            {
-              "name": "Fish springs",
-              "id": "e-03"
-            },
-            {
-              "name": "Jelly gates",
-              "id": "e-04"
-            },
-            {
-              "name": "Fish push",
-              "id": "e-05"
-            },
-            {
-              "name": "Aloft fish",
-              "id": "e-05b"
-            },
-            {
-              "name": "Fish bounce",
-              "id": "e-05c"
-            },
-            {
-              "name": "Glide springs",
-              "id": "e-06"
-            },
-            {
-              "name": "Fishscroller",
-              "id": "e-07"
-            },
-            {
-              "name": "Jellyscroller",
-              "id": "e-08"
-            }
-          ]
+          "abbreviation": "RM"
         },
         {
           "name": "Event Horizon",
-          "abbreviation": "EH",
-          "rooms": [
-            {
-              "name": "Heart gate",
-              "id": "f-door"
-            },
-            {
-              "name": "Wavedash Tutorial I",
-              "id": "f-00",
-              "subroom": 1,
-              "fullRoomName": "Wavedash Tutorial I & II"
-            },
-            {
-              "name": "Wavedash Tutorial II",
-              "id": "f-00",
-              "subroom": 2
-            },
-            {
-              "name": "Wavedash Tutorial III",
-              "id": "f-01"
-            },
-            {
-              "name": "Bird",
-              "id": "f-02"
-            },
-            {
-              "name": "Beyond the heart",
-              "id": "f-03"
-            },
-            {
-              "name": "Wavedash blocks",
-              "id": "f-04"
-            },
-            {
-              "name": "Conveyor",
-              "id": "f-05"
-            },
-            {
-              "name": "Kevin",
-              "id": "f-06"
-            },
-            {
-              "name": "Wavedash zippers",
-              "id": "f-07"
-            },
-            {
-              "name": "Autoscroller",
-              "id": "f-08"
-            },
-            {
-              "name": "Bounce switch",
-              "id": "f-09"
-            },
-            {
-              "name": "Vertical Zipper",
-              "id": "g-00"
-            },
-            {
-              "name": "Wavedash bubbles",
-              "id": "g-01"
-            },
-            {
-              "name": "Dream switch",
-              "id": "g-03"
-            },
-            {
-              "name": "Moving dream blocks",
-              "id": "g-02"
-            },
-            {
-              "name": "Comb",
-              "id": "g-04"
-            },
-            {
-              "name": "Cloud gap",
-              "id": "g-05"
-            },
-            {
-              "name": "Bird trail",
-              "id": "g-06"
-            }
-          ]
+          "abbreviation": "EH"
         },
         {
           "name": "Determination",
-          "abbreviation": "DT",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "h-00b"
-            },
-            {
-              "name": "Trash Compactor",
-              "id": "h-00"
-            },
-            {
-              "name": "Spring scroller",
-              "id": "h-01"
-            },
-            {
-              "name": "Wind bubbles",
-              "id": "h-02"
-            },
-            {
-              "name": "Airlock",
-              "id": "h-03"
-            },
-            {
-              "name": "Core block",
-              "id": "h-03b"
-            },
-            {
-              "name": "Starshaft",
-              "id": "h-04"
-            },
-            {
-              "name": "Demo room",
-              "id": "h-04b"
-            },
-            {
-              "name": "Cheese",
-              "id": "h-05"
-            },
-            {
-              "name": "Falling pillars",
-              "id": "h-06"
-            },
-            {
-              "name": "Fire & Ice",
-              "id": "h-06b"
-            },
-            {
-              "name": "Wind blocks",
-              "id": "h-07",
-              "subroom": 1,
-              "fullRoomName": "Blocks and Windsprings"
-            },
-            {
-              "name": "Windsprings",
-              "id": "h-07",
-              "subroom": 2
-            },
-            {
-              "name": "Conveyor",
-              "id": "h-08"
-            },
-            {
-              "name": "Kevin",
-              "id": "h-09"
-            },
-            {
-              "name": "Star road",
-              "id": "h-10"
-            }
-          ]
+          "abbreviation": "DT"
         },
         {
           "name": "Stubbornness",
-          "abbreviation": "ST",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "i-00"
-            },
-            {
-              "name": "Hubris",
-              "id": "i-00b"
-            },
-            {
-              "name": "Spring blocks",
-              "id": "i-01"
-            },
-            {
-              "name": "Horseshoe",
-              "id": "i-02"
-            },
-            {
-              "name": "Crystal columns",
-              "id": "i-03"
-            },
-            {
-              "name": "Bubble lock",
-              "id": "i-04"
-            },
-            {
-              "name": "Underhang",
-              "id": "i-05"
-            }
-          ]
+          "abbreviation": "ST"
         },
         {
           "name": "Reconciliation",
-          "abbreviation": "RC",
-          "rooms": [
-            {
-              "name": "Start",
-              "id": "j-00"
-            },
-            {
-              "name": "Jelly throw",
-              "id": "j-00b"
-            },
-            {
-              "name": "Bird & Badeline",
-              "id": "j-01"
-            },
-            {
-              "name": "Social distancing",
-              "id": "j-02"
-            },
-            {
-              "name": "Moving pillars",
-              "id": "j-03"
-            },
-            {
-              "name": "Jelly dash",
-              "id": "j-04"
-            },
-            {
-              "name": "Feather pillars",
-              "id": "j-05"
-            },
-            {
-              "name": "Shifting maze",
-              "id": "j-06"
-            },
-            {
-              "name": "Aquarium",
-              "id": "j-07"
-            },
-            {
-              "name": "Whoosh",
-              "id": "j-08"
-            },
-            {
-              "name": "Electric press",
-              "id": "j-09"
-            },
-            {
-              "name": "Dash block maze",
-              "id": "j-10"
-            },
-            {
-              "name": "Sping scroller",
-              "id": "j-11"
-            },
-            {
-              "name": "Wavedash blocks",
-              "id": "j-12"
-            },
-            {
-              "name": "Windfeather",
-              "id": "j-13"
-            },
-            {
-              "name": "Chokefish",
-              "id": "j-14"
-            },
-            {
-              "name": "Jelly bounce",
-              "id": "j-14b"
-            },
-            {
-              "name": "Kevin",
-              "id": "j-15"
-            }
-          ]
+          "abbreviation": "RC"
         },
         {
           "name": "Farewell",
-          "abbreviation": "FW",
-          "rooms": [
+          "abbreviation": "FW"
+        }
+      ],
+      "rooms": {
+        "intro-00-past": {
+          "name": "Past",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/1/1.png"
+        },
+        "intro-01-future": {
+          "name": "Present",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/1/2.png"
+        },
+        "intro-02-launch": {
+          "name": "Clouds",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/1/3.png"
+        },
+        "intro-03-space": {
+          "name": "Space",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/1/4.png"
+        },
+        "a-00": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/1.png"
+        },
+        "a-01": {
+          "name": "Crystal tunnel",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/2.png"
+        },
+        "a-02": {
+          "name": "Sliding block",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/3.png"
+        },
+        "a-03": {
+          "name": "Block toss",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/4.png"
+        },
+        "a-04": {
+          "name": "Spring blocks I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/5.png"
+        },
+        "a-05": {
+          "name": "Spring blocks II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/6.png"
+        },
+        "b-00": {
+          "name": "Fish intro",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/7.png"
+        },
+        "b-01": {
+          "name": "Fish bounce I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/8.png"
+        },
+        "b-02": {
+          "name": "Fish bounce II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/9.png"
+        },
+        "b-03": {
+          "name": "Dream fish",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/10.png"
+        },
+        "b-04": {
+          "name": "Fish cave",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/11.png"
+        },
+        "b-05": {
+          "name": "Fish spring I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/12.png"
+        },
+        "b-06": {
+          "name": "Fish spring II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/13.png"
+        },
+        "b-07": {
+          "name": "Electric maze",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/2/14.png"
+        },
+        "c-00": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/1.png"
+        },
+        "c-alt-00": {
+          "name": "Top route I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/2.png"
+        },
+        "c-alt-01": {
+          "name": "Top route II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/3.png"
+        },
+        "c-00b": {
+          "name": "Bottom route I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/4.png"
+        },
+        "c-01": {
+          "name": "Bottom route II",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/5.png"
+        },
+        "c-02": {
+          "name": "Bottom route III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/6.png"
+        },
+        "c-03": {
+          "name": "Keyskip Jelly",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/7.png"
+        },
+        "d-00": {
+          "name": "Locked room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/8.png"
+        },
+        "d-01": {
+          "name": "Bottom left key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/9.png"
+        },
+        "d-02": {
+          "name": "Top left key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/10.png"
+        },
+        "d-03": {
+          "name": "Bottom right key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/11.png"
+        },
+        "d-04": {
+          "name": "Top right key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/12.png"
+        },
+        "d-05": {
+          "name": "Top key",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/13.png",
+          "subrooms": [
+            {
+              "name": "Top key",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/13.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Keyskip I",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/14.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "e-00y": {
+          "name": "Keyskip II / Bubble stars",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/15.png"
+        },
+        "e-00yb": {
+          "name": "Keyskip III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/16.png"
+        },
+        "e-00z": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/1.png"
+        },
+        "e-00": {
+          "name": "Cloud fish switch",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/2.png"
+        },
+        "e-00b": {
+          "name": "Jelly up",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/3.png"
+        },
+        "e-01": {
+          "name": "Sawmill",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/4.png"
+        },
+        "e-02": {
+          "name": "Limbo",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/5.png"
+        },
+        "e-03": {
+          "name": "Fish springs",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/6.png"
+        },
+        "e-04": {
+          "name": "Jelly gates",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/7.png"
+        },
+        "e-05": {
+          "name": "Fish push",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/8.png"
+        },
+        "e-05b": {
+          "name": "Aloft fish",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/9.png"
+        },
+        "e-05c": {
+          "name": "Fish bounce",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/10.png"
+        },
+        "e-06": {
+          "name": "Glide springs",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/11.png"
+        },
+        "e-07": {
+          "name": "Fishscroller",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/12.png"
+        },
+        "e-08": {
+          "name": "Jellyscroller",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/4/13.png"
+        },
+        "f-door": {
+          "name": "Heart gate",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/1.png"
+        },
+        "f-00": {
+          "name": "Wavedash Tutorial I",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/2.png",
+          "subrooms": [
+            {
+              "name": "Wavedash Tutorial I",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/2.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Wavedash Tutorial II",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/3.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "f-01": {
+          "name": "Wavedash Tutorial III",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/4.png"
+        },
+        "f-02": {
+          "name": "Bird",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/5.png"
+        },
+        "f-03": {
+          "name": "Beyond the heart",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/6.png"
+        },
+        "f-04": {
+          "name": "Wavedash blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/7.png"
+        },
+        "f-05": {
+          "name": "Conveyor",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/8.png"
+        },
+        "f-06": {
+          "name": "Kevin",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/9.png"
+        },
+        "f-07": {
+          "name": "Wavedash zippers",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/10.png"
+        },
+        "f-08": {
+          "name": "Autoscroller",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/11.png"
+        },
+        "f-09": {
+          "name": "Bounce switch",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/12.png"
+        },
+        "g-00": {
+          "name": "Vertical Zipper",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/13.png"
+        },
+        "g-01": {
+          "name": "Wavedash bubbles",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/14.png"
+        },
+        "g-03": {
+          "name": "Dream switch",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/15.png"
+        },
+        "g-02": {
+          "name": "Moving dream blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/16.png"
+        },
+        "g-04": {
+          "name": "Comb",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/17.png"
+        },
+        "g-05": {
+          "name": "Cloud gap",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/18.png"
+        },
+        "g-06": {
+          "name": "Bird trail",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/19.png"
+        },
+        "h-00b": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/1.png"
+        },
+        "h-00": {
+          "name": "Trash Compactor",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/2.png"
+        },
+        "h-01": {
+          "name": "Spring scroller",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/3.png"
+        },
+        "h-02": {
+          "name": "Wind bubbles",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/4.png"
+        },
+        "h-03": {
+          "name": "Airlock",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/5.png"
+        },
+        "h-03b": {
+          "name": "Core block",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/6.png"
+        },
+        "h-04": {
+          "name": "Starshaft",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/7.png"
+        },
+        "h-04b": {
+          "name": "Demo room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/8.png"
+        },
+        "h-05": {
+          "name": "Cheese",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/9.png"
+        },
+        "h-06": {
+          "name": "Falling pillars",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/10.png"
+        },
+        "h-06b": {
+          "name": "Fire & Ice",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/11.png"
+        },
+        "h-07": {
+          "name": "Wind blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/12.png",
+          "subrooms": [
+            {
+              "name": "Wind blocks",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/12.png",
+              "x": 99999,
+              "y": 99999
+            },
+            {
+              "name": "Windsprings",
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/13.png",
+              "x": 99999,
+              "y": 99999
+            }
+          ]
+        },
+        "h-08": {
+          "name": "Conveyor",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/14.png"
+        },
+        "h-09": {
+          "name": "Kevin",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/15.png"
+        },
+        "h-10": {
+          "name": "Star road",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/16.png"
+        },
+        "i-00": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/1.png"
+        },
+        "i-00b": {
+          "name": "Hubris",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/2.png"
+        },
+        "i-01": {
+          "name": "Spring blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/3.png"
+        },
+        "i-02": {
+          "name": "Horseshoe",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/4.png"
+        },
+        "i-03": {
+          "name": "Crystal columns",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/5.png"
+        },
+        "i-04": {
+          "name": "Bubble lock",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/6.png"
+        },
+        "i-05": {
+          "name": "Underhang",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/7/7.png"
+        },
+        "j-00": {
+          "name": "Start",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/1.png"
+        },
+        "j-00b": {
+          "name": "Jelly throw",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/2.png"
+        },
+        "j-01": {
+          "name": "Bird & Badeline",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/3.png"
+        },
+        "j-02": {
+          "name": "Social distancing",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/4.png"
+        },
+        "j-03": {
+          "name": "Moving pillars",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/5.png"
+        },
+        "j-04": {
+          "name": "Jelly dash",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/6.png"
+        },
+        "j-05": {
+          "name": "Feather pillars",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/7.png"
+        },
+        "j-06": {
+          "name": "Shifting maze",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/8.png"
+        },
+        "j-07": {
+          "name": "Aquarium",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/9.png"
+        },
+        "j-08": {
+          "name": "Whoosh",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/10.png"
+        },
+        "j-09": {
+          "name": "Electric press",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/11.png"
+        },
+        "j-10": {
+          "name": "Dash block maze",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/12.png"
+        },
+        "j-11": {
+          "name": "Sping scroller",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/13.png"
+        },
+        "j-12": {
+          "name": "Wavedash blocks",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/14.png"
+        },
+        "j-13": {
+          "name": "Windfeather",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/15.png"
+        },
+        "j-14": {
+          "name": "Chokefish",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/16.png"
+        },
+        "j-14b": {
+          "name": "Jelly bounce",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/17.png"
+        },
+        "j-15": {
+          "name": "Kevin",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/8/18.png"
+        },
+        "j-16": {
+          "name": "Farewell",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/1.png",
+          "subrooms": [
             {
               "name": "Farewell",
-              "id": "j-16",
-              "subroom": 1,
-              "fullRoomName": "Farewell and Moonberry path"
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/1.png",
+              "x": 99999,
+              "y": 99999
             },
             {
               "name": "Moonberry path",
-              "id": "j-16",
-              "subroom": 2
-            },
-            {
-              "name": "Forced death",
-              "id": "j-17"
-            },
-            {
-              "name": "Spawn set",
-              "id": "j-18"
-            },
-            {
-              "name": "Moonberry room",
-              "id": "j-19"
-            },
-            {
-              "name": "Golden room",
-              "id": "end-golden"
+              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/2.png",
+              "x": 99999,
+              "y": 99999
             }
           ]
+        },
+        "j-17": {
+          "name": "Forced death",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/3.png"
+        },
+        "j-18": {
+          "name": "Spawn set",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/4.png"
+        },
+        "j-19": {
+          "name": "Moonberry room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/5.png"
+        },
+        "end-golden": {
+          "name": "Golden room",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/6.png"
         }
+      },
+      "roomOrder": [
+        "intro-00-past",
+        "intro-01-future",
+        "intro-02-launch",
+        "intro-03-space",
+        "a-00",
+        "a-01",
+        "a-02",
+        "a-03",
+        "a-04",
+        "a-05",
+        "b-00",
+        "b-01",
+        "b-02",
+        "b-03",
+        "b-04",
+        "b-05",
+        "b-06",
+        "b-07",
+        "c-00",
+        "c-alt-00",
+        "c-alt-01",
+        "c-00b",
+        "c-01",
+        "c-02",
+        "c-03",
+        "d-00",
+        "d-01",
+        "d-02",
+        "d-03",
+        "d-04",
+        "d-05",
+        "d-05",
+        "e-00y",
+        "e-00yb",
+        "e-00z",
+        "e-00",
+        "e-00b",
+        "e-01",
+        "e-02",
+        "e-03",
+        "e-04",
+        "e-05",
+        "e-05b",
+        "e-05c",
+        "e-06",
+        "e-07",
+        "e-08",
+        "f-door",
+        "f-00",
+        "f-00",
+        "f-01",
+        "f-02",
+        "f-03",
+        "f-04",
+        "f-05",
+        "f-06",
+        "f-07",
+        "f-08",
+        "f-09",
+        "g-00",
+        "g-01",
+        "g-03",
+        "g-02",
+        "g-04",
+        "g-05",
+        "g-06",
+        "h-00b",
+        "h-00",
+        "h-01",
+        "h-02",
+        "h-03",
+        "h-03b",
+        "h-04",
+        "h-04b",
+        "h-05",
+        "h-06",
+        "h-06b",
+        "h-07",
+        "h-07",
+        "h-08",
+        "h-09",
+        "h-10",
+        "i-00",
+        "i-00b",
+        "i-01",
+        "i-02",
+        "i-03",
+        "i-04",
+        "i-05",
+        "j-00",
+        "j-00b",
+        "j-01",
+        "j-02",
+        "j-03",
+        "j-04",
+        "j-05",
+        "j-06",
+        "j-07",
+        "j-08",
+        "j-09",
+        "j-10",
+        "j-11",
+        "j-12",
+        "j-13",
+        "j-14",
+        "j-14b",
+        "j-15",
+        "j-16",
+        "j-16",
+        "j-17",
+        "j-18",
+        "j-19",
+        "end-golden"
       ]
     }
-  ]
+  }
 }

@@ -13,7 +13,7 @@ import {DataTree} from './dataTree';
 
 export const DATA: DataTree = {
   celeste: {
-    id: "Celeste",
+    gameId: "Celeste",
     name: "Celeste",
     desc: "Madelines journey to the summit of Celeste Mountain.",
     imageUrl: "https://cdn.berrycamp.com/file/berrycamp/static/navigation/chapters/images/ridge.png",

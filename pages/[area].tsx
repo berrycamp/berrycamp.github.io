@@ -6,7 +6,7 @@ import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
-import {AreaData} from '../logic/data/dataTree'
+import {Area} from '../logic/data/dataTree'
 import {AppNextPage} from './_app'
 
 const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, setView}) => {
@@ -121,7 +121,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
 
 interface AreaProps {
   areaId: string;
-  area: AreaData;
+  area: Area;
 }
 
 interface AreaParams extends ParsedUrlQuery {
@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
     throw Error("Params is not defined");
   }
 
-  const area: AreaData | undefined = DATA[params.area];
+  const area: Area | undefined = DATA[params.area];
   if (area === undefined) {
     throw Error(`Area ${params.area} is not defined`);
   }

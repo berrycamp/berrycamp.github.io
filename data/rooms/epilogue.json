@@ -1,35 +1,45 @@
 {
-  "id": "8-Epilogue",
+  "gameId": "8-Epilogue",
   "name": "Epilogue",
   "desc": "Back in the Old Woman's home at the end of her journey, Madeline enjoys the warmth of good company.",
   "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/2.png",
-  "sides": [
-    {
+  "sides": {
+    "A": {
       "name": "A",
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG",
-          "rooms": [
-            {
-              "name": "Granny's house",
-              "id": "outside"
-            },
-            {
-              "name": "Inside",
-              "id": "inside"
-            },
-            {
-              "name": "The bridge",
-              "id": "bridge"
-            },
-            {
-              "name": "The nest",
-              "id": "secret"
-            }
-          ]
+          "abbreviation": "BG"
         }
+      ],
+      "rooms": {
+        "outside": {
+          "name": "Granny's house",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/1.png"
+        },
+        "inside": {
+          "name": "Inside",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/2.png"
+        },
+        "bridge": {
+          "name": "The bridge",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/3.png"
+        },
+        "secret": {
+          "name": "The nest",
+          "checkpointNo": 0,
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/4.png"
+        }
+      },
+      "roomOrder": [
+        "outside",
+        "inside",
+        "bridge",
+        "secret"
       ]
     }
-  ]
+  }
 }
