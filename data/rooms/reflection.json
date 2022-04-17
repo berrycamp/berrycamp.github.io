@@ -149,21 +149,21 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/2.png"
         },
         "02": {
-          "name": "Feather maze II",
+          "name": "Feather maze II + III",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/3.png",
           "subrooms": [
             {
               "name": "Feather maze II",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 200,
+              "y": 976
             },
             {
               "name": "Feather maze III",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/1/2/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 88,
+              "y": 360
             }
           ]
         },
@@ -660,21 +660,21 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/2.png"
         },
         "02": {
-          "name": "Kevin",
+          "name": "Kevin and Heart",
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/3.png",
           "subrooms": [
             {
               "name": "Kevin",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 72,
+              "y": 112
             },
             {
               "name": "Heart",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/reflection/3/1/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 568,
+              "y": 568
             }
           ]
         }

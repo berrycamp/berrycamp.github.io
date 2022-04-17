@@ -208,21 +208,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/16.png"
         },
         "a-12": {
-          "name": "Crystal key tunnel",
+          "name": "Tunnels",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/17.png",
+          "x": 8,
+          "y": 112,
           "subrooms": [
             {
-              "name": "Crystal key tunnel",
+              "name": "Key tunnel",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/17.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 112
             },
             {
-              "name": "Bubble tunnel",
+              "name": "Secret bubble tunnel",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/1/18.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 240
             }
           ]
         },
@@ -252,7 +254,7 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/2.png"
         },
         "b-01": {
-          "name": "Depths Cornerboost",
+          "name": "Depths cornerboost",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/3.png"
         },
@@ -262,21 +264,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/4.png"
         },
         "b-20": {
-          "name": "Rusted gates Left",
+          "name": "Rusted gates",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/5.png",
+          "x": 216,
+          "y": 80,
           "subrooms": [
             {
-              "name": "Rusted gates Left",
+              "name": "Rusted gates left",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 32,
+              "y": 160
             },
             {
-              "name": "Rusted gates Right",
+              "name": "Rusted gates right",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/7.png",
-              "x": 99999,
-              "y": 99999
+              "x": 416,
+              "y": 136
             }
           ]
         },
@@ -353,14 +357,14 @@
             {
               "name": "Seed puzzle",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/20.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 232
             },
             {
               "name": "Strawberry cave",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/2/21.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 32
             }
           ]
         },
@@ -470,21 +474,21 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/2.png"
         },
         "e-00": {
-          "name": "Talk with Theo",
+          "name": "Theo",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/3.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/1.png",
           "subrooms": [
             {
               "name": "Talk with Theo",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 344,
+              "y": 168
             },
             {
-              "name": "I can carry you",
+              "name": "Theo rescue",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/5/1.png",
-              "x": 99999,
-              "y": 99999
+              "x": 136,
+              "y": 112
             }
           ]
         },
@@ -501,14 +505,14 @@
             {
               "name": "Search skip",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 648,
+              "y": 88
             },
             {
               "name": "Berry under skip",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/6.png",
-              "x": 99999,
-              "y": 99999
+              "x": 648,
+              "y": 264
             }
           ]
         },
@@ -521,18 +525,20 @@
           "name": "Launch platform",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/8.png",
+          "x": 232,
+          "y": 296,
           "subrooms": [
             {
               "name": "Launch platform",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/8.png",
-              "x": 99999,
-              "y": 99999
+              "x": 232,
+              "y": 296
             },
             {
-              "name": "Lefy key path III",
+              "name": "Left key path III",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 80,
+              "y": 320
             }
           ]
         },
@@ -552,27 +558,27 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/11.png"
         },
         "d-15": {
-          "name": "Gated key path",
+          "name": "Search right side",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/13.png",
           "subrooms": [
             {
               "name": "Gated key path",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/13.png",
-              "x": 99999,
-              "y": 99999
+              "x": 352,
+              "y": 128
             },
             {
               "name": "Gated berry path",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/14.png",
-              "x": 99999,
-              "y": 99999
+              "x": 328,
+              "y": 496
             },
             {
               "name": "Exit bubble",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/temple/1/4/16.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 272
             }
           ]
         },

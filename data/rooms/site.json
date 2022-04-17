@@ -85,21 +85,21 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/6.png"
         },
         "2": {
-          "name": "Iced in",
+          "name": "Escape room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/7.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/2/10.png",
           "subrooms": [
             {
               "name": "Iced in",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/7.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 456
             },
             {
-              "name": "Chased outside",
+              "name": "Escape room",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/2/10.png",
-              "x": 99999,
-              "y": 99999
+              "x": 32,
+              "y": 40
             }
           ]
         },
@@ -194,21 +194,21 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/10.png"
         },
         "d3": {
-          "name": "Berry Tunnel",
+          "name": "Mirror room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/11.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/12.png",
           "subrooms": [
             {
               "name": "Berry Tunnel",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/11.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 352
             },
             {
-              "name": "Mirror",
+              "name": "Mirror room",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/site/1/1/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 16,
+              "y": 232
             }
           ]
         },

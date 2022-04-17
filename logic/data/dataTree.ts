@@ -37,6 +37,8 @@ export interface Room {
   checkpointNo: number;
   imageUrl: string;
   subrooms?: Subroom[];
+  x?: number;
+  y?: number;
 }
 
 export interface Subroom {

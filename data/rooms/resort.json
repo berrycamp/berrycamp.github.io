@@ -342,21 +342,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/3.png"
         },
         "04-d": {
-          "name": "Serpentine",
+          "name": "3a demo",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/4.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/5.png",
+          "x": 349,
+          "y": 44,
           "subrooms": [
             {
               "name": "Serpentine",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 632,
+              "y": 48
             },
             {
-              "name": "Dust Demo",
+              "name": "3a Demo",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/resort/1/3/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 349,
+              "y": 44
             }
           ]
         },

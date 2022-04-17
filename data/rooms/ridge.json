@@ -156,40 +156,44 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/2.png"
         },
         "b-02": {
-          "name": "Push blocks",
+          "name": "Grotto",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/3.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/9.png",
+          "x": 8,
+          "y": 80,
           "subrooms": [
             {
               "name": "Push blocks",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 632,
+              "y": 48
             },
             {
               "name": "Grotto",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/9.png",
-              "x": 99999,
-              "y": 99999
+              "x": 8,
+              "y": 80
             }
           ]
         },
         "b-05": {
-          "name": "Cube scroller",
+          "name": "Scroller skip",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/4.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/12.png",
+          "x": 808,
+          "y": 168,
           "subrooms": [
             {
               "name": "Cube scroller",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 584,
+              "y": 168
             },
             {
-              "name": "Main path scroller",
+              "name": "Scroller skip",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/ridge/1/2/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 808,
+              "y": 168
             }
           ]
         },

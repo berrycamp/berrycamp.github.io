@@ -314,21 +314,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/12.png"
         },
         "d-05": {
-          "name": "Top key",
+          "name": "Top key and Keyskip",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/13.png",
+          "x": 184,
+          "y": 152,
           "subrooms": [
             {
               "name": "Top key",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/13.png",
-              "x": 99999,
-              "y": 99999
+              "x": 184,
+              "y": 152
             },
             {
               "name": "Keyskip I",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/3/14.png",
-              "x": 99999,
-              "y": 99999
+              "x": 184,
+              "y": 152
             }
           ]
         },
@@ -413,21 +415,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/1.png"
         },
         "f-00": {
-          "name": "Wavedash Tutorial I",
+          "name": "Wavedash Tutorial I + II",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/2.png",
+          "x": 16,
+          "y": 128,
           "subrooms": [
             {
               "name": "Wavedash Tutorial I",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/2.png",
-              "x": 99999,
-              "y": 99999
+              "x": 16,
+              "y": 128
             },
             {
               "name": "Wavedash Tutorial II",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/5/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 656,
+              "y": 96
             }
           ]
         },
@@ -567,21 +571,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/11.png"
         },
         "h-07": {
-          "name": "Wind blocks",
+          "name": "Blocks and Windsprings",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/12.png",
+          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/13.png",
+          "x": 560,
+          "y": 144,
           "subrooms": [
             {
               "name": "Wind blocks",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 56,
+              "y": 120
             },
             {
               "name": "Windsprings",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/6/13.png",
-              "x": 99999,
-              "y": 99999
+              "x": 560,
+              "y": 144
             }
           ]
         },
@@ -729,18 +735,20 @@
           "name": "Farewell",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/1.png",
+          "x": 48,
+          "y": 2680,
           "subrooms": [
             {
               "name": "Farewell",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/1.png",
-              "x": 99999,
-              "y": 99999
+              "x": 48,
+              "y": 2680
             },
             {
               "name": "Moonberry path",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/farewell/1/9/2.png",
-              "x": 99999,
-              "y": 99999
+              "x": 4736,
+              "y": 1208
             }
           ]
         },

@@ -620,173 +620,179 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/17.png"
         },
         "g-00": {
-          "name": "Flag 30",
+          "name": "Flags 30 - 29",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/1.png",
+          "x": 424,
+          "y": 1824,
           "subrooms": [
             {
               "name": "Flag 30",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/1.png",
-              "x": 99999,
-              "y": 99999
+              "x": 424,
+              "y": 1824
             },
             {
               "name": "Flag 29",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/2.png",
-              "x": 99999,
-              "y": 99999
+              "x": 336,
+              "y": 1224
             }
           ]
         },
         "g-00b": {
-          "name": "Flag 28",
+          "name": "Flags 28 - 20",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/3.png",
+          "x": 192,
+          "y": 3240,
           "subrooms": [
             {
               "name": "Flag 28",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 192,
+              "y": 3240
             },
             {
               "name": "Heart Room",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 432,
+              "y": 3200
             },
             {
               "name": "Flag 27",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 216,
+              "y": 2992
             },
             {
               "name": "Flag 26",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/6.png",
-              "x": 99999,
-              "y": 99999
+              "x": 128,
+              "y": 2816
             },
             {
               "name": "Flag 25",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/7.png",
-              "x": 99999,
-              "y": 99999
+              "x": 568,
+              "y": 2600
             },
             {
               "name": "Flag 24",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/8.png",
-              "x": 99999,
-              "y": 99999
+              "x": 424,
+              "y": 2496
             },
             {
               "name": "Flag 23",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/9.png",
-              "x": 99999,
-              "y": 99999
+              "x": 392,
+              "y": 2200
             },
             {
               "name": "Flag 22",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/10.png",
-              "x": 99999,
-              "y": 99999
+              "x": 552,
+              "y": 2024
             },
             {
               "name": "Flag 21",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/11.png",
-              "x": 99999,
-              "y": 99999
+              "x": 224,
+              "y": 1696
             },
             {
               "name": "Flag 20",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 600,
+              "y": 1456
             }
           ]
         },
         "g-01": {
-          "name": "Flag 19",
+          "name": "Flags 19 - 7",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/13.png",
+          "x": 568,
+          "y": 3232,
           "subrooms": [
             {
               "name": "Flag 19",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/13.png",
-              "x": 99999,
-              "y": 99999
+              "x": 568,
+              "y": 3232
             },
             {
               "name": "Flag 18",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/14.png",
-              "x": 99999,
-              "y": 99999
+              "x": 376,
+              "y": 2928
             },
             {
               "name": "Flag 17",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/15.png",
-              "x": 99999,
-              "y": 99999
+              "x": 544,
+              "y": 2816
             },
             {
               "name": "Flag 16",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/16.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1056,
+              "y": 2632
             },
             {
               "name": "Flag 15",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/17.png",
-              "x": 99999,
-              "y": 99999
+              "x": 944,
+              "y": 2520
             },
             {
               "name": "Flag 14",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/18.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1080,
+              "y": 2400
             },
             {
               "name": "Flag 13",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/19.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1696,
+              "y": 2240
             },
             {
               "name": "Flag 12",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/20.png",
-              "x": 99999,
-              "y": 99999
+              "x": 2344,
+              "y": 2080
             },
             {
               "name": "Flag 11",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/21.png",
-              "x": 99999,
-              "y": 99999
+              "x": 2360,
+              "y": 1544
             },
             {
               "name": "Flag 10",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/22.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1880,
+              "y": 1512
             },
             {
               "name": "Flag 9",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/23.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1464,
+              "y": 1472
             },
             {
               "name": "Flag 8",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/24.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1400,
+              "y": 1240
             },
             {
               "name": "Flag 7",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/25.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1280,
+              "y": 992
             }
           ]
         },
@@ -794,49 +800,53 @@
           "name": "Flag 6",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/26.png",
+          "x": 440,
+          "y": 928,
           "subrooms": [
             {
               "name": "Flag 6",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/26.png",
-              "x": 99999,
-              "y": 99999
+              "x": 440,
+              "y": 928
             }
           ]
         },
         "g-03": {
-          "name": "Flag 5",
+          "name": "Flags 5 - 1",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/27.png",
+          "x": 296,
+          "y": 3232,
           "subrooms": [
             {
               "name": "Flag 5",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/27.png",
-              "x": 99999,
-              "y": 99999
+              "x": 296,
+              "y": 3232
             },
             {
               "name": "Flag 4",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/28.png",
-              "x": 99999,
-              "y": 99999
+              "x": 384,
+              "y": 2992
             },
             {
               "name": "Flag 3",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/29.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1128,
+              "y": 2784
             },
             {
               "name": "Flag 2",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/30.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1032,
+              "y": 1976
             },
             {
               "name": "Flag 1",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/31.png",
-              "x": 99999,
-              "y": 99999
+              "x": 856,
+              "y": 1264
             }
           ]
         }
@@ -1050,143 +1060,149 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/6/4.png"
         },
         "g-00": {
-          "name": "Flag 20",
+          "name": "Flags 20 - 15",
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/1.png",
+          "x": 160,
+          "y": 2280,
           "subrooms": [
             {
               "name": "Flag 20",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/1.png",
-              "x": 99999,
-              "y": 99999
+              "x": 160,
+              "y": 2280
             },
             {
               "name": "Flag 19",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/2.png",
-              "x": 99999,
-              "y": 99999
+              "x": 64,
+              "y": 2120
             },
             {
               "name": "Flag 18",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 296,
+              "y": 2056
             },
             {
               "name": "Flag 17",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 272,
+              "y": 1608
             },
             {
               "name": "Flag 16",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/5.png",
-              "x": 99999,
-              "y": 99999
+              "x": 192,
+              "y": 1456
             },
             {
               "name": "Flag 15",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/6.png",
-              "x": 99999,
-              "y": 99999
+              "x": 288,
+              "y": 1184
             }
           ]
         },
         "g-01": {
-          "name": "Flag 14",
+          "name": "Flags 14 - 9",
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/7.png",
+          "x": 232,
+          "y": 1184,
           "subrooms": [
             {
               "name": "Flag 14",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/7.png",
-              "x": 99999,
-              "y": 99999
+              "x": 232,
+              "y": 1184
             },
             {
               "name": "Flag 13",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/8.png",
-              "x": 99999,
-              "y": 99999
+              "x": 264,
+              "y": 1000
             },
             {
               "name": "Flag 12",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/9.png",
-              "x": 99999,
-              "y": 99999
+              "x": 696,
+              "y": 912
             },
             {
               "name": "Flag 11",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/10.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1200,
+              "y": 1032
             },
             {
               "name": "Flag 10",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/11.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1704,
+              "y": 888
             },
             {
               "name": "Flag 9",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/12.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1424,
+              "y": 360
             }
           ]
         },
         "g-02": {
-          "name": "Flag 8",
+          "name": "Flags 8 - 1",
           "checkpointNo": 1,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/13.png",
+          "x": 256,
+          "y": 2672,
           "subrooms": [
             {
               "name": "Flag 8",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/13.png",
-              "x": 99999,
-              "y": 99999
+              "x": 256,
+              "y": 2672
             },
             {
               "name": "Flag 7",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/14.png",
-              "x": 99999,
-              "y": 99999
+              "x": 312,
+              "y": 2504
             },
             {
               "name": "Flag 6",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/15.png",
-              "x": 99999,
-              "y": 99999
+              "x": 528,
+              "y": 2344
             },
             {
               "name": "Flag 5",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/16.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1016,
+              "y": 2256
             },
             {
               "name": "Flag 4",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/17.png",
-              "x": 99999,
-              "y": 99999
+              "x": 896,
+              "y": 1872
             },
             {
               "name": "Flag 3",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/18.png",
-              "x": 99999,
-              "y": 99999
+              "x": 712,
+              "y": 1680
             },
             {
               "name": "Flag 2",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/19.png",
-              "x": 99999,
-              "y": 99999
+              "x": 544,
+              "y": 1504
             },
             {
               "name": "Flag 1",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/20.png",
-              "x": 99999,
-              "y": 99999
+              "x": 1152,
+              "y": 1120
             }
           ]
         },
@@ -1224,21 +1240,23 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/2.png"
         },
         "03": {
-          "name": "Crystal maze",
+          "name": "Heart maze",
           "checkpointNo": 2,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/3.png",
+          "x": 48,
+          "y": 176,
           "subrooms": [
             {
-              "name": "Crystal maze",
+              "name": "Heart maze",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/3.png",
-              "x": 99999,
-              "y": 99999
+              "x": 48,
+              "y": 176
             },
             {
-              "name": "Heart",
+              "name": "Granny and heart",
               "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/4.png",
-              "x": 99999,
-              "y": 99999
+              "x": 2600,
+              "y": 120
             }
           ]
         }

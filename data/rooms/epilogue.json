@@ -22,7 +22,7 @@
       ],
       "rooms": {
         "outside": {
-          "name": "Granny's house",
+          "name": "Outside",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/1.png"
         },
@@ -32,12 +32,12 @@
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/2.png"
         },
         "bridge": {
-          "name": "The bridge",
+          "name": "Bridge",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/3.png"
         },
         "secret": {
-          "name": "The nest",
+          "name": "Nest",
           "checkpointNo": 0,
           "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/epilogue/1/1/4.png"
         }
