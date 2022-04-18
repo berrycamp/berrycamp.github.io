@@ -42,7 +42,7 @@ export interface Checkpoint {
 export interface SubroomOrderEntry {
   roomId: string;
   subroomIndex: number;
-  root: boolean;
+  root?: boolean;
 }
 
 export interface Room {

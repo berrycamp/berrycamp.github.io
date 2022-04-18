@@ -79,8 +79,7 @@
             "06-d",
             {
               "roomId": "04-d",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             {
               "roomId": "04-d",

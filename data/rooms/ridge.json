@@ -38,13 +38,11 @@
             "b-01",
             {
               "roomId": "b-02",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             {
               "roomId": "b-05",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             "b-04",
             "b-06",

@@ -32,8 +32,7 @@
             "03",
             {
               "roomId": "02",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             "02b"
           ]
@@ -681,13 +680,12 @@
             "01",
             {
               "roomId": "02",
-              "subroomIndex": 2,
+              "subroomIndex": 0,
               "root": true
             },
             {
               "roomId": "02",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 1
             }
           ]
         }

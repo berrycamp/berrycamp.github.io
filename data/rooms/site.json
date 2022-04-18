@@ -22,16 +22,14 @@
             "1",
             {
               "roomId": "2",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             "d0",
             "d7",
             "d8",
             {
               "roomId": "d3",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             {
               "roomId": "d3",

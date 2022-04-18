@@ -154,58 +154,47 @@
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 0,
-              "root": true
+              "subroomIndex": 0
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 2,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 4,
-              "root": true
+              "subroomIndex": 4
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 5,
-              "root": true
+              "subroomIndex": 5
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 6,
-              "root": true
+              "subroomIndex": 6
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 7,
-              "root": true
+              "subroomIndex": 7
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 8,
-              "root": true
+              "subroomIndex": 8
             },
             {
               "roomId": "g-00b",
-              "subroomIndex": 9,
-              "root": true
+              "subroomIndex": 9
             },
             {
               "roomId": "g-01",
@@ -214,63 +203,51 @@
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 2,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 4,
-              "root": true
+              "subroomIndex": 4
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 5,
-              "root": true
+              "subroomIndex": 5
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 6,
-              "root": true
+              "subroomIndex": 6
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 7,
-              "root": true
+              "subroomIndex": 7
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 8,
-              "root": true
+              "subroomIndex": 8
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 9,
-              "root": true
+              "subroomIndex": 9
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 10,
-              "root": true
+              "subroomIndex": 10
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 11,
-              "root": true
+              "subroomIndex": 11
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 12,
-              "root": true
+              "subroomIndex": 12
             },
             {
               "roomId": "g-02",
@@ -284,23 +261,19 @@
             },
             {
               "roomId": "g-03",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-03",
-              "subroomIndex": 2,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-03",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-03",
-              "subroomIndex": 4,
-              "root": true
+              "subroomIndex": 4
             }
           ]
         }
@@ -1072,103 +1045,86 @@
           "roomOrder": [
             {
               "roomId": "g-00",
-              "subroomIndex": 2,
+              "subroomIndex": 0,
               "root": true
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 4,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 5,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 6,
-              "root": true
+              "subroomIndex": 4
             },
             {
               "roomId": "g-00",
-              "subroomIndex": 7,
+              "subroomIndex": 5
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 0,
               "root": true
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 13,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 14,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 15,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 16,
-              "root": true
+              "subroomIndex": 4
             },
             {
               "roomId": "g-01",
-              "subroomIndex": 17,
-              "root": true
+              "subroomIndex": 5
             },
             {
-              "roomId": "g-01",
-              "subroomIndex": 18,
+              "roomId": "g-02",
+              "subroomIndex": 0,
               "root": true
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 2,
-              "root": true
+              "subroomIndex": 2
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 3,
-              "root": true
+              "subroomIndex": 3
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 4,
-              "root": true
+              "subroomIndex": 4
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 5,
-              "root": true
+              "subroomIndex": 5
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 6,
-              "root": true
+              "subroomIndex": 6
             },
             {
               "roomId": "g-02",
-              "subroomIndex": 7,
-              "root": true
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 8,
-              "root": true
+              "subroomIndex": 7
             },
             "g-03"
           ]
@@ -1472,8 +1428,7 @@
             },
             {
               "roomId": "03",
-              "subroomIndex": 1,
-              "root": true
+              "subroomIndex": 1
             }
           ]
         }
