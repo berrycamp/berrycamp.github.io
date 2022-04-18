@@ -24,12 +24,19 @@ export interface Side {
   checkpoints: Checkpoint[];
   rooms: Record<string, Room>;
   roomCount: number;
-  roomOrder: string[][];
 }
 
+/**
+ * @property name The name of the checkpoint.
+ * @property abbreviation A checkpoint abbrivation.
+ * @property roomCount The number of unique rooms in the checkpoint.
+ * @property roomOrder The order of the rooms in the checkpoint, for subrooms and the main room.
+ */
 export interface Checkpoint {
   name: string
   abbreviation: string;
+  roomCount: number;
+  roomOrder: (string | [string, number] | [string, number, boolean])[];
 }
 
 export interface Room {

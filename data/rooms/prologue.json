@@ -10,20 +10,19 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 6,
+          "roomOrder": [
+            "-1",
+            "0",
+            "0b",
+            "1",
+            "2",
+            "3"
+          ]
         }
       ],
       "roomCount": 6,
-      "roomOrder": [
-        [
-          "-1",
-          "0",
-          "0b",
-          "1",
-          "2",
-          "3"
-        ]
-      ],
       "rooms": {
         "0": {
           "name": "Broken driveway I",
