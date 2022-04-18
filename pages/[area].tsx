@@ -1,6 +1,7 @@
 import {Box, Card, CardActionArea, CardContent, Container, List, ListItemButton, Typography} from '@mui/material'
 import {AspectBox} from 'common/aspectBox/AspectBox'
 import {DATA} from 'logic/data/data'
+import {getImageURL} from 'logic/fetch/image'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
 import Link from "next/link"
@@ -15,7 +16,7 @@ const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view,
     <Layout
       title={area.name}
       description={area.desc}
-      imgUrl={area.image}
+      imgUrl={getImageURL(area.image)}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -62,7 +63,7 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                   <AspectBox>
                     <Image
                       className="pixelated-image"
-                      src={chapter.image}
+                      src={getImageURL(chapter.image)}
                       alt={`An image of chapter ${chapter.name}`}
                       layout="fill"
                     />
@@ -102,7 +103,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
             >
               <Image
                 className="pixelated-image"
-                src={chapter.image}
+                src={getImageURL(chapter.image)}
                 alt={`Image of chapter ${chapter.name}`}
                 width={128}
                 height={72}
