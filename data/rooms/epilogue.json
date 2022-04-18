@@ -15,10 +15,12 @@
       ],
       "roomCount": 4,
       "roomOrder": [
-        "outside",
-        "inside",
-        "bridge",
-        "secret"
+        [
+          "outside",
+          "inside",
+          "bridge",
+          "secret"
+        ]
       ],
       "rooms": {
         "outside": {

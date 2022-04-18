@@ -24,7 +24,7 @@ export interface Side {
   checkpoints: Checkpoint[];
   rooms: Record<string, Room>;
   roomCount: number;
-  roomOrder: string[];
+  roomOrder: string[][];
 }
 
 export interface Checkpoint {

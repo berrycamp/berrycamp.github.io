@@ -9,7 +9,7 @@ import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, useState} from "react";
+import {FC, Fragment, useRef, useState} from "react";
 import {Area, Chapter, Room} from "../../logic/data/dataTree";
 
 export const IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/screens";
@@ -36,7 +36,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
       setView={setView}
     >
       <Container>
-        <Breadcrumbs separator="›" sx={{marginTop: 2}}>
+        <Breadcrumbs sx={{marginTop: 2}}>
           <MuiLink href={`/${areaId}`} underline="always">
             {area.name}
           </MuiLink>
@@ -109,6 +109,8 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
 }
 
 const GridChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, chapterId, chapter, sideId}) => {
+  const currentCheckpointIndex = useRef<number>(-1);
+
   return (
     <Fragment>
       {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
