@@ -14,7 +14,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
   return (
     <Layout
       description={"Browse rooms from the video game Celeste"}
-      imgUrl={"https://cdn.berrycamp.com/file/strawberry-house/screens/city/1/2/3.png"}
+      imgUrl={"https://f002.backblazeb2.com/file/berrycamp/screens/city/1/2/3.png"}
       mode={mode}
       toggleMode={toggleMode}
       view={view}

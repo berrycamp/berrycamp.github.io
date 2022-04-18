@@ -11,7 +11,7 @@ import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
 import {AreaData, ChapterData, RoomData} from "../../logic/data/dataTree";
 
-export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
+export const IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/screens";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [sideIndex, setSideIndex] = useState<number>(0);
