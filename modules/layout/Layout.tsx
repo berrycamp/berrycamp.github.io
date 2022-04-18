@@ -38,7 +38,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
                 <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
                   <Image
                     priority
-                    unoptimized
                     className="pixelated-image"
                     src={'/img/logo.png'}
                     alt='Animation of madeline in a campsite in game'
@@ -103,7 +102,6 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
             <Box position="fixed" bottom={0} zIndex={-1} width="100%" height="100%">
               <Image
                 priority
-                unoptimized
                 objectFit="cover"
                 className="pixelated-image"
                 src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}

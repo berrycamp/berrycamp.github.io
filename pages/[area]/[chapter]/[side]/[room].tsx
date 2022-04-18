@@ -107,7 +107,6 @@ const RoomPage: AppNextPage<RoomProps> = ({
           <AspectBox>
             <Image
               className="pixelated-image"
-              unoptimized
               src={roomImageUrl}
               alt={`Very large image of room ${room.name}`}
               layout="fill"
@@ -119,7 +118,6 @@ const RoomPage: AppNextPage<RoomProps> = ({
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
             className="pixelated-image"
-            unoptimized
             src={roomImageUrl}
             alt={`Large image of room ${room.name}`}
             layout="fill"

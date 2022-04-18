@@ -1,4 +1,5 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, Container, List, ListItemButton, Typography} from '@mui/material'
+import {AspectBox} from 'common/aspectBox/AspectBox'
 import {DATA} from 'logic/data/data'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
@@ -57,17 +58,16 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
             </Box>
             {Object.entries(area.chapters).map(([chapterId, chapter]) => (
               <Card key={chapterId}>
-                <CardActionArea
-                  sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-                  href={`/${areaId}/${chapterId}`}
-                >
-                  <CardMedia
-                    className="pixelated-image"
-                    component="img"
-                    image={chapter.imageUrl}
-                    alt={`An image of chapter ${chapter.name}`}
-                  />
-                  <CardContent sx={{flex: "1"}}>
+                <CardActionArea href={`/${areaId}/${chapterId}`}>
+                  <AspectBox>
+                    <Image
+                      className="pixelated-image"
+                      src={chapter.imageUrl}
+                      alt={`An image of chapter ${chapter.name}`}
+                      layout="fill"
+                    />
+                  </AspectBox>
+                  <CardContent>
                     <Typography component="div" variant="h6">
                       {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
                       {chapter.name}
@@ -102,7 +102,6 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
             >
               <Image
                 className="pixelated-image"
-                unoptimized
                 src={chapter.imageUrl}
                 alt={`Image of chapter ${chapter.name}`}
                 width={128}

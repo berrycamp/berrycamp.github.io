@@ -1,5 +1,6 @@
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {Box, Breadcrumbs, Button, Card, CardActionArea, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
@@ -45,7 +46,6 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
           <Box flexShrink={0} position="relative" width={240} height={135}>
             <Image
               className="pixelated-image"
-              unoptimized
               src={chapter.imageUrl}
               alt={`Image of chapter ${chapter.name}`}
               width={240}
@@ -145,11 +145,14 @@ const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <CardMedia
-          component="img"
-          image={imageUrl}
-          alt={`Thumbnail for room ${room.name}`}
-        />
+        <AspectBox>
+          <Image
+            className="pixelated-image"
+            src={imageUrl}
+            alt={`Thumbnail for room ${room.name}`}
+            layout="fill"
+          />
+        </AspectBox>
         {hover && (
           <ImageListItemBar
             title={room.name}
@@ -182,7 +185,6 @@ const ListChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, 
               >
                 <Image
                   className="pixelated-image"
-                  unoptimized
                   src={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
                   alt={`Image of room ${room.name}`}
                   width={128}
