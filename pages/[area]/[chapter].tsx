@@ -2,6 +2,7 @@ import {NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Card, CardActionArea, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
+import {getImageURL} from "logic/fetch/image";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
@@ -9,10 +10,8 @@ import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, useRef, useState} from "react";
-import {Area, Chapter, Room} from "../../logic/data/dataTree";
-
-export const IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/screens";
+import {FC, Fragment, useState} from "react";
+import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
@@ -24,6 +23,8 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
   const prevChapter: Chapter | undefined = prevChapterId ? area.chapters[prevChapterId] : undefined;
   const nextChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) + 1];
   const nextChapter: Chapter | undefined = nextChapterId ? area.chapters[nextChapterId] : undefined;
+
+  const side: Side | undefined = chapter.sides[sideId];
 
   return (
     <Layout
@@ -46,7 +47,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
           <Box flexShrink={0} position="relative" width={240} height={135}>
             <Image
               className="pixelated-image"
-              src={chapter.image}
+              src={getImageURL(chapter.image)}
               alt={`Image of chapter ${chapter.name}`}
               width={240}
               height={135}
@@ -98,35 +99,56 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
             {pluralize(roomCount, "room")}
           </Typography>
         )}
-        {view === "grid" ? (
-          <GridChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideId={sideId} />
-        ) : (view === "list") && (
-          <ListChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideId={sideId} />
+        {side && (
+          <Fragment>
+            {view === "grid" ? (
+              <GridChapterView areaId={areaId} chapterId={chapterId} chapter={chapter} sideId={sideId} side={side} />
+            ) : (view === "list") && (
+              <ListChapterView areaId={areaId} chapterId={chapterId} chapter={chapter} sideId={sideId} side={side} />
+            )}
+          </Fragment>
         )}
       </Container>
     </Layout>
   )
 }
 
-const GridChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, chapterId, chapter, sideId}) => {
-  const currentCheckpointIndex = useRef<number>(-1);
 
+interface ViewProps {
+  areaId: string;
+  chapterId: string;
+  sideId: "a" | "b" | "c";
+  side: Side;
+}
+
+// TODO FIX TERRIBLE CODE
+const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
   return (
     <Fragment>
-      {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
+      {side.checkpoints.map((checkpoint, checkpointIndex) => (
         <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
           <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
           <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-            {checkpoint.rooms.map((room, roomIndex) => (
-              <GridChapterItem
-                key={roomIndex}
-                room={room}
-                href={`/${areaId}/${chapterId}/${chapter.sides[sideId]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
-                imageUrl={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
-              />
-            ))}
+            {checkpoint.roomOrder.map(order => {
+              if (typeof order === "string") {
+                const room: Room | undefined = side.rooms[order];
+                if (room !== undefined) {
+                  return (
+                    <GridChapterItem
+                      key={order}
+                      roomId={order}
+                      room={room}
+                      href={`/${areaId}/${chapterId}/${sideId}/${order}`}
+                      image={room.image}
+                    />
+                  )
+                }
+              }
+
+              return null;
+            })}
           </Box>
           <Divider flexItem />
         </Box>
@@ -135,7 +157,7 @@ const GridChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, 
   );
 }
 
-const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room, href, imageUrl}) => {
+const GridChapterItem: FC<{roomId: string, room: Room, href: string, image: string}> = ({roomId, room, href, image}) => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
@@ -150,7 +172,7 @@ const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room
         <AspectBox>
           <Image
             className="pixelated-image"
-            src={imageUrl}
+            src={getImageURL(image)}
             alt={`Thumbnail for room ${room.name}`}
             layout="fill"
           />
@@ -158,7 +180,7 @@ const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room
         {hover && (
           <ImageListItemBar
             title={room.name}
-            subtitle={room.id}
+            subtitle={roomId}
             sx={{fontSize: 26}}
           />
         )}
@@ -167,7 +189,7 @@ const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room
   );
 }
 
-const ListChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, chapterId, chapter, sideId}) => {
+const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
   return (
     <Fragment>
       {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
