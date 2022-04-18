@@ -11,19 +11,12 @@ import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
 import {Area, Chapter, Room} from "../../logic/data/dataTree";
 
-export const IMAGE_URL = "https://cdn.berrycamp.com/file/strawberry-house/screens";
+export const IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/screens";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
-  const [sideIndex, setSideIndex] = useState<number>(0);
+  const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
 
-  const roomCount: number | undefined = chapter.sides[sideIndex]?.checkpoints.reduce<number>((total, checkpoint) => total + checkpoint.rooms.length, 0);
-
-  const roomSet: Set<string> | undefined = chapter.sides[sideIndex]?.checkpoints.reduce<Set<string>>((prev, checkpoint) => {
-    checkpoint.rooms.forEach(room => prev.add(room.id));
-    return prev;
-  }, new Set());
-
-  const debugRoomCount: number | undefined = roomSet !== undefined ? roomSet.size : undefined;
+  const roomCount: number | undefined = chapter.sides[sideId]?.roomCount;
 
   const chapterKeys: string[] = Object.keys(area.chapters);
   const prevChapterId: string | undefined = chapterKeys[chapterKeys.indexOf(chapterId) - 1];
@@ -95,30 +88,30 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
             )}
           </Box>
         </Box>
-        <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
-          {chapter.sides.map((side, newSideNo) => (
-            <Tab key={side.name} value={newSideNo} label={`${side.name}-side`} />
+        <Tabs variant="fullWidth" value={sideId} onChange={(_, value) => setSideId(value)}>
+          {Object.entries(chapter.sides).map(([sideKey, side]) => (
+            <Tab key={side.name} value={sideKey} label={`${side.name}-side`} />
           ))}
         </Tabs>
-        {roomCount && debugRoomCount && (
+        {roomCount && (
           <Typography component="div" variant="body1" color="text.secondary" marginTop={2} textAlign="center">
-            {roomCount === debugRoomCount ? pluralize(roomCount, "room") : `${pluralize(debugRoomCount, "unique room")}, ${roomCount} including subrooms`}
+            {pluralize(roomCount, "room")}
           </Typography>
         )}
         {view === "grid" ? (
-          <GridChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideIndex={sideIndex} />
+          <GridChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideId={sideId} />
         ) : (view === "list") && (
-          <ListChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideIndex={sideIndex} />
+          <ListChapterView areaId={areaId} area={area} chapterId={chapterId} chapter={chapter} sideId={sideId} />
         )}
       </Container>
     </Layout>
   )
 }
 
-const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapterId, chapter, sideIndex}) => {
+const GridChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, chapterId, chapter, sideId}) => {
   return (
     <Fragment>
-      {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
+      {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
         <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
           <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
             {checkpointIndex + 1}. {checkpoint.name}
@@ -128,8 +121,8 @@ const GridChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
               <GridChapterItem
                 key={roomIndex}
                 room={room}
-                href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
-                imageUrl={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
+                href={`/${areaId}/${chapterId}/${chapter.sides[sideId]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                imageUrl={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
               />
             ))}
           </Box>
@@ -169,10 +162,10 @@ const GridChapterItem: FC<{room: Room, href: string, imageUrl: string}> = ({room
   );
 }
 
-const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapterId, chapter, sideIndex}) => {
+const ListChapterView: FC<ChapterProps & {sideId: "a" | "b" | "c"}> = ({areaId, chapterId, chapter, sideId}) => {
   return (
     <Fragment>
-      {chapter.sides[sideIndex]?.checkpoints.map((checkpoint, checkpointIndex) => (
+      {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
         <Fragment key={checkpointIndex}>
           <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
             {checkpointIndex + 1}. {checkpoint.name}
@@ -185,12 +178,12 @@ const ListChapterView: FC<ChapterProps & {sideIndex: number}> = ({areaId, chapte
                 sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
                 component="a"
                 LinkComponent={Link}
-                href={`/${areaId}/${chapterId}/${chapter.sides[sideIndex]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
+                href={`/${areaId}/${chapterId}/${chapter.sides[sideId]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
               >
                 <Image
                   className="pixelated-image"
                   unoptimized
-                  src={`${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
+                  src={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
                   alt={`Image of room ${room.name}`}
                   width={128}
                   height={72}
@@ -224,8 +217,8 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
   const paths: {params: ChapterParams; locale?: string}[] = [];
 
   for (const [areaId, area] of Object.entries(DATA)) {
-    for (const chapter of Object.keys(area.chapters)) {
-      paths.push({params: {area: areaId, chapter}});
+    for (const chapterId of Object.keys(area.chapters)) {
+      paths.push({params: {area: areaId, chapter: chapterId}});
     }
   }
 

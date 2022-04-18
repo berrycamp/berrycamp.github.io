@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {FC, Fragment, useState} from "react";
 
-export const COZY_IMAGE_URL = "https://cdn.berrycamp.com/file/berrycamp/static/welcome/images"
+export const COZY_IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/static/welcome/images"
 
 const COZY_IMAGE_COUNT = 7;
 

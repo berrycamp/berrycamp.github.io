@@ -3,7 +3,7 @@
   "chapterNo": 7,
   "name": "The Summit",
   "desc": "Whole again with renewed determination, Madeline begins her final ascent to the summit of the mountain.",
-  "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/31.png",
+  "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/31.png",
   "sideCount": 3,
   "sides": {
     "a": {
@@ -167,474 +167,474 @@
         "a-00-intro": {
           "name": "Intro cutscene",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/1.png"
         },
         "a-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/2.png"
         },
         "a-01": {
           "name": "Spinners and crystals",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/3.png"
         },
         "a-02": {
           "name": "Wall springs",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/4.png"
         },
         "a-02b": {
           "name": "Demo berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/5.png"
         },
         "a-03": {
           "name": "Spring pillars",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/6.png"
         },
         "a-04": {
           "name": "Hanging crystals",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/7.png"
         },
         "a-04b": {
           "name": "Dual berries",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/8.png"
         },
         "a-05": {
           "name": "Scaffold",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/9.png"
         },
         "a-06": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/1/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/1/10.png"
         },
         "b-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/1.png"
         },
         "b-01": {
           "name": "Conveyor springs",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/2.png"
         },
         "b-02": {
           "name": "Ascent path split",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/3.png"
         },
         "b-02b": {
           "name": "Zipper ascent",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/4.png"
         },
         "b-02e": {
           "name": "Conveyor block berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/5.png"
         },
         "b-02c": {
           "name": "Return path",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/6.png"
         },
         "b-02d": {
           "name": "Gem room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/7.png"
         },
         "b-03": {
           "name": "Tetromino",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/8.png"
         },
         "b-04": {
           "name": "Winged berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/9.png"
         },
         "b-05": {
           "name": "City switch",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/10.png"
         },
         "b-06": {
           "name": "Zipper ascent 3",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/11.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/11.png"
         },
         "b-07": {
           "name": "Zipper spike path",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/12.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/12.png"
         },
         "b-08": {
           "name": "Iceblock springs",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/13.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/13.png"
         },
         "b-09": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/2/14.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/14.png"
         },
         "c-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/1.png"
         },
         "c-01": {
           "name": "Dream ascent",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/2.png"
         },
         "c-02": {
           "name": "Dream switch",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/3.png"
         },
         "c-03": {
           "name": "Dream springs",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/4.png"
         },
         "c-03b": {
           "name": "Berry dream maze",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/5.png"
         },
         "c-04": {
           "name": "Moving dreams",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/6.png"
         },
         "c-05": {
           "name": "Berry dream ascent",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/7.png"
         },
         "c-06": {
           "name": "Uniform dreams",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/8.png"
         },
         "c-06b": {
           "name": "Snaking ascent",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/9.png"
         },
         "c-06c": {
           "name": "Jewel room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/10.png"
         },
         "c-07": {
           "name": "Diagonal dreams",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/11.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/11.png"
         },
         "c-07b": {
           "name": "Up & down berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/12.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/12.png"
         },
         "c-08": {
           "name": "Hanging dreams",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/13.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/13.png"
         },
         "c-09": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/3/14.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/14.png"
         },
         "d-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/1.png"
         },
         "d-01": {
           "name": "Sinking platforms",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/2.png"
         },
         "d-01b": {
           "name": "Dust bunnies I",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/3.png"
         },
         "d-01c": {
           "name": "Dust berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/4.png"
         },
         "d-01d": {
           "name": "Switch berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/5.png"
         },
         "d-02": {
           "name": "Dust bunny diamond",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/6.png"
         },
         "d-03": {
           "name": "Dust bunnies II",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/7.png"
         },
         "d-03b": {
           "name": "Cassette room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/8.png"
         },
         "d-04": {
           "name": "Dust bunnies III",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/9.png"
         },
         "d-05": {
           "name": "Quad ultra room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/10.png"
         },
         "d-05b": {
           "name": "Jewel room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/11.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/11.png"
         },
         "d-06": {
           "name": "Dust tunnel",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/12.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/12.png"
         },
         "d-07": {
           "name": "Crystal pit berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/13.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/13.png"
         },
         "d-08": {
           "name": "frankerZ room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/14.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/14.png"
         },
         "d-09": {
           "name": "Dusty chimney",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/15.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/15.png"
         },
         "d-10": {
           "name": "Dust serpentine",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/16.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/16.png"
         },
         "d-10b": {
           "name": "Soaring berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/17.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/17.png"
         },
         "d-11": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/4/18.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/18.png"
         },
         "e-00b": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/1.png"
         },
         "e-00": {
           "name": "Bubble juggle",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/2.png"
         },
         "e-01": {
           "name": "Cliff",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/3.png"
         },
         "e-01b": {
           "name": "Rock climb",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/4.png"
         },
         "e-01c": {
           "name": "Jewel room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/5.png"
         },
         "e-02": {
           "name": "Berry path",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/6.png"
         },
         "e-03": {
           "name": "Sliding platforms",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/7.png"
         },
         "e-04": {
           "name": "Headwind",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/8.png"
         },
         "e-05": {
           "name": "Snowballs",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/9.png"
         },
         "e-06": {
           "name": "Horizontal scroller",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/10.png"
         },
         "e-07": {
           "name": "Vertical scroller",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/11.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/11.png"
         },
         "e-08": {
           "name": "Center room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/12.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/12.png"
         },
         "e-09": {
           "name": "Left berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/13.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/13.png"
         },
         "e-11": {
           "name": "Crystal maze",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/14.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/14.png"
         },
         "e-12": {
           "name": "Seed puzzle",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/15.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/15.png"
         },
         "e-10": {
           "name": "Tailwind",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/16.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/16.png"
         },
         "e-10b": {
           "name": "Scroller jumps",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/17.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/17.png"
         },
         "e-13": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/5/18.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/18.png"
         },
         "f-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/1.png"
         },
         "f-01": {
           "name": "Dash block berry",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/2.png"
         },
         "f-02": {
           "name": "Dash block path",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/3.png"
         },
         "f-02b": {
           "name": "Jewel room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/4.png"
         },
         "f-04": {
           "name": "Launch platform",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/5.png"
         },
         "f-03": {
           "name": "Up & down blocks",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/6.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/6.png"
         },
         "f-05": {
           "name": "Central lock",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/7.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/7.png"
         },
         "f-06": {
           "name": "Blade bubbles",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/8.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/8.png"
         },
         "f-07": {
           "name": "Key skip room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/9.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/9.png"
         },
         "f-08": {
           "name": "Bubbles & dash blocks",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/10.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/10.png"
         },
         "f-08b": {
           "name": "Berry route I",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/11.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/11.png"
         },
         "f-08d": {
           "name": "Berry route II",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/12.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/12.png"
         },
         "f-08c": {
           "name": "Berry route III",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/13.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/13.png"
         },
         "f-09": {
           "name": "Crystal bubble route",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/14.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/14.png"
         },
         "f-10": {
           "name": "Thread the needle",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/15.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/15.png"
         },
         "f-10b": {
           "name": "Door skip",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/16.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/16.png"
         },
         "f-11": {
           "name": "Orb room",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/6/17.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/17.png"
         },
         "g-00": {
           "name": "Flags 30 - 29",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/1.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/1.png",
           "x": 424,
           "y": 1824,
           "subrooms": [
             {
               "name": "Flag 30",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/1.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/1.png",
               "x": 424,
               "y": 1824
             },
             {
               "name": "Flag 29",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/2.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/2.png",
               "x": 336,
               "y": 1224
             }
@@ -643,67 +643,67 @@
         "g-00b": {
           "name": "Flags 28 - 20",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/3.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/3.png",
           "x": 192,
           "y": 3240,
           "subrooms": [
             {
               "name": "Flag 28",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/3.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/3.png",
               "x": 192,
               "y": 3240
             },
             {
               "name": "Heart Room",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/4.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/4.png",
               "x": 432,
               "y": 3200
             },
             {
               "name": "Flag 27",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/5.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/5.png",
               "x": 216,
               "y": 2992
             },
             {
               "name": "Flag 26",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/6.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/6.png",
               "x": 128,
               "y": 2816
             },
             {
               "name": "Flag 25",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/7.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/7.png",
               "x": 568,
               "y": 2600
             },
             {
               "name": "Flag 24",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/8.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/8.png",
               "x": 424,
               "y": 2496
             },
             {
               "name": "Flag 23",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/9.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/9.png",
               "x": 392,
               "y": 2200
             },
             {
               "name": "Flag 22",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/10.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/10.png",
               "x": 552,
               "y": 2024
             },
             {
               "name": "Flag 21",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/11.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/11.png",
               "x": 224,
               "y": 1696
             },
             {
               "name": "Flag 20",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/12.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/12.png",
               "x": 600,
               "y": 1456
             }
@@ -712,85 +712,85 @@
         "g-01": {
           "name": "Flags 19 - 7",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/13.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/13.png",
           "x": 568,
           "y": 3232,
           "subrooms": [
             {
               "name": "Flag 19",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/13.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/13.png",
               "x": 568,
               "y": 3232
             },
             {
               "name": "Flag 18",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/14.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/14.png",
               "x": 376,
               "y": 2928
             },
             {
               "name": "Flag 17",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/15.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/15.png",
               "x": 544,
               "y": 2816
             },
             {
               "name": "Flag 16",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/16.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/16.png",
               "x": 1056,
               "y": 2632
             },
             {
               "name": "Flag 15",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/17.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/17.png",
               "x": 944,
               "y": 2520
             },
             {
               "name": "Flag 14",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/18.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/18.png",
               "x": 1080,
               "y": 2400
             },
             {
               "name": "Flag 13",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/19.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/19.png",
               "x": 1696,
               "y": 2240
             },
             {
               "name": "Flag 12",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/20.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/20.png",
               "x": 2344,
               "y": 2080
             },
             {
               "name": "Flag 11",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/21.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/21.png",
               "x": 2360,
               "y": 1544
             },
             {
               "name": "Flag 10",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/22.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/22.png",
               "x": 1880,
               "y": 1512
             },
             {
               "name": "Flag 9",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/23.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/23.png",
               "x": 1464,
               "y": 1472
             },
             {
               "name": "Flag 8",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/24.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/24.png",
               "x": 1400,
               "y": 1240
             },
             {
               "name": "Flag 7",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/25.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/25.png",
               "x": 1280,
               "y": 992
             }
@@ -799,13 +799,13 @@
         "g-02": {
           "name": "Flag 6",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/26.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/26.png",
           "x": 440,
           "y": 928,
           "subrooms": [
             {
               "name": "Flag 6",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/26.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/26.png",
               "x": 440,
               "y": 928
             }
@@ -814,37 +814,37 @@
         "g-03": {
           "name": "Flags 5 - 1",
           "checkpointNo": 0,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/27.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/27.png",
           "x": 296,
           "y": 3232,
           "subrooms": [
             {
               "name": "Flag 5",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/27.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/27.png",
               "x": 296,
               "y": 3232
             },
             {
               "name": "Flag 4",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/28.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/28.png",
               "x": 384,
               "y": 2992
             },
             {
               "name": "Flag 3",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/29.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/29.png",
               "x": 1128,
               "y": 2784
             },
             {
               "name": "Flag 2",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/30.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/30.png",
               "x": 1032,
               "y": 1976
             },
             {
               "name": "Flag 1",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/1/7/31.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/31.png",
               "x": 856,
               "y": 1264
             }
@@ -937,168 +937,168 @@
         "a-00-intro": {
           "name": "Intro",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/1/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/1.png"
         },
         "a-00": {
           "name": "Crystal dashing",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/1/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/2.png"
         },
         "a-01": {
           "name": "Wall springs",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/1/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/3.png"
         },
         "a-02": {
           "name": "Spring pillars",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/1/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/4.png"
         },
         "a-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/1/5.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/5.png"
         },
         "b-00": {
           "name": "Zipper ascent I",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/2/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/2/1.png"
         },
         "b-01": {
           "name": "Zipper ascent II",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/2/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/2/2.png"
         },
         "b-02": {
           "name": "Falling ice",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/2/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/2/3.png"
         },
         "b-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/2/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/2/4.png"
         },
         "c-01": {
           "name": "Dream blocks I",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/3/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/1.png"
         },
         "c-00": {
           "name": "Dream blocks II",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/3/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/2.png"
         },
         "c-02": {
           "name": "Keep off the ground",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/3/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/3.png"
         },
         "c-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/3/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/4.png"
         },
         "d-00": {
           "name": "Dust springs",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/4/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/1.png"
         },
         "d-01": {
           "name": "Dust cycles",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/4/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/2.png"
         },
         "d-02": {
           "name": "Dust switch",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/4/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/3.png"
         },
         "d-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/4/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/4.png"
         },
         "e-00": {
           "name": "Cloud hops",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/5/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/1.png"
         },
         "e-01": {
           "name": "Springscroller",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/5/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/2.png"
         },
         "e-02": {
           "name": "Headwind snowballs",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/5/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/3.png"
         },
         "e-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/5/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/4.png"
         },
         "f-00": {
           "name": "Dash block fling",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/6/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/1.png"
         },
         "f-01": {
           "name": "Bubble spike maze",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/6/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/2.png"
         },
         "f-02": {
           "name": "Crystals & dash blocks",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/6/3.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/3.png"
         },
         "f-03": {
           "name": "Orb room",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/6/4.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/4.png"
         },
         "g-00": {
           "name": "Flags 20 - 15",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/1.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/1.png",
           "x": 160,
           "y": 2280,
           "subrooms": [
             {
               "name": "Flag 20",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/1.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/1.png",
               "x": 160,
               "y": 2280
             },
             {
               "name": "Flag 19",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/2.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/2.png",
               "x": 64,
               "y": 2120
             },
             {
               "name": "Flag 18",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/3.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/3.png",
               "x": 296,
               "y": 2056
             },
             {
               "name": "Flag 17",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/4.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/4.png",
               "x": 272,
               "y": 1608
             },
             {
               "name": "Flag 16",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/5.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/5.png",
               "x": 192,
               "y": 1456
             },
             {
               "name": "Flag 15",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/6.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/6.png",
               "x": 288,
               "y": 1184
             }
@@ -1107,43 +1107,43 @@
         "g-01": {
           "name": "Flags 14 - 9",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/7.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/7.png",
           "x": 232,
           "y": 1184,
           "subrooms": [
             {
               "name": "Flag 14",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/7.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/7.png",
               "x": 232,
               "y": 1184
             },
             {
               "name": "Flag 13",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/8.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/8.png",
               "x": 264,
               "y": 1000
             },
             {
               "name": "Flag 12",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/9.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/9.png",
               "x": 696,
               "y": 912
             },
             {
               "name": "Flag 11",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/10.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/10.png",
               "x": 1200,
               "y": 1032
             },
             {
               "name": "Flag 10",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/11.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/11.png",
               "x": 1704,
               "y": 888
             },
             {
               "name": "Flag 9",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/12.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/12.png",
               "x": 1424,
               "y": 360
             }
@@ -1152,55 +1152,55 @@
         "g-02": {
           "name": "Flags 8 - 1",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/13.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/13.png",
           "x": 256,
           "y": 2672,
           "subrooms": [
             {
               "name": "Flag 8",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/13.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/13.png",
               "x": 256,
               "y": 2672
             },
             {
               "name": "Flag 7",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/14.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/14.png",
               "x": 312,
               "y": 2504
             },
             {
               "name": "Flag 6",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/15.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/15.png",
               "x": 528,
               "y": 2344
             },
             {
               "name": "Flag 5",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/16.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/16.png",
               "x": 1016,
               "y": 2256
             },
             {
               "name": "Flag 4",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/17.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/17.png",
               "x": 896,
               "y": 1872
             },
             {
               "name": "Flag 3",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/18.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/18.png",
               "x": 712,
               "y": 1680
             },
             {
               "name": "Flag 2",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/19.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/19.png",
               "x": 544,
               "y": 1504
             },
             {
               "name": "Flag 1",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/20.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/20.png",
               "x": 1152,
               "y": 1120
             }
@@ -1209,7 +1209,7 @@
         "g-03": {
           "name": "Cassette",
           "checkpointNo": 1,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/2/7/21.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/21.png"
         }
       }
     },
@@ -1232,29 +1232,29 @@
         "01": {
           "name": "Wallbounces",
           "checkpointNo": 2,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/1.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/1.png"
         },
         "02": {
           "name": "Springs",
           "checkpointNo": 2,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/2.png"
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/2.png"
         },
         "03": {
           "name": "Heart room",
           "checkpointNo": 2,
-          "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/3.png",
+          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/3.png",
           "x": 48,
           "y": 176,
           "subrooms": [
             {
               "name": "Heart maze",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/3.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/3.png",
               "x": 48,
               "y": 176
             },
             {
               "name": "Granny and Heart",
-              "imageUrl": "https://cdn.berrycamp.com/file/strawberry-house/screens/summit/3/1/4.png",
+              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/4.png",
               "x": 2600,
               "y": 120
             }
