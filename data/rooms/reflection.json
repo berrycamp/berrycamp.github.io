@@ -11,138 +11,150 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 1,
+          "roomOrder": [
+            "start"
+          ]
         },
         {
           "name": "Lake",
-          "abbreviation": "LK"
+          "abbreviation": "LK",
+          "roomCount": 5,
+          "roomOrder": [
+            "00",
+            "01",
+            {
+              "roomId": "02",
+              "subroomIndex": 0,
+              "root": true
+            },
+            "03",
+            {
+              "roomId": "02",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "02b"
+          ]
         },
         {
           "name": "Hollows",
-          "abbreviation": "HL"
+          "abbreviation": "HL",
+          "roomCount": 27,
+          "roomOrder": [
+            "04",
+            "04b",
+            "04c",
+            "04d",
+            "04e",
+            "05",
+            "06",
+            "07",
+            "08a",
+            "08b",
+            "09",
+            "10a",
+            "10b",
+            "11",
+            "12a",
+            "12b",
+            "13",
+            "14a",
+            "14b",
+            "15",
+            "16a",
+            "16b",
+            "17",
+            "18a",
+            "18b",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Reflection",
-          "abbreviation": "RF"
+          "abbreviation": "RF",
+          "roomCount": 7,
+          "roomOrder": [
+            "b-00",
+            "b-00b",
+            "b-00c",
+            "b-01",
+            "b-02",
+            "b-02b",
+            "b-03"
+          ]
         },
         {
           "name": "Rock Bottom",
-          "abbreviation": "RB"
+          "abbreviation": "RB",
+          "roomCount": 21,
+          "roomOrder": [
+            "boss-00",
+            "boss-01",
+            "boss-02",
+            "boss-03",
+            "boss-04",
+            "boss-05",
+            "boss-06",
+            "boss-07",
+            "boss-08",
+            "boss-09",
+            "boss-10",
+            "boss-11",
+            "boss-12",
+            "boss-13",
+            "boss-14",
+            "boss-15",
+            "boss-16",
+            "boss-17",
+            "boss-18",
+            "boss-19",
+            "boss-20"
+          ]
         },
         {
           "name": "Resolution",
-          "abbreviation": "RL"
+          "abbreviation": "RL",
+          "roomCount": 3,
+          "roomOrder": [
+            "after-01",
+            "after-02",
+            "after-03"
+          ]
         }
       ],
       "roomCount": 64,
-      "roomOrder": [
-        [
-          "start"
-        ],
-        [
-          "00",
-          "01",
-          "02",
-          "03",
-          "02",
-          "02b"
-        ],
-        [
-          "04",
-          "04b",
-          "04c",
-          "04d",
-          "04e",
-          "05",
-          "06",
-          "07",
-          "08a",
-          "08b",
-          "09",
-          "10a",
-          "10b",
-          "11",
-          "12a",
-          "12b",
-          "13",
-          "14a",
-          "14b",
-          "15",
-          "16a",
-          "16b",
-          "17",
-          "18a",
-          "18b",
-          "19",
-          "20"
-        ],
-        [
-          "b-00",
-          "b-00b",
-          "b-00c",
-          "b-01",
-          "b-02",
-          "b-02b",
-          "b-03"
-        ],
-        [
-          "boss-00",
-          "boss-01",
-          "boss-02",
-          "boss-03",
-          "boss-04",
-          "boss-05",
-          "boss-06",
-          "boss-07",
-          "boss-08",
-          "boss-09",
-          "boss-10",
-          "boss-11",
-          "boss-12",
-          "boss-13",
-          "boss-14",
-          "boss-15",
-          "boss-16",
-          "boss-17",
-          "boss-18",
-          "boss-19",
-          "boss-20"
-        ],
-        [
-          "after-01",
-          "after-02",
-          "after-03"
-        ]
-      ],
       "rooms": {
         "11": {
           "name": "Narrow bumpers",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/14.png"
         },
         "13": {
           "name": "Wall break room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/17.png"
         },
         "15": {
           "name": "Bumper rows",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/20.png"
         },
         "17": {
           "name": "Kevin in the way",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/23.png"
         },
         "19": {
           "name": "Feather room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/26.png"
         },
         "20": {
           "name": "Feathers & bumpers",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/27.png"
         },
         "start": {
@@ -152,17 +164,17 @@
         },
         "00": {
           "name": "Lake",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/2/1.png"
         },
         "01": {
           "name": "Feather maze I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/2/2.png"
         },
         "02": {
           "name": "Feather maze II + III",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/2/3.png",
           "x": 200,
           "y": 976,
@@ -183,272 +195,272 @@
         },
         "03": {
           "name": "U-turn",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/2/4.png"
         },
         "02b": {
           "name": "Kevin ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/2/6.png"
         },
         "04": {
           "name": "The Hollow",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/1.png"
         },
         "04b": {
           "name": "Heart tunnel",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/2.png"
         },
         "04c": {
           "name": "Heart puzzle",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/3.png"
         },
         "04d": {
           "name": "My reflection",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/4.png"
         },
         "04e": {
           "name": "Cassette Room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/5.png"
         },
         "05": {
           "name": "Solid Kevin",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/6.png"
         },
         "06": {
           "name": "Kevin's taller brother",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/7.png"
         },
         "07": {
           "name": "Path split",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/8.png"
         },
         "08a": {
           "name": "Bottom route I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/9.png"
         },
         "08b": {
           "name": "Top route I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/10.png"
         },
         "09": {
           "name": "Open bumpers",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/11.png"
         },
         "10a": {
           "name": "Bottom route II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/12.png"
         },
         "10b": {
           "name": "Top route II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/13.png"
         },
         "12a": {
           "name": "Bottom route III",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/15.png"
         },
         "12b": {
           "name": "Top route III",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/16.png"
         },
         "14a": {
           "name": "Bottom route IV",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/18.png"
         },
         "14b": {
           "name": "Top route IV",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/19.png"
         },
         "16a": {
           "name": "Bottom route V",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/21.png"
         },
         "16b": {
           "name": "Top route V",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/22.png"
         },
         "18a": {
           "name": "Bottom VI",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/24.png"
         },
         "18b": {
           "name": "Top VI",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/3/25.png"
         },
         "b-00": {
           "name": "She's here too",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/1.png"
         },
         "b-00b": {
           "name": "Secret climb",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/2.png"
         },
         "b-00c": {
           "name": "Secret room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/3.png"
         },
         "b-01": {
           "name": "Haircut",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/4.png"
         },
         "b-02": {
           "name": "The fall",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/5.png"
         },
         "b-02b": {
           "name": "Dive",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/6.png"
         },
         "b-03": {
           "name": "Big Kev",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/4/7.png"
         },
         "boss-00": {
           "name": "Confronting myself",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/1.png"
         },
         "boss-01": {
           "name": "Plasma balls",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/2.png"
         },
         "boss-02": {
           "name": "Lazer beams",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/3.png"
         },
         "boss-03": {
           "name": "Vanishing platform",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/4.png"
         },
         "boss-04": {
           "name": "Rapid fire",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/5.png"
         },
         "boss-05": {
           "name": "Serpentine columns",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/6.png"
         },
         "boss-06": {
           "name": "Falling pillar stairs",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/7.png"
         },
         "boss-07": {
           "name": "Feather skip",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/8.png"
         },
         "boss-08": {
           "name": "Falling I",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/9.png"
         },
         "boss-09": {
           "name": "Serpentine feathers",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/10.png"
         },
         "boss-10": {
           "name": "The lonely bumper",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/11.png"
         },
         "boss-11": {
           "name": "Spike bunker",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/12.png"
         },
         "boss-12": {
           "name": "Falling II",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/13.png"
         },
         "boss-13": {
           "name": "Mountain climber",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/14.png"
         },
         "boss-14": {
           "name": "Badeline learned psychic!",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/15.png"
         },
         "boss-15": {
           "name": "Block launch",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/16.png"
         },
         "boss-16": {
           "name": "Psychic platforms",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/17.png"
         },
         "boss-17": {
           "name": "Block trampoline",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/18.png"
         },
         "boss-18": {
           "name": "Falling III",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/19.png"
         },
         "boss-19": {
           "name": "Feather room",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/20.png"
         },
         "boss-20": {
           "name": "Together",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/5/21.png"
         },
         "after-01": {
           "name": "Double dash",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/6/1.png"
         },
         "after-02": {
           "name": "Ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/6/2.png"
         },
         "after-03": {
           "name": "Hold my bag",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/1/6/3.png"
         }
       }
@@ -458,94 +470,96 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 7,
+          "roomOrder": [
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03",
+            "a-04",
+            "a-05",
+            "a-06"
+          ]
         },
         {
           "name": "Reflection",
-          "abbreviation": "RF"
+          "abbreviation": "RF",
+          "roomCount": 10,
+          "roomOrder": [
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-03",
+            "b-04",
+            "b-05",
+            "b-06",
+            "b-07",
+            "b-08",
+            "b-10"
+          ]
         },
         {
           "name": "Rock Bottom",
-          "abbreviation": "RB"
+          "abbreviation": "RB",
+          "roomCount": 5,
+          "roomOrder": [
+            "c-00",
+            "c-01",
+            "c-02",
+            "c-03",
+            "c-04"
+          ]
         },
         {
           "name": "Reprieve",
-          "abbreviation": "RP"
+          "abbreviation": "RP",
+          "roomCount": 6,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            "d-02",
+            "d-03",
+            "d-04",
+            "d-05"
+          ]
         }
       ],
       "roomCount": 28,
-      "roomOrder": [
-        [
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03",
-          "a-04",
-          "a-05",
-          "a-06"
-        ],
-        [
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-03",
-          "b-04",
-          "b-05",
-          "b-06",
-          "b-07",
-          "b-08",
-          "b-10"
-        ],
-        [
-          "c-00",
-          "c-01",
-          "c-02",
-          "c-03",
-          "c-04"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "d-02",
-          "d-03",
-          "d-04",
-          "d-05"
-        ]
-      ],
       "rooms": {
         "a-00": {
           "name": "Kevin's tour",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/1.png"
         },
         "a-01": {
           "name": "Feather tunnel",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/2.png"
         },
         "a-02": {
           "name": "Sketchy bumpers",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/3.png"
         },
         "a-03": {
           "name": "Kevin launch",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/4.png"
         },
         "a-04": {
           "name": "V bumper",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/5.png"
         },
         "a-05": {
           "name": "Crumble blocks",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/6.png"
         },
         "a-06": {
           "name": "Kevin switches",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/1/7.png"
         },
         "b-00": {
@@ -600,57 +614,57 @@
         },
         "c-00": {
           "name": "Badeline",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/3/1.png"
         },
         "c-01": {
           "name": "Falling block jumps",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/3/2.png"
         },
         "c-02": {
           "name": "Three dash crystals",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/3/3.png"
         },
         "c-03": {
           "name": "Badeline and the seven keys",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/3/4.png"
         },
         "c-04": {
           "name": "Step off & downwards",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/3/5.png"
         },
         "d-00": {
           "name": "Kevin family",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/1.png"
         },
         "d-01": {
           "name": "Badeline returns",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/2.png"
         },
         "d-02": {
           "name": "Hold fire",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/3.png"
         },
         "d-03": {
           "name": "To the bottom",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/4.png"
         },
         "d-04": {
           "name": "Final feather",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/5.png"
         },
         "d-05": {
           "name": "Cassette room",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/2/4/6.png"
         }
       }
@@ -660,32 +674,39 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 2,
+          "roomOrder": [
+            "00",
+            "01",
+            {
+              "roomId": "02",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "02",
+              "subroomIndex": 3,
+              "root": true
+            }
+          ]
         }
       ],
       "roomCount": 3,
-      "roomOrder": [
-        [
-          "00",
-          "01",
-          "02",
-          "02"
-        ]
-      ],
       "rooms": {
         "00": {
           "name": "Wallbounces",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/3/1/1.png"
         },
         "01": {
           "name": "Falling",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/3/1/2.png"
         },
         "02": {
           "name": "Heart room",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/reflection/3/1/3.png",
           "x": 72,
           "y": 112,

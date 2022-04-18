@@ -11,172 +11,301 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 10,
+          "roomOrder": [
+            "a-00-intro",
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-02b",
+            "a-03",
+            "a-04",
+            "a-04b",
+            "a-05",
+            "a-06"
+          ]
         },
         {
           "name": "500 M",
-          "abbreviation": "500M"
+          "abbreviation": "500M",
+          "roomCount": 14,
+          "roomOrder": [
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-02b",
+            "b-02e",
+            "b-02c",
+            "b-02d",
+            "b-03",
+            "b-04",
+            "b-05",
+            "b-06",
+            "b-07",
+            "b-08",
+            "b-09"
+          ]
         },
         {
           "name": "1000 M",
-          "abbreviation": "1000M"
+          "abbreviation": "1000M",
+          "roomCount": 14,
+          "roomOrder": [
+            "c-00",
+            "c-01",
+            "c-02",
+            "c-03",
+            "c-03b",
+            "c-04",
+            "c-05",
+            "c-06",
+            "c-06b",
+            "c-06c",
+            "c-07",
+            "c-07b",
+            "c-08",
+            "c-09"
+          ]
         },
         {
           "name": "1500 M",
-          "abbreviation": "1500M"
+          "abbreviation": "1500M",
+          "roomCount": 18,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            "d-01b",
+            "d-01c",
+            "d-01d",
+            "d-02",
+            "d-03",
+            "d-03b",
+            "d-04",
+            "d-05",
+            "d-05b",
+            "d-06",
+            "d-07",
+            "d-08",
+            "d-09",
+            "d-10",
+            "d-10b",
+            "d-11"
+          ]
         },
         {
           "name": "2000 M",
-          "abbreviation": "2000M"
+          "abbreviation": "2000M",
+          "roomCount": 18,
+          "roomOrder": [
+            "e-00b",
+            "e-00",
+            "e-01",
+            "e-01b",
+            "e-01c",
+            "e-02",
+            "e-03",
+            "e-04",
+            "e-05",
+            "e-06",
+            "e-07",
+            "e-08",
+            "e-09",
+            "e-11",
+            "e-12",
+            "e-10",
+            "e-10b",
+            "e-13"
+          ]
         },
         {
           "name": "2500 M",
-          "abbreviation": "2500M"
+          "abbreviation": "2500M",
+          "roomCount": 17,
+          "roomOrder": [
+            "f-00",
+            "f-01",
+            "f-02",
+            "f-02b",
+            "f-04",
+            "f-03",
+            "f-05",
+            "f-06",
+            "f-07",
+            "f-08",
+            "f-08b",
+            "f-08d",
+            "f-08c",
+            "f-09",
+            "f-10",
+            "f-10b",
+            "f-11"
+          ]
         },
         {
           "name": "3000 M",
-          "abbreviation": "3000M"
+          "abbreviation": "3000M",
+          "roomCount": 5,
+          "roomOrder": [
+            {
+              "roomId": "g-00",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 3,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 4,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 5,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 6,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 7,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 8,
+              "root": true
+            },
+            {
+              "roomId": "g-00b",
+              "subroomIndex": 9,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 3,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 4,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 5,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 6,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 7,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 8,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 9,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 10,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 11,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 12,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "g-03",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "g-03",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "g-03",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "g-03",
+              "subroomIndex": 3,
+              "root": true
+            },
+            {
+              "roomId": "g-03",
+              "subroomIndex": 4,
+              "root": true
+            }
+          ]
         }
       ],
       "roomCount": 96,
-      "roomOrder": [
-        [
-          "a-00-intro",
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-02b",
-          "a-03",
-          "a-04",
-          "a-04b",
-          "a-05",
-          "a-06"
-        ],
-        [
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-02b",
-          "b-02e",
-          "b-02c",
-          "b-02d",
-          "b-03",
-          "b-04",
-          "b-05",
-          "b-06",
-          "b-07",
-          "b-08",
-          "b-09"
-        ],
-        [
-          "c-00",
-          "c-01",
-          "c-02",
-          "c-03",
-          "c-03b",
-          "c-04",
-          "c-05",
-          "c-06",
-          "c-06b",
-          "c-06c",
-          "c-07",
-          "c-07b",
-          "c-08",
-          "c-09"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "d-01b",
-          "d-01c",
-          "d-01d",
-          "d-02",
-          "d-03",
-          "d-03b",
-          "d-04",
-          "d-05",
-          "d-05b",
-          "d-06",
-          "d-07",
-          "d-08",
-          "d-09",
-          "d-10",
-          "d-10b",
-          "d-11"
-        ],
-        [
-          "e-00b",
-          "e-00",
-          "e-01",
-          "e-01b",
-          "e-01c",
-          "e-02",
-          "e-03",
-          "e-04",
-          "e-05",
-          "e-06",
-          "e-07",
-          "e-08",
-          "e-09",
-          "e-11",
-          "e-12",
-          "e-10",
-          "e-10b",
-          "e-13"
-        ],
-        [
-          "f-00",
-          "f-01",
-          "f-02",
-          "f-02b",
-          "f-04",
-          "f-03",
-          "f-05",
-          "f-06",
-          "f-07",
-          "f-08",
-          "f-08b",
-          "f-08d",
-          "f-08c",
-          "f-09",
-          "f-10",
-          "f-10b",
-          "f-11"
-        ],
-        [
-          "g-00",
-          "g-00",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-00b",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-02",
-          "g-03",
-          "g-03",
-          "g-03",
-          "g-03",
-          "g-03"
-        ]
-      ],
       "rooms": {
         "a-00-intro": {
           "name": "Intro cutscene",
@@ -230,412 +359,412 @@
         },
         "b-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/1.png"
         },
         "b-01": {
           "name": "Conveyor springs",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/2.png"
         },
         "b-02": {
           "name": "Ascent path split",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/3.png"
         },
         "b-02b": {
           "name": "Zipper ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/4.png"
         },
         "b-02e": {
           "name": "Conveyor block berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/5.png"
         },
         "b-02c": {
           "name": "Return path",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/6.png"
         },
         "b-02d": {
           "name": "Gem room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/7.png"
         },
         "b-03": {
           "name": "Tetromino",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/8.png"
         },
         "b-04": {
           "name": "Winged berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/9.png"
         },
         "b-05": {
           "name": "City switch",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/10.png"
         },
         "b-06": {
           "name": "Zipper ascent 3",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/11.png"
         },
         "b-07": {
           "name": "Zipper spike path",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/12.png"
         },
         "b-08": {
           "name": "Iceblock springs",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/13.png"
         },
         "b-09": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/2/14.png"
         },
         "c-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/1.png"
         },
         "c-01": {
           "name": "Dream ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/2.png"
         },
         "c-02": {
           "name": "Dream switch",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/3.png"
         },
         "c-03": {
           "name": "Dream springs",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/4.png"
         },
         "c-03b": {
           "name": "Berry dream maze",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/5.png"
         },
         "c-04": {
           "name": "Moving dreams",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/6.png"
         },
         "c-05": {
           "name": "Berry dream ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/7.png"
         },
         "c-06": {
           "name": "Uniform dreams",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/8.png"
         },
         "c-06b": {
           "name": "Snaking ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/9.png"
         },
         "c-06c": {
           "name": "Jewel room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/10.png"
         },
         "c-07": {
           "name": "Diagonal dreams",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/11.png"
         },
         "c-07b": {
           "name": "Up & down berry",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/12.png"
         },
         "c-08": {
           "name": "Hanging dreams",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/13.png"
         },
         "c-09": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/3/14.png"
         },
         "d-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/1.png"
         },
         "d-01": {
           "name": "Sinking platforms",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/2.png"
         },
         "d-01b": {
           "name": "Dust bunnies I",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/3.png"
         },
         "d-01c": {
           "name": "Dust berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/4.png"
         },
         "d-01d": {
           "name": "Switch berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/5.png"
         },
         "d-02": {
           "name": "Dust bunny diamond",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/6.png"
         },
         "d-03": {
           "name": "Dust bunnies II",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/7.png"
         },
         "d-03b": {
           "name": "Cassette room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/8.png"
         },
         "d-04": {
           "name": "Dust bunnies III",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/9.png"
         },
         "d-05": {
           "name": "Quad ultra room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/10.png"
         },
         "d-05b": {
           "name": "Jewel room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/11.png"
         },
         "d-06": {
           "name": "Dust tunnel",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/12.png"
         },
         "d-07": {
           "name": "Crystal pit berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/13.png"
         },
         "d-08": {
           "name": "frankerZ room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/14.png"
         },
         "d-09": {
           "name": "Dusty chimney",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/15.png"
         },
         "d-10": {
           "name": "Dust serpentine",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/16.png"
         },
         "d-10b": {
           "name": "Soaring berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/17.png"
         },
         "d-11": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/4/18.png"
         },
         "e-00b": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/1.png"
         },
         "e-00": {
           "name": "Bubble juggle",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/2.png"
         },
         "e-01": {
           "name": "Cliff",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/3.png"
         },
         "e-01b": {
           "name": "Rock climb",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/4.png"
         },
         "e-01c": {
           "name": "Jewel room",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/5.png"
         },
         "e-02": {
           "name": "Berry path",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/6.png"
         },
         "e-03": {
           "name": "Sliding platforms",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/7.png"
         },
         "e-04": {
           "name": "Headwind",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/8.png"
         },
         "e-05": {
           "name": "Snowballs",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/9.png"
         },
         "e-06": {
           "name": "Horizontal scroller",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/10.png"
         },
         "e-07": {
           "name": "Vertical scroller",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/11.png"
         },
         "e-08": {
           "name": "Center room",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/12.png"
         },
         "e-09": {
           "name": "Left berry",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/13.png"
         },
         "e-11": {
           "name": "Crystal maze",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/14.png"
         },
         "e-12": {
           "name": "Seed puzzle",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/15.png"
         },
         "e-10": {
           "name": "Tailwind",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/16.png"
         },
         "e-10b": {
           "name": "Scroller jumps",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/17.png"
         },
         "e-13": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/5/18.png"
         },
         "f-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/1.png"
         },
         "f-01": {
           "name": "Dash block berry",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/2.png"
         },
         "f-02": {
           "name": "Dash block path",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/3.png"
         },
         "f-02b": {
           "name": "Jewel room",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/4.png"
         },
         "f-04": {
           "name": "Launch platform",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/5.png"
         },
         "f-03": {
           "name": "Up & down blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/6.png"
         },
         "f-05": {
           "name": "Central lock",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/7.png"
         },
         "f-06": {
           "name": "Blade bubbles",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/8.png"
         },
         "f-07": {
           "name": "Key skip room",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/9.png"
         },
         "f-08": {
           "name": "Bubbles & dash blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/10.png"
         },
         "f-08b": {
           "name": "Berry route I",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/11.png"
         },
         "f-08d": {
           "name": "Berry route II",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/12.png"
         },
         "f-08c": {
           "name": "Berry route III",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/13.png"
         },
         "f-09": {
           "name": "Crystal bubble route",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/14.png"
         },
         "f-10": {
           "name": "Thread the needle",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/15.png"
         },
         "f-10b": {
           "name": "Door skip",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/16.png"
         },
         "f-11": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/6/17.png"
         },
         "g-00": {
           "name": "Flags 30 - 29",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/1.png",
           "x": 424,
           "y": 1824,
@@ -656,7 +785,7 @@
         },
         "g-00b": {
           "name": "Flags 28 - 20",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/3.png",
           "x": 192,
           "y": 3240,
@@ -725,7 +854,7 @@
         },
         "g-01": {
           "name": "Flags 19 - 7",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/13.png",
           "x": 568,
           "y": 3232,
@@ -812,7 +941,7 @@
         },
         "g-02": {
           "name": "Flag 6",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/26.png",
           "x": 440,
           "y": 928,
@@ -827,7 +956,7 @@
         },
         "g-03": {
           "name": "Flags 5 - 1",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/1/7/27.png",
           "x": 296,
           "y": 3232,
@@ -871,120 +1000,205 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 5,
+          "roomOrder": [
+            "a-00-intro",
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03"
+          ]
         },
         {
           "name": "500 M",
-          "abbreviation": "500M"
+          "abbreviation": "500M",
+          "roomCount": 4,
+          "roomOrder": [
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-03"
+          ]
         },
         {
           "name": "1000 M",
-          "abbreviation": "1000M"
+          "abbreviation": "1000M",
+          "roomCount": 4,
+          "roomOrder": [
+            "c-01",
+            "c-00",
+            "c-02",
+            "c-03"
+          ]
         },
         {
           "name": "1500 M",
-          "abbreviation": "1500M"
+          "abbreviation": "1500M",
+          "roomCount": 4,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            "d-02",
+            "d-03"
+          ]
         },
         {
           "name": "2000 M",
-          "abbreviation": "2000M"
+          "abbreviation": "2000M",
+          "roomCount": 4,
+          "roomOrder": [
+            "e-00",
+            "e-01",
+            "e-02",
+            "e-03"
+          ]
         },
         {
           "name": "2500 M",
-          "abbreviation": "2500M"
+          "abbreviation": "2500M",
+          "roomCount": 4,
+          "roomOrder": [
+            "f-00",
+            "f-01",
+            "f-02",
+            "f-03"
+          ]
         },
         {
           "name": "3000 M",
-          "abbreviation": "3000M"
+          "abbreviation": "3000M",
+          "roomCount": 1,
+          "roomOrder": [
+            {
+              "roomId": "g-00",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 3,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 4,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 5,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 6,
+              "root": true
+            },
+            {
+              "roomId": "g-00",
+              "subroomIndex": 7,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 13,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 14,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 15,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 16,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 17,
+              "root": true
+            },
+            {
+              "roomId": "g-01",
+              "subroomIndex": 18,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 2,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 3,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 4,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 5,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 6,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 7,
+              "root": true
+            },
+            {
+              "roomId": "g-02",
+              "subroomIndex": 8,
+              "root": true
+            },
+            "g-03"
+          ]
         }
       ],
       "roomCount": 29,
-      "roomOrder": [
-        [
-          "a-00-intro",
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03"
-        ],
-        [
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-03"
-        ],
-        [
-          "c-01",
-          "c-00",
-          "c-02",
-          "c-03"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "d-02",
-          "d-03"
-        ],
-        [
-          "e-00",
-          "e-01",
-          "e-02",
-          "e-03"
-        ],
-        [
-          "f-00",
-          "f-01",
-          "f-02",
-          "f-03"
-        ],
-        [
-          "g-00",
-          "g-00",
-          "g-00",
-          "g-00",
-          "g-00",
-          "g-00",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-01",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-02",
-          "g-03"
-        ]
-      ],
       "rooms": {
         "a-00-intro": {
           "name": "Intro",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/1.png"
         },
         "a-00": {
           "name": "Crystal dashing",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/2.png"
         },
         "a-01": {
           "name": "Wall springs",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/3.png"
         },
         "a-02": {
           "name": "Spring pillars",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/4.png"
         },
         "a-03": {
           "name": "Orb room",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/1/5.png"
         },
         "b-00": {
@@ -1009,87 +1223,87 @@
         },
         "c-01": {
           "name": "Dream blocks I",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/1.png"
         },
         "c-00": {
           "name": "Dream blocks II",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/2.png"
         },
         "c-02": {
           "name": "Keep off the ground",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/3.png"
         },
         "c-03": {
           "name": "Orb room",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/3/4.png"
         },
         "d-00": {
           "name": "Dust springs",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/1.png"
         },
         "d-01": {
           "name": "Dust cycles",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/2.png"
         },
         "d-02": {
           "name": "Dust switch",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/3.png"
         },
         "d-03": {
           "name": "Orb room",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/4/4.png"
         },
         "e-00": {
           "name": "Cloud hops",
-          "checkpointNo": 1,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/1.png"
         },
         "e-01": {
           "name": "Springscroller",
-          "checkpointNo": 1,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/2.png"
         },
         "e-02": {
           "name": "Headwind snowballs",
-          "checkpointNo": 1,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/3.png"
         },
         "e-03": {
           "name": "Orb room",
-          "checkpointNo": 1,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/5/4.png"
         },
         "f-00": {
           "name": "Dash block fling",
-          "checkpointNo": 1,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/1.png"
         },
         "f-01": {
           "name": "Bubble spike maze",
-          "checkpointNo": 1,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/2.png"
         },
         "f-02": {
           "name": "Crystals & dash blocks",
-          "checkpointNo": 1,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/3.png"
         },
         "f-03": {
           "name": "Orb room",
-          "checkpointNo": 1,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/6/4.png"
         },
         "g-00": {
           "name": "Flags 20 - 15",
-          "checkpointNo": 1,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/1.png",
           "x": 160,
           "y": 2280,
@@ -1134,7 +1348,7 @@
         },
         "g-01": {
           "name": "Flags 14 - 9",
-          "checkpointNo": 1,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/7.png",
           "x": 232,
           "y": 1184,
@@ -1179,7 +1393,7 @@
         },
         "g-02": {
           "name": "Flags 8 - 1",
-          "checkpointNo": 1,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/13.png",
           "x": 256,
           "y": 2672,
@@ -1236,7 +1450,7 @@
         },
         "g-03": {
           "name": "Cassette",
-          "checkpointNo": 1,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/2/7/21.png"
         }
       }
@@ -1246,32 +1460,39 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 3,
+          "roomOrder": [
+            "01",
+            "02",
+            {
+              "roomId": "03",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "03",
+              "subroomIndex": 1,
+              "root": true
+            }
+          ]
         }
       ],
       "roomCount": 3,
-      "roomOrder": [
-        [
-          "01",
-          "02",
-          "03",
-          "03"
-        ]
-      ],
       "rooms": {
         "01": {
           "name": "Wallbounces",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/1.png"
         },
         "02": {
           "name": "Springs",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/2.png"
         },
         "03": {
           "name": "Heart room",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/summit/3/1/3.png",
           "x": 48,
           "y": 176,

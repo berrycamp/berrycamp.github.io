@@ -11,175 +11,214 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 4,
+          "roomOrder": [
+            "intro-00-past",
+            "intro-01-future",
+            "intro-02-launch",
+            "intro-03-space"
+          ]
         },
         {
           "name": "Singular",
-          "abbreviation": "SI"
+          "abbreviation": "SI",
+          "roomCount": 14,
+          "roomOrder": [
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03",
+            "a-04",
+            "a-05",
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-03",
+            "b-04",
+            "b-05",
+            "b-06",
+            "b-07"
+          ]
         },
         {
           "name": "Power Source",
-          "abbreviation": "PS"
+          "abbreviation": "PS",
+          "roomCount": 15,
+          "roomOrder": [
+            "c-00",
+            "c-alt-00",
+            "c-alt-01",
+            "c-00b",
+            "c-01",
+            "c-02",
+            "c-03",
+            "d-00",
+            "d-01",
+            "d-02",
+            "d-03",
+            "d-04",
+            {
+              "roomId": "d-05",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "d-05",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "e-00y",
+            "e-00yb"
+          ]
         },
         {
           "name": "Remembered",
-          "abbreviation": "RM"
+          "abbreviation": "RM",
+          "roomCount": 13,
+          "roomOrder": [
+            "e-00z",
+            "e-00",
+            "e-00b",
+            "e-01",
+            "e-02",
+            "e-03",
+            "e-04",
+            "e-05",
+            "e-05b",
+            "e-05c",
+            "e-06",
+            "e-07",
+            "e-08"
+          ]
         },
         {
           "name": "Event Horizon",
-          "abbreviation": "EH"
+          "abbreviation": "EH",
+          "roomCount": 18,
+          "roomOrder": [
+            "f-door",
+            {
+              "roomId": "f-00",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "f-00",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "f-01",
+            "f-02",
+            "f-03",
+            "f-04",
+            "f-05",
+            "f-06",
+            "f-07",
+            "f-08",
+            "f-09",
+            "g-00",
+            "g-01",
+            "g-03",
+            "g-02",
+            "g-04",
+            "g-05",
+            "g-06"
+          ]
         },
         {
           "name": "Determination",
-          "abbreviation": "DT"
+          "abbreviation": "DT",
+          "roomCount": 15,
+          "roomOrder": [
+            "h-00b",
+            "h-00",
+            "h-01",
+            "h-02",
+            "h-03",
+            "h-03b",
+            "h-04",
+            "h-04b",
+            "h-05",
+            "h-06",
+            "h-06b",
+            {
+              "roomId": "h-07",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "h-07",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "h-08",
+            "h-09",
+            "h-10"
+          ]
         },
         {
           "name": "Stubbornness",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 7,
+          "roomOrder": [
+            "i-00",
+            "i-00b",
+            "i-01",
+            "i-02",
+            "i-03",
+            "i-04",
+            "i-05"
+          ]
         },
         {
           "name": "Reconciliation",
-          "abbreviation": "RC"
+          "abbreviation": "RC",
+          "roomCount": 18,
+          "roomOrder": [
+            "j-00",
+            "j-00b",
+            "j-01",
+            "j-02",
+            "j-03",
+            "j-04",
+            "j-05",
+            "j-06",
+            "j-07",
+            "j-08",
+            "j-09",
+            "j-10",
+            "j-11",
+            "j-12",
+            "j-13",
+            "j-14",
+            "j-14b",
+            "j-15"
+          ]
         },
         {
           "name": "Farewell",
-          "abbreviation": "FW"
+          "abbreviation": "FW",
+          "roomCount": 5,
+          "roomOrder": [
+            {
+              "roomId": "j-16",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "j-16",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "j-17",
+            "j-18",
+            "j-19",
+            "end-golden"
+          ]
         }
       ],
       "roomCount": 109,
-      "roomOrder": [
-        [
-          "intro-00-past",
-          "intro-01-future",
-          "intro-02-launch",
-          "intro-03-space"
-        ],
-        [
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03",
-          "a-04",
-          "a-05",
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-03",
-          "b-04",
-          "b-05",
-          "b-06",
-          "b-07"
-        ],
-        [
-          "c-00",
-          "c-alt-00",
-          "c-alt-01",
-          "c-00b",
-          "c-01",
-          "c-02",
-          "c-03",
-          "d-00",
-          "d-01",
-          "d-02",
-          "d-03",
-          "d-04",
-          "d-05",
-          "d-05",
-          "e-00y",
-          "e-00yb"
-        ],
-        [
-          "e-00z",
-          "e-00",
-          "e-00b",
-          "e-01",
-          "e-02",
-          "e-03",
-          "e-04",
-          "e-05",
-          "e-05b",
-          "e-05c",
-          "e-06",
-          "e-07",
-          "e-08"
-        ],
-        [
-          "f-door",
-          "f-00",
-          "f-00",
-          "f-01",
-          "f-02",
-          "f-03",
-          "f-04",
-          "f-05",
-          "f-06",
-          "f-07",
-          "f-08",
-          "f-09",
-          "g-00",
-          "g-01",
-          "g-03",
-          "g-02",
-          "g-04",
-          "g-05",
-          "g-06"
-        ],
-        [
-          "h-00b",
-          "h-00",
-          "h-01",
-          "h-02",
-          "h-03",
-          "h-03b",
-          "h-04",
-          "h-04b",
-          "h-05",
-          "h-06",
-          "h-06b",
-          "h-07",
-          "h-07",
-          "h-08",
-          "h-09",
-          "h-10"
-        ],
-        [
-          "i-00",
-          "i-00b",
-          "i-01",
-          "i-02",
-          "i-03",
-          "i-04",
-          "i-05"
-        ],
-        [
-          "j-00",
-          "j-00b",
-          "j-01",
-          "j-02",
-          "j-03",
-          "j-04",
-          "j-05",
-          "j-06",
-          "j-07",
-          "j-08",
-          "j-09",
-          "j-10",
-          "j-11",
-          "j-12",
-          "j-13",
-          "j-14",
-          "j-14b",
-          "j-15"
-        ],
-        [
-          "j-16",
-          "j-16",
-          "j-17",
-          "j-18",
-          "j-19",
-          "end-golden"
-        ]
-      ],
       "rooms": {
         "intro-00-past": {
           "name": "Past",
@@ -203,137 +242,137 @@
         },
         "a-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/1.png"
         },
         "a-01": {
           "name": "Crystal tunnel",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/2.png"
         },
         "a-02": {
           "name": "Sliding block",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/3.png"
         },
         "a-03": {
           "name": "Block toss",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/4.png"
         },
         "a-04": {
           "name": "Spring blocks I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/5.png"
         },
         "a-05": {
           "name": "Spring blocks II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/6.png"
         },
         "b-00": {
           "name": "Fish intro",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/7.png"
         },
         "b-01": {
           "name": "Fish bounce I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/8.png"
         },
         "b-02": {
           "name": "Fish bounce II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/9.png"
         },
         "b-03": {
           "name": "Dream fish",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/10.png"
         },
         "b-04": {
           "name": "Fish cave",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/11.png"
         },
         "b-05": {
           "name": "Fish spring I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/12.png"
         },
         "b-06": {
           "name": "Fish spring II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/13.png"
         },
         "b-07": {
           "name": "Electric maze",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/2/14.png"
         },
         "c-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/1.png"
         },
         "c-alt-00": {
           "name": "Top route I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/2.png"
         },
         "c-alt-01": {
           "name": "Top route II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/3.png"
         },
         "c-00b": {
           "name": "Bottom route I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/4.png"
         },
         "c-01": {
           "name": "Bottom route II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/5.png"
         },
         "c-02": {
           "name": "Bottom route III",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/6.png"
         },
         "c-03": {
           "name": "Keyskip Jelly",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/7.png"
         },
         "d-00": {
           "name": "Locked room",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/8.png"
         },
         "d-01": {
           "name": "Bottom left key",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/9.png"
         },
         "d-02": {
           "name": "Top left key",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/10.png"
         },
         "d-03": {
           "name": "Bottom right key",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/11.png"
         },
         "d-04": {
           "name": "Top right key",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/12.png"
         },
         "d-05": {
           "name": "Top key and Keyskip",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/13.png",
           "x": 184,
           "y": 152,
@@ -354,87 +393,87 @@
         },
         "e-00y": {
           "name": "Keyskip II / Bubble stars",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/15.png"
         },
         "e-00yb": {
           "name": "Keyskip III",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/3/16.png"
         },
         "e-00z": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/1.png"
         },
         "e-00": {
           "name": "Cloud fish switch",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/2.png"
         },
         "e-00b": {
           "name": "Jelly up",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/3.png"
         },
         "e-01": {
           "name": "Sawmill",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/4.png"
         },
         "e-02": {
           "name": "Limbo",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/5.png"
         },
         "e-03": {
           "name": "Fish springs",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/6.png"
         },
         "e-04": {
           "name": "Jelly gates",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/7.png"
         },
         "e-05": {
           "name": "Fish push",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/8.png"
         },
         "e-05b": {
           "name": "Aloft fish",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/9.png"
         },
         "e-05c": {
           "name": "Fish bounce",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/10.png"
         },
         "e-06": {
           "name": "Glide springs",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/11.png"
         },
         "e-07": {
           "name": "Fishscroller",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/12.png"
         },
         "e-08": {
           "name": "Jellyscroller",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/4/13.png"
         },
         "f-door": {
           "name": "Heart gate",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/1.png"
         },
         "f-00": {
           "name": "Wavedash Tutorial I + II",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/2.png",
           "x": 16,
           "y": 128,
@@ -455,142 +494,142 @@
         },
         "f-01": {
           "name": "Wavedash Tutorial III",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/4.png"
         },
         "f-02": {
           "name": "Bird",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/5.png"
         },
         "f-03": {
           "name": "Beyond the heart",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/6.png"
         },
         "f-04": {
           "name": "Wavedash blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/7.png"
         },
         "f-05": {
           "name": "Conveyor",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/8.png"
         },
         "f-06": {
           "name": "Kevin",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/9.png"
         },
         "f-07": {
           "name": "Wavedash zippers",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/10.png"
         },
         "f-08": {
           "name": "Autoscroller",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/11.png"
         },
         "f-09": {
           "name": "Bounce switch",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/12.png"
         },
         "g-00": {
           "name": "Vertical Zipper",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/13.png"
         },
         "g-01": {
           "name": "Wavedash bubbles",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/14.png"
         },
         "g-03": {
           "name": "Dream switch",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/15.png"
         },
         "g-02": {
           "name": "Moving dream blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/16.png"
         },
         "g-04": {
           "name": "Comb",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/17.png"
         },
         "g-05": {
           "name": "Cloud gap",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/18.png"
         },
         "g-06": {
           "name": "Bird trail",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/5/19.png"
         },
         "h-00b": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/1.png"
         },
         "h-00": {
           "name": "Trash Compactor",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/2.png"
         },
         "h-01": {
           "name": "Spring scroller",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/3.png"
         },
         "h-02": {
           "name": "Wind bubbles",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/4.png"
         },
         "h-03": {
           "name": "Airlock",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/5.png"
         },
         "h-03b": {
           "name": "Core block",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/6.png"
         },
         "h-04": {
           "name": "Starshaft",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/7.png"
         },
         "h-04b": {
           "name": "Demo room",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/8.png"
         },
         "h-05": {
           "name": "Cheese",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/9.png"
         },
         "h-06": {
           "name": "Falling pillars",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/10.png"
         },
         "h-06b": {
           "name": "Fire & Ice",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/11.png"
         },
         "h-07": {
           "name": "Blocks and Windsprings",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/13.png",
           "x": 560,
           "y": 144,
@@ -611,147 +650,147 @@
         },
         "h-08": {
           "name": "Conveyor",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/14.png"
         },
         "h-09": {
           "name": "Kevin",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/15.png"
         },
         "h-10": {
           "name": "Star road",
-          "checkpointNo": 0,
+          "checkpointNo": 5,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/6/16.png"
         },
         "i-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/1.png"
         },
         "i-00b": {
           "name": "Hubris",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/2.png"
         },
         "i-01": {
           "name": "Spring blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/3.png"
         },
         "i-02": {
           "name": "Horseshoe",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/4.png"
         },
         "i-03": {
           "name": "Crystal columns",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/5.png"
         },
         "i-04": {
           "name": "Bubble lock",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/6.png"
         },
         "i-05": {
           "name": "Underhang",
-          "checkpointNo": 0,
+          "checkpointNo": 6,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/7/7.png"
         },
         "j-00": {
           "name": "Start",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/1.png"
         },
         "j-00b": {
           "name": "Jelly throw",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/2.png"
         },
         "j-01": {
           "name": "Bird & Badeline",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/3.png"
         },
         "j-02": {
           "name": "Social distancing",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/4.png"
         },
         "j-03": {
           "name": "Moving pillars",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/5.png"
         },
         "j-04": {
           "name": "Jelly dash",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/6.png"
         },
         "j-05": {
           "name": "Feather pillars",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/7.png"
         },
         "j-06": {
           "name": "Shifting maze",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/8.png"
         },
         "j-07": {
           "name": "Aquarium",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/9.png"
         },
         "j-08": {
           "name": "Whoosh",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/10.png"
         },
         "j-09": {
           "name": "Electric press",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/11.png"
         },
         "j-10": {
           "name": "Dash block maze",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/12.png"
         },
         "j-11": {
           "name": "Sping scroller",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/13.png"
         },
         "j-12": {
           "name": "Wavedash blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/14.png"
         },
         "j-13": {
           "name": "Windfeather",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/15.png"
         },
         "j-14": {
           "name": "Chokefish",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/16.png"
         },
         "j-14b": {
           "name": "Jelly bounce",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/17.png"
         },
         "j-15": {
           "name": "Kevin",
-          "checkpointNo": 0,
+          "checkpointNo": 7,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/8/18.png"
         },
         "j-16": {
           "name": "Farewell",
-          "checkpointNo": 0,
+          "checkpointNo": 8,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/9/1.png",
           "x": 48,
           "y": 2680,
@@ -772,22 +811,22 @@
         },
         "j-17": {
           "name": "Forced death",
-          "checkpointNo": 0,
+          "checkpointNo": 8,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/9/3.png"
         },
         "j-18": {
           "name": "Spawn set",
-          "checkpointNo": 0,
+          "checkpointNo": 8,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/9/4.png"
         },
         "j-19": {
           "name": "Moonberry room",
-          "checkpointNo": 0,
+          "checkpointNo": 8,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/9/5.png"
         },
         "end-golden": {
           "name": "Golden room",
-          "checkpointNo": 0,
+          "checkpointNo": 8,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/farewell/1/9/6.png"
         }
       }

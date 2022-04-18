@@ -11,74 +11,91 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 19,
+          "roomOrder": [
+            "start",
+            "s0",
+            "s1",
+            "s2",
+            "0",
+            "1",
+            {
+              "roomId": "2",
+              "subroomIndex": 0,
+              "root": true
+            },
+            "d0",
+            "d7",
+            "d8",
+            {
+              "roomId": "d3",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "d3",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "d2",
+            "d9",
+            "d1",
+            "d6",
+            "d4",
+            "d5",
+            "1",
+            "3x"
+          ]
         },
         {
           "name": "Intervention",
-          "abbreviation": "IV"
+          "abbreviation": "IV",
+          "roomCount": 15,
+          "roomOrder": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "9b",
+            "10",
+            {
+              "roomId": "2",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "11",
+            "12b",
+            "12c",
+            "12d",
+            "12",
+            "13"
+          ]
         },
         {
           "name": "Awake",
-          "abbreviation": "AW"
+          "abbreviation": "AW",
+          "roomCount": 12,
+          "roomOrder": [
+            "end_0",
+            "end_s0",
+            "end_s1",
+            "end_1",
+            "end_2",
+            "end_3",
+            "end_4",
+            "end_3b",
+            "end_3cb",
+            "end_3c",
+            "end_5",
+            "end_6"
+          ]
         }
       ],
       "roomCount": 45,
-      "roomOrder": [
-        [
-          "start",
-          "s0",
-          "s1",
-          "s2",
-          "0",
-          "1",
-          "2",
-          "d0",
-          "d7",
-          "d8",
-          "d3",
-          "d3",
-          "d2",
-          "d9",
-          "d1",
-          "d6",
-          "d4",
-          "d5",
-          "1",
-          "3x"
-        ],
-        [
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "9b",
-          "10",
-          "2",
-          "11",
-          "12b",
-          "12c",
-          "12d",
-          "12",
-          "13"
-        ],
-        [
-          "end_0",
-          "end_s0",
-          "end_s1",
-          "end_1",
-          "end_2",
-          "end_3",
-          "end_4",
-          "end_3b",
-          "end_3cb",
-          "end_3c",
-          "end_5",
-          "end_6"
-        ]
-      ],
       "rooms": {
         "0": {
           "name": "Fork",
@@ -113,57 +130,57 @@
         },
         "3": {
           "name": "Part of you",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/1.png"
         },
         "4": {
           "name": "Case and berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/2.png"
         },
         "5": {
           "name": "Chase and berry tunnel",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/3.png"
         },
         "6": {
           "name": "Chase and switch",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/4.png"
         },
         "7": {
           "name": "Chase and switches",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/5.png"
         },
         "8": {
           "name": "Chase and spring",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/6.png"
         },
         "9": {
           "name": "Chase and ice",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/7.png"
         },
         "10": {
           "name": "Chase downwards",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/9.png"
         },
         "11": {
           "name": "Dreaming of awake I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/11.png"
         },
         "12": {
           "name": "Dreaming of awake 3",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/15.png"
         },
         "13": {
           "name": "Unknown caller",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/16.png"
         },
         "start": {
@@ -259,82 +276,82 @@
         },
         "9b": {
           "name": "Berry and peace",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/8.png"
         },
         "12b": {
           "name": "Dreaming of awake II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/12.png"
         },
         "12c": {
           "name": "High dream berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/13.png"
         },
         "12d": {
           "name": "Low dream berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/2/14.png"
         },
         "end_0": {
           "name": "Awake monumnet",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/1.png"
         },
         "end_s0": {
           "name": "Climbing the ruins",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/2.png"
         },
         "end_s1": {
           "name": "My heart is a fortress",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/3.png"
         },
         "end_1": {
           "name": "Tunnel and climb",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/4.png"
         },
         "end_2": {
           "name": "By the fire",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/5.png"
         },
         "end_3": {
           "name": "Venture into night",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/6.png"
         },
         "end_4": {
           "name": "Empty",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/7.png"
         },
         "end_3b": {
           "name": "Springs",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/8.png"
         },
         "end_3cb": {
           "name": "Accending shaft",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/9.png"
         },
         "end_3c": {
           "name": "Crumbling winged berry",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/10.png"
         },
         "end_5": {
           "name": "Emptier",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/11.png"
         },
         "end_6": {
           "name": "Calling family",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/1/3/12.png"
         }
       }
@@ -344,82 +361,83 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 6,
+          "roomOrder": [
+            "start",
+            "00",
+            "01",
+            "01b",
+            "02b",
+            "02"
+          ]
         },
         {
           "name": "Combination Lock",
-          "abbreviation": "CL"
+          "abbreviation": "CL",
+          "roomCount": 5,
+          "roomOrder": [
+            "03",
+            "04",
+            "05",
+            "06",
+            "07"
+          ]
         },
         {
           "name": "Dream Altar",
-          "abbreviation": "DA"
+          "abbreviation": "DA",
+          "roomCount": 6,
+          "roomOrder": [
+            "08b",
+            "08",
+            "09",
+            "10",
+            "11",
+            "end"
+          ]
         }
       ],
       "roomCount": 17,
-      "roomOrder": [
-        [
-          "start",
-          "00",
-          "01",
-          "01b",
-          "02b",
-          "02"
-        ],
-        [
-          "03",
-          "04",
-          "05",
-          "06",
-          "07"
-        ],
-        [
-          "08b",
-          "08",
-          "09",
-          "10",
-          "11",
-          "end"
-        ]
-      ],
       "rooms": {
         "10": {
           "name": "Dream puzzle 1",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/4.png"
         },
         "11": {
           "name": "Dream puzzle 2",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/5.png"
         },
         "start": {
           "name": "Monument",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/1.png"
         },
         "00": {
           "name": "One way dreams",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/2.png"
         },
         "01": {
           "name": "Dream jump tutorial",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/3.png"
         },
         "01b": {
           "name": "Dream jumps I",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/4.png"
         },
         "02b": {
           "name": "Dream jumps II",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/5.png"
         },
         "02": {
           "name": "Dream jumps III",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/1/6.png"
         },
         "03": {
@@ -449,22 +467,22 @@
         },
         "08b": {
           "name": "Spikes, Springs and Dreams",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/1.png"
         },
         "08": {
           "name": "One way dream tunnel",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/2.png"
         },
         "09": {
           "name": "Up and down",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/3.png"
         },
         "end": {
           "name": "Cassette room",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/2/3/6.png"
         }
       }
@@ -474,31 +492,30 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 3,
+          "roomOrder": [
+            "00",
+            "01",
+            "02"
+          ]
         }
       ],
       "roomCount": 3,
-      "roomOrder": [
-        [
-          "00",
-          "01",
-          "02"
-        ]
-      ],
       "rooms": {
         "00": {
           "name": "Dream spikes",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/3/1/1.png"
         },
         "01": {
           "name": "Badeline switches",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/3/1/2.png"
         },
         "02": {
           "name": "Heart room",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/site/3/1/3.png"
         }
       }

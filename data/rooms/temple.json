@@ -11,131 +11,194 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 20,
+          "roomOrder": [
+            "a-00x",
+            "a-00b",
+            "a-00d",
+            "a-00c",
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03",
+            "a-04",
+            "a-05",
+            "a-06",
+            "a-07",
+            "a-08",
+            "a-10",
+            "a-09",
+            "a-11",
+            {
+              "roomId": "a-12",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "a-12",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "a-15",
+            "a-14",
+            "a-13"
+          ]
         },
         {
           "name": "Depths",
-          "abbreviation": "DP"
+          "abbreviation": "DP",
+          "roomCount": 26,
+          "roomOrder": [
+            "b-00",
+            "b-18",
+            "b-01",
+            "b-01c",
+            {
+              "roomId": "b-20",
+              "subroomIndex": 0,
+              "root": true
+            },
+            "b-21",
+            {
+              "roomId": "b-20",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "b-01b",
+            "b-02",
+            "b-03",
+            "b-05",
+            "b-04",
+            "b-07",
+            "b-08",
+            "b-09",
+            "b-10",
+            "b-11",
+            "b-12",
+            "b-13",
+            {
+              "roomId": "b-17",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "b-17",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "b-22",
+            "b-06",
+            "b-19",
+            "b-14",
+            "b-15",
+            "b-16",
+            "void"
+          ]
         },
         {
           "name": "Unravelling",
-          "abbreviation": "UR"
+          "abbreviation": "UR",
+          "roomCount": 12,
+          "roomOrder": [
+            "c-00",
+            "c-01",
+            "c-01b",
+            "c-01c",
+            "c-08b",
+            "c-08",
+            "c-10",
+            "c-12",
+            "c-07",
+            "c-11",
+            "c-09",
+            "c-13"
+          ]
         },
         {
           "name": "Search",
-          "abbreviation": "SC"
+          "abbreviation": "SC",
+          "roomCount": 16,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            {
+              "roomId": "e-00",
+              "subroomIndex": 0,
+              "root": true
+            },
+            "d-09",
+            {
+              "roomId": "d-04",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "d-04",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "d-05",
+            {
+              "roomId": "d-06",
+              "subroomIndex": 0,
+              "root": true
+            },
+            "d-07",
+            "d-02",
+            "d-03",
+            {
+              "roomId": "d-06",
+              "subroomIndex": 1,
+              "root": true
+            },
+            {
+              "roomId": "d-15",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "d-15",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "d-13",
+            {
+              "roomId": "d-15",
+              "subroomIndex": 2,
+              "root": true
+            },
+            "d-19",
+            "d-19b",
+            "d-10",
+            "d-20"
+          ]
         },
         {
           "name": "Rescue",
-          "abbreviation": "RS"
+          "abbreviation": "RS",
+          "roomCount": 11,
+          "roomOrder": [
+            {
+              "roomId": "e-00",
+              "subroomIndex": 1,
+              "root": true
+            },
+            "e-01",
+            "e-02",
+            "e-03",
+            "e-04",
+            "e-06",
+            "e-05",
+            "e-07",
+            "e-08",
+            "e-09",
+            "e-10",
+            "e-11"
+          ]
         }
       ],
       "roomCount": 85,
-      "roomOrder": [
-        [
-          "a-00x",
-          "a-00b",
-          "a-00d",
-          "a-00c",
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03",
-          "a-04",
-          "a-05",
-          "a-06",
-          "a-07",
-          "a-08",
-          "a-10",
-          "a-09",
-          "a-11",
-          "a-12",
-          "a-12",
-          "a-15",
-          "a-14",
-          "a-13"
-        ],
-        [
-          "b-00",
-          "b-18",
-          "b-01",
-          "b-01c",
-          "b-20",
-          "b-21",
-          "b-20",
-          "b-01b",
-          "b-02",
-          "b-03",
-          "b-05",
-          "b-04",
-          "b-07",
-          "b-08",
-          "b-09",
-          "b-10",
-          "b-11",
-          "b-12",
-          "b-13",
-          "b-17",
-          "b-17",
-          "b-22",
-          "b-06",
-          "b-19",
-          "b-14",
-          "b-15",
-          "b-16",
-          "void"
-        ],
-        [
-          "c-00",
-          "c-01",
-          "c-01b",
-          "c-01c",
-          "c-08b",
-          "c-08",
-          "c-10",
-          "c-12",
-          "c-07",
-          "c-11",
-          "c-09",
-          "c-13"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "e-00",
-          "d-09",
-          "d-04",
-          "d-04",
-          "d-05",
-          "d-06",
-          "d-07",
-          "d-02",
-          "d-03",
-          "d-06",
-          "d-15",
-          "d-15",
-          "d-13",
-          "d-15",
-          "d-19",
-          "d-19b",
-          "d-10",
-          "d-20"
-        ],
-        [
-          "e-00",
-          "e-01",
-          "e-02",
-          "e-03",
-          "e-04",
-          "e-06",
-          "e-05",
-          "e-07",
-          "e-08",
-          "e-09",
-          "e-10",
-          "e-11"
-        ]
-      ],
       "rooms": {
         "a-00x": {
           "name": "Gondola",
@@ -255,27 +318,27 @@
         },
         "b-00": {
           "name": "Theo in the mirror",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/1.png"
         },
         "b-18": {
           "name": "Crystal bubble berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/2.png"
         },
         "b-01": {
           "name": "Depths cornerboost",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/3.png"
         },
         "b-01c": {
           "name": "Block fling berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/4.png"
         },
         "b-20": {
           "name": "Rusted gates",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/5.png",
           "x": 216,
           "y": 80,
@@ -296,72 +359,72 @@
         },
         "b-21": {
           "name": "Winged berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/6.png"
         },
         "b-01b": {
           "name": "Dash block pit",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/8.png"
         },
         "b-02": {
           "name": "Junction room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/9.png"
         },
         "b-03": {
           "name": "Cool demo bruh",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/10.png"
         },
         "b-05": {
           "name": "Bubble berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/11.png"
         },
         "b-04": {
           "name": "Key room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/12.png"
         },
         "b-07": {
           "name": "Key path I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/13.png"
         },
         "b-08": {
           "name": "Key path II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/14.png"
         },
         "b-09": {
           "name": "Key path III",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/15.png"
         },
         "b-10": {
           "name": "Block sandwich berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/16.png"
         },
         "b-11": {
           "name": "Button room I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/17.png"
         },
         "b-12": {
           "name": "Bubble berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/18.png"
         },
         "b-13": {
           "name": "Button room II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/19.png"
         },
         "b-17": {
           "name": "Seed puzzle",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/20.png",
           "x": 8,
           "y": 232,
@@ -382,112 +445,112 @@
         },
         "b-22": {
           "name": "Cassette",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/22.png"
         },
         "b-06": {
           "name": "Key skip room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/23.png"
         },
         "b-19": {
           "name": "Floorless bubble room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/24.png"
         },
         "b-14": {
           "name": "Extra key door",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/25.png"
         },
         "b-15": {
           "name": "Heart room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/26.png"
         },
         "b-16": {
           "name": "Mirror room",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/27.png"
         },
         "void": {
           "name": "The void",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/2/28.png"
         },
         "c-00": {
           "name": "The fall",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/1.png"
         },
         "c-01": {
           "name": "Victim and the Monster",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/2.png"
         },
         "c-01b": {
           "name": "Tentacle passage I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/3.png"
         },
         "c-01c": {
           "name": "Tentacle passage II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/4.png"
         },
         "c-08b": {
           "name": "First seeker",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/5.png"
         },
         "c-08": {
           "name": "Berry block",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/6.png"
         },
         "c-10": {
           "name": "Seeker switches I",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/7.png"
         },
         "c-12": {
           "name": "Seeker switches II",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/8.png"
         },
         "c-07": {
           "name": "Seeker switches III",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/9.png"
         },
         "c-11": {
           "name": "Seeker moonlight",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/10.png"
         },
         "c-09": {
           "name": "Seeker switches VI",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/11.png"
         },
         "c-13": {
           "name": "Seeker switches V",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/3/12.png"
         },
         "d-00": {
           "name": "Bubble crystal maze",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/1.png"
         },
         "d-01": {
           "name": "Center room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/2.png"
         },
         "e-00": {
           "name": "Theo",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/1.png",
           "x": 136,
           "y": 112,
@@ -508,12 +571,12 @@
         },
         "d-09": {
           "name": "Upper berry path",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/4.png"
         },
         "d-04": {
           "name": "Search skip",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/5.png",
           "x": 648,
           "y": 88,
@@ -534,12 +597,12 @@
         },
         "d-05": {
           "name": "Right key path",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/7.png"
         },
         "d-06": {
           "name": "Launch platform",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/8.png",
           "x": 232,
           "y": 296,
@@ -560,22 +623,22 @@
         },
         "d-07": {
           "name": "Seeker bubble switches",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/9.png"
         },
         "d-02": {
           "name": "Left key path I",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/10.png"
         },
         "d-03": {
           "name": "Left key path II",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/11.png"
         },
         "d-15": {
           "name": "Search right side",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/13.png",
           "x": 8,
           "y": 16428,
@@ -602,82 +665,82 @@
         },
         "d-13": {
           "name": "Seeker den berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/15.png"
         },
         "d-19": {
           "name": "Spare key berry",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/17.png"
         },
         "d-19b": {
           "name": "Seeker scramble",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/18.png"
         },
         "d-10": {
           "name": "Seeker pit",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/19.png"
         },
         "d-20": {
           "name": "Moonlight barrier",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/4/20.png"
         },
         "e-01": {
           "name": "Theogate",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/2.png"
         },
         "e-02": {
           "name": "Seekers & Theo I",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/3.png"
         },
         "e-03": {
           "name": "Seekers & Theo II",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/4.png"
         },
         "e-04": {
           "name": "Seekers & Theo III",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/5.png"
         },
         "e-06": {
           "name": "Seekers & Theo VI",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/6.png"
         },
         "e-05": {
           "name": "Theo Helps",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/7.png"
         },
         "e-07": {
           "name": "Launch platform",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/8.png"
         },
         "e-08": {
           "name": "Seeker killer",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/9.png"
         },
         "e-09": {
           "name": "Over and under",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/10.png"
         },
         "e-10": {
           "name": "Almost there",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/11.png"
         },
         "e-11": {
           "name": "Eyeball room",
-          "checkpointNo": 0,
+          "checkpointNo": 4,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/1/5/12.png"
         }
       }
@@ -687,76 +750,78 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 4,
+          "roomOrder": [
+            "start",
+            "a-00",
+            "a-01",
+            "a-02"
+          ]
         },
         {
           "name": "Central Chamber",
-          "abbreviation": "CC"
+          "abbreviation": "CC",
+          "roomCount": 10,
+          "roomOrder": [
+            "b-00",
+            "b-01",
+            "b-04",
+            "b-02",
+            "b-05",
+            "b-06",
+            "b-07",
+            "b-03",
+            "b-08",
+            "b-09"
+          ]
         },
         {
           "name": "Through the Mirror",
-          "abbreviation": "TTM"
+          "abbreviation": "TTM",
+          "roomCount": 5,
+          "roomOrder": [
+            "c-00",
+            "c-01",
+            "c-02",
+            "c-03",
+            "c-04"
+          ]
         },
         {
           "name": "Mix Master",
-          "abbreviation": "MM"
+          "abbreviation": "MM",
+          "roomCount": 6,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            "d-02",
+            "d-03",
+            "d-04",
+            "d-05"
+          ]
         }
       ],
       "roomCount": 25,
-      "roomOrder": [
-        [
-          "start",
-          "a-00",
-          "a-01",
-          "a-02"
-        ],
-        [
-          "b-00",
-          "b-01",
-          "b-04",
-          "b-02",
-          "b-05",
-          "b-06",
-          "b-07",
-          "b-03",
-          "b-08",
-          "b-09"
-        ],
-        [
-          "c-00",
-          "c-01",
-          "c-02",
-          "c-03",
-          "c-04"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "d-02",
-          "d-03",
-          "d-04",
-          "d-05"
-        ]
-      ],
       "rooms": {
         "start": {
           "name": "Start",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/1/1.png"
         },
         "a-00": {
           "name": "Bubble gate",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/1/2.png"
         },
         "a-01": {
           "name": "Bubble spike tunnel",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/1/3.png"
         },
         "a-02": {
           "name": "Dash blocks",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/1/4.png"
         },
         "b-00": {
@@ -811,57 +876,57 @@
         },
         "c-00": {
           "name": "Tentacle drop",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/3/1.png"
         },
         "c-01": {
           "name": "Seeker switch diamond",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/3/2.png"
         },
         "c-02": {
           "name": "Two switches & seekers",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/3/3.png"
         },
         "c-03": {
           "name": "Crumble pillars",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/3/4.png"
         },
         "c-04": {
           "name": "Crumble blocks",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/3/5.png"
         },
         "d-00": {
           "name": "Mix master",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/1.png"
         },
         "d-01": {
           "name": "Seekers and Theo",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/2.png"
         },
         "d-02": {
           "name": "Seeker gauntlet",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/3.png"
         },
         "d-03": {
           "name": "Land on the platform Theo",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/4.png"
         },
         "d-04": {
           "name": "Impossible room",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/5.png"
         },
         "d-05": {
           "name": "Cassette room",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/2/4/6.png"
         }
       }
@@ -871,31 +936,30 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 3,
+          "roomOrder": [
+            "00",
+            "01",
+            "02"
+          ]
         }
       ],
       "roomCount": 3,
-      "roomOrder": [
-        [
-          "00",
-          "01",
-          "02"
-        ]
-      ],
       "rooms": {
         "00": {
           "name": "Block bounce",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/3/1/1.png"
         },
         "01": {
           "name": "Block fling",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/3/1/2.png"
         },
         "02": {
           "name": "Heart room",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/temple/3/1/3.png"
         }
       }

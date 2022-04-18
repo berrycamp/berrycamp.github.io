@@ -10,18 +10,17 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 4,
+          "roomOrder": [
+            "outside",
+            "inside",
+            "bridge",
+            "secret"
+          ]
         }
       ],
       "roomCount": 4,
-      "roomOrder": [
-        [
-          "outside",
-          "inside",
-          "bridge",
-          "secret"
-        ]
-      ],
       "rooms": {
         "outside": {
           "name": "Outside",

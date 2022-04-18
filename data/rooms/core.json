@@ -11,71 +11,73 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 4,
+          "roomOrder": [
+            "0x",
+            "00",
+            "01",
+            "02"
+          ]
         },
         {
           "name": "Into the Core",
-          "abbreviation": "ITC"
+          "abbreviation": "ITC",
+          "roomCount": 13,
+          "roomOrder": [
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03",
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-03",
+            "b-04",
+            "b-05",
+            "b-06",
+            "b-07b",
+            "b-07"
+          ]
         },
         {
           "name": "Hot and Cold",
-          "abbreviation": "HAC"
+          "abbreviation": "HAC",
+          "roomCount": 7,
+          "roomOrder": [
+            "c-00",
+            "c-00b",
+            "c-01",
+            "c-02",
+            "c-03",
+            "c-03b",
+            "c-04"
+          ]
         },
         {
           "name": "Heart of the Mountain",
-          "abbreviation": "HOTM"
+          "abbreviation": "HOTM",
+          "roomCount": 15,
+          "roomOrder": [
+            "d-00",
+            "d-01",
+            "d-02",
+            "d-03",
+            "d-04",
+            "d-05",
+            "d-06",
+            "d-07",
+            "d-08",
+            "d-09",
+            "d-10",
+            "d-10b",
+            "d-10c",
+            "d-11",
+            "space"
+          ]
         }
       ],
       "roomCount": 39,
-      "roomOrder": [
-        [
-          "0x",
-          "00",
-          "01",
-          "02"
-        ],
-        [
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03",
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-03",
-          "b-04",
-          "b-05",
-          "b-06",
-          "b-07b",
-          "b-07"
-        ],
-        [
-          "c-00",
-          "c-00b",
-          "c-01",
-          "c-02",
-          "c-03",
-          "c-03b",
-          "c-04"
-        ],
-        [
-          "d-00",
-          "d-01",
-          "d-02",
-          "d-03",
-          "d-04",
-          "d-05",
-          "d-06",
-          "d-07",
-          "d-08",
-          "d-09",
-          "d-10",
-          "d-10b",
-          "d-10c",
-          "d-11",
-          "space"
-        ]
-      ],
       "rooms": {
         "0x": {
           "name": "Car",
@@ -99,177 +101,177 @@
         },
         "a-00": {
           "name": "Gaps and conveyors",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/1.png"
         },
         "a-01": {
           "name": "Fireballs and spring",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/2.png"
         },
         "a-02": {
           "name": "Core block",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/3.png"
         },
         "a-03": {
           "name": "Ascent I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/4.png"
         },
         "b-00": {
           "name": "Ice skip",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/5.png"
         },
         "b-01": {
           "name": "Rising balls I",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/6.png"
         },
         "b-02": {
           "name": "Rising balls II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/7.png"
         },
         "b-03": {
           "name": "Fire snake",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/8.png"
         },
         "b-04": {
           "name": "Ice switch",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/9.png"
         },
         "b-05": {
           "name": "Ice Snake",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/10.png"
         },
         "b-06": {
           "name": "Left berry",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/11.png"
         },
         "b-07b": {
           "name": "Ascent II",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/12.png"
         },
         "b-07": {
           "name": "Ascent III",
-          "checkpointNo": 0,
+          "checkpointNo": 1,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/2/13.png"
         },
         "c-00": {
           "name": "Conveyor and blocks",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/1.png"
         },
         "c-00b": {
           "name": "Berry bumpers",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/2.png"
         },
         "c-01": {
           "name": "Circling balls",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/3.png"
         },
         "c-02": {
           "name": "Bumper segments",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/4.png"
         },
         "c-03": {
           "name": "Ice bouncing",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/5.png"
         },
         "c-03b": {
           "name": "Thawed berry",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/6.png"
         },
         "c-04": {
           "name": "Fire and conveyors",
-          "checkpointNo": 0,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/3/7.png"
         },
         "d-00": {
           "name": "Rising lava I",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/1.png"
         },
         "d-01": {
           "name": "Rising lava II",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/2.png"
         },
         "d-02": {
           "name": "Rising ice I",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/3.png"
         },
         "d-03": {
           "name": "Rising ice II",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/4.png"
         },
         "d-04": {
           "name": "Rising lava III",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/5.png"
         },
         "d-05": {
           "name": "Serpentine",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/6.png"
         },
         "d-06": {
           "name": "Core block ascent",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/7.png"
         },
         "d-07": {
           "name": "Orb room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/8.png"
         },
         "d-08": {
           "name": "Sealed room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/9.png"
         },
         "d-09": {
           "name": "Fire pillar switches",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/10.png"
         },
         "d-10": {
           "name": "Bumper boosts",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/11.png"
         },
         "d-10b": {
           "name": "One Crystal passage",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/12.png"
         },
         "d-10c": {
           "name": "Feathers",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/13.png"
         },
         "d-11": {
           "name": "Cassette room",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/14.png"
         },
         "space": {
           "name": "Heart of the mountain",
-          "checkpointNo": 0,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/1/4/15.png"
         }
       }
@@ -279,64 +281,66 @@
       "checkpoints": [
         {
           "name": "Start",
-          "abbreviation": "ST"
+          "abbreviation": "ST",
+          "roomCount": 2,
+          "roomOrder": [
+            "00",
+            "01"
+          ]
         },
         {
           "name": "Into the Core",
-          "abbreviation": "ITC"
+          "abbreviation": "ITC",
+          "roomCount": 6,
+          "roomOrder": [
+            "a-00",
+            "a-01",
+            "a-02",
+            "a-03",
+            "a-04",
+            "a-05"
+          ]
         },
         {
           "name": "Burning or Freezing",
-          "abbreviation": "BOF"
+          "abbreviation": "BOF",
+          "roomCount": 6,
+          "roomOrder": [
+            "b-00",
+            "b-01",
+            "b-02",
+            "b-03",
+            "b-04",
+            "b-05"
+          ]
         },
         {
           "name": "Heartbeat",
-          "abbreviation": "HB"
+          "abbreviation": "HB",
+          "roomCount": 9,
+          "roomOrder": [
+            "c-01",
+            "c-02",
+            "c-03",
+            "c-04",
+            "c-05",
+            "c-06",
+            "c-08",
+            "c-07",
+            "space"
+          ]
         }
       ],
       "roomCount": 23,
-      "roomOrder": [
-        [
-          "00",
-          "01"
-        ],
-        [
-          "a-00",
-          "a-01",
-          "a-02",
-          "a-03",
-          "a-04",
-          "a-05"
-        ],
-        [
-          "b-00",
-          "b-01",
-          "b-02",
-          "b-03",
-          "b-04",
-          "b-05"
-        ],
-        [
-          "c-01",
-          "c-02",
-          "c-03",
-          "c-04",
-          "c-05",
-          "c-06",
-          "c-08",
-          "c-07",
-          "space"
-        ]
-      ],
       "rooms": {
         "00": {
           "name": "Start",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/1/1.png"
         },
         "01": {
           "name": "Heart gate",
-          "checkpointNo": 1,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/1/2.png"
         },
         "a-00": {
@@ -371,77 +375,77 @@
         },
         "b-00": {
           "name": "Fire tunnel",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/1.png"
         },
         "b-01": {
           "name": "Fire & ice segments",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/2.png"
         },
         "b-02": {
           "name": "Ice bouncing II",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/3.png"
         },
         "b-03": {
           "name": "Crystal conveyors",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/4.png"
         },
         "b-04": {
           "name": "Fireball conveyors",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/5.png"
         },
         "b-05": {
           "name": "Circling balls",
-          "checkpointNo": 1,
+          "checkpointNo": 2,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/3/6.png"
         },
         "c-01": {
           "name": "Rising fire",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/1.png"
         },
         "c-02": {
           "name": "Rising ice",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/2.png"
         },
         "c-03": {
           "name": "Wall conveyors",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/3.png"
         },
         "c-04": {
           "name": "Compendium",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/4.png"
         },
         "c-05": {
           "name": "Floor and ceiling",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/5.png"
         },
         "c-06": {
           "name": "Ball snake",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/6.png"
         },
         "c-08": {
           "name": "Conveyor switch",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/7.png"
         },
         "c-07": {
           "name": "Jank blocks",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/8.png"
         },
         "space": {
           "name": "Cassette room",
-          "checkpointNo": 1,
+          "checkpointNo": 3,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/2/4/9.png"
         }
       }
@@ -451,38 +455,45 @@
       "checkpoints": [
         {
           "name": "Begin",
-          "abbreviation": "BG"
+          "abbreviation": "BG",
+          "roomCount": 4,
+          "roomOrder": [
+            "intro",
+            "00",
+            "01",
+            {
+              "roomId": "02",
+              "subroomIndex": 0,
+              "root": true
+            },
+            {
+              "roomId": "02",
+              "subroomIndex": 1,
+              "root": true
+            }
+          ]
         }
       ],
       "roomCount": 4,
-      "roomOrder": [
-        [
-          "intro",
-          "00",
-          "01",
-          "02",
-          "02"
-        ]
-      ],
       "rooms": {
         "intro": {
           "name": "Heart gate",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/3/1/1.png"
         },
         "00": {
           "name": "Hyper tutorial",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/3/1/2.png"
         },
         "01": {
           "name": "Blocks and bumpers",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/3/1/3.png"
         },
         "02": {
           "name": "Heart room",
-          "checkpointNo": 2,
+          "checkpointNo": 0,
           "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/core/3/1/4.png",
           "x": 56,
           "y": 104,
