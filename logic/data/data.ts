@@ -16,7 +16,7 @@ export const DATA: DataTree = {
     gameId: "Celeste",
     name: "Celeste",
     desc: "Madelines journey to the summit of Celeste Mountain.",
-    imageUrl: "https://f002.backblazeb2.com/file/berrycamp/static/navigation/chapters/images/ridge.png",
+    image: "",
     chapterCount: 11,
     chapters: {
       prologue,

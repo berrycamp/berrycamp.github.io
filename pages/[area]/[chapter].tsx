@@ -29,7 +29,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
     <Layout
       title={chapter.name}
       description={chapter.desc}
-      imgUrl={chapter.imageUrl}
+      imgUrl={chapter.image}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -46,7 +46,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
           <Box flexShrink={0} position="relative" width={240} height={135}>
             <Image
               className="pixelated-image"
-              src={chapter.imageUrl}
+              src={chapter.image}
               alt={`Image of chapter ${chapter.name}`}
               width={240}
               height={135}

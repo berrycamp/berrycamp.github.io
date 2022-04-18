@@ -4,7 +4,7 @@ export interface Area {
   gameId: string;
   name: string;
   desc: string;
-  imageUrl: string;
+  image: string;
   chapters: Record<string, Chapter>
   chapterCount: number;
 }
@@ -13,7 +13,7 @@ export interface Chapter {
   gameId: string;
   name: string
   desc: string;
-  imageUrl: string;
+  image: string;
   chapterNo?: number;
   sides: Record<"a", Side> & Partial<Record<"b" | "c", Side>>;
   sideCount: number;
@@ -48,7 +48,7 @@ export interface SubroomOrderEntry {
 export interface Room {
   name: string;
   checkpointNo: number;
-  imageUrl: string;
+  image: string;
   subrooms?: Subroom[];
   x?: number;
   y?: number;
@@ -56,7 +56,7 @@ export interface Room {
 
 export interface Subroom {
   name: string;
-  imageUrl: string;
+  image: string;
   x: number;
   y: number;
 }

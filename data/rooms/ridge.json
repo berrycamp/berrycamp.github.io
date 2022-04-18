@@ -3,7 +3,7 @@
   "chapterNo": 4,
   "name": "Golden Ridge",
   "desc": "Madeline scales the sheer cliffs of the ridge; through a tempest that pushes back her every step. A single slip and she will be lost like a feather in the wind.",
-  "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/12.png",
+  "image": "ridge/1/4/12",
   "sideCount": 3,
   "sides": {
     "a": {
@@ -109,94 +109,94 @@
         "a-00": {
           "name": "Cloud intro",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/1.png"
+          "image": "ridge/1/1/1"
         },
         "a-01": {
           "name": "Green bubble intro",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/2.png"
+          "image": "ridge/1/1/2"
         },
         "a-01x": {
           "name": "Water and Granny",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/3.png"
+          "image": "ridge/1/1/3"
         },
         "a-02": {
           "name": "Wind intro",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/4.png"
+          "image": "ridge/1/1/4"
         },
         "a-03": {
           "name": "Bubbles and pillars",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/5.png"
+          "image": "ridge/1/1/5"
         },
         "a-04": {
           "name": "Quad clouds",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/6.png"
+          "image": "ridge/1/1/6"
         },
         "a-05": {
           "name": "Windy platforms",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/7.png"
+          "image": "ridge/1/1/7"
         },
         "a-06": {
           "name": "Stamina berry",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/8.png"
+          "image": "ridge/1/1/8"
         },
         "a-07": {
           "name": "Archie",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/9.png"
+          "image": "ridge/1/1/9"
         },
         "a-08": {
           "name": "Cloud stairs",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/10.png"
+          "image": "ridge/1/1/10"
         },
         "a-10": {
           "name": "Seed puzzle",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/11.png"
+          "image": "ridge/1/1/11"
         },
         "a-11": {
           "name": "Cassette room",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/12.png"
+          "image": "ridge/1/1/12"
         },
         "a-09": {
           "name": "Wind wall",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/1/13.png"
+          "image": "ridge/1/1/13"
         },
         "b-00": {
           "name": "Central room",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/1.png"
+          "image": "ridge/1/2/1"
         },
         "b-01": {
           "name": "Double berry",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/2.png"
+          "image": "ridge/1/2/2"
         },
         "b-02": {
           "name": "Grotto",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/9.png",
+          "image": "ridge/1/2/9",
           "x": 8,
           "y": 80,
           "subrooms": [
             {
               "name": "Push blocks",
-              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/3.png",
+              "image": "ridge/1/2/3",
               "x": 632,
               "y": 48
             },
             {
               "name": "Grotto",
-              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/9.png",
+              "image": "ridge/1/2/9",
               "x": 8,
               "y": 80
             }
@@ -205,19 +205,19 @@
         "b-05": {
           "name": "Scroller skip",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/12.png",
+          "image": "ridge/1/2/12",
           "x": 808,
           "y": 168,
           "subrooms": [
             {
               "name": "Cube scroller",
-              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/4.png",
+              "image": "ridge/1/2/4",
               "x": 584,
               "y": 168
             },
             {
               "name": "Scroller skip",
-              "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/12.png",
+              "image": "ridge/1/2/12",
               "x": 808,
               "y": 168
             }
@@ -226,157 +226,157 @@
         "b-04": {
           "name": "Weave scroller",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/5.png"
+          "image": "ridge/1/2/5"
         },
         "b-06": {
           "name": "Up and around",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/6.png"
+          "image": "ridge/1/2/6"
         },
         "b-07": {
           "name": "Backwards berry",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/7.png"
+          "image": "ridge/1/2/7"
         },
         "b-03": {
           "name": "Low scroller",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/8.png"
+          "image": "ridge/1/2/8"
         },
         "b-sec": {
           "name": "Heart room",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/10.png"
+          "image": "ridge/1/2/10"
         },
         "b-secb": {
           "name": "Collision berry",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/11.png"
+          "image": "ridge/1/2/11"
         },
         "b-08b": {
           "name": "Scroller tracks",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/13.png"
+          "image": "ridge/1/2/13"
         },
         "b-08": {
           "name": "Autoscroller",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/2/14.png"
+          "image": "ridge/1/2/14"
         },
         "c-00": {
           "name": "Old trail start",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/1.png"
+          "image": "ridge/1/3/1"
         },
         "c-01": {
           "name": "Winged berry",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/2.png"
+          "image": "ridge/1/3/2"
         },
         "c-02": {
           "name": "Windy bubbles",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/3.png"
+          "image": "ridge/1/3/3"
         },
         "c-04": {
           "name": "Safety flag",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/4.png"
+          "image": "ridge/1/3/4"
         },
         "c-05": {
           "name": "Narrow windy platforms",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/5.png"
+          "image": "ridge/1/3/5"
         },
         "c-06": {
           "name": "Autoscroller puzzle",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/6.png"
+          "image": "ridge/1/3/6"
         },
         "c-06b": {
           "name": "Wind return berry",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/7.png"
+          "image": "ridge/1/3/7"
         },
         "c-09": {
           "name": "Second autoscroller",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/8.png"
+          "image": "ridge/1/3/8"
         },
         "c-07": {
           "name": "Tiny crumble blocks",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/9.png"
+          "image": "ridge/1/3/9"
         },
         "c-08": {
           "name": "Spring up",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/10.png"
+          "image": "ridge/1/3/10"
         },
         "c-10": {
           "name": "Bubble up",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/3/11.png"
+          "image": "ridge/1/3/11"
         },
         "d-00": {
           "name": "Cliff face entry",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/1.png"
+          "image": "ridge/1/4/1"
         },
         "d-00b": {
           "name": "Scroller loop berry",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/2.png"
+          "image": "ridge/1/4/2"
         },
         "d-01": {
           "name": "Windy crumble blocks",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/3.png"
+          "image": "ridge/1/4/3"
         },
         "d-02": {
           "name": "Scroller switch",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/4.png"
+          "image": "ridge/1/4/4"
         },
         "d-03": {
           "name": "Snowball intro",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/5.png"
+          "image": "ridge/1/4/5"
         },
         "d-04": {
           "name": "Snowballs are jerks",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/6.png"
+          "image": "ridge/1/4/6"
         },
         "d-05": {
           "name": "Quad springs",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/7.png"
+          "image": "ridge/1/4/7"
         },
         "d-06": {
           "name": "Small platforms",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/8.png"
+          "image": "ridge/1/4/8"
         },
         "d-07": {
           "name": "Six bubbles",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/9.png"
+          "image": "ridge/1/4/9"
         },
         "d-08": {
           "name": "Up to tailwind",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/10.png"
+          "image": "ridge/1/4/10"
         },
         "d-09": {
           "name": "Tailwind",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/11.png"
+          "image": "ridge/1/4/11"
         },
         "d-10": {
           "name": "Gondola",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/1/4/12.png"
+          "image": "ridge/1/4/12"
         }
       }
     },
@@ -437,102 +437,102 @@
         "a-00": {
           "name": "Start",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/1/1.png"
+          "image": "ridge/2/1/1"
         },
         "a-01": {
           "name": "Platforms & crystals",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/1/2.png"
+          "image": "ridge/2/1/2"
         },
         "a-02": {
           "name": "Stamina puzzle",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/1/3.png"
+          "image": "ridge/2/1/3"
         },
         "a-03": {
           "name": "Autoscroller slots",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/1/4.png"
+          "image": "ridge/2/1/4"
         },
         "a-04": {
           "name": "Tallscroller",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/1/5.png"
+          "image": "ridge/2/1/5"
         },
         "b-00": {
           "name": "Crumbling headwind",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/2/1.png"
+          "image": "ridge/2/2/1"
         },
         "b-01": {
           "name": "Tailwind bubbles",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/2/2.png"
+          "image": "ridge/2/2/2"
         },
         "b-02": {
           "name": "Scrollershaft",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/2/3.png"
+          "image": "ridge/2/2/3"
         },
         "b-03": {
           "name": "Tailwind switches",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/2/4.png"
+          "image": "ridge/2/2/4"
         },
         "b-04": {
           "name": "Headwind & tiny blocks",
           "checkpointNo": 1,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/2/5.png"
+          "image": "ridge/2/2/5"
         },
         "c-00": {
           "name": "Tailwind & stamina",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/3/1.png"
+          "image": "ridge/2/3/1"
         },
         "c-01": {
           "name": "Crystal platforms",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/3/2.png"
+          "image": "ridge/2/3/2"
         },
         "c-02": {
           "name": "Crystal tri-scroller",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/3/3.png"
+          "image": "ridge/2/3/3"
         },
         "c-03": {
           "name": "Scroller ascent race",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/3/4.png"
+          "image": "ridge/2/3/4"
         },
         "c-04": {
           "name": "Snaking crystals",
           "checkpointNo": 2,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/3/5.png"
+          "image": "ridge/2/3/5"
         },
         "d-00": {
           "name": "Alternating wind",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/4/1.png"
+          "image": "ridge/2/4/1"
         },
         "d-01": {
           "name": "Cloud hopping",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/4/2.png"
+          "image": "ridge/2/4/2"
         },
         "d-02": {
           "name": "Switches and bubbles",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/4/3.png"
+          "image": "ridge/2/4/3"
         },
         "d-03": {
           "name": "Long tailwind",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/4/4.png"
+          "image": "ridge/2/4/4"
         },
         "end": {
           "name": "Cassette room",
           "checkpointNo": 3,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/2/4/5.png"
+          "image": "ridge/2/4/5"
         }
       }
     },
@@ -555,17 +555,17 @@
         "00": {
           "name": "Bubble jumps",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/3/1/1.png"
+          "image": "ridge/3/1/1"
         },
         "01": {
           "name": "Vertical scroller",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/3/1/2.png"
+          "image": "ridge/3/1/2"
         },
         "02": {
           "name": "Heart room",
           "checkpointNo": 0,
-          "imageUrl": "https://f002.backblazeb2.com/file/berrycamp/screens/ridge/3/1/3.png"
+          "image": "ridge/3/1/3"
         }
       }
     }

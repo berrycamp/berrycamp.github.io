@@ -15,7 +15,7 @@ const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view,
     <Layout
       title={area.name}
       description={area.desc}
-      imgUrl={area.imageUrl}
+      imgUrl={area.image}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -62,7 +62,7 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                   <AspectBox>
                     <Image
                       className="pixelated-image"
-                      src={chapter.imageUrl}
+                      src={chapter.image}
                       alt={`An image of chapter ${chapter.name}`}
                       layout="fill"
                     />
@@ -102,7 +102,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
             >
               <Image
                 className="pixelated-image"
-                src={chapter.imageUrl}
+                src={chapter.image}
                 alt={`Image of chapter ${chapter.name}`}
                 width={128}
                 height={72}
