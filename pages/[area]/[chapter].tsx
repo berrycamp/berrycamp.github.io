@@ -10,7 +10,7 @@ import {GetStaticPaths, GetStaticProps} from "next/types";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
-import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
+import {Area, Chapter, Room, Side, Subroom} from "../../logic/data/dataTree";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
@@ -139,15 +139,27 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
                     <GridChapterItem
                       key={order}
                       roomId={order}
-                      room={room}
+                      roomName={room.name}
                       href={`/${areaId}/${chapterId}/${sideId}/${order}`}
                       image={room.image}
                     />
                   )
                 }
+              } else {
+                const subrooms: Subroom[] | undefined = side.rooms[order.roomId]?.subrooms;
+                const subroom: Subroom | undefined = subrooms === undefined ? undefined : subrooms[order.subroomIndex];
+                if (subroom !== undefined) {
+                  return (
+                    <GridChapterItem
+                      key={order.roomId}
+                      roomId={order.roomId}
+                      image={subroom.image}
+                      roomName={subroom.name}
+                      href={`/${areaId}/${chapterId}/${sideId}/${order.roomId}/${order.subroomIndex}`}
+                    />
+                  );
+                }
               }
-
-              return null;
             })}
           </Box>
           <Divider flexItem />
@@ -157,7 +169,7 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
   );
 }
 
-const GridChapterItem: FC<{roomId: string, room: Room, href: string, image: string}> = ({roomId, room, href, image}) => {
+const GridChapterItem: FC<{roomId: string, roomName: string, href: string, image: string}> = ({roomId, roomName, href, image}) => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
@@ -173,11 +185,11 @@ const GridChapterItem: FC<{roomId: string, room: Room, href: string, image: stri
           component="img"
           className="pixelated-image"
           src={getImageURL(image)}
-          alt={`Thumbnail for room ${room.name}`}
+          alt={`Thumbnail for room ${roomName}`}
         />
         {hover && (
           <ImageListItemBar
-            title={room.name}
+            title={roomName}
             subtitle={roomId}
             sx={{fontSize: 26}}
           />
