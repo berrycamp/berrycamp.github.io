@@ -37,6 +37,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
               <Link passHref href="/">
                 <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
                   <Image
+                    unoptimized
                     priority
                     className="pixelated-image"
                     src={'/img/logo.png'}
@@ -101,6 +102,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
           <Fragment>
             <Box position="fixed" bottom={0} zIndex={-1} width="100%" height="100%">
               <Image
+                unoptimized
                 priority
                 objectFit="cover"
                 className="pixelated-image"

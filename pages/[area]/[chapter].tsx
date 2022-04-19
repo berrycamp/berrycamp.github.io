@@ -1,6 +1,5 @@
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Card, CardActionArea, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
-import {AspectBox} from "common/aspectBox/AspectBox";
+import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {getImageURL} from "logic/fetch/image";
 import {pluralize} from "logic/utils/pluralize";
@@ -46,6 +45,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
         <Box display="flex" alignItems="center" paddingTop={2} paddingBottom={2}>
           <Box flexShrink={0} position="relative" width={240} height={135}>
             <Image
+              unoptimized
               className="pixelated-image"
               src={getImageURL(chapter.image)}
               alt={`Image of chapter ${chapter.name}`}
@@ -169,14 +169,12 @@ const GridChapterItem: FC<{roomId: string, room: Room, href: string, image: stri
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <AspectBox>
-          <Image
-            className="pixelated-image"
-            src={getImageURL(image)}
-            alt={`Thumbnail for room ${room.name}`}
-            layout="fill"
-          />
-        </AspectBox>
+        <CardMedia
+          component="img"
+          className="pixelated-image"
+          src={getImageURL(image)}
+          alt={`Thumbnail for room ${room.name}`}
+        />
         {hover && (
           <ImageListItemBar
             title={room.name}
@@ -208,6 +206,7 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
                 href={`/${areaId}/${chapterId}/${chapter.sides[sideId]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
               >
                 <Image
+                  unoptimized
                   className="pixelated-image"
                   src={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
                   alt={`Image of room ${room.name}`}

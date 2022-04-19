@@ -106,6 +106,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <AspectBox>
             <Image
+              unoptimized
               className="pixelated-image"
               src={roomImageUrl}
               alt={`Very large image of room ${room.name}`}
@@ -115,6 +116,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         </Dialog>
         <AspectBox marginTop={2} marginBottom={2}>
           <Image
+            unoptimized
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
             className="pixelated-image"

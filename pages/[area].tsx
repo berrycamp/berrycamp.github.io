@@ -1,5 +1,4 @@
-import {Box, Card, CardActionArea, CardContent, Container, List, ListItemButton, Typography} from '@mui/material'
-import {AspectBox} from 'common/aspectBox/AspectBox'
+import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
 import {getImageURL} from 'logic/fetch/image'
 import {Layout} from 'modules/layout/Layout'
@@ -60,14 +59,12 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
             {Object.entries(area.chapters).map(([chapterId, chapter]) => (
               <Card key={chapterId}>
                 <CardActionArea href={`/${areaId}/${chapterId}`}>
-                  <AspectBox>
-                    <Image
-                      className="pixelated-image"
-                      src={getImageURL(chapter.image)}
-                      alt={`An image of chapter ${chapter.name}`}
-                      layout="fill"
-                    />
-                  </AspectBox>
+                  <CardMedia
+                    component="img"
+                    className="pixelated-image"
+                    src={getImageURL(chapter.image)}
+                    alt={`An image of chapter ${chapter.name}`}
+                  />
                   <CardContent>
                     <Typography component="div" variant="h6">
                       {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
@@ -102,6 +99,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
               href={`/${areaId}/${chapterId}`}
             >
               <Image
+                unoptimized
                 className="pixelated-image"
                 src={getImageURL(chapter.image)}
                 alt={`Image of chapter ${chapter.name}`}
