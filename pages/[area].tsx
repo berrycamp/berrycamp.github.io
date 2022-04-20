@@ -100,7 +100,6 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
             >
               <Image
                 unoptimized
-                className="pixelated-image"
                 src={getImageURL(chapter.image)}
                 alt={`Image of chapter ${chapter.name}`}
                 width={128}

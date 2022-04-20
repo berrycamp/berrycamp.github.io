@@ -63,6 +63,15 @@ const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
       secondary: {
         main: "#cc252c",
       },
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            transition: "all 0.1s linear",
+          }
+        }
+      }
     }
   }), [mode]);
 
