@@ -465,6 +465,7 @@
           "roomCount": 6,
           "roomOrder": [
             "00",
+            "back",
             "01",
             "02",
             "03",
@@ -622,6 +623,11 @@
           "name": "Flooded laundry",
           "checkpointNo": 1,
           "image": "resort/2/2/4"
+        },
+        "back": {
+          "name": "Birds secret",
+          "checkpointNo": 0,
+          "image": "resort/2/1/back"
         },
         "end": {
           "name": "Cassette room",
