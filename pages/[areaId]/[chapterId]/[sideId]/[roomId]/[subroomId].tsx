@@ -3,7 +3,7 @@ import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import RoomPage from "../[room]";
+import RoomPage from "../[roomId]";
 
 const SubroomPage: AppNextPage<SubroomProps> = (props) => {
   return (

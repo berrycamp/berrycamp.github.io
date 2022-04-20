@@ -284,8 +284,8 @@ interface ChapterProps {
 }
 
 interface ChapterParams extends ParsedUrlQuery {
-  area: string;
-  chapter: string;
+  areaId: string;
+  chapterId: string;
 }
 
 export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
@@ -293,7 +293,7 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
 
   for (const [areaId, area] of Object.entries(DATA)) {
     for (const chapterId of Object.keys(area.chapters)) {
-      paths.push({params: {area: areaId, chapter: chapterId}});
+      paths.push({params: {areaId, chapterId}});
     }
   }
 
@@ -309,21 +309,22 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
     throw Error("Params was not defined.")
   }
 
-  const area: Area | undefined = DATA[params.area];
+  const {areaId, chapterId} = params;
+  const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
-    throw Error(`Area ${params.area} is not valid.`)
+    throw Error(`Area ${areaId} is not valid.`)
   }
 
-  const chapter: Chapter | undefined = area.chapters[params.chapter];
+  const chapter: Chapter | undefined = area.chapters[chapterId];
   if (chapter === undefined) {
-    throw Error(`Chapter ${params.chapter} is not valid`);
+    throw Error(`Chapter ${chapterId} is not valid`);
   }
 
   return {
     props: {
-      areaId: params.area,
+      areaId,
       area,
-      chapterId: params.chapter,
+      chapterId,
       chapter,
     }
   }

@@ -7,7 +7,6 @@ import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {IMAGE_URL} from "pages/[area]/[chapter]";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {useEffect, useState} from "react";
@@ -29,8 +28,6 @@ const RoomPage: AppNextPage<RoomProps> = ({
   view,
   setView,
 }) => {
-  const roomImageUrl: string = `${IMAGE_URL}/${chapterId}/${sideIndex + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`;
-
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));

@@ -1,4 +1,4 @@
-export type DataTree = Record<string, Area>;
+export type DataTree = Record<"celeste", Area> & Record<string, Area>;
 
 export interface Area {
   gameId: string;

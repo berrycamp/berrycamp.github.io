@@ -2,15 +2,12 @@ import {Container, Link, Paper, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {Area} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
-import {AreaView} from "./[area]";
+import {AreaView} from "./[areaId]";
 import {AppNextPage} from "./_app";
 
-const DEFAULT_AREA = "celeste";
+const DEFAULT_AREA: Area = DATA["celeste"];
 
 export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
-
-  const area: Area | undefined = DATA[DEFAULT_AREA];
-
   return (
     <Layout
       description={"Browse rooms from the video game Celeste"}
@@ -39,7 +36,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
           </Typography>
         </Paper>
       </Container>
-      {area && <AreaView areaId="celeste" area={area} view={view} />}
+      <AreaView areaId="celeste" area={DEFAULT_AREA} view={view} />
     </Layout >
   )
 }

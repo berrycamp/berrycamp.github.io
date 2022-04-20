@@ -122,12 +122,12 @@ interface AreaProps {
 }
 
 interface AreaParams extends ParsedUrlQuery {
-  area: string;
+  areaId: string;
 }
 
 export const getStaticPaths: GetStaticPaths<AreaParams> = async () => {
   return {
-    paths: Object.keys(DATA).map(area => ({params: {area}})),
+    paths: Object.keys(DATA).map(areaId => ({params: {areaId}})),
     fallback: false,
   }
 }
@@ -137,14 +137,16 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
     throw Error("Params is not defined");
   }
 
-  const area: Area | undefined = DATA[params.area];
+  const {areaId} = params;
+
+  const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
-    throw Error(`Area ${params.area} is not defined`);
+    throw Error(`Area ${areaId} is not defined`);
   }
 
   return {
     props: {
-      areaId: params.area,
+      areaId,
       area,
     }
   }
