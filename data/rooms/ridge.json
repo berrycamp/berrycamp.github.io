@@ -36,30 +36,14 @@
           "roomOrder": [
             "b-00",
             "b-01",
-            {
-              "roomId": "b-02",
-              "subroomIndex": 0
-            },
-            {
-              "roomId": "b-05",
-              "subroomIndex": 0
-            },
             "b-04",
             "b-06",
             "b-07",
             "b-03",
-            {
-              "roomId": "b-02",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "b-02",
             "b-sec",
             "b-secb",
-            {
-              "roomId": "b-05",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "b-05",
             "b-08b",
             "b-08"
           ]

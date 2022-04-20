@@ -36,13 +36,7 @@ export interface Checkpoint {
   name: string
   abbreviation: string;
   roomCount: number;
-  roomOrder: (string | SubroomOrderEntry)[];
-}
-
-export interface SubroomOrderEntry {
-  roomId: string;
-  subroomIndex: number;
-  root?: boolean;
+  roomOrder: string[];
 }
 
 export interface Room {

@@ -77,15 +77,7 @@
             "09-d",
             "08-d",
             "06-d",
-            {
-              "roomId": "04-d",
-              "subroomIndex": 0
-            },
-            {
-              "roomId": "04-d",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "04-d",
             "04-c",
             "02-c",
             "03-b",

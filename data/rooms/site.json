@@ -20,22 +20,10 @@
             "s2",
             "0",
             "1",
-            {
-              "roomId": "2",
-              "subroomIndex": 0
-            },
             "d0",
             "d7",
             "d8",
-            {
-              "roomId": "d3",
-              "subroomIndex": 0
-            },
-            {
-              "roomId": "d3",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "d3",
             "d2",
             "d9",
             "d1",
@@ -60,11 +48,7 @@
             "9",
             "9b",
             "10",
-            {
-              "roomId": "2",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "2",
             "11",
             "12b",
             "12c",

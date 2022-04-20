@@ -147,134 +147,11 @@
           "abbreviation": "3000M",
           "roomCount": 5,
           "roomOrder": [
-            {
-              "roomId": "g-00",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 0
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 4
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 5
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 6
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 7
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 8
-            },
-            {
-              "roomId": "g-00b",
-              "subroomIndex": 9
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 4
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 5
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 6
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 7
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 8
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 9
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 10
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 11
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 12
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-03",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-03",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-03",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-03",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-03",
-              "subroomIndex": 4
-            }
+            "g-00",
+            "g-00b",
+            "g-01",
+            "g-02",
+            "g-03"
           ]
         }
       ],
@@ -1041,91 +918,11 @@
         {
           "name": "3000 M",
           "abbreviation": "3000M",
-          "roomCount": 1,
+          "roomCount": 4,
           "roomOrder": [
-            {
-              "roomId": "g-00",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 4
-            },
-            {
-              "roomId": "g-00",
-              "subroomIndex": 5
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 4
-            },
-            {
-              "roomId": "g-01",
-              "subroomIndex": 5
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 2
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 3
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 4
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 5
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 6
-            },
-            {
-              "roomId": "g-02",
-              "subroomIndex": 7
-            },
+            "g-00",
+            "g-01",
+            "g-02",
             "g-03"
           ]
         }
@@ -1421,15 +1218,7 @@
           "roomOrder": [
             "01",
             "02",
-            {
-              "roomId": "03",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "03",
-              "subroomIndex": 1
-            }
+            "03"
           ]
         }
       ],

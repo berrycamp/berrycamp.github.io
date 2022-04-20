@@ -24,16 +24,8 @@
           "roomOrder": [
             "00",
             "01",
-            {
-              "roomId": "02",
-              "subroomIndex": 0,
-              "root": true
-            },
+            "02",
             "03",
-            {
-              "roomId": "02",
-              "subroomIndex": 1
-            },
             "02b"
           ]
         },
@@ -678,15 +670,7 @@
           "roomOrder": [
             "00",
             "01",
-            {
-              "roomId": "02",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "02",
-              "subroomIndex": 1
-            }
+            "02"
           ]
         }
       ],

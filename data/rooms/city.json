@@ -59,17 +59,9 @@
             "10",
             "10z",
             "10zb",
-            {
-              "roomId": "11",
-              "subroomIndex": 0,
-              "root": true
-            },
+            "11",
             "11z",
             "10a",
-            {
-              "roomId": "11",
-              "subroomIndex": 1
-            },
             "12",
             "12z",
             "12a",

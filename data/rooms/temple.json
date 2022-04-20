@@ -30,15 +30,7 @@
             "a-10",
             "a-09",
             "a-11",
-            {
-              "roomId": "a-12",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "a-12",
-              "subroomIndex": 1
-            },
+            "a-12",
             "a-15",
             "a-14",
             "a-13"
@@ -53,16 +45,8 @@
             "b-18",
             "b-01",
             "b-01c",
-            {
-              "roomId": "b-20",
-              "subroomIndex": 0,
-              "root": true
-            },
+            "b-20",
             "b-21",
-            {
-              "roomId": "b-20",
-              "subroomIndex": 1
-            },
             "b-01b",
             "b-02",
             "b-03",
@@ -75,15 +59,7 @@
             "b-11",
             "b-12",
             "b-13",
-            {
-              "roomId": "b-17",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "b-17",
-              "subroomIndex": 1
-            },
+            "b-17",
             "b-22",
             "b-06",
             "b-19",
@@ -119,47 +95,14 @@
           "roomOrder": [
             "d-00",
             "d-01",
-            {
-              "roomId": "e-00",
-              "subroomIndex": 0
-            },
             "d-09",
-            {
-              "roomId": "d-04",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "d-04",
-              "subroomIndex": 1
-            },
+            "d-04"
             "d-05",
-            {
-              "roomId": "d-06",
-              "subroomIndex": 0,
-              "root": true
-            },
+            "d-06",
             "d-07",
             "d-02",
             "d-03",
-            {
-              "roomId": "d-06",
-              "subroomIndex": 1
-            },
-            {
-              "roomId": "d-15",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "d-15",
-              "subroomIndex": 1
-            },
-            "d-13",
-            {
-              "roomId": "d-15",
-              "subroomIndex": 2
-            },
+            "d-15",
             "d-19",
             "d-19b",
             "d-10",
@@ -171,11 +114,7 @@
           "abbreviation": "RS",
           "roomCount": 11,
           "roomOrder": [
-            {
-              "roomId": "e-00",
-              "subroomIndex": 1,
-              "root": true
-            },
+            "e-00",
             "e-01",
             "e-02",
             "e-03",

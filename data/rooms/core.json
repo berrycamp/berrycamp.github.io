@@ -461,15 +461,7 @@
             "intro",
             "00",
             "01",
-            {
-              "roomId": "02",
-              "subroomIndex": 0,
-              "root": true
-            },
-            {
-              "roomId": "02",
-              "subroomIndex": 1
-            }
+            "02"
           ]
         }
       ],
@@ -493,23 +485,7 @@
         "02": {
           "name": "Heart room",
           "checkpointNo": 0,
-          "image": "core/3/1/4",
-          "x": 56,
-          "y": 104,
-          "subrooms": [
-            {
-              "name": "Hot and cold",
-              "image": "core/3/1/4",
-              "x": 56,
-              "y": 104
-            },
-            {
-              "name": "Heart",
-              "image": "core/3/1/5",
-              "x": 4456,
-              "y": 80
-            }
-          ]
+          "image": "core/3/1/4"
         }
       }
     }
