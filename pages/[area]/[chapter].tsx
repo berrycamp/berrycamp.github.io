@@ -13,7 +13,7 @@ import {FC, Fragment, useState} from "react";
 import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
-  const [showSubrooms, setShowSubrooms] = useState<boolean>(false);
+  const [showSubrooms, setShowSubrooms] = useState<boolean>(true);
 
   const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
 
@@ -124,7 +124,13 @@ interface ViewProps {
   showSubrooms: boolean;
 }
 
-// TODO FIX TERRIBLE CODE
+interface ViewItemProps {
+  roomId: string;
+  roomName: string;
+  href: string,
+  image: string
+}
+
 const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSubrooms}) => {
   return (
     <Fragment>
@@ -142,13 +148,13 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSu
 
               return (
                 <Fragment key={roomId}>
-                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, index) => (
+                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
                     <GridChapterItem
-                      key={index}
+                      key={subroomIndex}
                       roomId={roomId}
                       roomName={subroom.name}
                       image={subroom.image}
-                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${index + 1}`}
+                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
                     />
                   )) : (
                     <GridChapterItem
@@ -170,7 +176,7 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSu
   );
 }
 
-const GridChapterItem: FC<{roomId: string, roomName: string, href: string, image: string}> = ({roomId, roomName, href, image}) => {
+const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
@@ -200,43 +206,74 @@ const GridChapterItem: FC<{roomId: string, roomName: string, href: string, image
   );
 }
 
-const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
+const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSubrooms}) => {
   return (
     <Fragment>
-      {chapter.sides[sideId]?.checkpoints.map((checkpoint, checkpointIndex) => (
-        <Fragment key={checkpointIndex}>
+      {side.checkpoints.map((checkpoint, checkpointIndex) => (
+        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
           <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
           <List disablePadding>
-            {checkpoint.rooms.map((room, roomIndex) => (
-              <ListItemButton
-                key={roomIndex}
-                disableGutters
-                sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
-                component="a"
-                LinkComponent={Link}
-                href={`/${areaId}/${chapterId}/${chapter.sides[sideId]?.name.toLowerCase()}/${room.id}${room.subroom ? `/${room.subroom}` : ""}`}
-              >
-                <Image
-                  unoptimized
-                  className="pixelated-image"
-                  src={`${IMAGE_URL}/${chapterId}/${sideId + 1}/${checkpointIndex + 1}/${roomIndex + 1}.png`}
-                  alt={`Image of room ${room.name}`}
-                  width={128}
-                  height={72}
-                />
-                <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomIndex + 1}.</Typography>
-                <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{room.name}</Typography>
-                <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{room.id}</Typography>
-              </ListItemButton>
-            ))}
+            {checkpoint.roomOrder.map((roomId, roomIndex) => {
+              const room: Room | undefined = side.rooms[roomId];
+              if (room === undefined) {
+                return undefined;
+              }
+
+              return (
+                <Fragment key={roomId}>
+                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
+                    <ListChapterItem
+                      key={subroomIndex}
+                      roomId={roomId}
+                      roomName={subroom.name}
+                      roomNo={roomIndex + 1}
+                      image={subroom.image}
+                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
+                    />
+                  )) : (
+                    <ListChapterItem
+                      key={roomId}
+                      roomId={roomId}
+                      roomName={room.name}
+                      roomNo={roomIndex + 1}
+                      image={room.image}
+                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
+                    />
+                  )}
+                </Fragment>
+              )
+            })}
           </List>
-          <Divider sx={{marginTop: 2, marginBottom: 1}} />
-        </Fragment>
+          <Divider flexItem sx={{marginTop: 2, marginBottom: 1}} />
+        </Box>
       ))}
     </Fragment>
   );
+}
+
+const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName, roomNo, href, image}) => {
+  return (
+    <ListItemButton
+      disableGutters
+      sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+      component="a"
+      LinkComponent={Link}
+      href={href}
+    >
+      <Image
+        unoptimized
+        src={getImageURL(image)}
+        alt={`Image of room ${roomName}`}
+        width={128}
+        height={72}
+      />
+      <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
+      <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{roomName}</Typography>
+      <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
+    </ListItemButton>
+  )
 }
 
 interface ChapterProps {
