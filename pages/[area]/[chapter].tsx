@@ -10,9 +10,11 @@ import {GetStaticPaths, GetStaticProps} from "next/types";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
-import {Area, Chapter, Room, Side, Subroom} from "../../logic/data/dataTree";
+import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
+  const [showSubrooms, setShowSubrooms] = useState<boolean>(false);
+
   const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
 
   const roomCount: number | undefined = chapter.sides[sideId]?.roomCount;
@@ -102,9 +104,9 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
         {side && (
           <Fragment>
             {view === "grid" ? (
-              <GridChapterView areaId={areaId} chapterId={chapterId} chapter={chapter} sideId={sideId} side={side} />
+              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={showSubrooms} />
             ) : (view === "list") && (
-              <ListChapterView areaId={areaId} chapterId={chapterId} chapter={chapter} sideId={sideId} side={side} />
+              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={showSubrooms} />
             )}
           </Fragment>
         )}
@@ -119,10 +121,11 @@ interface ViewProps {
   chapterId: string;
   sideId: "a" | "b" | "c";
   side: Side;
+  showSubrooms: boolean;
 }
 
 // TODO FIX TERRIBLE CODE
-const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
+const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSubrooms}) => {
   return (
     <Fragment>
       {side.checkpoints.map((checkpoint, checkpointIndex) => (
@@ -131,35 +134,33 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side}) => {
             {checkpointIndex + 1}. {checkpoint.name}
           </Typography>
           <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-            {checkpoint.roomOrder.map(order => {
-              if (typeof order === "string") {
-                const room: Room | undefined = side.rooms[order];
-                if (room !== undefined) {
-                  return (
-                    <GridChapterItem
-                      key={order}
-                      roomId={order}
-                      roomName={room.name}
-                      href={`/${areaId}/${chapterId}/${sideId}/${order}`}
-                      image={room.image}
-                    />
-                  )
-                }
-              } else {
-                const subrooms: Subroom[] | undefined = side.rooms[order.roomId]?.subrooms;
-                const subroom: Subroom | undefined = subrooms === undefined ? undefined : subrooms[order.subroomIndex];
-                if (subroom !== undefined) {
-                  return (
-                    <GridChapterItem
-                      key={order.roomId}
-                      roomId={order.roomId}
-                      image={subroom.image}
-                      roomName={subroom.name}
-                      href={`/${areaId}/${chapterId}/${sideId}/${order.roomId}/${order.subroomIndex}`}
-                    />
-                  );
-                }
+            {checkpoint.roomOrder.map(roomId => {
+              const room: Room | undefined = side.rooms[roomId];
+              if (room === undefined) {
+                return undefined;
               }
+
+              return (
+                <Fragment key={roomId}>
+                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, index) => (
+                    <GridChapterItem
+                      key={index}
+                      roomId={roomId}
+                      roomName={subroom.name}
+                      image={subroom.image}
+                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${index + 1}`}
+                    />
+                  )) : (
+                    <GridChapterItem
+                      key={roomId}
+                      roomId={roomId}
+                      roomName={room.name}
+                      image={room.image}
+                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
+                    />
+                  )}
+                </Fragment>
+              )
             })}
           </Box>
           <Divider flexItem />
