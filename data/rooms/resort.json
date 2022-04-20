@@ -462,7 +462,7 @@
         {
           "name": "Start",
           "abbreviation": "ST",
-          "roomCount": 6,
+          "roomCount": 7,
           "roomOrder": [
             "00",
             "back",
@@ -512,7 +512,7 @@
           ]
         }
       ],
-      "roomCount": 23,
+      "roomCount": 24,
       "rooms": {
         "10": {
           "name": "Up and down",
