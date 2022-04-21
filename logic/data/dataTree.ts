@@ -15,7 +15,7 @@ export interface Chapter {
   desc: string;
   image: string;
   chapterNo?: number;
-  sides: Record<"a", Side> & Partial<Record<"b" | "c", Side>>;
+  sides: Record<string, Side>;
   sideCount: number;
 }
 

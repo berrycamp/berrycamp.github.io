@@ -33,17 +33,20 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
               }
             }}
           >
-            <Box flexGrow={1}>
+            <Box flexGrow={1} minWidth={0}>
               <Link passHref href="/">
                 <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
-                  <Image
-                    unoptimized
-                    priority
-                    className="pixelated-image"
-                    src={'/img/logo.png'}
-                    alt='Animation of madeline in a campsite in game'
-                    layout="fill"
-                  />
+                  <Box sx={{display: {xs: "none", sm: "block"}}}>
+                    <Image
+                      unoptimized
+                      style={{minWidth: 0}}
+                      priority
+                      className="pixelated-image"
+                      src={'/img/logo.png'}
+                      alt='Animation of madeline in a campsite in game'
+                      layout="fill"
+                    />
+                  </Box>
                   <Box display="flex" position="absolute" left={12}>
                     <Typography
                       sx={{

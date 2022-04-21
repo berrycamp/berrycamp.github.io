@@ -1,6 +1,6 @@
 import {Theme, ThemeProvider} from '@emotion/react';
 import {createTheme, CssBaseline} from '@mui/material';
-import {NextPage} from 'next';
+import {GetStaticProps, NextPage} from 'next';
 import type {AppProps} from 'next/app';
 import {useEffect, useMemo, useState} from 'react';
 import '../styles/globals.css';

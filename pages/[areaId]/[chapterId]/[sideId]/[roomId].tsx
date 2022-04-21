@@ -2,7 +2,7 @@ import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
-import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
@@ -16,12 +16,12 @@ const RoomPage: AppNextPage<RoomProps> = ({
   area,
   chapterId,
   chapter,
-  sideIndex,
+  sideId,
   side,
-  checkpointIndex,
   checkpoint,
   roomIndex,
   room,
+  subroomId,
   subroom,
   mode,
   toggleMode,
@@ -32,19 +32,15 @@ const RoomPage: AppNextPage<RoomProps> = ({
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  let prevRoom: Room | undefined = checkpoint.rooms[roomIndex - 1] ?? side.checkpoints[checkpointIndex - 1]?.rooms.slice(-1)[0];
-  let nextRoom: Room | undefined = checkpoint.rooms[roomIndex + 1] ?? side.checkpoints[checkpointIndex + 1]?.rooms[0];
+  const prevRoomId: string | undefined = checkpoint.roomOrder[roomIndex - 1] ?? side.checkpoints[room.checkpointNo - 1]?.roomOrder.slice(-1)[0];
+  const nextRoomId: string | undefined = checkpoint.roomOrder[roomIndex + 1] ?? side.checkpoints[room.checkpointNo + 1]?.roomOrder[0];
+  const prevRoom: Room | undefined = prevRoomId ? side.rooms[prevRoomId] : undefined;
+  const nextRoom: Room | undefined = nextRoomId ? side.rooms[nextRoomId] : undefined;
 
-  let sideRoomIndex: number = roomIndex;
-  const sideRoomTotal: number = side.checkpoints.reduce<number>((prev, curr, index) => {
-    if (index < checkpointIndex) {
-      sideRoomIndex += curr.rooms.length;
-    }
-    return prev + curr.rooms.length;
-  }, 0);
+  const sideRoomIndex = side.checkpoints.slice(room.checkpointNo - 1).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
 
-  const prevRoomLink: string | undefined = prevRoom ? `/${areaId}/${chapterId}/${side.name.toLowerCase()}/${prevRoom.id}${prevRoom.subroom ? `/${prevRoom.subroom}` : ""}` : undefined;
-  const nextRoomLink: string | undefined = nextRoom ? `/${areaId}/${chapterId}/${side.name.toLowerCase()}/${nextRoom.id}${nextRoom.subroom ? `/${nextRoom.subroom}` : ""}` : undefined;
+  const prevRoomLink: string | undefined = prevRoom ? `/${areaId}/${chapterId}/${sideId}${prevRoom.subroom ? `/${prevRoom.subroom}` : ""}` : undefined;
+  const nextRoomLink: string | undefined = nextRoom ? `/${areaId}/${chapterId}/${sideId}/${nextRoom.id}${nextRoom.subroom ? `/${nextRoom.subroom}` : ""}` : undefined;
 
   /**
    * Send a request to open the room in Everest.
@@ -144,7 +140,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
         {room.subroom && <Typography component="div" color="text.secondary">Subroom: {room.subroom}</Typography>}
         <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography component="div" color="text.secondary">Room in level: {sideRoomIndex + 1}/{sideRoomTotal}</Typography>
+        <Typography component="div" color="text.secondary">Room in level: {sideRoomIndex + 1}/{side.roomCount}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
             {prevRoom && prevRoomLink && (
@@ -185,20 +181,21 @@ interface RoomProps {
   area: Area;
   chapterId: string;
   chapter: Chapter;
-  sideIndex: number;
+  sideId: string;
   side: Side;
-  checkpointIndex: number;
   checkpoint: Checkpoint;
+  roomId: string;
   roomIndex: number;
   room: Room;
-  subroom?: number;
+  subroomId?: number;
+  subroom?: Subroom;
 }
 
 interface RoomParams extends ParsedUrlQuery {
-  area: string;
-  chapter: string;
-  side: string;
-  room: string;
+  areaId: string;
+  chapterId: string;
+  sideId: string;
+  roomId: string;
 }
 
 export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
@@ -206,16 +203,13 @@ export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
 
   for (const [areaId, area] of Object.entries(DATA)) {
     for (const [chapterId, chapter] of Object.entries(area.chapters)) {
-      for (const side of chapter.sides) {
-        for (const checkpoint of side.checkpoints) {
-          for (const room of checkpoint.rooms) {
-            paths.push({params: {area: areaId, chapter: chapterId, side: side.name.toLowerCase(), room: room.id}});
-          }
+      for (const [sideId, side] of Object.entries(chapter.sides)) {
+        for (const roomId of Object.keys(side.rooms)) {
+          paths.push({params: {areaId, chapterId, sideId, roomId}});
         }
       }
     }
   }
-
 
   return {
     paths,
@@ -228,7 +222,7 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
     throw Error("Params was not defined");
   }
 
-  const {area: areaId, chapter: chapterId, side: sideId, room: roomId} = params;
+  const {areaId, chapterId, sideId, roomId} = params;
   const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
     throw Error(`Area ${areaId} is not valid`);
@@ -239,17 +233,22 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
     throw Error(`Chapter ${chapterId} is not valid`);
   }
 
-  const sideIndex: number = chapter.sides.findIndex(s => s.name.toLowerCase() === sideId.toLowerCase())
-  const side: Side | undefined = chapter.sides[sideIndex];
+  const side: Side | undefined = chapter.sides[sideId];
   if (side === undefined) {
     throw Error("Side not defined");
   }
 
-  const roomData: {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined = getRoomData(side, roomId);
-  if (roomData === undefined) {
+  const room: Room | undefined = side.rooms[roomId];
+  if (room === undefined) {
     throw Error(`Could not find room ${roomId} in side ${side.name}`);
   }
-  const {checkpointIndex, checkpoint, roomIndex, room} = roomData;
+
+  const checkpoint: Checkpoint | undefined = side.checkpoints[room.checkpointNo];
+  if (checkpoint === undefined) {
+    throw Error(`Could not find checkpoint ${room.checkpointNo} in side ${side.name}`);
+  }
+
+  const roomIndex: number = checkpoint.roomOrder.findIndex(id => id === roomId);
 
   return {
     props: {
@@ -257,35 +256,14 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
       area,
       chapterId,
       chapter,
-      sideIndex,
+      sideId,
       side,
-      checkpointIndex,
       checkpoint,
+      roomId,
       roomIndex,
       room,
     }
   }
-}
-
-/**
- * Find the room by id in a side.
- * 
- * @param side The side to search.
- * @param roomId The room id.
- * @returns The room data.
- */
-const getRoomData = (side: Side, roomId: string): {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined => {
-  for (let checkpointIndex = 0; checkpointIndex < side.checkpoints.length; checkpointIndex++) {
-    const checkpoint: Checkpoint = side.checkpoints[checkpointIndex] as Checkpoint;
-    for (let roomIndex = 0; roomIndex < checkpoint.rooms.length; roomIndex++) {
-      const room: Room = checkpoint.rooms[roomIndex] as Room;
-      if (room.id === roomId) {
-        return {checkpointIndex, checkpoint, roomIndex, room}
-      }
-    }
-  }
-
-  return undefined;
 }
 
 export default RoomPage;

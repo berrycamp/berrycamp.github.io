@@ -1,5 +1,6 @@
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {getImageURL} from "logic/fetch/image";
 import {pluralize} from "logic/utils/pluralize";
@@ -15,7 +16,7 @@ import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
   const [showSubrooms, setShowSubrooms] = useState<boolean>(true);
 
-  const [sideId, setSideId] = useState<"a" | "b" | "c">("a");
+  const [sideId, setSideId] = useState<string>("a");
 
   const roomCount: number | undefined = chapter.sides[sideId]?.roomCount;
 
@@ -38,24 +39,32 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
       setView={setView}
     >
       <Container>
-        <Breadcrumbs sx={{marginTop: 2}}>
+        <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
           <MuiLink href={`/${areaId}`} underline="always">
             {area.name}
           </MuiLink>
           <Typography color="text.primary">{chapter.name}</Typography>
         </Breadcrumbs>
-        <Box display="flex" alignItems="center" paddingTop={2} paddingBottom={2}>
-          <Box flexShrink={0} position="relative" width={240} height={135}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
+            gridGap: "0.5rem",
+            width: "100%",
+            marginBottom: "0.5rem",
+          }}
+        >
+          <AspectBox>
             <Image
               unoptimized
               className="pixelated-image"
               src={getImageURL(chapter.image)}
               alt={`Image of chapter ${chapter.name}`}
-              width={240}
-              height={135}
+              objectFit="cover"
+              layout="fill"
             />
-          </Box>
-          <Box marginLeft={2}>
+          </AspectBox>
+          <Box>
             <Typography component="div" variant="h4">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
             <Typography component="div" color="text.secondary">{chapter.gameId}</Typography>
             <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
@@ -119,7 +128,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
 interface ViewProps {
   areaId: string;
   chapterId: string;
-  sideId: "a" | "b" | "c";
+  sideId: string;
   side: Side;
   showSubrooms: boolean;
 }
