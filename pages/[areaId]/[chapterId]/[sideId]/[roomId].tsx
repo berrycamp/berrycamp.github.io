@@ -288,7 +288,7 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
         levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
         checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
-        teleportParams: `?area=${areaId}/${chapterId}&side=${sideId}&level=${roomId}${(room.x && room.y) ? `&x=${room.x}&y=${room.y}` : ""}`,
+        teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.x && room.y) ? `&x=${room.x}&y=${room.y}` : ""}`,
       },
       ...prevRoom && {
         prevRoom: {
