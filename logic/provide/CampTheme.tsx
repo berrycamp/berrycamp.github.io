@@ -1,4 +1,4 @@
-import {createTheme, Theme} from "@mui/material";
+import {createTheme, darkScrollbar, Theme} from "@mui/material";
 import {ThemeProvider} from "@mui/system";
 import {FC, useMemo} from "react";
 import {useCampContext} from "./CampContext";
@@ -24,6 +24,7 @@ export const CampThemeProvider: FC = ({children}) => {
         styleOverrides: {
           body: {
             transition: "all 0.1s linear",
+            ...settings.theme === "dark" && darkScrollbar(),
           }
         }
       }

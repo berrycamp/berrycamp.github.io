@@ -2,23 +2,19 @@ import {FC, Fragment, useEffect} from "react";
 import {useCampContext} from "./CampContext";
 
 export const CampPreferencesProvider: FC = ({children}) => {
-  const {settings, setView, toggleTheme, toggleSubrooms} = useCampContext();
+  const {settings, toggleView, toggleTheme, toggleSubrooms, setSettings} = useCampContext();
 
   /**
    * Load user preferences.
    */
   useEffect(() => {
-    setView(window.localStorage.getItem("view") === "list" ? "list" : "grid");
-    const theme: "light" | "dark" = document.documentElement.style.getPropertyValue("--initial-theme") === "dark" ? "dark" : "light";
-    if (theme !== settings.theme) {
-      toggleTheme();
-    }
-
-    const subrooms: boolean = window.localStorage.getItem("subrooms") !== "false";
-    if (subrooms !== settings.subrooms) {
-      toggleSubrooms();
-    }
-  }, [])
+    setSettings({
+      theme: document.documentElement.style.getPropertyValue("--initial-theme") === "dark" ? "dark" : "light",
+      view: window.localStorage.getItem("view") === "list" ? "list" : "grid",
+      subrooms: window.localStorage.getItem("subrooms") !== "false",
+      cozy: false,
+    });
+  }, [setSettings]);
 
   /**
    * Get the user or media mode preference. Default to light if not provided.

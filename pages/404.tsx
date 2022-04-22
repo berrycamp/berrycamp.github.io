@@ -7,15 +7,11 @@ import {GlobalCampProps} from "./_app";
 
 const IMAGE = "farewell/1/1/2";
 
-export const Custom404: NextPage<GlobalCampProps> = ({mode, toggleMode, view, setView}) => {
+export const Custom404: NextPage<GlobalCampProps> = ({}) => {
   return (
     <Layout
       description={"Page could not be found"}
       image={IMAGE}
-      mode={mode}
-      toggleMode={toggleMode}
-      view={view}
-      setView={setView}
     >
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100%" flex={1}>
         <Image

@@ -1,21 +1,19 @@
-import {DarkMode, Fireplace, GridViewSharp, LightMode, ViewListSharp} from "@mui/icons-material";
-import {AppBar, Box, IconButton, styled, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
+import {CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
+import {AppBar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, styled, Toolbar, Typography} from "@mui/material";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {getMetadataTitle, getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import {FC, Fragment, useState} from "react";
+import {FC, Fragment, MouseEvent, useState} from "react";
 
 export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welcome/images"
 
 const COZY_IMAGE_COUNT = 7;
 
 export const Layout: FC<LayoutProps> = ({title, description, image, children}) => {
-  const {settings, setView, toggleTheme, toggleSubrooms} = useCampContext();
-
-  const [cozyMode, setCozyMode] = useState<boolean>(false);
+  const {settings} = useCampContext();
 
   return (
     <Fragment>
@@ -34,6 +32,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
             sx={{
               "&.MuiToolbar-root": {
                 paddingLeft: 0,
+                paddingRight: 0.5,
               }
             }}
           >
@@ -75,37 +74,10 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
                 </Box>
               </Link>
             </Box>
-            <Box display="flex" alignItems="center" gap={0.5}>
-              <Tooltip title={cozyMode ? "Turn off cozy mode" : "Turn on cozy mode"}>
-                <StyledToggleButton
-                  size="small"
-                  value="check"
-                  selected={cozyMode}
-                  onClick={() => setCozyMode(!cozyMode)} sx={{marginRight: 1}}
-                  aria-label="Toggle comfy mode"
-                >
-                  <Fireplace fontSize="small" />
-                </StyledToggleButton>
-              </Tooltip>
-              <Tooltip title="Change view">
-                <ToggleButtonGroup exclusive size="small" value={settings.view} onChange={(_, newView) => newView && setView(newView)}>
-                  <StyledToggleButton value="grid" aria-label="Enable grid view mode">
-                    <GridViewSharp fontSize="small" />
-                  </StyledToggleButton>
-                  <StyledToggleButton value="list" aria-label="Enable list view mode">
-                    <ViewListSharp fontSize="small" />
-                  </StyledToggleButton>
-                </ToggleButtonGroup>
-              </Tooltip>
-              <Tooltip title={settings.theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
-                <IconButton onClick={toggleTheme} color="inherit">
-                  {settings.theme === "light" ? <LightMode /> : <DarkMode />}
-                </IconButton>
-              </Tooltip>
-            </Box>
+            <SettingsMenu />
           </Toolbar>
         </AppBar>
-        {cozyMode ? (
+        {settings.cozy ? (
           <Fragment>
             <Box position="fixed" bottom={0} zIndex={-1} width="100%" height="100%">
               <Image
@@ -129,15 +101,73 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
   );
 }
 
+const SettingsMenu: FC = () => {
+  const {settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy} = useCampContext();
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleOpen = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Fragment>
+      <StyledIconButton onClick={handleOpen}>
+        <Settings />
+      </StyledIconButton>
+      <Menu
+        disableScrollLock
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        PaperProps={{
+          style: {
+            width: 200,
+          }
+        }}
+      >
+        <MenuItem onClick={toggleTheme}>
+          <ListItemIcon>
+            {settings.theme === "light" ? <LightMode fontSize="small" /> : <DarkMode fontSize="small" />}
+          </ListItemIcon>
+          {settings.theme === "light" ? "Light theme" : "Dark theme"}
+        </MenuItem>
+        <MenuItem onClick={toggleView}>
+          <ListItemIcon>
+            {settings.view === "grid" ? <GridViewSharp fontSize="small" /> : <ViewListSharp fontSize="small" />}
+          </ListItemIcon>
+          {settings.view === "grid" ? "Grid view" : "List view"}
+        </MenuItem>
+        <MenuItem onClick={toggleSubrooms}>
+          <ListItemIcon>
+            {settings.subrooms ? <Splitscreen fontSize="small" /> : <CropSquare fontSize="small" />}
+          </ListItemIcon>
+          {settings.subrooms ? "Subrooms shown" : "Subrooms hidden"}
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={toggleCozy}>
+          <ListItemIcon>
+            {settings.cozy ? <Fireplace fontSize="small" /> : <CropDinSharp sx={{fontSize: "1.4rem", marginLeft: "-1px"}} />}
+          </ListItemIcon>
+          {settings.cozy ? "Cozy mode on" : "Cozy mode off"}
+        </MenuItem>
+      </Menu>
+    </Fragment>
+  );
+}
+
 interface LayoutProps {
   title?: string;
   description: string;
   image: string;
 }
 
-const StyledToggleButton = styled(ToggleButton)(({theme}) => ({
+const StyledIconButton = styled(IconButton)(({theme}) => ({
   ...theme.palette.mode === "light" && {
-    '&.MuiToggleButton-root': {
+    '&.MuiIconButton-root': {
       borderColor: "rgb(255, 255, 255, 0.2)",
       "&:hover": {
         backgroundColor: "rgb(255, 255, 255, 0.2)",

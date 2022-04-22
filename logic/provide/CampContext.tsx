@@ -2,15 +2,18 @@ import {createContext, FC, useCallback, useContext, useState} from "react";
 
 export interface ICampContext {
   settings: ICampSettings;
-  setView: (view: "grid" | "list") => void;
   toggleTheme: () => void;
+  toggleView: () => void;
   toggleSubrooms: () => void;
+  toggleCozy: () => void;
+  setSettings: (settings: ICampSettings) => void;
 }
 
 export interface ICampSettings {
   theme: "light" | "dark";
   view: "grid" | "list"
   subrooms: boolean;
+  cozy: boolean;
 }
 
 const CampContext = createContext<ICampContext>({
@@ -18,33 +21,41 @@ const CampContext = createContext<ICampContext>({
     theme: "light",
     view: "grid",
     subrooms: true,
+    cozy: false,
   },
-  setView: () => undefined,
   toggleTheme: () => undefined,
+  toggleView: () => undefined,
   toggleSubrooms: () => undefined,
+  toggleCozy: () => undefined,
+  setSettings: () => undefined,
 });
 
 export const CampContextProvider: FC = ({children}) => {
   const [settings, setSettings] = useState<ICampSettings>({
-    view: "grid",
     theme: "light",
+    view: "grid",
     subrooms: true,
+    cozy: false,
   });
-
-  const setView = useCallback((view: "grid" | "list") => {
-    setSettings(prev => ({...prev, view}));
-  }, []);
 
   const toggleTheme = useCallback(() => {
     setSettings(prev => ({...prev, theme: prev.theme === "light" ? "dark" : "light"}));
   }, []);
 
+  const toggleView = useCallback(() => {
+    setSettings(prev => ({...prev, view: prev.view === "grid" ? "list" : "grid"}));
+  }, [])
+
   const toggleSubrooms = useCallback(() => {
     setSettings(prev => ({...prev, subrooms: !prev.subrooms}));
   }, []);
 
+  const toggleCozy = useCallback(() => {
+    setSettings(prev => ({...prev, cozy: !prev.cozy}));
+  }, [])
+
   return (
-    <CampContext.Provider value={{settings, setView, toggleTheme, toggleSubrooms}}>
+    <CampContext.Provider value={{settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setSettings}}>
       {children}
     </CampContext.Provider>
   )
