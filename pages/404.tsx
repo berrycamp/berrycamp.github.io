@@ -3,11 +3,11 @@ import {getScreenURL} from "logic/fetch/image";
 import {Layout} from "modules/layout/Layout";
 import {NextPage} from "next";
 import Image from "next/image";
-import {GlobalAppProps} from "./_app";
+import {GlobalCampProps} from "./_app";
 
 const IMAGE = "farewell/1/1/2";
 
-export const Custom404: NextPage<GlobalAppProps> = ({mode, toggleMode, view, setView}) => {
+export const Custom404: NextPage<GlobalCampProps> = ({mode, toggleMode, view, setView}) => {
   return (
     <Layout
       description={"Page could not be found"}

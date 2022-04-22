@@ -4,15 +4,16 @@ import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
 import {getScreenURL} from "logic/fetch/image";
+import {useCampContext} from "logic/provide/CampContext";
 import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {AppNextPage} from "pages/_app";
+import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {useEffect, useState} from "react";
 
-const RoomPage: AppNextPage<RoomProps> = ({
+const RoomPage: CampPage<RoomProps> = ({
   area,
   chapter,
   sideName,
@@ -22,12 +23,8 @@ const RoomPage: AppNextPage<RoomProps> = ({
   prevRoom,
   nextSubroom,
   prevSubroom,
-  mode,
-  toggleMode,
-  view,
-  setView,
 }) => {
-  const [subroomsEnabled, setSubroomsEnabled] = useState<boolean>(true);
+  const {settings} = useCampContext();
 
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
@@ -67,10 +64,6 @@ const RoomPage: AppNextPage<RoomProps> = ({
       title={`${room.name} (${room.debugId})`}
       description={`${area.name} - ${chapter.name} - ${sideName} side - ${checkpointName}`}
       image={room.image}
-      mode={mode}
-      toggleMode={toggleMode}
-      view={view}
-      setView={setView}
     >
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2}}>
@@ -130,7 +123,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
-            {subroomsEnabled && prevSubroom?.link ? (
+            {settings.subrooms && prevSubroom?.link ? (
               <Link passHref href={prevSubroom.link}>
                 <Button
                   size="small"
@@ -155,7 +148,7 @@ const RoomPage: AppNextPage<RoomProps> = ({
             )}
           </Box>
           <Box>
-            {subroomsEnabled && nextSubroom?.link ? (
+            {settings.subrooms && nextSubroom?.link ? (
               <Link passHref href={nextSubroom.link}>
                 <Button
                   size="small"

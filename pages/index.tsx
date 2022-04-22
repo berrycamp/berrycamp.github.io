@@ -3,19 +3,15 @@ import {DATA} from "logic/data/data";
 import {Area} from "logic/data/dataTree";
 import {Layout} from "modules/layout/Layout";
 import {AreaView} from "./[areaId]";
-import {AppNextPage} from "./_app";
+import {CampPage} from "./_app";
 
 const DEFAULT_AREA: Area = DATA["celeste"];
 
-export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
+export const HomePage: CampPage = () => {
   return (
     <Layout
       description={"Browse rooms from the video game Celeste"}
       image={"city/1/2/3"}
-      mode={mode}
-      toggleMode={toggleMode}
-      view={view}
-      setView={setView}
     >
       <Container sx={{marginTop: 4}}>
         <Paper elevation={2} sx={{padding: 2}}>
@@ -36,7 +32,7 @@ export const HomePage: AppNextPage = ({mode, toggleMode, view, setView}) => {
           </Typography>
         </Paper>
       </Container>
-      <AreaView areaId="celeste" area={DEFAULT_AREA} view={view} />
+      <AreaView areaId="celeste" area={DEFAULT_AREA} />
     </Layout >
   )
 }

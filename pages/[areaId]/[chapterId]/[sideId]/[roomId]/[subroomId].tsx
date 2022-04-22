@@ -1,11 +1,11 @@
 import {DATA} from "logic/data/data";
 import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "logic/data/dataTree";
 import {GetStaticPaths, GetStaticProps} from "next";
-import {AppNextPage} from "pages/_app";
+import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import RoomPage, {RoomProps} from "../[roomId]";
 
-const SubroomPage: AppNextPage<RoomProps> = (props) => {
+const SubroomPage: CampPage<RoomProps> = (props) => {
   return (
     <RoomPage {...props} />
   )

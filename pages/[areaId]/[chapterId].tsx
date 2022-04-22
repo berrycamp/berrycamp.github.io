@@ -3,18 +3,19 @@ import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Di
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {getScreenURL} from "logic/fetch/image";
+import {useCampContext} from "logic/provide/CampContext";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
 import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
-import {AppNextPage} from "pages/_app";
+import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
 import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 
-const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapter, mode, toggleMode, view, setView}) => {
-  const [showSubrooms, setShowSubrooms] = useState<boolean>(true);
+const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter}) => {
+  const {settings} = useCampContext();
 
   const [sideId, setSideId] = useState<string>("a");
 
@@ -33,10 +34,6 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
       title={chapter.name}
       description={chapter.desc}
       image={chapter.image}
-      mode={mode}
-      toggleMode={toggleMode}
-      view={view}
-      setView={setView}
     >
       <Container>
         <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
@@ -112,10 +109,10 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
         )}
         {side && (
           <Fragment>
-            {view === "grid" ? (
-              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={showSubrooms} />
-            ) : (view === "list") && (
-              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={showSubrooms} />
+            {settings.view === "grid" ? (
+              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={settings.subrooms} />
+            ) : (
+              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={settings.subrooms} />
             )}
           </Fragment>
         )}

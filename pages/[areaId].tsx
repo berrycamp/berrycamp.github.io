@@ -1,6 +1,7 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
 import {getScreenURL} from 'logic/fetch/image'
+import {useCampContext} from 'logic/provide/CampContext'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
 import Link from "next/link"
@@ -8,25 +9,23 @@ import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
 import {Area} from '../logic/data/dataTree'
-import {AppNextPage} from './_app'
+import {CampPage} from './_app'
 
-const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view, setView}) => {
+const AreaPage: CampPage<AreaProps> = ({areaId, area}) => {
   return (
     <Layout
       title={area.name}
       description={area.desc}
       image={area.image}
-      mode={mode}
-      toggleMode={toggleMode}
-      view={view}
-      setView={setView}
     >
-      <AreaView areaId={areaId} area={area} view={view} />
+      <AreaView areaId={areaId} area={area} />
     </Layout >
   )
 }
 
-export const AreaView: FC<AreaProps & {view: "grid" | "list"}> = ({areaId, area, view}) => {
+export const AreaView: FC<AreaProps> = ({areaId, area}) => {
+  const {settings: {view}} = useCampContext();
+
   return (
     <Fragment>
       {view === "grid" ? (

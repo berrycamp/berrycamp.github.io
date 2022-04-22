@@ -1,6 +1,7 @@
 import {DarkMode, Fireplace, GridViewSharp, LightMode, ViewListSharp} from "@mui/icons-material";
 import {AppBar, Box, IconButton, styled, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
 import {getScreenURL} from "logic/fetch/image";
+import {useCampContext} from "logic/provide/CampContext";
 import {getMetadataTitle, getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
@@ -11,7 +12,9 @@ export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welc
 
 const COZY_IMAGE_COUNT = 7;
 
-export const Layout: FC<LayoutProps> = ({title, description, image, mode, toggleMode, view, setView, children}) => {
+export const Layout: FC<LayoutProps> = ({title, description, image, children}) => {
+  const {settings, setView, toggleTheme, toggleSubrooms} = useCampContext();
+
   const [cozyMode, setCozyMode] = useState<boolean>(false);
 
   return (
@@ -85,7 +88,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, mode, toggle
                 </StyledToggleButton>
               </Tooltip>
               <Tooltip title="Change view">
-                <ToggleButtonGroup exclusive size="small" value={view} onChange={(_, newView) => newView && setView(newView)}>
+                <ToggleButtonGroup exclusive size="small" value={settings.view} onChange={(_, newView) => newView && setView(newView)}>
                   <StyledToggleButton value="grid" aria-label="Enable grid view mode">
                     <GridViewSharp fontSize="small" />
                   </StyledToggleButton>
@@ -94,9 +97,9 @@ export const Layout: FC<LayoutProps> = ({title, description, image, mode, toggle
                   </StyledToggleButton>
                 </ToggleButtonGroup>
               </Tooltip>
-              <Tooltip title={mode === "light" ? "Switch to dark mode" : "Switch to light mode"}>
-                <IconButton onClick={toggleMode} color="inherit">
-                  {mode === "light" ? <LightMode /> : <DarkMode />}
+              <Tooltip title={settings.theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
+                <IconButton onClick={toggleTheme} color="inherit">
+                  {settings.theme === "light" ? <LightMode /> : <DarkMode />}
                 </IconButton>
               </Tooltip>
             </Box>
@@ -130,10 +133,6 @@ interface LayoutProps {
   title?: string;
   description: string;
   image: string;
-  mode: "light" | "dark";
-  toggleMode: () => void;
-  view: "grid" | "list"
-  setView: (view: "grid" | "list") => void;
 }
 
 const StyledToggleButton = styled(ToggleButton)(({theme}) => ({

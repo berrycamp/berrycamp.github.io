@@ -1,95 +1,32 @@
-import {Theme, ThemeProvider} from '@emotion/react';
-import {createTheme, CssBaseline} from '@mui/material';
-import {GetStaticProps, NextPage} from 'next';
-import type {AppProps} from 'next/app';
-import {useEffect, useMemo, useState} from 'react';
+import {CssBaseline} from '@mui/material';
+import {CampContextProvider} from 'logic/provide/CampContext';
+import {CampPreferencesProvider} from 'logic/provide/CampPreferences';
+import {CampThemeProvider} from 'logic/provide/CampTheme';
+import {NextPage} from 'next';
+import {AppProps} from 'next/app';
 import '../styles/globals.css';
 
-const App = ({Component, pageProps}: AppProps<GlobalAppProps>) => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
-  const [view, setView] = useState<"grid" | "list">("grid");
-
-  /**
-   * Set the initial theme from the script.
-   */
-  useEffect(() => {
-    setMode(document.documentElement.style.getPropertyValue("--initial-theme") === "dark" ? "dark" : "light")
-  }, [])
-
-  /**
-   * Get the user or media mode preference. Default to light if not provided.
-   */
-  useEffect(() => {
-    window.localStorage.setItem("theme", mode);
-    if (mode === "dark") {
-      document.documentElement.setAttribute("data-theme", mode);
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-    }
-  }, [mode])
-
-  /**
-   * Load the prefered view from local storage or default to grid.
-   */
-  useEffect(() => {
-    const userView: string | null = window.localStorage.getItem("view");
-    if (userView !== null && userView === "list") {
-      setView(userView);
-    } else {
-      setView("grid");
-    }
-  }, [])
-
-  /**
-   * Set the view in local storage.
-   */
-  useEffect(() => {
-    window.localStorage.setItem("view", view);
-  }, [view]);
-
-  const globalAppProps: GlobalAppProps = useMemo(() => ({
-    mode,
-    toggleMode: () => setMode(mode === "light" ? "dark" : "light"),
-    view,
-    setView: (view: "grid" | "list") => setView(view),
-  }), [mode, view]);
-
-  const theme: Theme = useMemo(() => createTheme({
-    palette: {
-      mode,
-      primary: {
-        main: "#c800c8",
-      },
-      secondary: {
-        main: "#cc252c",
-      },
-    },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            transition: "all 0.1s linear",
-          }
-        }
-      }
-    }
-  }), [mode]);
-
+const App = ({Component, pageProps}: AppProps<GlobalCampProps>) => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} {...globalAppProps} />
-    </ThemeProvider>
+    <CampContextProvider>
+      <CampPreferencesProvider>
+        <CampThemeProvider>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </CampThemeProvider>
+      </CampPreferencesProvider>
+    </CampContextProvider>
   );
 }
 
-export interface GlobalAppProps {
-  mode: "light" | "dark";
-  toggleMode: () => void;
-  view: "grid" | "list";
-  setView: (view: "grid" | "list") => void;
-}
+/**
+ * Declare global props to pass through Component to all camp pages.
+ */
+export interface GlobalCampProps {}
 
-export type AppNextPage<P = {}, IP = P> = NextPage<P & GlobalAppProps, IP>;
+/**
+ * Any NextPage provided with global camp props.
+ */
+export type CampPage<P = {}, IP = P> = NextPage<P & GlobalCampProps, IP>;
 
 export default App;
