@@ -1,36 +1,22 @@
 import {DATA} from "logic/data/data";
-import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "logic/data/dataTree";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {AppNextPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import RoomPage from "../[roomId]";
+import RoomPage, {RoomProps} from "../[roomId]";
 
-const SubroomPage: AppNextPage<SubroomProps> = (props) => {
+const SubroomPage: AppNextPage<RoomProps> = (props) => {
   return (
     <RoomPage {...props} />
   )
 }
 
-interface SubroomProps {
-  areaId: string;
-  area: Area;
-  chapterId: string;
-  chapter: Chapter;
-  sideIndex: number;
-  side: Side;
-  checkpointIndex: number;
-  checkpoint: Checkpoint;
-  roomIndex: number;
-  room: Room;
-  subroom: number;
-}
-
 interface SubroomParams extends ParsedUrlQuery {
-  area: string;
-  chapter: string;
-  side: string;
-  room: string;
-  subroom: string;
+  areaId: string;
+  chapterId: string;
+  sideId: string;
+  roomId: string;
+  subroomId: string;
 }
 
 export const getStaticPaths: GetStaticPaths<SubroomParams> = async () => {
@@ -38,13 +24,11 @@ export const getStaticPaths: GetStaticPaths<SubroomParams> = async () => {
 
   for (const [areaId, area] of Object.entries(DATA)) {
     for (const [chapterId, chapter] of Object.entries(area.chapters)) {
-      for (const side of chapter.sides) {
-        for (const checkpoint of side.checkpoints) {
-          for (const room of checkpoint.rooms) {
-            if (room.subroom) {
-              paths.push({params: {area: areaId, chapter: chapterId, side: side.name.toLowerCase(), room: room.id, subroom: String(room.subroom)}});
-            }
-          }
+      for (const [sideId, side] of Object.entries(chapter.sides)) {
+        for (const [roomId, room] of Object.entries(side.rooms)) {
+          room.subrooms?.forEach((_, subroomIndex) => {
+            paths.push({params: {areaId, chapterId, sideId, roomId, subroomId: String(subroomIndex + 1)}});
+          })
         }
       }
     }
@@ -56,12 +40,12 @@ export const getStaticPaths: GetStaticPaths<SubroomParams> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<SubroomProps, SubroomParams> = async ({params}) => {
+export const getStaticProps: GetStaticProps<RoomProps, SubroomParams> = async ({params}) => {
   if (params === undefined) {
     throw Error("Params was not defined");
   }
 
-  const {area: areaId, chapter: chapterId, side: sideId, room: roomId, subroom} = params;
+  const {areaId, chapterId, sideId, roomId, subroomId} = params;
   const area: Area | undefined = DATA[areaId];
   if (area === undefined) {
     throw Error(`Area ${areaId} is not valid`);
@@ -72,57 +56,91 @@ export const getStaticProps: GetStaticProps<SubroomProps, SubroomParams> = async
     throw Error(`Chapter ${chapterId} is not valid`);
   }
 
-  const sideIndex: number = chapter.sides.findIndex(s => s.name.toLowerCase() === sideId.toLowerCase())
-  const side: Side | undefined = chapter.sides[sideIndex];
+  const side: Side | undefined = chapter.sides[sideId];
   if (side === undefined) {
     throw Error("Side not defined");
   }
 
-  const roomData: {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined = getRoomData(side, roomId, subroom);
-  if (roomData === undefined) {
+  const room: Room | undefined = side.rooms[roomId];
+  if (room === undefined) {
     throw Error(`Could not find room ${roomId} in side ${side.name}`);
   }
-  const {checkpointIndex, checkpoint, roomIndex, room} = roomData;
+
+  const checkpoint: Checkpoint | undefined = side.checkpoints[room.checkpointNo];
+  if (checkpoint === undefined) {
+    throw Error(`Could not find checkpoint ${room.checkpointNo} in side ${side.name}`);
+  }
+
+  const subrooms: Subroom[] | undefined = room.subrooms;
+  if (subrooms === undefined || subrooms.length === 0) {
+    throw Error(`Room ${roomId} has no subrooms.`)
+  }
+
+  const subroomIndex: number = Number(subroomId) - 1;
+  const subroom: Subroom | undefined = subrooms[subroomIndex];
+  if (subroom === undefined) {
+    throw Error(`Could not find subroom ${subroomId} in room ${roomId}`)
+  }
+
+  const prevSubroom: Subroom | undefined = subrooms[subroomIndex - 1];
+  const nextSubroom: Subroom | undefined = subrooms[subroomIndex + 1];
+
+  const roomIndex: number = checkpoint.roomOrder.findIndex(id => id === roomId);
+
+  const prevRoomId: string | undefined = checkpoint.roomOrder[roomIndex - 1] ?? side.checkpoints[room.checkpointNo - 1]?.roomOrder.slice(-1)[0];
+  const nextRoomId: string | undefined = checkpoint.roomOrder[roomIndex + 1] ?? side.checkpoints[room.checkpointNo + 1]?.roomOrder[0];
+  const prevRoom: Room | undefined = prevRoomId ? side.rooms[prevRoomId] : undefined;
+  const nextRoom: Room | undefined = nextRoomId ? side.rooms[nextRoomId] : undefined;
+
+  const sideRoomIndex = side.checkpoints.slice(0, room.checkpointNo).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
 
   return {
     props: {
-      areaId,
-      area,
-      chapterId,
-      chapter,
-      sideIndex,
-      side,
-      checkpointIndex,
-      checkpoint,
-      roomIndex,
-      room,
-      subroom: Number(subroom),
-    }
-  }
-}
-
-/**
- * TODO get the subroom
- * 
- * Find the room by id in a side.
- * 
- * @param side The side to search.
- * @param roomId The room id.
- * @param subroom The subroom.
- * @returns The room data.
- */
-const getRoomData = (side: Side, roomId: string, subroom: string): {checkpointIndex: number, checkpoint: Checkpoint, roomIndex: number, room: Room} | undefined => {
-  for (let checkpointIndex = 0; checkpointIndex < side.checkpoints.length; checkpointIndex++) {
-    const checkpoint: Checkpoint = side.checkpoints[checkpointIndex] as Checkpoint;
-    for (let roomIndex = 0; roomIndex < checkpoint.rooms.length; roomIndex++) {
-      const room: Room = checkpoint.rooms[roomIndex] as Room;
-      if (room.id === roomId && room.subroom === Number(subroom)) {
-        return {checkpointIndex, checkpoint, roomIndex, room}
+      area: {
+        name: area.name,
+        link: `/${areaId}`,
+      },
+      chapter: {
+        name: chapter.name,
+        link: `/${areaId}/${chapterId}`
+      },
+      sideName: side.name,
+      checkpointName: checkpoint.name,
+      room: {
+        name: subroom.name,
+        image: subroom.image,
+        debugId: roomId,
+        roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
+        levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
+        checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
+        teleportParams: `?area=${areaId}/${chapterId}&side=${sideId}&level=${roomId}&x=${subroom.x}&y=${subroom.y}`,
+      },
+      ...prevRoom && {
+        prevRoom: {
+          name: prevRoom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
+        }
+      },
+      ...nextRoom && {
+        nextRoom: {
+          name: nextRoom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
+        }
+      },
+      ...prevSubroom && {
+        prevSubroom: {
+          name: prevSubroom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex}`,
+        }
+      },
+      ...nextSubroom && {
+        nextSubroom: {
+          name: nextSubroom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 2}`,
+        }
       }
     }
   }
-
-  return undefined;
 }
 
 export default SubroomPage;

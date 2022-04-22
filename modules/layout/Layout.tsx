@@ -1,16 +1,17 @@
 import {DarkMode, Fireplace, GridViewSharp, LightMode, ViewListSharp} from "@mui/icons-material";
 import {AppBar, Box, IconButton, styled, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography} from "@mui/material";
+import {getScreenURL} from "logic/fetch/image";
 import {getMetadataTitle, getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import {FC, Fragment, useState} from "react";
 
-export const COZY_IMAGE_URL = "https://f002.backblazeb2.com/file/berrycamp/static/welcome/images"
+export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welcome/images"
 
 const COZY_IMAGE_COUNT = 7;
 
-export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggleMode, view, setView, children}) => {
+export const Layout: FC<LayoutProps> = ({title, description, image, mode, toggleMode, view, setView, children}) => {
   const [cozyMode, setCozyMode] = useState<boolean>(false);
 
   return (
@@ -20,7 +21,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
         <meta name="description" content={description} />
         <meta property="og:title" content={getMetadataTitle(title)} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={imgUrl} />
+        <meta property="og:image" content={getScreenURL(image)} />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <main>
@@ -128,7 +129,7 @@ export const Layout: FC<LayoutProps> = ({title, description, imgUrl, mode, toggl
 interface LayoutProps {
   title?: string;
   description: string;
-  imgUrl: string;
+  image: string;
   mode: "light" | "dark";
   toggleMode: () => void;
   view: "grid" | "list"

@@ -1,1 +1,1 @@
-export const getImageURL = (image: string): string => `https://cdn.berry.camp/file/berrycamp/screens/${image}.png`
+export const getScreenURL = (image: string): string => `https://cdn.berry.camp/file/berrycamp/screens/${image}.png`

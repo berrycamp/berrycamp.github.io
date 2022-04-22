@@ -2,7 +2,7 @@ import {NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
-import {getImageURL} from "logic/fetch/image";
+import {getScreenURL} from "logic/fetch/image";
 import {pluralize} from "logic/utils/pluralize";
 import {Layout} from "modules/layout/Layout";
 import Image from "next/image";
@@ -32,7 +32,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
     <Layout
       title={chapter.name}
       description={chapter.desc}
-      imgUrl={chapter.image}
+      image={chapter.image}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -58,7 +58,7 @@ const ChapterPage: AppNextPage<ChapterProps> = ({areaId, area, chapterId, chapte
             <Image
               unoptimized
               className="pixelated-image"
-              src={getImageURL(chapter.image)}
+              src={getScreenURL(chapter.image)}
               alt={`Image of chapter ${chapter.name}`}
               objectFit="cover"
               layout="fill"
@@ -200,7 +200,7 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
         <CardMedia
           component="img"
           className="pixelated-image"
-          src={getImageURL(image)}
+          src={getScreenURL(image)}
           alt={`Thumbnail for room ${roomName}`}
         />
         {hover && (
@@ -273,7 +273,7 @@ const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName
     >
       <Image
         unoptimized
-        src={getImageURL(image)}
+        src={getScreenURL(image)}
         alt={`Image of room ${roomName}`}
         width={128}
         height={72}

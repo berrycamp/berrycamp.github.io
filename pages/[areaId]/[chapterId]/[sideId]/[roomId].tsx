@@ -2,7 +2,8 @@ import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
-import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
+import {getScreenURL} from "logic/fetch/image";
 import {Layout} from "modules/layout/Layout";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
@@ -12,47 +13,32 @@ import {ParsedUrlQuery} from "querystring";
 import {useEffect, useState} from "react";
 
 const RoomPage: AppNextPage<RoomProps> = ({
-  areaId,
   area,
-  chapterId,
   chapter,
-  sideId,
-  side,
-  checkpoint,
-  roomIndex,
+  sideName,
+  checkpointName,
   room,
-  subroomId,
-  subroom,
+  nextRoom,
+  prevRoom,
+  nextSubroom,
+  prevSubroom,
   mode,
   toggleMode,
   view,
   setView,
 }) => {
+  const [subroomsEnabled, setSubroomsEnabled] = useState<boolean>(true);
+
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
-
-  const prevRoomId: string | undefined = checkpoint.roomOrder[roomIndex - 1] ?? side.checkpoints[room.checkpointNo - 1]?.roomOrder.slice(-1)[0];
-  const nextRoomId: string | undefined = checkpoint.roomOrder[roomIndex + 1] ?? side.checkpoints[room.checkpointNo + 1]?.roomOrder[0];
-  const prevRoom: Room | undefined = prevRoomId ? side.rooms[prevRoomId] : undefined;
-  const nextRoom: Room | undefined = nextRoomId ? side.rooms[nextRoomId] : undefined;
-
-  const sideRoomIndex = side.checkpoints.slice(room.checkpointNo - 1).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
-
-  const prevRoomLink: string | undefined = prevRoom ? `/${areaId}/${chapterId}/${sideId}${prevRoom.subroom ? `/${prevRoom.subroom}` : ""}` : undefined;
-  const nextRoomLink: string | undefined = nextRoom ? `/${areaId}/${chapterId}/${sideId}/${nextRoom.id}${nextRoom.subroom ? `/${nextRoom.subroom}` : ""}` : undefined;
 
   /**
    * Send a request to open the room in Everest.
    */
   const handleOpenRoom = async (): Promise<void> => {
-    const sideId: string | undefined = chapter.sides[sideIndex]?.name;
-    if (sideId === undefined) {
-      return;
-    }
-
     try {
-      await fetch(`http://localhost:32270/tp?area=${area.id}/${chapter.gameId}&side=${sideId}&level=${room.id}`, {mode: "no-cors"});
+      await fetch(`http://localhost:32270/tp${room.teleportParams}`, {mode: "no-cors"});
     } catch (e) {
       // Do nothing.
     }
@@ -63,22 +49,24 @@ const RoomPage: AppNextPage<RoomProps> = ({
    */
   useEffect(() => {
     const listener = (event: WindowEventMap["keydown"]) => {
-      if (event.key === "ArrowLeft" && prevRoomLink) {
-        window.location.href = prevRoomLink;
-      } else if (event.key === "ArrowRight" && nextRoomLink) {
-        window.location.href = nextRoomLink;
+      if (event.key === "ArrowLeft" && prevRoom?.link) {
+        window.location.href = prevRoom.link;
+      } else if (event.key === "ArrowRight" && nextRoom?.link) {
+        window.location.href = nextRoom.link;
       }
     }
 
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
-  }, [nextRoomLink, prevRoomLink])
+  }, [nextRoom?.link, prevRoom?.link])
+
+  const isASide: boolean = sideName === "A";
 
   return (
     <Layout
-      title={`${room.name} (${room.id})`}
-      description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpoint.name}`}
-      imgUrl={roomImageUrl}
+      title={`${room.name} (${room.debugId})`}
+      description={`${area.name} - ${chapter.name} - ${sideName} side - ${checkpointName}`}
+      image={room.image}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -86,22 +74,22 @@ const RoomPage: AppNextPage<RoomProps> = ({
     >
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2}}>
-          <MuiLink href={`/${areaId}`} underline="always">
+          <MuiLink href={area.link} underline="always">
             {area.name}
           </MuiLink>
-          <MuiLink href={`/${areaId}/${chapterId}`} underline="always">
+          <MuiLink href={chapter.link} underline="always">
             {chapter.name}
           </MuiLink>
-          <Typography color="text.secondary">{side.name}</Typography>
-          <Typography color="text.secondary">{checkpoint.name}</Typography>
-          <Typography color="text.primary">{room.name} ({room.id}{room.subroom ? ` / ${room.subroom}` : ""})</Typography>
+          <Typography color="text.secondary">{sideName}</Typography>
+          <Typography color="text.secondary">{checkpointName}</Typography>
+          <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <AspectBox>
             <Image
               unoptimized
               className="pixelated-image"
-              src={roomImageUrl}
+              src={getScreenURL(room.image)}
               alt={`Very large image of room ${room.name}`}
               layout="fill"
             />
@@ -113,18 +101,18 @@ const RoomPage: AppNextPage<RoomProps> = ({
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
             className="pixelated-image"
-            src={roomImageUrl}
+            src={getScreenURL(room.image)}
             alt={`Large image of room ${room.name}`}
             layout="fill"
           />
         </AspectBox>
         <Box display="flex" justifyContent="space-between">
-          <Typography component="div" variant="h4">{(subroom === undefined && room.subroom && room.fullRoomName) ? room.fullRoomName : room.name}</Typography>
-          <Tooltip enterDelay={750} title={Number(room.subroom) - 1 ? "Location may not be accurate" : "Opens if Everest is installed and running"}>
+          <Typography component="div" variant="h4">{room.name}</Typography>
+          <Tooltip enterDelay={750} title={isASide ? "Opens if Everest is installed and running" : "May not work for B and C sides due to Everest bug"}>
             <Button
               variant="contained"
-              color={Number(room.subroom) - 1 ? "warning" : "primary"}
-              endIcon={Number(room.subroom) - 1 ? <Info /> : <Launch />}
+              color={isASide ? "primary" : "warning"}
+              endIcon={isASide ? <Launch /> : <Info />}
               onClick={handleOpenRoom}
               aria-label="Open the current room in Celeste"
             >
@@ -133,18 +121,28 @@ const RoomPage: AppNextPage<RoomProps> = ({
           </Tooltip>
         </Box>
         <Typography component="div" color="text.secondary">{chapter.name}</Typography>
-        <Typography component="div" color="text.secondary">{side.name} Side</Typography>
-        <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
+        <Typography component="div" color="text.secondary">{sideName} Side</Typography>
+        <Typography component="div" color="text.secondary">{checkpointName}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
-        <Typography component="div" color="text.secondary">Debug id: {room.id}</Typography>
-        <Typography component="div" color="text.secondary">Room id: {checkpoint.abbreviation}-{roomIndex + 1}</Typography>
-        {room.subroom && <Typography component="div" color="text.secondary">Subroom: {room.subroom}</Typography>}
-        <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Room in checkpoint: {roomIndex + 1}/{checkpoint.rooms.length}</Typography>
-        <Typography component="div" color="text.secondary">Room in level: {sideRoomIndex + 1}/{side.roomCount}</Typography>
+        <Typography component="div" color="text.secondary">Debug id: {room.debugId}</Typography>
+        <Typography component="div" color="text.secondary">Room id: {room.roomId}</Typography>
+        <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Checkpoint room: {room.checkpointRoomNo}</Typography>
+        <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
-            {prevRoom && prevRoomLink && (
-              <Link passHref href={prevRoomLink}>
+            {subroomsEnabled && prevSubroom?.link ? (
+              <Link passHref href={prevSubroom.link}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  startIcon={<NavigateBefore />}
+                  aria-label={`Go to previous room ${prevSubroom.name}`}
+                >
+                  {prevSubroom.name}
+                </Button>
+              </Link>
+            ) : prevRoom?.link && (
+              <Link passHref href={prevRoom.link}>
                 <Button
                   size="small"
                   variant="outlined"
@@ -157,8 +155,19 @@ const RoomPage: AppNextPage<RoomProps> = ({
             )}
           </Box>
           <Box>
-            {nextRoom && nextRoomLink && (
-              <Link passHref href={nextRoomLink}>
+            {subroomsEnabled && nextSubroom?.link ? (
+              <Link passHref href={nextSubroom.link}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  endIcon={<NavigateNext />}
+                  aria-label={`Go to next room ${nextSubroom.name}`}
+                >
+                  {nextSubroom.name}
+                </Button>
+              </Link>
+            ) : nextRoom?.link && (
+              <Link passHref href={nextRoom.link}>
                 <Button
                   size="small"
                   variant="outlined"
@@ -176,19 +185,29 @@ const RoomPage: AppNextPage<RoomProps> = ({
   )
 }
 
-interface RoomProps {
-  areaId: string;
-  area: Area;
-  chapterId: string;
-  chapter: Chapter;
-  sideId: string;
-  side: Side;
-  checkpoint: Checkpoint;
-  roomId: string;
-  roomIndex: number;
-  room: Room;
-  subroomId?: number;
-  subroom?: Subroom;
+interface NameLink {
+  name: string;
+  link: string;
+}
+
+export interface RoomProps {
+  area: NameLink;
+  chapter: NameLink;
+  sideName: string;
+  checkpointName: string;
+  room: {
+    name: string;
+    image: string;
+    debugId: string;
+    roomId: string;
+    checkpointRoomNo: string;
+    levelRoomNo: string;
+    teleportParams: string;
+  };
+  prevRoom?: NameLink;
+  prevSubroom?: NameLink;
+  nextRoom?: NameLink;
+  nextSubroom?: NameLink;
 }
 
 interface RoomParams extends ParsedUrlQuery {
@@ -250,18 +269,58 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
 
   const roomIndex: number = checkpoint.roomOrder.findIndex(id => id === roomId);
 
+  const prevRoomId: string | undefined = checkpoint.roomOrder[roomIndex - 1] ?? side.checkpoints[room.checkpointNo - 1]?.roomOrder.slice(-1)[0];
+  const nextRoomId: string | undefined = checkpoint.roomOrder[roomIndex + 1] ?? side.checkpoints[room.checkpointNo + 1]?.roomOrder[0];
+  const prevRoom: Room | undefined = prevRoomId ? side.rooms[prevRoomId] : undefined;
+  const nextRoom: Room | undefined = nextRoomId ? side.rooms[nextRoomId] : undefined;
+
+  const sideRoomIndex = side.checkpoints.slice(0, room.checkpointNo).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
+
   return {
     props: {
-      areaId,
-      area,
-      chapterId,
-      chapter,
-      sideId,
-      side,
-      checkpoint,
-      roomId,
-      roomIndex,
-      room,
+      area: {
+        name: area.name,
+        link: `/${areaId}`,
+      },
+      chapter: {
+        name: chapter.name,
+        link: `/${areaId}/${chapterId}`
+      },
+      sideName: side.name,
+      checkpointName: checkpoint.name,
+      room: {
+        name: room.name,
+        image: room.image,
+        debugId: roomId,
+        roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
+        levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
+        checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
+        teleportParams: `?area=${areaId}/${chapterId}&side=${sideId}&level=${roomId}${(room.x && room.y) ? `&x=${room.x}&y=${room.y}` : ""}`,
+      },
+      ...prevRoom && {
+        prevRoom: {
+          name: prevRoom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
+        }
+      },
+      ...nextRoom && {
+        nextRoom: {
+          name: nextRoom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
+        }
+      },
+      ...prevRoom && prevRoom.subrooms && prevRoom.subrooms.length > 0 && {
+        prevSubroom: {
+          name: prevRoom.subrooms.slice(-1)[0]!.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}/${prevRoom.subrooms.length}`,
+        }
+      },
+      ...nextRoom && nextRoom.subrooms && nextRoom.subrooms.length > 0 && {
+        nextSubroom: {
+          name: nextRoom.subrooms[0]!.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}/1`,
+        }
+      }
     }
   }
 }

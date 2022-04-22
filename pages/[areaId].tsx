@@ -1,6 +1,6 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {DATA} from 'logic/data/data'
-import {getImageURL} from 'logic/fetch/image'
+import {getScreenURL} from 'logic/fetch/image'
 import {Layout} from 'modules/layout/Layout'
 import Image from "next/image"
 import Link from "next/link"
@@ -15,7 +15,7 @@ const AreaPage: AppNextPage<AreaProps> = ({areaId, area, mode, toggleMode, view,
     <Layout
       title={area.name}
       description={area.desc}
-      imgUrl={getImageURL(area.image)}
+      image={area.image}
       mode={mode}
       toggleMode={toggleMode}
       view={view}
@@ -62,7 +62,7 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                   <CardMedia
                     component="img"
                     className="pixelated-image"
-                    src={getImageURL(chapter.image)}
+                    src={getScreenURL(chapter.image)}
                     alt={`An image of chapter ${chapter.name}`}
                   />
                   <CardContent>
@@ -100,7 +100,7 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
             >
               <Image
                 unoptimized
-                src={getImageURL(chapter.image)}
+                src={getScreenURL(chapter.image)}
                 alt={`Image of chapter ${chapter.name}`}
                 width={128}
                 height={72}
