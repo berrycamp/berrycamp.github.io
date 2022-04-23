@@ -26,7 +26,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <main>
-        <AppBar position="static">
+        <AppBar position="sticky">
           <Toolbar
             variant="dense"
             sx={{
@@ -36,13 +36,12 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
               }
             }}
           >
-            <Box flexGrow={1} minWidth={0}>
+            <Box flexGrow={1}>
               <Link passHref href="/">
                 <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
                   <Box sx={{display: {xs: "none", sm: "block"}}}>
                     <Image
                       unoptimized
-                      style={{minWidth: 0}}
                       priority
                       className="pixelated-image"
                       src={'/img/logo.png'}

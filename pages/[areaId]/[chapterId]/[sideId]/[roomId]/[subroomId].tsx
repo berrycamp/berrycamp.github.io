@@ -94,6 +94,9 @@ export const getStaticProps: GetStaticProps<RoomProps, SubroomParams> = async ({
 
   const sideRoomIndex = side.checkpoints.slice(0, room.checkpointNo).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
 
+  const prevRoomSubroom: Subroom | undefined = prevRoom?.subrooms && prevRoom.subrooms[prevRoom.subrooms.length - 1];
+  const nextRoomSubroom: Subroom | undefined = nextRoom?.subrooms && nextRoom?.subrooms[0];
+
   return {
     props: {
       area: {
@@ -115,13 +118,23 @@ export const getStaticProps: GetStaticProps<RoomProps, SubroomParams> = async ({
         checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
         teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.x && room.y) ? `&x=${subroom.x}&y=${subroom.y}` : ""}`,
       },
-      ...prevRoom && {
+      ...prevRoomSubroom && prevRoom?.subrooms ? {
+        prevRoom: {
+          name: prevRoomSubroom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}/${prevRoom.subrooms.length}`,
+        }
+      } : prevRoom && {
         prevRoom: {
           name: prevRoom.name,
           link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
         }
       },
-      ...nextRoom && {
+      ...nextRoomSubroom ? {
+        nextRoom: {
+          name: nextRoomSubroom.name,
+          link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}/1`,
+        }
+      } : nextRoom && {
         nextRoom: {
           name: nextRoom.name,
           link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,

@@ -794,15 +794,7 @@
           "checkpointNo": 6,
           "image": "summit/1/7/26",
           "x": 440,
-          "y": 928,
-          "subrooms": [
-            {
-              "name": "Flag 6",
-              "image": "summit/1/7/26",
-              "x": 440,
-              "y": 928
-            }
-          ]
+          "y": 928
         },
         "g-03": {
           "name": "Flags 5 - 1",
