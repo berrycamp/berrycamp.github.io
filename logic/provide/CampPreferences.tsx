@@ -1,8 +1,10 @@
 import {FC, Fragment, useEffect} from "react";
-import {useCampContext} from "./CampContext";
+import {ICampSettings, useCampContext} from "./CampContext";
+
+const SETTINGS_KEY = "settings";
 
 export const CampPreferencesProvider: FC = ({children}) => {
-  const {settings, toggleView, toggleTheme, toggleSubrooms, setSettings} = useCampContext();
+  const {settings, setSettings} = useCampContext();
 
   /**
    * Load user preferences.
@@ -17,6 +19,32 @@ export const CampPreferencesProvider: FC = ({children}) => {
   }, [setSettings]);
 
   /**
+   * Retrieve user settings from localstorage.
+   */
+  useEffect(() => {
+    try {
+      const unsafeSettings: ICampSettings = JSON.parse(window.localStorage.getItem(SETTINGS_KEY) ?? "");
+      if (typeof unsafeSettings.cozy !== "boolean"
+        || (typeof unsafeSettings.port !== "number" && typeof unsafeSettings.port !== "undefined")
+        || typeof unsafeSettings.subrooms !== "boolean"
+        || typeof unsafeSettings.theme !== "string"
+        || typeof unsafeSettings.view !== "string") {
+        return;
+      }
+      setSettings(unsafeSettings);
+    } catch (err) {
+      // Don't care.
+    }
+  }, [setSettings]);
+
+  /**
+   * Set user settings in localstorage.
+   */
+  useEffect(() => {
+    window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  }, [settings]);
+
+  /**
    * Get the user or media mode preference. Default to light if not provided.
    */
   useEffect(() => {
@@ -27,20 +55,6 @@ export const CampPreferencesProvider: FC = ({children}) => {
       document.documentElement.removeAttribute("data-theme");
     }
   }, [settings.theme])
-
-  /**
-   * Set the view in local storage.
-   */
-  useEffect(() => {
-    window.localStorage.setItem("view", settings.view);
-  }, [settings.view]);
-
-  /**
-   * Set the subrooms in local storage.
-   */
-  useEffect(() => {
-    window.localStorage.setItem("subrooms", String(settings.subrooms))
-  }, [settings.subrooms]);
 
   return (
     <Fragment>

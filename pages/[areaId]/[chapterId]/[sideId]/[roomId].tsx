@@ -35,7 +35,7 @@ const RoomPage: CampPage<RoomProps> = ({
    */
   const handleOpenRoom = async (): Promise<void> => {
     try {
-      await fetch(`http://localhost:32270/tp${room.teleportParams}`, {mode: "no-cors"});
+      await fetch(`http://localhost:${settings.port ?? 32270}/tp${room.teleportParams}`, {mode: "no-cors"});
     } catch (e) {
       // Do nothing.
     }

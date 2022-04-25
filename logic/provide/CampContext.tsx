@@ -6,6 +6,7 @@ export interface ICampContext {
   toggleView: () => void;
   toggleSubrooms: () => void;
   toggleCozy: () => void;
+  setPort: (port?: number) => void;
   setSettings: (settings: ICampSettings) => void;
 }
 
@@ -14,6 +15,7 @@ export interface ICampSettings {
   view: "grid" | "list"
   subrooms: boolean;
   cozy: boolean;
+  port?: number | undefined
 }
 
 const CampContext = createContext<ICampContext>({
@@ -27,6 +29,7 @@ const CampContext = createContext<ICampContext>({
   toggleView: () => undefined,
   toggleSubrooms: () => undefined,
   toggleCozy: () => undefined,
+  setPort: () => undefined,
   setSettings: () => undefined,
 });
 
@@ -54,8 +57,12 @@ export const CampContextProvider: FC = ({children}) => {
     setSettings(prev => ({...prev, cozy: !prev.cozy}));
   }, [])
 
+  const setPort = useCallback((port?: number) => {
+    setSettings(prev => ({...prev, port}));
+  }, [])
+
   return (
-    <CampContext.Provider value={{settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setSettings}}>
+    <CampContext.Provider value={{settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setPort, setSettings}}>
       {children}
     </CampContext.Provider>
   )

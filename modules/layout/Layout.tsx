@@ -1,5 +1,5 @@
-import {CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
-import {AppBar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, styled, Toolbar, Typography} from "@mui/material";
+import {CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
+import {AppBar, Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Toolbar, Tooltip, Typography} from "@mui/material";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {getMetadataTitle, getTitle} from "logic/utils/title";
@@ -7,6 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import {FC, Fragment, MouseEvent, useState} from "react";
+import {EVEREST_ICON} from "./everest";
 
 export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welcome/images"
 
@@ -39,7 +40,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
             <Box flexGrow={1}>
               <Link passHref href="/">
                 <Box height={48} width={288} position="relative" display="flex" alignItems="center" sx={{cursor: "pointer"}}>
-                  <Box sx={{display: {xs: "none", sm: "block"}}}>
+                  <Box sx={{position: "relative", width: "100%", height: "100%", display: {xs: "none", sm: "block"}}}>
                     <Image
                       unoptimized
                       priority
@@ -101,7 +102,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
 }
 
 const SettingsMenu: FC = () => {
-  const {settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy} = useCampContext();
+  const {settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setPort} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -153,8 +154,45 @@ const SettingsMenu: FC = () => {
           </ListItemIcon>
           {settings.cozy ? "Cozy mode on" : "Cozy mode off"}
         </MenuItem>
+        <Divider />
+        <ListItem>
+          <Tooltip title="Everest Debug RC Port for opening rooms in game" enterDelay={500}>
+            <Box display="flex">
+              <Icon component="div" sx={{display: "flex", minWidth: 36, height: 20}}>
+                <SvgIcon viewBox="615 1135 2776 1743" color="action" fontSize="small">
+                  <path d={EVEREST_ICON} strokeWidth="0.1" />
+                </SvgIcon>
+              </Icon>
+              <TextField
+                type="number"
+                size="small"
+                variant="standard"
+                placeholder="Custom port"
+                value={settings.port ?? ""}
+                onChange={event => setPort(Number(event.target.value) || undefined)}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                inputProps={{
+                  min: 0,
+                }}
+                sx={{
+                  "& .MuiInput-input": {
+                    padding: 0,
+                    "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+                      WebkitAppearance: "none",
+                    }
+                  },
+                }}
+              />
+            </Box>
+          </Tooltip>
+          <IconButton size="small" onClick={() => setPort()}>
+            <Restore fontSize="small" />
+          </IconButton>
+        </ListItem>
       </Menu>
-    </Fragment>
+    </Fragment >
   );
 }
 
