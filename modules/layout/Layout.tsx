@@ -57,7 +57,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
                             unoptimized
                             priority
                             src={'/img/logo.png'}
-                            alt='Animation of madeline in a campsite in game'
+                            alt=""
                             layout="fill"
                             style={{
                               imageRendering: "pixelated",
