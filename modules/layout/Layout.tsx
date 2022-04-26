@@ -44,10 +44,12 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
                     <Image
                       unoptimized
                       priority
-                      className="pixelated-image"
                       src={'/img/logo.png'}
                       alt='Animation of madeline in a campsite in game'
                       layout="fill"
+                      style={{
+                        imageRendering: "pixelated",
+                      }}
                     />
                   </Box>
                   <Box display="flex" position="absolute" left={12}>
@@ -84,10 +86,12 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
                 unoptimized
                 priority
                 objectFit="cover"
-                className="pixelated-image"
                 src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}
                 alt='A large comfy animation of Madeline near a campfire in-game'
                 layout="fill"
+                style={{
+                  imageRendering: "pixelated",
+                }}
               />
             </Box>
           </Fragment>

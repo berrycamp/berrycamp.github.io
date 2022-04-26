@@ -81,10 +81,12 @@ const RoomPage: CampPage<RoomProps> = ({
           <AspectBox>
             <Image
               unoptimized
-              className="pixelated-image"
               src={getScreenURL(room.image)}
               alt={`Very large image of room ${room.name}`}
               layout="fill"
+              style={{
+                imageRendering: "pixelated",
+              }}
             />
           </AspectBox>
         </Dialog>
@@ -93,10 +95,12 @@ const RoomPage: CampPage<RoomProps> = ({
             unoptimized
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
-            className="pixelated-image"
             src={getScreenURL(room.image)}
             alt={`Large image of room ${room.name}`}
             layout="fill"
+            style={{
+              imageRendering: "pixelated",
+            }}
           />
         </AspectBox>
         <Box display="flex" justifyContent="space-between">

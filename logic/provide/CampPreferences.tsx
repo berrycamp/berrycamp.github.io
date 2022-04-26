@@ -1,4 +1,4 @@
-import {FC, Fragment, useLayoutEffect} from "react";
+import {FC, Fragment, useEffect} from "react";
 import {ICampSettings, useCampContext} from "./CampContext";
 
 const THEME_KEY = "theme";
@@ -12,7 +12,7 @@ export const CampPreferencesProvider: FC = ({children}) => {
   /**
   * Retrieve and validate user settings from localstorage.
   */
-  useLayoutEffect(() => {
+  useEffect(() => {
     const storageSettings: ICampSettings = {};
 
     const theme: string | null = localStorage.getItem(THEME_KEY);
@@ -41,7 +41,7 @@ export const CampPreferencesProvider: FC = ({children}) => {
   /**
    * Set user settings in localstorage.
    */
-  useLayoutEffect(() => {
+  useEffect(() => {
     [THEME_KEY, HIDE_SUBROOMS_KEY, LIST_MODE_KEY, PORT_KEY].forEach(key => localStorage.removeItem(key));
 
     const {theme, listMode, hideSubrooms, port} = settings;
@@ -67,7 +67,7 @@ export const CampPreferencesProvider: FC = ({children}) => {
    * Get the user or media mode preference. Default to light if not provided.
    * Set the theme on the document.
    */
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (settings.theme === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
     } else {

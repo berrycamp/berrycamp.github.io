@@ -54,11 +54,13 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
           <AspectBox>
             <Image
               unoptimized
-              className="pixelated-image"
               src={getScreenURL(chapter.image)}
               alt={`Image of chapter ${chapter.name}`}
               objectFit="cover"
               layout="fill"
+              style={{
+                imageRendering: "pixelated",
+              }}
             />
           </AspectBox>
           <Box>
@@ -188,17 +190,21 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
   return (
     <Card sx={{width: 320, height: 180}}>
       <CardActionArea
-        className="pixelated-image"
         sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
         href={href}
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        style={{
+          imageRendering: "pixelated",
+        }}
       >
         <CardMedia
           component="img"
-          className="pixelated-image"
           src={getScreenURL(image)}
           alt={`Thumbnail for room ${roomName}`}
+          style={{
+            imageRendering: "pixelated",
+          }}
         />
         {hover && (
           <ImageListItemBar

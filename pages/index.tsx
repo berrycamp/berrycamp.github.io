@@ -16,11 +16,10 @@ export const HomePage: CampPage = () => {
       <Container sx={{marginTop: 4}}>
         <Paper elevation={2} sx={{padding: 2}}>
           <Typography component="div" variant="h6">
-            Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>,
+            Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>!
           </Typography>
           <Typography marginTop={1}>
-            an index of all rooms in the video game Celeste, with rich embeds for sharing on Discord and the ability to load rooms
-            in-game if <Link underline="hover" href="https://everestapi.github.io/">Everest</Link> is running.
+            Browse rooms from the video game Celeste and open them in-game if <Link underline="hover" href="https://everestapi.github.io/">Everest</Link> is running.
           </Typography>
           <Typography color="text.secondary" marginTop={1}>
             Send any feedback to

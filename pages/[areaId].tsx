@@ -56,9 +56,11 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
                 <CardActionArea href={`/${areaId}/${chapterId}`}>
                   <CardMedia
                     component="img"
-                    className="pixelated-image"
                     src={getScreenURL(chapter.image)}
                     alt={`An image of chapter ${chapter.name}`}
+                    style={{
+                      imageRendering: "pixelated",
+                    }}
                   />
                   <CardContent>
                     <Typography component="div" variant="h6">
