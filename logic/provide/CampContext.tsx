@@ -2,67 +2,57 @@ import {createContext, FC, useCallback, useContext, useState} from "react";
 
 export interface ICampContext {
   settings: ICampSettings;
-  toggleTheme: () => void;
-  toggleView: () => void;
-  toggleSubrooms: () => void;
-  toggleCozy: () => void;
+  changeTheme: () => void;
+  toggleListMode: () => void;
+  toggleHideSubrooms: () => void;
+  toggleCozyMode: () => void;
   setPort: (port?: number) => void;
   setSettings: (settings: ICampSettings) => void;
 }
 
 export interface ICampSettings {
-  theme: "light" | "dark";
-  view: "grid" | "list"
-  subrooms: boolean;
-  cozy: boolean;
-  port?: number | undefined
+  theme?: "light" | "dark";
+  listMode?: true;
+  hideSubrooms?: true;
+  cozyMode?: true;
+  port?: number
 }
 
 const CampContext = createContext<ICampContext>({
-  settings: {
-    theme: "light",
-    view: "grid",
-    subrooms: true,
-    cozy: false,
-  },
-  toggleTheme: () => undefined,
-  toggleView: () => undefined,
-  toggleSubrooms: () => undefined,
-  toggleCozy: () => undefined,
+  settings: {},
+  changeTheme: () => undefined,
+  toggleListMode: () => undefined,
+  toggleHideSubrooms: () => undefined,
+  toggleCozyMode: () => undefined,
   setPort: () => undefined,
   setSettings: () => undefined,
 });
 
 export const CampContextProvider: FC = ({children}) => {
-  const [settings, setSettings] = useState<ICampSettings>({
-    theme: "light",
-    view: "grid",
-    subrooms: true,
-    cozy: false,
-  });
+  const [settings, setSettings] = useState<ICampSettings>({});
 
-  const toggleTheme = useCallback(() => {
-    setSettings(prev => ({...prev, theme: prev.theme === "light" ? "dark" : "light"}));
+  const changeTheme = useCallback(() => {
+    setSettings(({theme, ...other}) => ({...other, ...theme !== "dark" && {theme: theme === undefined ? "light" : "dark"}}));
   }, []);
 
-  const toggleView = useCallback(() => {
-    setSettings(prev => ({...prev, view: prev.view === "grid" ? "list" : "grid"}));
+  const toggleListMode = useCallback(() => {
+    setSettings(({listMode, ...other}) => ({...other, ...!listMode && {listMode: true}}));
   }, [])
 
-  const toggleSubrooms = useCallback(() => {
-    setSettings(prev => ({...prev, subrooms: !prev.subrooms}));
+  const toggleHideSubrooms = useCallback(() => {
+    setSettings(({hideSubrooms, ...other}) => ({...other, ...!hideSubrooms && {hideSubrooms: true}}));
   }, []);
 
-  const toggleCozy = useCallback(() => {
-    setSettings(prev => ({...prev, cozy: !prev.cozy}));
+  const toggleCozyMode = useCallback(() => {
+    setSettings(({cozyMode, ...other}) => ({...other, ...!cozyMode && {cozyMode: true}}));
   }, [])
 
   const setPort = useCallback((port?: number) => {
-    setSettings(prev => ({...prev, port}));
+    setSettings(({port: _, ...other}) => ({...other, ...port !== undefined && {port}}));
   }, [])
 
   return (
-    <CampContext.Provider value={{settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setPort, setSettings}}>
+    <CampContext.Provider value={{settings, changeTheme, toggleListMode, toggleHideSubrooms, toggleCozyMode, setPort, setSettings}}>
       {children}
     </CampContext.Provider>
   )

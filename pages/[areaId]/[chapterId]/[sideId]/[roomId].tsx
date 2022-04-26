@@ -123,7 +123,7 @@ const RoomPage: CampPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
         <Box display="flex" justifyContent="space-between" marginTop={1}>
           <Box>
-            {settings.subrooms && prevSubroom?.link ? (
+            {!settings.hideSubrooms && prevSubroom?.link ? (
               <Link passHref href={prevSubroom.link}>
                 <Button
                   size="small"
@@ -148,7 +148,7 @@ const RoomPage: CampPage<RoomProps> = ({
             )}
           </Box>
           <Box>
-            {settings.subrooms && nextSubroom?.link ? (
+            {!settings.hideSubrooms && nextSubroom?.link ? (
               <Link passHref href={nextSubroom.link}>
                 <Button
                   size="small"

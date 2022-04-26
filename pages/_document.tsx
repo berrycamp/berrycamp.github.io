@@ -15,10 +15,9 @@ const Document = () => {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c800c8" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="google-site-verification" content="he_SfQ-Snedr2UJcL5v_VRcO6kuSTkPP5ZSUjSLAm1w" />
       </Head>
       <body>
-        <script dangerouslySetInnerHTML={{__html: blockingSetTheme}} />
+        <script dangerouslySetInnerHTML={{__html: blockingSetThemeMinified}} />
         <Main />
         <NextScript />
       </body>
@@ -28,27 +27,20 @@ const Document = () => {
 
 export default Document;
 
+const blockingSetThemeMinified = `!function(){"dark"==("dark"===localStorage.getItem("theme")?"dark":!0===matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")&&document.documentElement.setAttribute("data-theme","dark")}();`;
+
 /**
  * Get and set the prefered user theme.
  */
 function setTheme() {
   function getTheme() {
-    const preference = window.localStorage.getItem("theme");
-    const hasPreference = typeof preference === "string";
-    if (hasPreference) {
-      return preference;
+    if (localStorage.getItem("theme") === "dark") {
+      return "dark"
     }
-    const mql = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof mql.matches === "boolean") {
-      return mql.matches ? "dark" : "light";
-    }
-    return "light";
+    return matchMedia("(prefers-color-scheme: dark)").matches === true ? "dark" : "light"
   }
 
-  const theme = getTheme();
-  const root = document.documentElement;
-  root.style.setProperty("--initial-theme", theme)
-  if (theme === "dark") {
+  if (getTheme() === "dark") {
     document.documentElement.setAttribute("data-theme", "dark");
   }
 }
@@ -61,4 +53,3 @@ const blockingSetTheme = `(function() {
   setTheme();
 })()
 `;
-

@@ -24,15 +24,11 @@ const AreaPage: CampPage<AreaProps> = ({areaId, area}) => {
 }
 
 export const AreaView: FC<AreaProps> = ({areaId, area}) => {
-  const {settings: {view}} = useCampContext();
+  const {settings: {listMode}} = useCampContext();
 
   return (
     <Fragment>
-      {view === "grid" ? (
-        <GridArea areaId={areaId} area={area} />
-      ) : (view === "list") && (
-        <ListArea areaId={areaId} area={area} />
-      )}
+      {listMode ? <ListArea areaId={areaId} area={area} /> : <GridArea areaId={areaId} area={area} />}
     </Fragment>
   );
 }

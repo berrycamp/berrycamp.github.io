@@ -1,4 +1,4 @@
-import {CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
+import {BrightnessAuto, CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
 import {AppBar, Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Toolbar, Tooltip, Typography} from "@mui/material";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
@@ -77,7 +77,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
             <SettingsMenu />
           </Toolbar>
         </AppBar>
-        {settings.cozy ? (
+        {settings.cozyMode ? (
           <Fragment>
             <Box position="fixed" bottom={0} zIndex={-1} width="100%" height="100%">
               <Image
@@ -102,7 +102,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
 }
 
 const SettingsMenu: FC = () => {
-  const {settings, toggleTheme, toggleView, toggleSubrooms, toggleCozy, setPort} = useCampContext();
+  const {settings, changeTheme, toggleListMode, toggleHideSubrooms, toggleCozyMode, setPort} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -115,7 +115,7 @@ const SettingsMenu: FC = () => {
 
   return (
     <Fragment>
-      <StyledIconButton onClick={handleOpen}>
+      <StyledIconButton onClick={handleOpen} aria-label="open settings">
         <Settings />
       </StyledIconButton>
       <Menu
@@ -129,30 +129,36 @@ const SettingsMenu: FC = () => {
           }
         }}
       >
-        <MenuItem onClick={toggleTheme}>
+        <MenuItem onClick={changeTheme}>
           <ListItemIcon>
-            {settings.theme === "light" ? <LightMode fontSize="small" /> : <DarkMode fontSize="small" />}
+            {settings.theme === "light" ? (
+              <LightMode fontSize="small" />
+            ) : settings.theme === "dark" ? (
+              <DarkMode fontSize="small" />
+            ) : (
+              <BrightnessAuto fontSize="small" />
+            )}
           </ListItemIcon>
-          {settings.theme === "light" ? "Light theme" : "Dark theme"}
+          {settings.theme === "light" ? "Light theme" : settings.theme === "dark" ? "Dark theme" : "System theme"}
         </MenuItem>
-        <MenuItem onClick={toggleView}>
+        <MenuItem onClick={toggleListMode}>
           <ListItemIcon>
-            {settings.view === "grid" ? <GridViewSharp fontSize="small" /> : <ViewListSharp fontSize="small" />}
+            {settings.listMode ? <ViewListSharp fontSize="small" /> : <GridViewSharp fontSize="small" />}
           </ListItemIcon>
-          {settings.view === "grid" ? "Grid view" : "List view"}
+          {settings.listMode ? "List view" : "Grid view"}
         </MenuItem>
-        <MenuItem onClick={toggleSubrooms}>
+        <MenuItem onClick={toggleHideSubrooms}>
           <ListItemIcon>
-            {settings.subrooms ? <Splitscreen fontSize="small" /> : <CropSquare fontSize="small" />}
+            {settings.hideSubrooms ? <CropSquare fontSize="small" /> : <Splitscreen fontSize="small" />}
           </ListItemIcon>
-          {settings.subrooms ? "Subrooms shown" : "Subrooms hidden"}
+          {settings.hideSubrooms ? "Subrooms hidden" : "Subrooms shown"}
         </MenuItem>
         <Divider />
-        <MenuItem onClick={toggleCozy}>
+        <MenuItem onClick={toggleCozyMode}>
           <ListItemIcon>
-            {settings.cozy ? <Fireplace fontSize="small" /> : <CropDinSharp sx={{fontSize: "1.4rem", marginLeft: "-1px"}} />}
+            {settings.cozyMode ? <Fireplace fontSize="small" /> : <CropDinSharp sx={{fontSize: "1.4rem", marginLeft: "-1px"}} />}
           </ListItemIcon>
-          {settings.cozy ? "Cozy mode on" : "Cozy mode off"}
+          {settings.cozyMode ? "Cozy mode on" : "Cozy mode off"}
         </MenuItem>
         <Divider />
         <ListItem>

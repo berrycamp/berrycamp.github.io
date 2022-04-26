@@ -109,10 +109,10 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
         )}
         {side && (
           <Fragment>
-            {settings.view === "grid" ? (
-              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={settings.subrooms} />
+            {settings.listMode ? (
+              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} hideSubrooms={Boolean(settings.hideSubrooms)} />
             ) : (
-              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} showSubrooms={settings.subrooms} />
+              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} hideSubrooms={Boolean(settings.hideSubrooms)} />
             )}
           </Fragment>
         )}
@@ -127,7 +127,7 @@ interface ViewProps {
   chapterId: string;
   sideId: string;
   side: Side;
-  showSubrooms: boolean;
+  hideSubrooms: boolean;
 }
 
 interface ViewItemProps {
@@ -137,7 +137,7 @@ interface ViewItemProps {
   image: string
 }
 
-const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSubrooms}) => {
+const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms}) => {
   return (
     <Fragment>
       {side.checkpoints.map((checkpoint, checkpointIndex) => (
@@ -154,7 +154,7 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSu
 
               return (
                 <Fragment key={roomId}>
-                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
+                  {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
                     <GridChapterItem
                       key={subroomIndex}
                       roomId={roomId}
@@ -212,7 +212,7 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
   );
 }
 
-const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, showSubrooms}) => {
+const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms: showSubrooms}) => {
   return (
     <Fragment>
       {side.checkpoints.map((checkpoint, checkpointIndex) => (
