@@ -28,28 +28,3 @@ const Document = () => {
 export default Document;
 
 const blockingSetThemeMinified = `!function(){"dark"==("dark"===localStorage.getItem("theme")?"dark":!0===matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")&&document.documentElement.setAttribute("data-theme","dark")}();`;
-
-/**
- * Get and set the prefered user theme.
- */
-function setTheme() {
-  function getTheme() {
-    if (localStorage.getItem("theme") === "dark") {
-      return "dark"
-    }
-    return matchMedia("(prefers-color-scheme: dark)").matches === true ? "dark" : "light"
-  }
-
-  if (getTheme() === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-}
-
-/**
- * Prevent theme flicker on page load.
- */
-const blockingSetTheme = `(function() {
-  ${setTheme.toString()}
-  setTheme();
-})()
-`;

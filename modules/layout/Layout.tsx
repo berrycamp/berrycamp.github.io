@@ -6,7 +6,7 @@ import {getMetadataTitle, getTitle} from "logic/utils/title";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import {FC, Fragment, MouseEvent, useState} from "react";
+import {FC, Fragment, MouseEvent, useEffect, useState} from "react";
 import {EVEREST_ICON} from "./everest";
 
 export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welcome/images"
@@ -15,6 +15,15 @@ const COZY_IMAGE_COUNT = 7;
 
 export const Layout: FC<LayoutProps> = ({title, description, image, children}) => {
   const {settings} = useCampContext();
+
+  const [mounted, setMounted] = useState(false);
+
+  /**
+   * Component has mounted and rehydration has finished. Render all content blocked by the theme.
+   */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <Fragment>
@@ -99,7 +108,7 @@ export const Layout: FC<LayoutProps> = ({title, description, image, children}) =
           </Fragment>
         ) : (
           <Fragment>
-            {children}
+            {mounted && children}
           </Fragment>
         )}
       </main>
