@@ -2,7 +2,7 @@ import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, List
 import {DATA} from 'logic/data/data'
 import {getScreenURL} from 'logic/fetch/image'
 import {useCampContext} from 'logic/provide/CampContext'
-import {Layout} from 'modules/layout/Layout'
+import {CampHead} from 'modules/head/CampHead'
 import Image from "next/image"
 import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
@@ -13,13 +13,14 @@ import {CampPage} from './_app'
 
 const AreaPage: CampPage<AreaProps> = ({areaId, area}) => {
   return (
-    <Layout
-      title={area.name}
-      description={area.desc}
-      image={area.image}
-    >
+    <Fragment>
+      <CampHead
+        title={area.name}
+        description={area.desc}
+        image={area.image}
+      />
       <AreaView areaId={areaId} area={area} />
-    </Layout >
+    </Fragment>
   )
 }
 

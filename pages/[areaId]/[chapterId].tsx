@@ -5,7 +5,7 @@ import {DATA} from "logic/data/data";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {pluralize} from "logic/utils/pluralize";
-import {Layout} from "modules/layout/Layout";
+import {CampHead} from "modules/head/CampHead";
 import Image from "next/image";
 import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
@@ -30,11 +30,12 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
   const side: Side | undefined = chapter.sides[sideId];
 
   return (
-    <Layout
-      title={chapter.name}
-      description={chapter.desc}
-      image={chapter.image}
-    >
+    <Fragment>
+      <CampHead
+        title={chapter.name}
+        description={chapter.desc}
+        image={chapter.image}
+      />
       <Container>
         <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
           <MuiLink href={`/${areaId}`} underline="always">
@@ -119,7 +120,7 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
           </Fragment>
         )}
       </Container>
-    </Layout>
+    </Fragment>
   )
 }
 

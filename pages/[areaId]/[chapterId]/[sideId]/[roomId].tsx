@@ -5,13 +5,13 @@ import {DATA} from "logic/data/data";
 import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
-import {Layout} from "modules/layout/Layout";
+import {CampHead} from "modules/head/CampHead";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 
 const RoomPage: CampPage<RoomProps> = ({
   area,
@@ -60,11 +60,12 @@ const RoomPage: CampPage<RoomProps> = ({
   const isASide: boolean = sideName === "A";
 
   return (
-    <Layout
-      title={`${room.name} (${room.debugId})`}
-      description={`${area.name} - ${chapter.name} - ${sideName} side - ${checkpointName}`}
-      image={room.image}
-    >
+    <Fragment>
+      <CampHead
+        title={`${room.name} (${room.debugId})`}
+        description={`${area.name} - ${chapter.name} - ${sideName} side - ${checkpointName}`}
+        image={room.image}
+      />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2}}>
           <MuiLink href={area.link} underline="always">
@@ -178,7 +179,7 @@ const RoomPage: CampPage<RoomProps> = ({
           </Box>
         </Box>
       </Container >
-    </Layout>
+    </Fragment>
   )
 }
 
