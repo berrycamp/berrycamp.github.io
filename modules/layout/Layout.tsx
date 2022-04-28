@@ -1,13 +1,10 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import {useCampContext} from "logic/provide/CampContext";
+import {Cozy} from "modules/cozy/Cozy";
 import {SettingsMenu} from "modules/settings/SettingsMenu";
 import Image from "next/image";
 import Link from "next/link";
 import {FC, Fragment} from "react";
-
-export const COZY_IMAGE_URL = "https://cdn.berry.camp/file/berrycamp/static/welcome/images"
-
-const COZY_IMAGE_COUNT = 7;
 
 export const Layout: FC = ({children}) => {
   const {settings} = useCampContext();
@@ -70,21 +67,7 @@ export const Layout: FC = ({children}) => {
           </Toolbar>
         </AppBar>
         {settings.cozyMode ? (
-          <Fragment>
-            <Box position="fixed" bottom={0} zIndex={-1} width="100%" height="100%">
-              <Image
-                unoptimized
-                priority
-                objectFit="cover"
-                src={`${COZY_IMAGE_URL}/${Math.floor(Math.random() * COZY_IMAGE_COUNT) + 1}.png`}
-                alt='A large comfy animation of Madeline near a campfire in-game'
-                layout="fill"
-                style={{
-                  imageRendering: "pixelated",
-                }}
-              />
-            </Box>
-          </Fragment>
+          <Cozy />
         ) : (
           <Fragment>
             {children}

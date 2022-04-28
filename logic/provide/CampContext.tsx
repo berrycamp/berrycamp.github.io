@@ -59,5 +59,5 @@ export const CampContextProvider: FC = ({children}) => {
 }
 
 export const useCampContext = (): ICampContext => {
-  return useContext(CampContext)
+  return useContext<ICampContext>(CampContext)
 }

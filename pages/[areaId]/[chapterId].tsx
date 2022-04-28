@@ -190,31 +190,32 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
 
   return (
     <Card sx={{width: 320, height: 180}}>
-      <CardActionArea
-        sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-        href={href}
-        onMouseOver={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        style={{
-          imageRendering: "pixelated",
-        }}
-      >
-        <CardMedia
-          component="img"
-          src={getScreenURL(image)}
-          alt={`Thumbnail for room ${roomName}`}
+      <Link passHref href={href}>
+        <CardActionArea
+          sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+          onMouseOver={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
           style={{
             imageRendering: "pixelated",
           }}
-        />
-        {hover && (
-          <ImageListItemBar
-            title={roomName}
-            subtitle={roomId}
-            sx={{fontSize: 26}}
+        >
+          <CardMedia
+            component="img"
+            src={getScreenURL(image)}
+            alt={`Thumbnail for room ${roomName}`}
+            style={{
+              imageRendering: "pixelated",
+            }}
           />
-        )}
-      </CardActionArea>
+          {hover && (
+            <ImageListItemBar
+              title={roomName}
+              subtitle={roomId}
+              sx={{fontSize: 26}}
+            />
+          )}
+        </CardActionArea>
+      </Link>
     </Card>
   );
 }

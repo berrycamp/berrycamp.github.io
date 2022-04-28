@@ -9,6 +9,7 @@ import {CampHead} from "modules/head/CampHead";
 import {GetStaticPaths, GetStaticProps} from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useEffect, useState} from "react";
@@ -25,6 +26,8 @@ const RoomPage: CampPage<RoomProps> = ({
   prevSubroom,
 }) => {
   const {settings} = useCampContext();
+
+  const router: NextRouter = useRouter();
 
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
@@ -47,15 +50,15 @@ const RoomPage: CampPage<RoomProps> = ({
   useEffect(() => {
     const listener = (event: WindowEventMap["keydown"]) => {
       if (event.key === "ArrowLeft" && prevRoom?.link) {
-        window.location.href = prevRoom.link;
+        router.push(prevRoom.link);
       } else if (event.key === "ArrowRight" && nextRoom?.link) {
-        window.location.href = nextRoom.link;
+        router.push(nextRoom.link);
       }
     }
 
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
-  }, [nextRoom?.link, prevRoom?.link])
+  }, [nextRoom?.link, prevRoom?.link, router])
 
   const isASide: boolean = sideName === "A";
 

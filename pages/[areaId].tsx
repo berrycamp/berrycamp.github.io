@@ -54,23 +54,25 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
             </Box>
             {Object.entries(area.chapters).map(([chapterId, chapter]) => (
               <Card key={chapterId}>
-                <CardActionArea href={`/${areaId}/${chapterId}`}>
-                  <CardMedia
-                    component="img"
-                    src={getScreenURL(chapter.image)}
-                    alt={`An image of chapter ${chapter.name}`}
-                    style={{
-                      imageRendering: "pixelated",
-                    }}
-                  />
-                  <CardContent>
-                    <Typography component="div" variant="h6">
-                      {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
-                      {chapter.name}
-                    </Typography>
-                    <Typography component="div" variant="body2" color="textSecondary">{chapter.gameId}</Typography>
-                  </CardContent>
-                </CardActionArea>
+                <Link passHref href={`/${areaId}/${chapterId}`}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      src={getScreenURL(chapter.image)}
+                      alt={`An image of chapter ${chapter.name}`}
+                      style={{
+                        imageRendering: "pixelated",
+                      }}
+                    />
+                    <CardContent>
+                      <Typography component="div" variant="h6">
+                        {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
+                        {chapter.name}
+                      </Typography>
+                      <Typography component="div" variant="body2" color="textSecondary">{chapter.gameId}</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Link>
               </Card>
             ))}
           </Box>
