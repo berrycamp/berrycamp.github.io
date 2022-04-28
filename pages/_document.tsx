@@ -17,7 +17,6 @@ const Document = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <body>
-        <script dangerouslySetInnerHTML={{__html: blockingSetThemeMinified}} />
         <Main />
         <NextScript />
       </body>
@@ -26,5 +25,3 @@ const Document = () => {
 }
 
 export default Document;
-
-const blockingSetThemeMinified = `!function(){"dark"!==localStorage.getItem("theme")&&!0!==matchMedia("(prefers-color-scheme: dark)").matches||document.documentElement.setAttribute("data-theme","dark")}();`;

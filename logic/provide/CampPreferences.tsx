@@ -5,7 +5,6 @@ const THEME_KEY = "theme";
 const HIDE_SUBROOMS_KEY = "subrooms";
 const LIST_MODE_KEY = "listMode";
 const PORT_KEY = "port";
-const ROOT_THEME_ATTR = "data-theme"
 
 export const CampPreferencesProvider: FC = ({children}) => {
   const {settings, setSettings} = useCampContext();
@@ -63,17 +62,6 @@ export const CampPreferencesProvider: FC = ({children}) => {
       localStorage.setItem(PORT_KEY, String(port));
     }
   }, [settings]);
-
-  /**
-   * Get the the theme preference/setting and set on the document.
-   */
-  useEffect(() => {
-    if (settings.theme === "dark" || (settings.theme === undefined && settings.prefersDark)) {
-      document.documentElement.setAttribute(ROOT_THEME_ATTR, "dark");
-    } else {
-      document.documentElement.removeAttribute(ROOT_THEME_ATTR);
-    }
-  }, [settings.prefersDark, settings.theme])
 
   return (
     <Fragment>
