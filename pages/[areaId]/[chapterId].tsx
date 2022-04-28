@@ -220,7 +220,7 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
   );
 }
 
-const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms: showSubrooms}) => {
+const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms}) => {
   return (
     <Fragment>
       {side.checkpoints.map((checkpoint, checkpointIndex) => (
@@ -237,7 +237,7 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
 
               return (
                 <Fragment key={roomId}>
-                  {showSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
+                  {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
                     <ListChapterItem
                       key={subroomIndex}
                       roomId={roomId}
@@ -271,9 +271,9 @@ const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName
   return (
     <Link passHref href={href}>
       <ListItemButton
-      disableGutters
-      component="a"
-      sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+        disableGutters
+        component="a"
+        sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
       >
         <Image
           unoptimized
