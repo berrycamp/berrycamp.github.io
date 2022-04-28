@@ -3,6 +3,7 @@ import {createContext, FC, useCallback, useContext, useState} from "react";
 export interface ICampContext {
   settings: ICampSettings;
   changeTheme: () => void;
+  setPrefersDark: (prefersDark: boolean) => void;
   toggleListMode: () => void;
   toggleHideSubrooms: () => void;
   toggleCozyMode: () => void;
@@ -12,6 +13,7 @@ export interface ICampContext {
 
 export interface ICampSettings {
   theme?: "light" | "dark";
+  prefersDark?: true;
   listMode?: true;
   hideSubrooms?: true;
   cozyMode?: true;
@@ -21,6 +23,7 @@ export interface ICampSettings {
 const CampContext = createContext<ICampContext>({
   settings: {},
   changeTheme: () => undefined,
+  setPrefersDark: () => undefined,
   toggleListMode: () => undefined,
   toggleHideSubrooms: () => undefined,
   toggleCozyMode: () => undefined,
@@ -33,6 +36,10 @@ export const CampContextProvider: FC = ({children}) => {
 
   const changeTheme = useCallback(() => {
     setSettings(({theme, ...other}) => ({...other, ...theme !== "dark" && {theme: theme === undefined ? "light" : "dark"}}));
+  }, []);
+
+  const setPrefersDark = useCallback((prefersDark: boolean) => {
+    setSettings(({prefersDark: _, ...other}) => ({...other, ...prefersDark && {prefersDark}}));
   }, []);
 
   const toggleListMode = useCallback(() => {
@@ -52,7 +59,7 @@ export const CampContextProvider: FC = ({children}) => {
   }, [])
 
   return (
-    <CampContext.Provider value={{settings, changeTheme, toggleListMode, toggleHideSubrooms, toggleCozyMode, setPort, setSettings}}>
+    <CampContext.Provider value={{settings, changeTheme, setPrefersDark, toggleListMode, toggleHideSubrooms, toggleCozyMode, setPort, setSettings}}>
       {children}
     </CampContext.Provider>
   )

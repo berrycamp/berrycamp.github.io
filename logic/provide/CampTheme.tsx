@@ -1,21 +1,42 @@
-import {createTheme, darkScrollbar, PaletteColorOptions, Theme, useMediaQuery} from "@mui/material";
+import {createTheme, darkScrollbar, PaletteColorOptions, Theme} from "@mui/material";
 import {ThemeProvider} from "@mui/system";
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {useCampContext} from "./CampContext";
+
+export const PREFERS_DARK_QUERY = "(prefers-color-scheme: dark)";
 
 /**
  * Provide the MUI theme.
  */
 export const CampThemeProvider: FC = ({children}) => {
-  const {settings} = useCampContext();
+  const {settings, setPrefersDark} = useCampContext();
 
-  let darkMode: boolean = useMediaQuery("(prefers-color-scheme: dark)");
+  let provideDarkTheme: boolean = settings.prefersDark ?? false;
   if (settings.theme !== undefined) {
-    darkMode = settings.theme === "dark";
+    provideDarkTheme = settings.theme === "dark";
   }
 
+  /**
+   * Update the prefered mode on mount.
+   */
+  useEffect(() => {
+    setPrefersDark(matchMedia(PREFERS_DARK_QUERY).matches);
+  }, [setPrefersDark])
+
+  /**
+   * Listen for changes to the prefered mode.
+   */
+  useEffect(() => {
+    const updatePrefersDarkMode = (event: MediaQueryListEvent): void => setPrefersDark(event.matches);
+
+    const darkQuery = matchMedia(PREFERS_DARK_QUERY);
+    darkQuery.addEventListener("change", updatePrefersDarkMode)
+
+    return () => darkQuery.removeEventListener("change", updatePrefersDarkMode)
+  }, [setPrefersDark]);
+
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={provideDarkTheme ? darkTheme : lightTheme}>
       {children}
     </ThemeProvider>
   )

@@ -27,4 +27,4 @@ const Document = () => {
 
 export default Document;
 
-const blockingSetThemeMinified = `!function(){"dark"==("dark"===localStorage.getItem("theme")?"dark":!0===matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")&&document.documentElement.setAttribute("data-theme","dark")}();`;
+const blockingSetThemeMinified = `!function(){"dark"!==localStorage.getItem("theme")&&!0!==matchMedia("(prefers-color-scheme: dark)").matches||document.documentElement.setAttribute("data-theme","dark")}();`;

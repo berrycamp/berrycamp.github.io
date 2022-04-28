@@ -65,16 +65,15 @@ export const CampPreferencesProvider: FC = ({children}) => {
   }, [settings]);
 
   /**
-   * Get the user or media mode preference. Default to light if not provided.
-   * Set the theme on the document.
+   * Get the the theme preference/setting and set on the document.
    */
   useEffect(() => {
-    if (settings.theme === "dark") {
+    if (settings.theme === "dark" || (settings.theme === undefined && settings.prefersDark)) {
       document.documentElement.setAttribute(ROOT_THEME_ATTR, "dark");
     } else {
       document.documentElement.removeAttribute(ROOT_THEME_ATTR);
     }
-  }, [settings.theme])
+  }, [settings.prefersDark, settings.theme])
 
   return (
     <Fragment>

@@ -10,14 +10,14 @@ import '../styles/globals.css';
 const App = ({Component, pageProps}: AppProps<GlobalCampProps>) => {
   return (
     <CampContextProvider>
-      <CampPreferencesProvider>
-        <CampThemeProvider>
+      <CampThemeProvider>
+        <CampPreferencesProvider>
           <CssBaseline />
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </CampThemeProvider>
-      </CampPreferencesProvider>
+        </CampPreferencesProvider>
+      </CampThemeProvider>
     </CampContextProvider>
   );
 }
