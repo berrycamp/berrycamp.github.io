@@ -269,24 +269,24 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
 
 const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName, roomNo, href, image}) => {
   return (
-    <ListItemButton
+    <Link passHref href={href}>
+      <ListItemButton
       disableGutters
-      sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
       component="a"
-      LinkComponent={Link}
-      href={href}
-    >
-      <Image
-        unoptimized
-        src={getScreenURL(image)}
-        alt={`Image of room ${roomName}`}
-        width={128}
-        height={72}
-      />
-      <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
-      <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{roomName}</Typography>
-      <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
-    </ListItemButton>
+      sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+      >
+        <Image
+          unoptimized
+          src={getScreenURL(image)}
+          alt={`Image of room ${roomName}`}
+          width={128}
+          height={72}
+        />
+        <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
+        <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{roomName}</Typography>
+        <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
+      </ListItemButton>
+    </Link>
   )
 }
 

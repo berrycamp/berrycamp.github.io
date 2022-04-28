@@ -90,25 +90,24 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
         <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
         <List disablePadding>
           {Object.entries(area.chapters).map(([chapterId, chapter]) => (
-            <ListItemButton
-              key={chapterId}
-              disableGutters
-              sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
-              component="a"
-              LinkComponent={Link}
-              href={`/${areaId}/${chapterId}`}
-            >
-              <Image
-                unoptimized
-                src={getScreenURL(chapter.image)}
-                alt={`Image of chapter ${chapter.name}`}
-                width={128}
-                height={72}
-              />
-              <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
-              <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
-              <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.gameId}</Typography>
-            </ListItemButton>
+            <Link key={chapterId} passHref href={`/${areaId}/${chapterId}`}>
+              <ListItemButton
+                disableGutters
+                component="a"
+                sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+              >
+                <Image
+                  unoptimized
+                  src={getScreenURL(chapter.image)}
+                  alt={`Image of chapter ${chapter.name}`}
+                  width={128}
+                  height={72}
+                />
+                <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
+                <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
+                <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.gameId}</Typography>
+              </ListItemButton>
+            </Link>
           ))}
         </List>
       </Container>
