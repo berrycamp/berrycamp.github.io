@@ -38,9 +38,11 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
       />
       <Container>
         <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
-          <MuiLink href={`/${areaId}`} underline="always">
-            {area.name}
-          </MuiLink>
+          <Link passHref href={`/${areaId}`}>
+            <MuiLink underline="always">
+              {area.name}
+            </MuiLink>
+          </Link>
           <Typography color="text.primary">{chapter.name}</Typography>
         </Breadcrumbs>
         <Box

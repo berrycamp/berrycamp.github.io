@@ -71,12 +71,16 @@ const RoomPage: CampPage<RoomProps> = ({
       />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2}}>
-          <MuiLink href={area.link} underline="always">
-            {area.name}
-          </MuiLink>
-          <MuiLink href={chapter.link} underline="always">
-            {chapter.name}
-          </MuiLink>
+          <Link passHref href={area.link}>
+            <MuiLink underline="always">
+              {area.name}
+            </MuiLink>
+          </Link>
+          <Link passHref href={chapter.link}>
+            <MuiLink underline="always">
+              {chapter.name}
+            </MuiLink>
+          </Link>
           <Typography color="text.secondary">{sideName}</Typography>
           <Typography color="text.secondary">{checkpointName}</Typography>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
