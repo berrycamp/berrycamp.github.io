@@ -12,7 +12,7 @@
         {
           "name": "Start",
           "abbreviation": "ST",
-          "roomCount": 19,
+          "roomCount": 17,
           "roomOrder": [
             "start",
             "s0",
@@ -30,14 +30,13 @@
             "d6",
             "d4",
             "d5",
-            "1",
             "3x"
           ]
         },
         {
           "name": "Intervention",
           "abbreviation": "IV",
-          "roomCount": 15,
+          "roomCount": 16,
           "roomOrder": [
             "3",
             "4",

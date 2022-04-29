@@ -100,12 +100,12 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
                   unoptimized
                   src={getScreenURL(chapter.image)}
                   alt={`Image of chapter ${chapter.name}`}
-                  width={128}
-                  height={72}
+                  width={80}
+                  height={45}
                 />
-                <Typography component="div" variant="h6" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
-                <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{chapter.name}</Typography>
-                <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.gameId}</Typography>
+                <Typography component="div" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
+                <Typography component="div" marginLeft={1} flexGrow={1}>{chapter.name}</Typography>
+                <Typography component="div" color="text.secondary" marginRight={0.5} sx={{display: {xs: "none", sm: "block"}}}>{chapter.gameId}</Typography>
               </ListItemButton>
             </Link>
           ))}

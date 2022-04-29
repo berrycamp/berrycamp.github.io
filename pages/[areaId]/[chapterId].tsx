@@ -1,10 +1,9 @@
-import {NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, ImageListItemBar, Link as MuiLink, List, ListItemButton, Tab, Tabs, Typography} from "@mui/material";
+import {Clear, NavigateBefore, NavigateNext, Search} from "@mui/icons-material";
+import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, IconButton, ImageListItemBar, Link as MuiLink, List, ListItemButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
 import {DATA} from "logic/data/data";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
-import {pluralize} from "logic/utils/pluralize";
 import {CampHead} from "modules/head/CampHead";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +16,8 @@ import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
 const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter}) => {
   const {settings} = useCampContext();
 
+  const [searchValue, setSearchValue] = useState<string>("");
+
   const [sideId, setSideId] = useState<string>("a");
 
   const roomCount: number | undefined = chapter.sides[sideId]?.roomCount;
@@ -28,6 +29,8 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
   const nextChapter: Chapter | undefined = nextChapterId ? area.chapters[nextChapterId] : undefined;
 
   const side: Side | undefined = chapter.sides[sideId];
+
+  const filteredRooms: Map<number, Set<string>> | undefined = side && filterRooms(searchValue, side);
 
   return (
     <Fragment>
@@ -45,85 +48,167 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
           </Link>
           <Typography color="text.primary">{chapter.name}</Typography>
         </Breadcrumbs>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
-            gridGap: "0.5rem",
-            width: "100%",
-            marginBottom: "0.5rem",
-          }}
-        >
-          <AspectBox>
-            <Image
-              unoptimized
-              src={getScreenURL(chapter.image)}
-              alt={`Image of chapter ${chapter.name}`}
-              objectFit="cover"
-              layout="fill"
-              style={{
-                imageRendering: "pixelated",
-              }}
-            />
-          </AspectBox>
-          <Box>
-            <Typography component="div" variant="h4">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
-            <Typography component="div" color="text.secondary">{chapter.gameId}</Typography>
-            <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
+        <Paper elevation={1} sx={{padding: 2}}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
+              gridGap: "0.5rem",
+              width: "100%",
+              marginBottom: "0.5rem",
+            }}
+          >
+            <AspectBox>
+              <Image
+                unoptimized
+                src={getScreenURL(chapter.image)}
+                alt={`Image of chapter ${chapter.name}`}
+                objectFit="cover"
+                layout="fill"
+                style={{
+                  imageRendering: "pixelated",
+                }}
+              />
+            </AspectBox>
+            <Box>
+              <Typography component="div" variant="h5">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
+              <Typography component="div" color="text.secondary">{chapter.gameId}</Typography>
+              <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
+            </Box>
           </Box>
-        </Box>
-        <Box display="flex" justifyContent="space-between">
-          <Box>
-            {prevChapter && prevChapterId && (
-              <Link passHref href={`/${areaId}/${prevChapterId}`}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  endIcon={<NavigateBefore />}
-                  aria-label={`Go to previous chapter ${prevChapter.name}`}
-                >
-                  {prevChapter.name}
-                </Button>
-              </Link>
-            )}
+          <Box display="flex" justifyContent="space-between">
+            <Box>
+              {prevChapter && prevChapterId && (
+                <Link passHref href={`/${areaId}/${prevChapterId}`}>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    endIcon={<NavigateBefore />}
+                    aria-label={`Go to previous chapter ${prevChapter.name}`}
+                  >
+                    {prevChapter.name}
+                  </Button>
+                </Link>
+              )}
+            </Box>
+            <Box>
+              {nextChapter && nextChapterId && (
+                <Link passHref href={`/${areaId}/${nextChapterId}`}>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    startIcon={<NavigateNext />}
+                    aria-label={`Go to previous chapter ${nextChapter.name}`}
+                  >
+                    {nextChapter.name}
+                  </Button>
+                </Link>
+              )}
+            </Box>
           </Box>
-          <Box>
-            {nextChapter && nextChapterId && (
-              <Link passHref href={`/${areaId}/${nextChapterId}`}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  startIcon={<NavigateNext />}
-                  aria-label={`Go to previous chapter ${nextChapter.name}`}
-                >
-                  {nextChapter.name}
-                </Button>
-              </Link>
-            )}
-          </Box>
-        </Box>
+        </Paper>
+        <Paper elevation={1} sx={{padding: 2, marginTop: 1, marginBottom: 1}}>
+          <TextField
+            fullWidth
+            placeholder="Search rooms"
+            autoComplete="off"
+            variant="standard"
+            value={searchValue}
+            InputProps={{
+              endAdornment: (
+                <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
+                  <IconButton
+                    size="small"
+                    onClick={() => setSearchValue("")}
+                    aria-label="clear search"
+                  >
+                    <Clear />
+                  </IconButton>
+                  <Search color="primary" />
+                </Box>
+              ),
+            }}
+            onChange={event => setSearchValue(event.target.value)}
+            aria-label="search rooms"
+          />
+        </Paper>
         <Tabs variant="fullWidth" value={sideId} onChange={(_, value) => setSideId(value)}>
           {Object.entries(chapter.sides).map(([sideKey, side]) => (
             <Tab key={side.name} value={sideKey} label={`${side.name}-side`} />
           ))}
         </Tabs>
-        {roomCount && (
+        {/* {roomCount && (
           <Typography component="div" variant="body1" color="text.secondary" marginTop={2} textAlign="center">
             {pluralize(roomCount, "room")}
           </Typography>
-        )}
+        )} */}
         {side && (
           <Fragment>
             {settings.listMode ? (
-              <ListChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} hideSubrooms={Boolean(settings.hideSubrooms)} />
+              <ListChapterView
+                areaId={areaId}
+                chapterId={chapterId}
+                sideId={sideId}
+                side={side}
+                hideSubrooms={Boolean(settings.hideSubrooms)}
+                searchPerformed={Boolean(setSearchValue)}
+                filteredRooms={filteredRooms}
+              />
             ) : (
-              <GridChapterView areaId={areaId} chapterId={chapterId} sideId={sideId} side={side} hideSubrooms={Boolean(settings.hideSubrooms)} />
+              <GridChapterView
+                areaId={areaId}
+                chapterId={chapterId}
+                sideId={sideId}
+                side={side}
+                hideSubrooms={Boolean(settings.hideSubrooms)}
+                searchPerformed={Boolean(searchValue)}
+                filteredRooms={filteredRooms}
+              />
             )}
           </Fragment>
         )}
       </Container>
     </Fragment>
   )
+}
+
+/**
+ * Filters a sides rooms to only those matching the search term.
+ * 
+ * @param searchValue The search term.
+ * @param side The side to search.
+ * @returns A map of checkpoints to a set of roomId's matching the search term.
+ */
+const filterRooms = (searchValue: string, side: Side): Map<number, Set<string>> => {
+  const filteredRooms = new Map<number, Set<string>>();
+
+  side.checkpoints.forEach((checkpoint, checkpointIndex) => {
+    checkpoint.roomOrder.forEach((roomId, roomIndex) => {
+      const room: Room | undefined = side.rooms[roomId];
+      if (room === undefined) {
+        return;
+      }
+
+      const normalisedSearchValue: string = searchValue.toLowerCase();
+
+      if (roomId.toLowerCase().includes(normalisedSearchValue)
+        || room.name.toLowerCase().includes(normalisedSearchValue)
+        || room.subrooms?.some(subroom => subroom.name.toLowerCase().includes(normalisedSearchValue))
+        || checkpoint.name.toLowerCase().includes(normalisedSearchValue)
+        || checkpoint.abbreviation.toLowerCase().includes(normalisedSearchValue)
+        || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomIndex + 1}`.includes(normalisedSearchValue)
+      ) {
+        let checkpointRoomSet: Set<string> | undefined = filteredRooms.get(checkpointIndex);
+        if (checkpointRoomSet === undefined) {
+          checkpointRoomSet = new Set<string>();
+        }
+        checkpointRoomSet.add(roomId);
+        filteredRooms.set(checkpointIndex, checkpointRoomSet);
+      }
+    });
+  });
+
+  return filteredRooms;
 }
 
 
@@ -133,6 +218,8 @@ interface ViewProps {
   sideId: string;
   side: Side;
   hideSubrooms: boolean;
+  searchPerformed: boolean;
+  filteredRooms: Map<number, Set<string>> | undefined;
 }
 
 interface ViewItemProps {
@@ -142,47 +229,58 @@ interface ViewItemProps {
   image: string
 }
 
-const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms}) => {
+const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms, searchPerformed, filteredRooms}) => {
   return (
     <Fragment>
-      {side.checkpoints.map((checkpoint, checkpointIndex) => (
-        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
-          <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
-            {checkpointIndex + 1}. {checkpoint.name}
-          </Typography>
-          <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-            {checkpoint.roomOrder.map(roomId => {
-              const room: Room | undefined = side.rooms[roomId];
-              if (room === undefined) {
-                return undefined;
-              }
+      {side.checkpoints.map((checkpoint, checkpointIndex) => {
 
-              return (
-                <Fragment key={roomId}>
-                  {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
-                    <GridChapterItem
-                      key={subroomIndex}
-                      roomId={roomId}
-                      roomName={subroom.name}
-                      image={subroom.image}
-                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
-                    />
-                  )) : (
-                    <GridChapterItem
-                      key={roomId}
-                      roomId={roomId}
-                      roomName={room.name}
-                      image={room.image}
-                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
-                    />
-                  )}
-                </Fragment>
-              )
-            })}
+        // Filter out any checkpoints with no results for any searches.
+        const checkpointFilteredRooms: Set<string> | undefined = filteredRooms?.get(checkpointIndex)
+        if (searchPerformed && !checkpointFilteredRooms) {
+          return undefined;
+        }
+
+        return (
+          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
+            <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
+              {checkpointIndex + 1}. {checkpoint.name}
+            </Typography>
+            <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
+              {checkpoint.roomOrder.map(roomId => {
+
+                // Filter out rooms from search..
+                const room: Room | undefined = side.rooms[roomId];
+                if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
+                  return undefined;
+                }
+
+                return (
+                  <Fragment key={roomId}>
+                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
+                      <GridChapterItem
+                        key={subroomIndex}
+                        roomId={roomId}
+                        roomName={subroom.name}
+                        image={subroom.image}
+                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
+                      />
+                    )) : (
+                      <GridChapterItem
+                        key={roomId}
+                        roomId={roomId}
+                        roomName={room.name}
+                        image={room.image}
+                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
+                      />
+                    )}
+                  </Fragment>
+                )
+              })}
+            </Box>
+            <Divider flexItem />
           </Box>
-          <Divider flexItem />
-        </Box>
-      ))}
+        );
+      })}
     </Fragment>
   );
 }
@@ -222,49 +320,60 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
   );
 }
 
-const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms}) => {
+const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSubrooms, searchPerformed, filteredRooms}) => {
   return (
     <Fragment>
-      {side.checkpoints.map((checkpoint, checkpointIndex) => (
-        <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
-          <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
-            {checkpointIndex + 1}. {checkpoint.name}
-          </Typography>
-          <List disablePadding>
-            {checkpoint.roomOrder.map((roomId, roomIndex) => {
-              const room: Room | undefined = side.rooms[roomId];
-              if (room === undefined) {
-                return undefined;
-              }
+      {side.checkpoints.map((checkpoint, checkpointIndex) => {
 
-              return (
-                <Fragment key={roomId}>
-                  {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
-                    <ListChapterItem
-                      key={subroomIndex}
-                      roomId={roomId}
-                      roomName={subroom.name}
-                      roomNo={roomIndex + 1}
-                      image={subroom.image}
-                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
-                    />
-                  )) : (
-                    <ListChapterItem
-                      key={roomId}
-                      roomId={roomId}
-                      roomName={room.name}
-                      roomNo={roomIndex + 1}
-                      image={room.image}
-                      href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
-                    />
-                  )}
-                </Fragment>
-              )
-            })}
-          </List>
-          <Divider flexItem sx={{marginTop: 2, marginBottom: 1}} />
-        </Box>
-      ))}
+        // Filter out any checkpoints with no results.
+        const checkpointFilteredRooms: Set<string> | undefined = filteredRooms?.get(checkpointIndex)
+        if (searchPerformed && checkpointFilteredRooms === undefined) {
+          return undefined;
+        }
+
+        return (
+          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
+            <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
+              {checkpointIndex + 1}. {checkpoint.name}
+            </Typography>
+            <List disablePadding>
+              {checkpoint.roomOrder.map((roomId, roomIndex) => {
+
+                // Filter out rooms from search..
+                const room: Room | undefined = side.rooms[roomId];
+                if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
+                  return undefined;
+                }
+
+                return (
+                  <Fragment key={roomId}>
+                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
+                      <ListChapterItem
+                        key={subroomIndex}
+                        roomId={roomId}
+                        roomName={subroom.name}
+                        roomNo={roomIndex + 1}
+                        image={subroom.image}
+                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
+                      />
+                    )) : (
+                      <ListChapterItem
+                        key={roomId}
+                        roomId={roomId}
+                        roomName={room.name}
+                        roomNo={roomIndex + 1}
+                        image={room.image}
+                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}`}
+                      />
+                    )}
+                  </Fragment>
+                )
+              })}
+            </List>
+            <Divider flexItem sx={{marginTop: 2, marginBottom: 1}} />
+          </Box>
+        );
+      })}
     </Fragment>
   );
 }
@@ -281,12 +390,12 @@ const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName
           unoptimized
           src={getScreenURL(image)}
           alt={`Image of room ${roomName}`}
-          width={128}
-          height={72}
+          width={80}
+          height={45}
         />
-        <Typography component="div" variant="h6" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
-        <Typography component="div" variant="h6" marginLeft={2} flexGrow={1}>{roomName}</Typography>
-        <Typography component="div" variant="h6" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
+        <Typography component="div" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
+        <Typography component="div" marginLeft={1} flexGrow={1}>{roomName}</Typography>
+        <Typography component="div" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
       </ListItemButton>
     </Link>
   )
@@ -318,7 +427,6 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
     fallback: false,
   }
 }
-
 
 export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async ({params}) => {
   if (params === undefined) {
