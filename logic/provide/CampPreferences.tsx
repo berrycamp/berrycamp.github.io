@@ -2,7 +2,7 @@ import {FC, Fragment, useEffect} from "react";
 import {ICampSettings, useCampContext} from "./CampContext";
 
 const THEME_KEY = "theme";
-const HIDE_SUBROOMS_KEY = "subrooms";
+const HIDE_SUBROOMS_KEY = "hideSubrooms";
 const LIST_MODE_KEY = "listMode";
 const PORT_KEY = "port";
 
