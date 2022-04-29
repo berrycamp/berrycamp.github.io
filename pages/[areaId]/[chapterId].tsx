@@ -1,6 +1,5 @@
 import {Clear, NavigateBefore, NavigateNext, Search} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, IconButton, ImageListItemBar, Link as MuiLink, List, ListItemButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
-import {AspectBox} from "common/aspectBox/AspectBox";
+import {alpha, Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, IconButton, ImageListItemBar, Link as MuiLink, List, ListItemButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {DATA} from "logic/data/data";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
@@ -51,54 +50,77 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
         <Paper elevation={1} sx={{padding: 2}}>
           <Box
             sx={{
+              position: "relative",
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
               gridGap: "0.5rem",
               width: "100%",
               marginBottom: "0.5rem",
+              height: {
+                xs: 250,
+                md: 400,
+              },
             }}
           >
-            <AspectBox>
-              <Image
-                unoptimized
-                src={getScreenURL(chapter.image)}
-                alt={`Image of chapter ${chapter.name}`}
-                objectFit="cover"
-                layout="fill"
-                style={{
-                  imageRendering: "pixelated",
-                }}
-              />
-            </AspectBox>
-            <Box>
+            <Image
+              unoptimized
+              src={getScreenURL(chapter.image)}
+              alt={`Image of chapter ${chapter.name}`}
+              objectFit="cover"
+              layout="fill"
+              style={{
+                imageRendering: "pixelated",
+              }}
+            />
+            <Paper
+              sx={theme => ({
+                position: "absolute",
+                maxWidth: {
+                  md: 500,
+                },
+                padding: 3,
+                margin: 2,
+                top: {
+                  xs: 0,
+                  md: "40%",
+                },
+                bottom: 0,
+                left: 0,
+                backgroundColor: alpha(theme.palette.background.paper, 0.5),
+                backdropFilter: "blur(4px)",
+                color: theme.palette.mode === "dark" ? "white" : "black",
+              })}
+            >
               <Typography component="div" variant="h5">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
-              <Typography component="div" color="text.secondary">{chapter.gameId}</Typography>
-              <Typography component="div" color="text.secondary" marginTop={2}>{chapter.desc}</Typography>
-            </Box>
+              <Typography component="div">{chapter.gameId}</Typography>
+              <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
+            </Paper>
           </Box>
-          <Box display="flex" justifyContent="space-between">
-            <Box>
+          <Box display="flex" gap={1} marginTop={1}>
+            <Box sx={{width: "100%"}}>
               {prevChapter && prevChapterId && (
                 <Link passHref href={`/${areaId}/${prevChapterId}`}>
                   <Button
                     size="small"
                     variant="outlined"
-                    endIcon={<NavigateBefore />}
+                    startIcon={<NavigateBefore />}
                     aria-label={`Go to previous chapter ${prevChapter.name}`}
+                    sx={{width: "100%"}}
                   >
                     {prevChapter.name}
                   </Button>
                 </Link>
               )}
             </Box>
-            <Box>
+            <Box sx={{width: "100%"}}>
               {nextChapter && nextChapterId && (
                 <Link passHref href={`/${areaId}/${nextChapterId}`}>
                   <Button
                     size="small"
                     variant="outlined"
-                    startIcon={<NavigateNext />}
+                    endIcon={<NavigateNext />}
                     aria-label={`Go to previous chapter ${nextChapter.name}`}
+                    sx={{width: "100%"}}
                   >
                     {nextChapter.name}
                   </Button>
@@ -168,7 +190,7 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
           </Fragment>
         )}
       </Container>
-    </Fragment>
+    </Fragment >
   )
 }
 

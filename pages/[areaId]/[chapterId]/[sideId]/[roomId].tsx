@@ -113,15 +113,21 @@ const RoomPage: CampPage<RoomProps> = ({
         </AspectBox>
         <Box display="flex" justifyContent="space-between">
           <Typography component="div" variant="h4">{room.name}</Typography>
-          <Tooltip enterDelay={750} title={isASide ? "Opens if Everest is installed and running" : "May not work for B and C sides due to Everest bug"}>
+          <Tooltip enterDelay={750} title={isASide ? "Teleport to room if Everest is installed and running" : "May not work for B and C sides due to Everest bug"}>
             <Button
               variant="contained"
               color={isASide ? "primary" : "warning"}
               endIcon={isASide ? <Launch /> : <Info />}
               onClick={handleOpenRoom}
-              aria-label="Open the current room in Celeste"
+              aria-label="Teleports to the current room in Celeste"
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "inline-flex",
+                }
+              }}
             >
-              Open
+              Teleport
             </Button>
           </Tooltip>
         </Box>
@@ -133,15 +139,15 @@ const RoomPage: CampPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Room id: {room.roomId}</Typography>
         <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Checkpoint room: {room.checkpointRoomNo}</Typography>
         <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
-        <Box display="flex" justifyContent="space-between" marginTop={1}>
-          <Box>
+        <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
+          <Box width="100%">
             {!settings.hideSubrooms && prevSubroom?.link ? (
               <Link passHref href={prevSubroom.link}>
                 <Button
-                  size="small"
                   variant="outlined"
                   startIcon={<NavigateBefore />}
                   aria-label={`Go to previous room ${prevSubroom.name}`}
+                  sx={{width: "100%"}}
                 >
                   {prevSubroom.name}
                 </Button>
@@ -149,24 +155,24 @@ const RoomPage: CampPage<RoomProps> = ({
             ) : prevRoom?.link && (
               <Link passHref href={prevRoom.link}>
                 <Button
-                  size="small"
                   variant="outlined"
                   startIcon={<NavigateBefore />}
                   aria-label={`Go to previous room ${prevRoom.name}`}
+                  sx={{width: "100%"}}
                 >
                   {prevRoom.name}
                 </Button>
               </Link>
             )}
           </Box>
-          <Box>
+          <Box width="100%">
             {!settings.hideSubrooms && nextSubroom?.link ? (
               <Link passHref href={nextSubroom.link}>
                 <Button
-                  size="small"
                   variant="outlined"
                   endIcon={<NavigateNext />}
                   aria-label={`Go to next room ${nextSubroom.name}`}
+                  sx={{width: "100%"}}
                 >
                   {nextSubroom.name}
                 </Button>
@@ -174,10 +180,10 @@ const RoomPage: CampPage<RoomProps> = ({
             ) : nextRoom?.link && (
               <Link passHref href={nextRoom.link}>
                 <Button
-                  size="small"
                   variant="outlined"
                   endIcon={<NavigateNext />}
                   aria-label={`Go to next room ${nextRoom.name}`}
+                  sx={{width: "100%"}}
                 >
                   {nextRoom.name}
                 </Button>
