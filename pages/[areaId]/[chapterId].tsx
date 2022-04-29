@@ -3,6 +3,7 @@ import {alpha, Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Contai
 import {DATA} from "logic/data/data";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
+import {pluralize} from "logic/utils/pluralize";
 import {CampHead} from "modules/head/CampHead";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,123 +48,123 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
           </Link>
           <Typography color="text.primary">{chapter.name}</Typography>
         </Breadcrumbs>
-        <Paper elevation={1} sx={{padding: 2}}>
-          <Box
-            sx={{
-              position: "relative",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
-              gridGap: "0.5rem",
-              width: "100%",
-              marginBottom: "0.5rem",
-              height: {
-                xs: 250,
-                md: 400,
-              },
+        <Box
+          sx={{
+            position: "relative",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
+            gridGap: "0.5rem",
+            width: "100%",
+            marginBottom: "0.5rem",
+            height: {
+              xs: 250,
+              md: 400,
+            },
+          }}
+        >
+          <Image
+            unoptimized
+            src={getScreenURL(chapter.image)}
+            alt={`Image of chapter ${chapter.name}`}
+            objectFit="cover"
+            layout="fill"
+            style={{
+              imageRendering: "pixelated",
             }}
-          >
-            <Image
-              unoptimized
-              src={getScreenURL(chapter.image)}
-              alt={`Image of chapter ${chapter.name}`}
-              objectFit="cover"
-              layout="fill"
-              style={{
-                imageRendering: "pixelated",
-              }}
-            />
-            <Paper
-              sx={theme => ({
-                position: "absolute",
-                maxWidth: {
-                  md: 500,
-                },
-                padding: 3,
-                margin: 2,
-                top: {
-                  xs: 0,
-                  md: "40%",
-                },
-                bottom: 0,
-                left: 0,
-                backgroundColor: alpha(theme.palette.background.paper, 0.5),
-                backdropFilter: "blur(4px)",
-                color: theme.palette.mode === "dark" ? "white" : "black",
-              })}
-            >
-              <Typography component="div" variant="h5">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
-              <Typography component="div">{chapter.gameId}</Typography>
-              <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
-            </Paper>
-          </Box>
-          <Box display="flex" gap={1} marginTop={1}>
-            <Box sx={{width: "100%"}}>
-              {prevChapter && prevChapterId && (
-                <Link passHref href={`/${areaId}/${prevChapterId}`}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    startIcon={<NavigateBefore />}
-                    aria-label={`Go to previous chapter ${prevChapter.name}`}
-                    sx={{width: "100%"}}
-                  >
-                    {prevChapter.name}
-                  </Button>
-                </Link>
-              )}
-            </Box>
-            <Box sx={{width: "100%"}}>
-              {nextChapter && nextChapterId && (
-                <Link passHref href={`/${areaId}/${nextChapterId}`}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    endIcon={<NavigateNext />}
-                    aria-label={`Go to previous chapter ${nextChapter.name}`}
-                    sx={{width: "100%"}}
-                  >
-                    {nextChapter.name}
-                  </Button>
-                </Link>
-              )}
-            </Box>
-          </Box>
-        </Paper>
-        <Paper elevation={1} sx={{padding: 2, marginTop: 1, marginBottom: 1}}>
-          <TextField
-            fullWidth
-            placeholder="Search rooms"
-            autoComplete="off"
-            variant="standard"
-            value={searchValue}
-            InputProps={{
-              endAdornment: (
-                <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
-                  <IconButton
-                    size="small"
-                    onClick={() => setSearchValue("")}
-                    aria-label="clear search"
-                  >
-                    <Clear />
-                  </IconButton>
-                  <Search color="primary" />
-                </Box>
-              ),
-            }}
-            onChange={event => setSearchValue(event.target.value)}
-            aria-label="search rooms"
           />
-        </Paper>
+          <Paper
+            sx={theme => ({
+              position: "absolute",
+              maxWidth: {
+                md: 500,
+              },
+              padding: 3,
+              margin: 2,
+              top: {
+                xs: 0,
+                md: "40%",
+              },
+              bottom: 0,
+              left: 0,
+              backgroundColor: alpha(theme.palette.background.paper, 0.5),
+              backdropFilter: "blur(4px)",
+              color: theme.palette.mode === "dark" ? "white" : "black",
+            })}
+          >
+            <Typography component="div" variant="h5">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
+            <Typography component="div">{chapter.gameId}</Typography>
+            <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
+          </Paper>
+        </Box>
+        <Box display="flex" gap={1} marginTop={1}>
+          <Box sx={{width: "100%"}}>
+            {prevChapter && prevChapterId && (
+              <Link passHref href={`/${areaId}/${prevChapterId}`}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  startIcon={<NavigateBefore />}
+                  aria-label={`Go to previous chapter ${prevChapter.name}`}
+                  sx={{width: "100%"}}
+                >
+                  {prevChapter.name}
+                </Button>
+              </Link>
+            )}
+          </Box>
+          <Box sx={{width: "100%"}}>
+            {nextChapter && nextChapterId && (
+              <Link passHref href={`/${areaId}/${nextChapterId}`}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  endIcon={<NavigateNext />}
+                  aria-label={`Go to previous chapter ${nextChapter.name}`}
+                  sx={{width: "100%"}}
+                >
+                  {nextChapter.name}
+                </Button>
+              </Link>
+            )}
+          </Box>
+        </Box>
+        <TextField
+          fullWidth
+          placeholder="Search rooms"
+          autoComplete="off"
+          variant="standard"
+          value={searchValue}
+          InputProps={{
+            endAdornment: (
+              <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
+                <IconButton
+                  size="small"
+                  onClick={() => setSearchValue("")}
+                  aria-label="clear search"
+                >
+                  <Clear />
+                </IconButton>
+                <Search color="primary" />
+              </Box>
+            ),
+          }}
+          onChange={event => setSearchValue(event.target.value)}
+          aria-label="search rooms"
+          sx={{
+            marginTop: 2,
+            marginBottom: 2,
+          }}
+        />
         <Tabs variant="fullWidth" value={sideId} onChange={(_, value) => setSideId(value)}>
           {Object.entries(chapter.sides).map(([sideKey, side]) => (
             <Tab key={side.name} value={sideKey} label={`${side.name}-side`} />
           ))}
         </Tabs>
-        {/* {roomCount && (
-          <Typography component="div" variant="body1" color="text.secondary" marginTop={2} textAlign="center">
+        {roomCount && (
+          <Typography component="div" variant="body1" color="text.secondary" marginTop={2} marginBottom={2} textAlign="center">
             {pluralize(roomCount, "room")}
           </Typography>
-        )} */}
+        )}
         {side && (
           <Fragment>
             {settings.listMode ? (
@@ -263,7 +264,7 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
         }
 
         return (
-          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
+          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
             <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
               {checkpointIndex + 1}. {checkpoint.name}
             </Typography>
@@ -354,8 +355,8 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
         }
 
         return (
-          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginTop: 2, marginBottom: 2, padding: 0}}>
-            <Typography component="div" variant="h5" color="text.secondary" marginTop={4} marginBottom={1}>
+          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
+            <Typography component="div" variant="h5" color="text.secondary" marginTop={1} marginBottom={1}>
               {checkpointIndex + 1}. {checkpoint.name}
             </Typography>
             <List disablePadding>
