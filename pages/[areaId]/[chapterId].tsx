@@ -11,7 +11,7 @@ import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useState} from "react";
-import {Area, Chapter, Room, Side} from "../../logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "../../logic/data/dataTree";
 
 const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter}) => {
   const {settings} = useCampContext();
@@ -30,7 +30,7 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
 
   const side: Side | undefined = chapter.sides[sideId];
 
-  const filteredRooms: Map<number, Set<string>> | undefined = side && filterRooms(searchValue, side);
+  const filteredRooms: Map<number, Set<string>> | undefined = side && filterRooms(searchValue, side, Boolean(settings.hideSubrooms));
 
   return (
     <Fragment>
@@ -60,10 +60,14 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
               xs: 250,
               md: 400,
             },
+            "& .MuiPaper-root": {
+              borderRadius: 0,
+            }
           }}
         >
           <Image
             unoptimized
+            priority
             src={getScreenURL(chapter.image)}
             alt={`Image of chapter ${chapter.name}`}
             objectFit="cover"
@@ -73,19 +77,24 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
             }}
           />
           <Paper
+            elevation={0}
             sx={theme => ({
               position: "absolute",
               maxWidth: {
                 md: 500,
               },
               padding: 3,
-              margin: 2,
+              margin: {
+                xs: 0,
+                md: 2,
+              },
               top: {
                 xs: 0,
                 md: "40%",
               },
               bottom: 0,
               left: 0,
+              right: 0,
               backgroundColor: alpha(theme.palette.background.paper, 0.5),
               backdropFilter: "blur(4px)",
               color: theme.palette.mode === "dark" ? "white" : "black",
@@ -202,7 +211,7 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
  * @param side The side to search.
  * @returns A map of checkpoints to a set of roomId's matching the search term.
  */
-const filterRooms = (searchValue: string, side: Side): Map<number, Set<string>> => {
+const filterRooms = (searchValue: string, side: Side, hideSubrooms: boolean): Map<number, Set<string>> => {
   const filteredRooms = new Map<number, Set<string>>();
 
   side.checkpoints.forEach((checkpoint, checkpointIndex) => {
@@ -213,20 +222,27 @@ const filterRooms = (searchValue: string, side: Side): Map<number, Set<string>> 
       }
 
       const normalisedSearchValue: string = searchValue.toLowerCase();
+      const roomNo: number = roomIndex + 1;
 
-      if (roomId.toLowerCase().includes(normalisedSearchValue)
-        || room.name.toLowerCase().includes(normalisedSearchValue)
-        || room.subrooms?.some(subroom => subroom.name.toLowerCase().includes(normalisedSearchValue))
-        || checkpoint.name.toLowerCase().includes(normalisedSearchValue)
-        || checkpoint.abbreviation.toLowerCase().includes(normalisedSearchValue)
-        || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomIndex + 1}`.includes(normalisedSearchValue)
-      ) {
-        let checkpointRoomSet: Set<string> | undefined = filteredRooms.get(checkpointIndex);
-        if (checkpointRoomSet === undefined) {
-          checkpointRoomSet = new Set<string>();
+      if (hideSubrooms) {
+        if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo)) {
+          addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
         }
-        checkpointRoomSet.add(roomId);
-        filteredRooms.set(checkpointIndex, checkpointRoomSet);
+      } else {
+        const subrooms: Subroom[] | undefined = room.subrooms;
+        if (subrooms === undefined || subrooms.length === 0) {
+          if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo)) {
+            addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
+          }
+        } else {
+          for (let i = 0; i < subrooms.length; i++) {
+            const subroom: Subroom = subrooms[i]!;
+            if (showSubroom(normalisedSearchValue, checkpoint, roomId, roomNo, subroom)) {
+              addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
+              addToCheckpointRoomSet(filteredRooms, checkpointIndex, `${roomId}/${i + 1}`);
+            }
+          }
+        }
       }
     });
   });
@@ -234,6 +250,72 @@ const filterRooms = (searchValue: string, side: Side): Map<number, Set<string>> 
   return filteredRooms;
 }
 
+/**
+ * Add the roomId to the appropriate checkpoint room set.
+ * 
+ * @param filteredRooms The filtered rooms map containing the checkpoint room sets.
+ * @param checkpointIndex The index of the checkpoint to get the set for.
+ * @param roomId The room id to add to the checkpoint room set.
+ */
+const addToCheckpointRoomSet = (filteredRooms: Map<number, Set<string>>, checkpointIndex: number, roomId: string) => {
+
+  // Get the previous or create a new set if required.
+  let checkpointRoomSet: Set<string> | undefined = filteredRooms.get(checkpointIndex);
+  if (checkpointRoomSet === undefined) {
+    checkpointRoomSet = new Set<string>();
+  }
+
+  checkpointRoomSet.add(roomId);
+
+  filteredRooms.set(checkpointIndex, checkpointRoomSet);
+}
+
+/**
+ * Determine if a room should e shown if value matches specific room values.
+ * 
+ * @param value The search value.
+ * @param checkpoint The checkpoint.
+ * @param roomId The room id.
+ * @param room The room.
+ * @param roomNo The room number.
+ * @returns 
+ */
+const showRoom = (value: string, checkpoint: Checkpoint, roomId: string, room: Room, roomNo: number): boolean => {
+  return showCommonRoom(value, checkpoint, roomId, roomNo)
+    || room.name.toLowerCase().includes(value)
+    || Boolean(room.subrooms?.some(subroom => subroom.name.toLowerCase().includes(value)));
+}
+
+/**
+ * Determine if a room should be shown if value matches subroom specific values.
+ * 
+ * @param value The search value.
+ * @param checkpoint The checkpoint.
+ * @param roomId The room id.
+ * @param roomNo The room number.
+ * @param subroom The subroom.
+ * @returns 
+ */
+const showSubroom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number, subroom: Subroom): boolean => {
+  return showCommonRoom(value, checkpoint, roomId, roomNo)
+    || subroom.name.toLowerCase().includes(value);
+}
+
+/**
+ * Determine if a room should be shown if the value matches common values.
+ * 
+ * @param value The search value.
+ * @param checkpoint The checkpoint.
+ * @param roomId The room id.
+ * @param roomNo The room number.
+ * @returns 
+ */
+const showCommonRoom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number): boolean => {
+  return roomId.toLowerCase().includes(value)
+    || checkpoint.name.toLowerCase().includes(value)
+    || checkpoint.abbreviation.toLowerCase().includes(value)
+    || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}`.includes(value);
+}
 
 interface ViewProps {
   areaId: string;
@@ -270,8 +352,6 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
             </Typography>
             <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
               {checkpoint.roomOrder.map(roomId => {
-
-                // Filter out rooms from search..
                 const room: Room | undefined = side.rooms[roomId];
                 if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
                   return undefined;
@@ -279,15 +359,21 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
 
                 return (
                   <Fragment key={roomId}>
-                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
-                      <GridChapterItem
-                        key={subroomIndex}
-                        roomId={roomId}
-                        roomName={subroom.name}
-                        image={subroom.image}
-                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
-                      />
-                    )) : (
+                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => {
+                      if (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(`${roomId}/${subroomIndex + 1}`)) {
+                        return undefined;
+                      }
+
+                      return (
+                        <GridChapterItem
+                          key={subroomIndex}
+                          roomId={roomId}
+                          roomName={subroom.name}
+                          image={subroom.image}
+                          href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
+                        />
+                      );
+                    }) : (
                       <GridChapterItem
                         key={roomId}
                         roomId={roomId}
@@ -361,8 +447,6 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
             </Typography>
             <List disablePadding>
               {checkpoint.roomOrder.map((roomId, roomIndex) => {
-
-                // Filter out rooms from search..
                 const room: Room | undefined = side.rooms[roomId];
                 if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
                   return undefined;
@@ -370,16 +454,22 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, sideId, side, hideSu
 
                 return (
                   <Fragment key={roomId}>
-                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => (
-                      <ListChapterItem
-                        key={subroomIndex}
-                        roomId={roomId}
-                        roomName={subroom.name}
-                        roomNo={roomIndex + 1}
-                        image={subroom.image}
-                        href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
-                      />
-                    )) : (
+                    {!hideSubrooms && room.subrooms ? room.subrooms.map((subroom, subroomIndex) => {
+                      if (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(`${roomId}/${subroomIndex + 1}`)) {
+                        return undefined;
+                      }
+
+                      return (
+                        <ListChapterItem
+                          key={subroomIndex}
+                          roomId={roomId}
+                          roomName={subroom.name}
+                          roomNo={roomIndex + 1}
+                          image={subroom.image}
+                          href={`/${areaId}/${chapterId}/${sideId}/${roomId}/${subroomIndex + 1}`}
+                        />
+                      );
+                    }) : (
                       <ListChapterItem
                         key={roomId}
                         roomId={roomId}
