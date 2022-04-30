@@ -191,6 +191,11 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
         )}
         {side && (
           <Fragment>
+            {Boolean(searchValue) && filteredRooms && filteredRooms.size === 0 && (
+              <Box display="flex" justifyContent="center" padding={3}>
+                <Typography component="div" fontSize="large" color="text.secondary">{`No rooms found for '${searchValue}'`}</Typography>
+              </Box>
+            )}
             {settings.listMode ? (
               <ListChapterView
                 areaId={areaId}
@@ -198,7 +203,7 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
                 sideId={sideId}
                 side={side}
                 hideSubrooms={Boolean(settings.hideSubrooms)}
-                searchPerformed={Boolean(setSearchValue)}
+                searchPerformed={Boolean(searchValue)}
                 filteredRooms={filteredRooms}
               />
             ) : (
