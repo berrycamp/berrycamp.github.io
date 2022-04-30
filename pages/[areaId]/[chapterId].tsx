@@ -10,15 +10,16 @@ import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, useState} from "react";
+import {FC, Fragment, useEffect, useState} from "react";
 import {Area, Chapter, Checkpoint, Room, Side, Subroom} from "../../logic/data/dataTree";
 
 const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter}) => {
   const {settings} = useCampContext();
 
-  const [searchValue, setSearchValue] = useState<string>("");
-
   const [sideId, setSideId] = useState<string>("a");
+
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [filteredRooms, setFilteredRooms] = useState<Map<number, Set<string>> | undefined>();
 
   const roomCount: number | undefined = chapter.sides[sideId]?.roomCount;
 
@@ -30,7 +31,16 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
 
   const side: Side | undefined = chapter.sides[sideId];
 
-  const filteredRooms: Map<number, Set<string>> | undefined = side && filterRooms(searchValue, side, Boolean(settings.hideSubrooms));
+  /**
+   * Update the filtered rooms.
+   */
+  useEffect(() => {
+    if (side !== undefined) {
+      setFilteredRooms(filterRooms(searchValue, side, Boolean(settings.hideSubrooms)));
+    } else {
+      setFilteredRooms(undefined);
+    }
+  }, [searchValue, settings.hideSubrooms, side])
 
   return (
     <Fragment>
@@ -158,6 +168,11 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
             ),
           }}
           onChange={event => setSearchValue(event.target.value)}
+          onKeyDown={event => {
+            if (event.key === "Enter" && side !== undefined) {
+              setFilteredRooms(filterRooms(searchValue, side, Boolean(settings.hideSubrooms), true))
+            }
+          }}
           aria-label="search rooms"
           sx={{
             marginTop: 2,
@@ -209,9 +224,10 @@ const ChapterPage: CampPage<ChapterProps> = ({areaId, area, chapterId, chapter})
  * 
  * @param searchValue The search term.
  * @param side The side to search.
+ * @param exact If the rooms should be filtered with an exact value.
  * @returns A map of checkpoints to a set of roomId's matching the search term.
  */
-const filterRooms = (searchValue: string, side: Side, hideSubrooms: boolean): Map<number, Set<string>> => {
+const filterRooms = (searchValue: string, side: Side, hideSubrooms: boolean, exact: boolean = false): Map<number, Set<string>> => {
   const filteredRooms = new Map<number, Set<string>>();
 
   side.checkpoints.forEach((checkpoint, checkpointIndex) => {
@@ -225,19 +241,19 @@ const filterRooms = (searchValue: string, side: Side, hideSubrooms: boolean): Ma
       const roomNo: number = roomIndex + 1;
 
       if (hideSubrooms) {
-        if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo)) {
+        if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo, exact)) {
           addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
         }
       } else {
         const subrooms: Subroom[] | undefined = room.subrooms;
         if (subrooms === undefined || subrooms.length === 0) {
-          if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo)) {
+          if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo, exact)) {
             addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
           }
         } else {
           for (let i = 0; i < subrooms.length; i++) {
             const subroom: Subroom = subrooms[i]!;
-            if (showSubroom(normalisedSearchValue, checkpoint, roomId, roomNo, subroom)) {
+            if (showSubroom(normalisedSearchValue, checkpoint, roomId, roomNo, subroom, exact)) {
               addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
               addToCheckpointRoomSet(filteredRooms, checkpointIndex, `${roomId}/${i + 1}`);
             }
@@ -278,12 +294,18 @@ const addToCheckpointRoomSet = (filteredRooms: Map<number, Set<string>>, checkpo
  * @param roomId The room id.
  * @param room The room.
  * @param roomNo The room number.
- * @returns 
+ * @returns If the room should be shown.
  */
-const showRoom = (value: string, checkpoint: Checkpoint, roomId: string, room: Room, roomNo: number): boolean => {
-  return showCommonRoom(value, checkpoint, roomId, roomNo)
-    || room.name.toLowerCase().includes(value)
-    || Boolean(room.subrooms?.some(subroom => subroom.name.toLowerCase().includes(value)));
+const showRoom = (value: string, checkpoint: Checkpoint, roomId: string, room: Room, roomNo: number, exact: boolean = false): boolean => {
+  if (exact) {
+    return showCommonRoom(value, checkpoint, roomId, roomNo)
+      || room.name.toLowerCase() === value.trim()
+      || Boolean(room.subrooms?.some(subroom => subroom.name.toLowerCase() === value.trim()));
+  } else {
+    return showCommonRoom(value, checkpoint, roomId, roomNo)
+      || room.name.toLowerCase().includes(value)
+      || Boolean(room.subrooms?.some(subroom => subroom.name.toLowerCase().includes(value)));
+  }
 }
 
 /**
@@ -294,11 +316,16 @@ const showRoom = (value: string, checkpoint: Checkpoint, roomId: string, room: R
  * @param roomId The room id.
  * @param roomNo The room number.
  * @param subroom The subroom.
- * @returns 
+ * @returns If the subroom should be shown.
  */
-const showSubroom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number, subroom: Subroom): boolean => {
-  return showCommonRoom(value, checkpoint, roomId, roomNo)
-    || subroom.name.toLowerCase().includes(value);
+const showSubroom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number, subroom: Subroom, exact: boolean = false): boolean => {
+  if (exact) {
+    return showCommonRoom(value, checkpoint, roomId, roomNo)
+      || subroom.name.toLowerCase() === value;
+  } else {
+    return showCommonRoom(value, checkpoint, roomId, roomNo)
+      || subroom.name.toLowerCase().includes(value);
+  }
 }
 
 /**
@@ -308,13 +335,21 @@ const showSubroom = (value: string, checkpoint: Checkpoint, roomId: string, room
  * @param checkpoint The checkpoint.
  * @param roomId The room id.
  * @param roomNo The room number.
- * @returns 
+ * @param exact If the search should be exact.
+ * @returns If the room should be shown based on the common values.
  */
-const showCommonRoom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number): boolean => {
-  return roomId.toLowerCase().includes(value)
-    || checkpoint.name.toLowerCase().includes(value)
-    || checkpoint.abbreviation.toLowerCase().includes(value)
-    || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}`.includes(value);
+const showCommonRoom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number, exact: boolean = false): boolean => {
+  if (exact) {
+    return roomId.toLowerCase() === value
+      || checkpoint.name.toLowerCase() === value
+      || checkpoint.abbreviation.toLowerCase() === value
+      || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}` === value;
+  } else {
+    return roomId.toLowerCase().includes(value)
+      || checkpoint.name.toLowerCase().includes(value)
+      || checkpoint.abbreviation.toLowerCase().includes(value)
+      || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}` === value;
+  }
 }
 
 interface ViewProps {
