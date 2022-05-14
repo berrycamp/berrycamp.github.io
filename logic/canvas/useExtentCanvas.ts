@@ -9,7 +9,7 @@ import {RefObject, useCallback, useEffect, useRef, useState} from "react";
 export const useExtentCanvas = (
   canvasRef: RefObject<HTMLCanvasElement>,
   onDraw: (context: CanvasRenderingContext2D) => void,
-): TiledCanvasData => {
+): void => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
   const cursorPosRef = useRef<Point>(ORIGIN);
@@ -30,7 +30,18 @@ export const useExtentCanvas = (
 
     const {devicePixelRatio: ratio} = window;
 
-    context.clearRect(0, 0, context.canvas.width * ratio, context.canvas.height * ratio);
+    console.log(offsetRef.current);
+
+    const width: number = context.canvas.width * ratio;
+    const height: number = context.canvas.height * ratio;
+
+    // Wipe slightly more than the visible canvas to prevent visual issues on mouse leave.
+    context.clearRect(
+      -offsetRef.current.x - width,
+      -offsetRef.current.y - height,
+      (width / scaleRef.current) + 2 * width,
+      (height / scaleRef.current) + 2 * height,
+    );
     context.resetTransform();
 
     context.scale(scaleRef.current * ratio, scaleRef.current * ratio);
@@ -126,38 +137,18 @@ export const useExtentCanvas = (
       redraw();
     }
 
-    // const handleResize: ResizeObserverCallback = (entries: ResizeObserverEntry[]) => {
-    //   const canvasEntry: ResizeObserverEntry | undefined = entries[0];
-    //   if (canvasEntry === undefined) {
-    //     return;
-    //   }
-
-    //   const width = canvasEntry.borderBoxSize[0]?.inlineSize
-    //   const height = canvasEntry.borderBoxSize[1]?.inlineSize
-    //   if (width === undefined || height === undefined) {
-    //     return;
-    //   }
-
-    //   redraw();
-    // }
-
     context.canvas.addEventListener("mousedown", handleMouseDown);
     context.canvas.addEventListener("mousemove", handleMouseMove);
     context.canvas.addEventListener("mouseup", handleMouseUp)
     context.canvas.addEventListener("wheel", handleWheel);
-    // const resizeObserver = new ResizeObserver(handleResize);
-    // resizeObserver.observe(context.canvas)
 
     return () => {
       context.canvas.removeEventListener("mousedown", handleMouseDown);
       context.canvas.removeEventListener("mousemove", handleMouseMove);
       context.canvas.removeEventListener("mouseup", handleMouseUp)
       context.canvas.removeEventListener("wheel", handleWheel);
-      // resizeObserver.disconnect();
     }
   }, [context, redraw]);
-
-  return {}
 }
 
 export interface Point {
@@ -171,9 +162,6 @@ export interface View {
 }
 
 export type ViewCallback = (view: View) => void;
-
-export interface TiledCanvasData {
-}
 
 const ORIGIN: Point = {x: 0, y: 0};
 
