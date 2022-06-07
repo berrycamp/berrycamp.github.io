@@ -1,12 +1,9 @@
-import {Container, Link, Paper, Typography} from "@mui/material";
-import {DATA} from "logic/data/data";
-import {Area} from "logic/data/dataTree";
+import {Container, List, ListItemButton, Paper, Typography} from "@mui/material";
+import {VALID_AREAS} from "logic/data/validAreas";
 import {CampHead} from "modules/head/CampHead";
+import Link from "next/link";
 import {Fragment} from "react";
-import {AreaView} from "./[areaId]";
 import {CampPage} from "./_app";
-
-const DEFAULT_AREA: Area = DATA["celeste"];
 
 export const HomePage: CampPage = () => {
   return (
@@ -32,10 +29,22 @@ export const HomePage: CampPage = () => {
             <strong>This website contains spoilers for Celeste.</strong>
           </Typography>
         </Paper>
+        <List>
+        {VALID_AREAS.map(area => (
+          <Link key={area} passHref href={`/${area}`}>
+            <ListItemButton
+              disableGutters
+              component="a"
+              sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
+            >
+              <Typography component="div" color="text.secondary">{area}</Typography>
+            </ListItemButton>
+          </Link>
+        ))}
+      </List>
       </Container>
-      <AreaView areaId="celeste" area={DEFAULT_AREA} />
     </Fragment>
   )
-}
+};
 
 export default HomePage;

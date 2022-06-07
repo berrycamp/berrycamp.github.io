@@ -9,14 +9,16 @@ import {RefObject, useCallback, useEffect, useRef, useState} from "react";
 export const useExtentCanvas = (
   canvasRef: RefObject<HTMLCanvasElement>,
   onDraw: (context: CanvasRenderingContext2D) => void,
+  initialOffset?: Point,
+  initialScale?: number,
 ): void => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
   const cursorPosRef = useRef<Point>(ORIGIN);
   const prevCursorPosRef = useRef<Point>(ORIGIN);
 
-  const offsetRef = useRef<Point>(ORIGIN);
-  const scaleRef = useRef<number>(1);
+  const offsetRef = useRef<Point>(initialOffset ?? ORIGIN);
+  const scaleRef = useRef<number>(initialScale ?? 1);
 
   const isDraggingRef = useRef<boolean>(false);
 
@@ -29,9 +31,6 @@ export const useExtentCanvas = (
     }
 
     const {devicePixelRatio: ratio} = window;
-
-    console.log(offsetRef.current);
-
     const width: number = context.canvas.width * ratio;
     const height: number = context.canvas.height * ratio;
 
@@ -57,20 +56,8 @@ export const useExtentCanvas = (
       return;
     }
 
-    setContext(canvasRef.current.getContext("2d"));
+    setContext(canvasRef.current.getContext("2d", {alpha: false}));
   }, [canvasRef]);
-
-  /**
-   * Init the context.
-   */
-  useEffect(() => {
-    if (context === null) {
-      return;
-    }
-
-    context.imageSmoothingEnabled = false;
-    redraw();
-  }, [context, redraw])
 
   /**
    * Attach context listeners.
@@ -149,6 +136,18 @@ export const useExtentCanvas = (
       context.canvas.removeEventListener("wheel", handleWheel);
     }
   }, [context, redraw]);
+
+  /**
+   * Init the context.
+   */
+   useEffect(() => {
+    if (context === null) {
+      return;
+    }
+
+    context.imageSmoothingEnabled = false;
+    redraw();
+  }, [context, redraw])
 }
 
 export interface Point {
@@ -176,9 +175,6 @@ const MAX_SCALE = 4;
  */
 const getCursorOffset = (pageX: number, pageY: number, context: CanvasRenderingContext2D): Point => {
   const {left, top}: DOMRect = context.canvas.getBoundingClientRect();
-
-  console.log(left, top);
-
   return diff({x: pageX, y: pageY}, {x: left, y: top});
 }
 

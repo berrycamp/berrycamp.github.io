@@ -1,11 +1,11 @@
-import {BrightnessAuto, CropDinSharp, CropSquare, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, Splitscreen, ViewListSharp} from "@mui/icons-material";
+import {BrightnessAuto, CropDinSharp, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
 import {Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Tooltip} from "@mui/material";
 import {useCampContext} from "logic/provide/CampContext";
 import {EVEREST_ICON} from "modules/layout/everest";
 import {FC, Fragment, MouseEvent, useState} from "react";
 
 export const SettingsMenu: FC = () => {
-  const {settings, changeTheme, toggleListMode, toggleHideSubrooms, toggleCozyMode, setPort} = useCampContext();
+  const {settings, changeTheme, toggleListMode, toggleCozyMode, setPort} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -49,12 +49,6 @@ export const SettingsMenu: FC = () => {
             {settings.listMode ? <ViewListSharp fontSize="small" /> : <GridViewSharp fontSize="small" />}
           </ListItemIcon>
           {settings.listMode ? "List view" : "Grid view"}
-        </MenuItem>
-        <MenuItem onClick={toggleHideSubrooms}>
-          <ListItemIcon>
-            {settings.hideSubrooms ? <CropSquare fontSize="small" /> : <Splitscreen fontSize="small" />}
-          </ListItemIcon>
-          {settings.hideSubrooms ? "Subrooms hidden" : "Subrooms shown"}
         </MenuItem>
         <Divider />
         <MenuItem onClick={toggleCozyMode}>

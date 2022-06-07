@@ -1,8 +1,9 @@
 import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {AspectBox} from "common/aspectBox/AspectBox";
-import {DATA} from "logic/data/data";
-import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTree";
+import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTypes";
+import {VALID_AREAS} from "logic/data/validAreas";
+import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
 import {getScreenURL} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {CampHead} from "modules/head/CampHead";
@@ -17,13 +18,11 @@ import {Fragment, useEffect, useState} from "react";
 const RoomPage: CampPage<RoomProps> = ({
   area,
   chapter,
-  sideName,
+  side,
   checkpointName,
   room,
   nextRoom,
   prevRoom,
-  nextSubroom,
-  prevSubroom,
 }) => {
   const {settings} = useCampContext();
 
@@ -64,14 +63,14 @@ const RoomPage: CampPage<RoomProps> = ({
     return () => window.removeEventListener("keydown", listener);
   }, [nextRoom?.link, prevRoom?.link, router])
 
-  const isASide: boolean = sideName === "A";
+  const isASide: boolean = side.name === "A";
 
   return (
     <Fragment>
       <CampHead
         title={`${room.name} (${room.debugId})`}
-        description={`${area.name} - ${chapter.name} - ${sideName} side - ${checkpointName}`}
-        image={room.image}
+        description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpointName}`}
+        image={`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`}
       />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2}}>
@@ -85,7 +84,7 @@ const RoomPage: CampPage<RoomProps> = ({
               {chapter.name}
             </MuiLink>
           </Link>
-          <Typography color="text.secondary">{sideName}</Typography>
+          <Typography color="text.secondary">{side.name}</Typography>
           <Typography color="text.secondary">{checkpointName}</Typography>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
@@ -93,7 +92,7 @@ const RoomPage: CampPage<RoomProps> = ({
           <AspectBox>
             <Image
               unoptimized
-              src={getScreenURL(room.image)}
+              src={getScreenURL(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
               alt={`Very large image of room ${room.name}`}
               layout="fill"
               style={{
@@ -107,7 +106,7 @@ const RoomPage: CampPage<RoomProps> = ({
             unoptimized
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
-            src={getScreenURL(room.image)}
+            src={getScreenURL(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
             alt={`Large image of room ${room.name}`}
             layout="fill"
             style={{
@@ -136,7 +135,7 @@ const RoomPage: CampPage<RoomProps> = ({
           </Tooltip>
         </Box>
         <Typography component="div" color="text.secondary">{chapter.name}</Typography>
-        <Typography component="div" color="text.secondary">{sideName} Side</Typography>
+        <Typography component="div" color="text.secondary">{side.name} Side</Typography>
         <Typography component="div" color="text.secondary">{checkpointName}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
         <Typography component="div" color="text.secondary">Debug id: {room.debugId}</Typography>
@@ -145,18 +144,7 @@ const RoomPage: CampPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
         <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
           <Box width="100%">
-            {!settings.hideSubrooms && prevSubroom?.link ? (
-              <Link passHref href={prevSubroom.link}>
-                <Button
-                  variant="outlined"
-                  startIcon={<NavigateBefore />}
-                  aria-label={`Go to previous room ${prevSubroom.name}`}
-                  sx={{width: "100%"}}
-                >
-                  {prevSubroom.name}
-                </Button>
-              </Link>
-            ) : prevRoom?.link && (
+            {prevRoom?.link && (
               <Link passHref href={prevRoom.link}>
                 <Button
                   variant="outlined"
@@ -170,18 +158,7 @@ const RoomPage: CampPage<RoomProps> = ({
             )}
           </Box>
           <Box width="100%">
-            {!settings.hideSubrooms && nextSubroom?.link ? (
-              <Link passHref href={nextSubroom.link}>
-                <Button
-                  variant="outlined"
-                  endIcon={<NavigateNext />}
-                  aria-label={`Go to next room ${nextSubroom.name}`}
-                  sx={{width: "100%"}}
-                >
-                  {nextSubroom.name}
-                </Button>
-              </Link>
-            ) : nextRoom?.link && (
+            {nextRoom?.link && (
               <Link passHref href={nextRoom.link}>
                 <Button
                   variant="outlined"
@@ -200,29 +177,35 @@ const RoomPage: CampPage<RoomProps> = ({
   )
 }
 
-interface NameLink {
+interface NamedLink {
+  id: string;
   name: string;
   link: string;
 }
 
+interface PartiallyNamedLink {
+  name?: string;
+  link: string;
+}
+
 export interface RoomProps {
-  area: NameLink;
-  chapter: NameLink;
-  sideName: string;
+  area: NamedLink;
+  chapter: NamedLink;
+  side: {
+    id: string;
+    name: string;
+  };
   checkpointName: string;
   room: {
-    name: string;
-    image: string;
+    name?: string;
     debugId: string;
     roomId: string;
     checkpointRoomNo: string;
     levelRoomNo: string;
     teleportParams: string;
   };
-  prevRoom?: NameLink;
-  prevSubroom?: NameLink;
-  nextRoom?: NameLink;
-  nextSubroom?: NameLink;
+  prevRoom?: PartiallyNamedLink;
+  nextRoom?: PartiallyNamedLink;
 }
 
 interface RoomParams extends ParsedUrlQuery {
@@ -235,9 +218,12 @@ interface RoomParams extends ParsedUrlQuery {
 export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
   const paths: {params: RoomParams; locale?: string}[] = [];
 
-  for (const [areaId, area] of Object.entries(DATA)) {
-    for (const [chapterId, chapter] of Object.entries(area.chapters)) {
-      for (const [sideId, side] of Object.entries(chapter.sides)) {
+  for (const areaId of VALID_AREAS) {
+    const area: Area = await fetchArea(areaId);
+    for (const chapterId of area.chapters) {
+      const chapter: Chapter = await fetchChapter(areaId, chapterId);
+      for (const sideId of chapter.sides) {
+        const side: Side = await fetchSide(areaId, chapterId, sideId);
         for (const roomId of Object.keys(side.rooms)) {
           paths.push({params: {areaId, chapterId, sideId, roomId}});
         }
@@ -253,24 +239,19 @@ export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
 
 export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({params}) => {
   if (params === undefined) {
-    throw Error("Params was not defined");
+    throw Error("Params was not defined.")
   }
 
   const {areaId, chapterId, sideId, roomId} = params;
-  const area: Area | undefined = DATA[areaId];
-  if (area === undefined) {
-    throw Error(`Area ${areaId} is not valid`);
-  }
 
-  const chapter: Chapter | undefined = area.chapters[chapterId];
-  if (chapter === undefined) {
-    throw Error(`Chapter ${chapterId} is not valid`);
-  }
+  const area: Area = await fetchArea(areaId);
+  area.id = areaId;
 
-  const side: Side | undefined = chapter.sides[sideId];
-  if (side === undefined) {
-    throw Error("Side not defined");
-  }
+  const chapter: Chapter = await fetchChapter(areaId, chapterId);
+  chapter.id = chapterId;
+
+  const side: Side = await fetchSide(areaId, chapterId, sideId);
+  side.id = sideId;
 
   const room: Room | undefined = side.rooms[roomId];
   if (room === undefined) {
@@ -294,48 +275,40 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
   return {
     props: {
       area: {
+        id: areaId,
         name: area.name,
         link: `/${areaId}`,
       },
       chapter: {
+        id: chapterId,
         name: chapter.name,
         link: `/${areaId}/${chapterId}`
       },
-      sideName: side.name,
+      side: {
+        id: sideId,
+        name: side.name,
+      },
       checkpointName: checkpoint.name,
       room: {
-        name: room.name,
-        image: room.image,
+        ...room.name && {name: room.name},
         debugId: roomId,
         roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
         levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
         checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
-        teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.x && room.y) ? `&x=${room.x}&y=${room.y}` : ""}`,
+        teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.entities.spawn && room.entities.spawn[0]?.x && room.entities.spawn[0]?.y) ? `&x=${room.entities.spawn[0].x}&y=${room.entities.spawn[0].y}` : ""}`,
       },
       ...prevRoom && {
         prevRoom: {
-          name: prevRoom.name,
+          ...prevRoom.name && {name: prevRoom.name},
           link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
         }
       },
       ...nextRoom && {
         nextRoom: {
-          name: nextRoom.name,
+          ...nextRoom.name && {name: nextRoom.name},
           link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
         }
       },
-      ...prevRoom && prevRoom.subrooms && prevRoom.subrooms.length > 0 && {
-        prevSubroom: {
-          name: prevRoom.subrooms.slice(-1)[0]!.name,
-          link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}/${prevRoom.subrooms.length}`,
-        }
-      },
-      ...nextRoom && nextRoom.subrooms && nextRoom.subrooms.length > 0 && {
-        nextSubroom: {
-          name: nextRoom.subrooms[0]!.name,
-          link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}/1`,
-        }
-      }
     }
   }
 }

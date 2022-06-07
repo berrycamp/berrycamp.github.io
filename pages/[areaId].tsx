@@ -1,5 +1,6 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
-import {DATA} from 'logic/data/data'
+import {VALID_AREAS} from 'logic/data/validAreas'
+import {fetchArea, fetchChapter} from 'logic/fetch/dataApi'
 import {getScreenURL} from 'logic/fetch/image'
 import {useCampContext} from 'logic/provide/CampContext'
 import {CampHead} from 'modules/head/CampHead'
@@ -8,10 +9,10 @@ import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
-import {Area} from '../logic/data/dataTree'
+import {Area, Chapter} from '../logic/data/dataTypes'
 import {CampPage} from './_app'
 
-const AreaPage: CampPage<AreaProps> = ({areaId, area}) => {
+const AreaPage: CampPage<AreaProps> = ({area, chapters}) => {
   return (
     <Fragment>
       <CampHead
@@ -19,22 +20,26 @@ const AreaPage: CampPage<AreaProps> = ({areaId, area}) => {
         description={area.desc}
         image={area.image}
       />
-      <AreaView areaId={areaId} area={area} />
+      <AreaView area={area} chapters={chapters}/>
     </Fragment>
   )
 }
 
-export const AreaView: FC<AreaProps> = ({areaId, area}) => {
+export const AreaView: FC<AreaProps> = ({area, chapters}) => {
   const {settings: {listMode}} = useCampContext();
 
   return (
     <Fragment>
-      {listMode ? <ListArea areaId={areaId} area={area} /> : <GridArea areaId={areaId} area={area} />}
+      {listMode ? (
+        <ListArea area={area} chapters={chapters}/>
+      ) : (
+        <GridArea area={area} chapters={chapters}/>
+      )}
     </Fragment>
   );
 }
 
-const GridArea: FC<AreaProps> = ({areaId, area}) => {
+const GridArea: FC<AreaProps> = ({area, chapters}) => {
   return (
     <Fragment>
       <Container>
@@ -52,9 +57,9 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
               <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
               <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
             </Box>
-            {Object.entries(area.chapters).map(([chapterId, chapter]) => (
-              <Card key={chapterId}>
-                <Link passHref href={`/${areaId}/${chapterId}`}>
+            {chapters.map(chapter => (
+              <Card key={chapter.id}>
+                <Link passHref href={`/${area.id}/${chapter.id}`}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -82,15 +87,15 @@ const GridArea: FC<AreaProps> = ({areaId, area}) => {
   );
 }
 
-const ListArea: FC<AreaProps> = ({areaId, area}) => {
+const ListArea: FC<AreaProps> = ({area, chapters}) => {
   return (
     <Fragment>
       <Container>
         <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
         <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
         <List disablePadding>
-          {Object.entries(area.chapters).map(([chapterId, chapter]) => (
-            <Link key={chapterId} passHref href={`/${areaId}/${chapterId}`}>
+          {chapters.map(chapter => (
+            <Link key={chapter.id} passHref href={`/${area.id}/${chapter.id}`}>
               <ListItemButton
                 disableGutters
                 component="a"
@@ -116,8 +121,8 @@ const ListArea: FC<AreaProps> = ({areaId, area}) => {
 }
 
 interface AreaProps {
-  areaId: string;
   area: Area;
+  chapters: Chapter[]; 
 }
 
 interface AreaParams extends ParsedUrlQuery {
@@ -126,7 +131,7 @@ interface AreaParams extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths<AreaParams> = async () => {
   return {
-    paths: Object.keys(DATA).map(areaId => ({params: {areaId}})),
+    paths: VALID_AREAS.map(areaId => ({params: {areaId}})),
     fallback: false,
   }
 }
@@ -138,15 +143,19 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
 
   const {areaId} = params;
 
-  const area: Area | undefined = DATA[areaId];
-  if (area === undefined) {
-    throw Error(`Area ${areaId} is not defined`);
-  }
+  const area: Area =  await fetchArea(areaId);
+  area.id = areaId;
+
+  const chapters: Chapter[] = await Promise.all(area.chapters.map(async chapterId => {
+    const chapter: Chapter = await fetchChapter(areaId, chapterId);
+    chapter.id = chapterId;
+    return chapter;
+  }));
 
   return {
     props: {
-      areaId,
       area,
+      chapters,
     }
   }
 };
