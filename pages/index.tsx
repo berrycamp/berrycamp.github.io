@@ -1,11 +1,13 @@
-import {Container, List, ListItemButton, Paper, Typography} from "@mui/material";
-import {VALID_AREAS} from "logic/data/validAreas";
+import {Container, Link as MuiLink, List, Paper, Typography} from "@mui/material";
+import {Area, Chapter} from "logic/data/dataTypes";
+import {fetchArea, fetchChapter} from "logic/fetch/dataApi";
 import {CampHead} from "modules/head/CampHead";
-import Link from "next/link";
+import {GetStaticProps} from "next";
 import {Fragment} from "react";
+import {AreaProps, AreaView} from "./[areaId]";
 import {CampPage} from "./_app";
 
-export const HomePage: CampPage = () => {
+export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
   return (
     <Fragment>
       <CampHead
@@ -18,19 +20,21 @@ export const HomePage: CampPage = () => {
             Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>!
           </Typography>
           <Typography marginTop={1}>
-            Browse rooms from the video game Celeste and open them in-game if <Link underline="hover" href="https://everestapi.github.io/">Everest</Link> is running.
+            Browse rooms from the video game Celeste and open them in-game if <MuiLink underline="hover" href="https://everestapi.github.io/">Everest</MuiLink> is running.
           </Typography>
           <Typography color="text.secondary" marginTop={1}>
             Send any feedback to
             <Typography component="strong" color="secondary"> wishcresp#0141 </Typography>
-            on the <Link underline="hover" href="https://discord.gg/Celeste">Celeste Discord</Link>.
+            on the <MuiLink underline="hover" href="https://discord.gg/Celeste">Celeste Discord</MuiLink>.
           </Typography>
           <Typography marginTop={4}>
             <strong>This website contains spoilers for Celeste.</strong>
           </Typography>
         </Paper>
         <List>
-        {VALID_AREAS.map(area => (
+        
+        <AreaView area={area} chapters={chapters}/>
+        {/* {VALID_AREAS.map(area => (
           <Link key={area} passHref href={`/${area}`}>
             <ListItemButton
               disableGutters
@@ -40,7 +44,7 @@ export const HomePage: CampPage = () => {
               <Typography component="div" color="text.secondary">{area}</Typography>
             </ListItemButton>
           </Link>
-        ))}
+        ))} */}
       </List>
       </Container>
     </Fragment>
@@ -48,3 +52,22 @@ export const HomePage: CampPage = () => {
 };
 
 export default HomePage;
+
+export const getStaticProps: GetStaticProps<AreaProps> = async () => {
+  const areaId = "celeste"
+  const area: Area =  await fetchArea(areaId);
+  area.id = areaId;
+
+  const chapters: Chapter[] = await Promise.all(area.chapters.map(async chapterId => {
+    const chapter: Chapter = await fetchChapter(areaId, chapterId);
+    chapter.id = chapterId;
+    return chapter;
+  }));
+
+  return {
+    props: {
+      area,
+      chapters,
+    }
+  }
+};

@@ -1,7 +1,7 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {VALID_AREAS} from 'logic/data/validAreas'
 import {fetchArea, fetchChapter} from 'logic/fetch/dataApi'
-import {getScreenURL} from 'logic/fetch/image'
+import {getCampImageUrl} from 'logic/fetch/image'
 import {useCampContext} from 'logic/provide/CampContext'
 import {CampHead} from 'modules/head/CampHead'
 import Image from "next/image"
@@ -18,7 +18,7 @@ const AreaPage: CampPage<AreaProps> = ({area, chapters}) => {
       <CampHead
         title={area.name}
         description={area.desc}
-        image={area.image}
+        image={`${area.id}/${area.id}`}
       />
       <AreaView area={area} chapters={chapters}/>
     </Fragment>
@@ -63,7 +63,7 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      src={getScreenURL(chapter.image)}
+                      src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
                       alt={`An image of chapter ${chapter.name}`}
                       style={{
                         imageRendering: "pixelated",
@@ -103,7 +103,7 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
               >
                 <Image
                   unoptimized
-                  src={getScreenURL(chapter.image)}
+                  src={getCampImageUrl(chapter.image)}
                   alt={`Image of chapter ${chapter.name}`}
                   width={80}
                   height={45}
@@ -120,7 +120,7 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
   )
 }
 
-interface AreaProps {
+export interface AreaProps {
   area: Area;
   chapters: Chapter[]; 
 }

@@ -3,7 +3,6 @@ export interface Area {
   gameId: string;
   name: string;
   desc: string;
-  image: string;
   chapters: string[];
 }
 
@@ -13,8 +12,6 @@ export interface Chapter {
   name: string
   desc: string;
   chapterNo?: number;
-  // TODO: Add suitable images.
-  image: string;
   sides: string[];
 }
 

@@ -4,7 +4,7 @@ import {AspectBox} from "common/aspectBox/AspectBox";
 import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTypes";
 import {VALID_AREAS} from "logic/data/validAreas";
 import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
-import {getScreenURL} from "logic/fetch/image";
+import {getCampImageUrl} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {CampHead} from "modules/head/CampHead";
 import {GetStaticPaths, GetStaticProps} from "next";
@@ -92,7 +92,7 @@ const RoomPage: CampPage<RoomProps> = ({
           <AspectBox>
             <Image
               unoptimized
-              src={getScreenURL(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
+              src={getCampImageUrl(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
               alt={`Very large image of room ${room.name}`}
               layout="fill"
               style={{
@@ -106,7 +106,7 @@ const RoomPage: CampPage<RoomProps> = ({
             unoptimized
             priority
             onClick={() => isUpMdWidth && setImageOpen(true)}
-            src={getScreenURL(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
+            src={getCampImageUrl(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
             alt={`Large image of room ${room.name}`}
             layout="fill"
             style={{

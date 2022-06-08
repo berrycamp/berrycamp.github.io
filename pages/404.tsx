@@ -1,10 +1,10 @@
-import {Box, Typography} from "@mui/material";
-import {getScreenURL} from "logic/fetch/image";
-import {CampHead} from "modules/head/CampHead";
-import {NextPage} from "next";
+import { Box, Typography } from "@mui/material";
+import { getCampImageUrl } from "logic/fetch/image";
+import { CampHead } from "modules/head/CampHead";
+import { NextPage } from "next";
 import Image from "next/image";
-import {Fragment} from "react";
-import {GlobalCampProps} from "./_app";
+import { Fragment } from "react";
+import { GlobalCampProps } from "./_app";
 
 const IMAGE = "farewell/1/1/2";
 
@@ -18,7 +18,7 @@ export const Custom404: NextPage<GlobalCampProps> = ({}) => {
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100%" flex={1}>
         <Image
           unoptimized
-          src={getScreenURL(IMAGE)}
+          src={getCampImageUrl(IMAGE)}
           width={640}
           height={360}
           alt="Madeline standing in front of a grave"

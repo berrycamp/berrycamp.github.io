@@ -2,7 +2,7 @@ import {Clear, NavigateBefore, NavigateNext, Search} from "@mui/icons-material";
 import {alpha, Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, IconButton, ImageListItemBar, Link as MuiLink, List, ListItemButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {VALID_AREAS} from "logic/data/validAreas";
 import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
-import {getScreenURL} from "logic/fetch/image";
+import {getCampImageUrl} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
 import {pluralize} from "logic/utils/pluralize";
 import {CampHead} from "modules/head/CampHead";
@@ -41,7 +41,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
       <CampHead
         title={chapter.name}
         description={chapter.desc}
-        image={chapter.image}
+        image={`${area.id}/chapters/${chapter.id}`}
       />
       <Container>
         <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
@@ -72,7 +72,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           <Image
             unoptimized
             priority
-            src={getScreenURL(chapter.image)}
+            src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
             alt={`Image of chapter ${chapter.name}`}
             objectFit="cover"
             layout="fill"
@@ -343,7 +343,7 @@ const GridChapterView: FC<ViewProps> = ({areaId, chapterId, side, searchPerforme
                     key={roomId}
                     roomId={roomId}
                     {...room.name && {roomName: room.name}}
-                    image={`images/${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
+                    image={`${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
                     href={`/${areaId}/${chapterId}/${side.id}/${roomId}`}
                   />
                 );
@@ -373,7 +373,7 @@ const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => 
         >
           <CardMedia
             component="img"
-            src={getScreenURL(image)}
+            src={getCampImageUrl(image)}
             alt={`Thumbnail for room ${roomName}`}
             style={{
               imageRendering: "pixelated",
@@ -421,7 +421,7 @@ const ListChapterView: FC<ViewProps> = ({areaId, chapterId, side, searchPerforme
                     roomId={roomId}
                     {...room.name && {roomName: room.name}}
                     roomNo={roomIndex + 1}
-                    image={`images/${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
+                    image={`${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
                     href={`/${areaId}/${chapterId}/${side.id}/${roomId}`}
                   />
                 );
@@ -445,7 +445,7 @@ const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName
       >
         <Image
           unoptimized
-          src={getScreenURL(image)}
+          src={getCampImageUrl(image)}
           alt={`Image of room ${roomName}`}
           width={80}
           height={45}
