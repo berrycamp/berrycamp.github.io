@@ -1,4 +1,4 @@
-import {BrightnessAuto, CropDinSharp, DarkMode, Fireplace, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
+import {BrightnessAuto, DarkMode, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
 import {Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Tooltip} from "@mui/material";
 import {useCampContext} from "logic/provide/CampContext";
 import {EVEREST_ICON} from "modules/layout/everest";
@@ -50,13 +50,13 @@ export const SettingsMenu: FC = () => {
           </ListItemIcon>
           {settings.listMode ? "List view" : "Grid view"}
         </MenuItem>
-        <Divider />
+        {/* <Divider />
         <MenuItem onClick={toggleCozyMode}>
           <ListItemIcon>
             {settings.cozyMode ? <Fireplace fontSize="small" /> : <CropDinSharp sx={{fontSize: "1.4rem", marginLeft: "-1px"}} />}
           </ListItemIcon>
           {settings.cozyMode ? "Cozy mode on" : "Cozy mode off"}
-        </MenuItem>
+        </MenuItem> */}
         <Divider />
         <ListItem>
           <Tooltip title="Everest Debug RC Port for opening rooms in game" enterDelay={500}>

@@ -1,6 +1,5 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import {useCampContext} from "logic/provide/CampContext";
-import {Cozy} from "modules/cozy/Cozy";
 import {SettingsMenu} from "modules/settings/SettingsMenu";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,13 +64,13 @@ export const Layout: FC = ({children}) => {
           <SettingsMenu />
         </Toolbar>
       </AppBar>
-      {settings.cozyMode ? (
+      {/* {settings.cozyMode ? (
         <Cozy />
-      ) : (
+      ) : ( */}
         <Fragment>
           {children}
         </Fragment>
-      )}
+      {/* )} */}
     </main>
   );
 }

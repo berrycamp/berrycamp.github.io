@@ -1,36 +1,44 @@
-import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {AspectBox} from "common/aspectBox/AspectBox";
-import {Area, Chapter, Checkpoint, Room, Side} from "logic/data/dataTypes";
+import {Fullscreen, Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
+import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, styled, Theme, ToggleButton, ToggleButtonGroup, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Area, BoundingBox, Canvas, Chapter, Checkpoint, Room, Side} from "logic/data/dataTypes";
 import {VALID_AREAS} from "logic/data/validAreas";
 import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
 import {getCampImageUrl} from "logic/fetch/image";
 import {useCampContext} from "logic/provide/CampContext";
+import {CampCanvas, CanvasRoom} from "modules/canvas/CampCanvas";
+import {AspectBox} from "modules/common/aspectBox/AspectBox";
 import {CampHead} from "modules/head/CampHead";
 import {GetStaticPaths, GetStaticProps} from "next";
-import Image from "next/image";
+import NextImage from "next/image";
 import Link from "next/link";
 import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {Fragment, useEffect, useState} from "react";
+import {FC, Fragment, MouseEvent, useEffect, useState} from "react";
+
+type IMAGE_VIEW = "preview" | "room" | "checkpoint" | "level";
 
 const RoomPage: CampPage<RoomProps> = ({
   area,
   chapter,
   side,
-  checkpointName,
+  checkpoint,
   room,
   nextRoom,
   prevRoom,
 }) => {
   const {settings} = useCampContext();
-
   const router: NextRouter = useRouter();
 
+  const [rooms, setRooms] = useState<CanvasRoom[]>([]);
+  const [boundingBox, setBoundingBox] = useState<BoundingBox | undefined>();
+
+  const [imageView, setImageView] = useState<IMAGE_VIEW>("preview");
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
+
+  const previewImage: string = `${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`;
 
   /**
    * Send a request to open the room in Everest.
@@ -44,6 +52,36 @@ const RoomPage: CampPage<RoomProps> = ({
       await fetch(`${baseUrl}/focus`);
     } catch (e) {
       // Do nothing.
+    }
+  }
+
+  /**
+   * Update the image view.
+   */
+  const handleViewChange = (_: MouseEvent, value: IMAGE_VIEW): void => {
+    setImageView(value);
+    
+    switch(value) {
+      case "preview": {
+        setRooms([]);
+        setBoundingBox(undefined);
+        break;
+      };
+      case "room": {
+        setRooms([{position: room.canvas.position, image: `${area.id}/rooms/${chapter.id}/${side.id}/${room.debugId}`}])
+        setBoundingBox(room.canvas.boundingBox);
+        break;
+      };
+      case "checkpoint": {
+        setRooms(checkpoint.rooms)
+        setBoundingBox(checkpoint.boundingBox);
+        break;
+      };
+      case "level": {
+        setRooms(side.rooms)
+        setBoundingBox(side.boundingBox);
+        break;
+      };
     }
   }
 
@@ -69,11 +107,11 @@ const RoomPage: CampPage<RoomProps> = ({
     <Fragment>
       <CampHead
         title={`${room.name} (${room.debugId})`}
-        description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpointName}`}
-        image={`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`}
+        description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpoint.name}`}
+        image={previewImage}
       />
       <Container maxWidth="md">
-        <Breadcrumbs separator="›" sx={{marginTop: 2}}>
+        <Breadcrumbs separator="›" sx={{marginTop: 2, marginBottom: 2}}>
           <Link passHref href={area.link}>
             <MuiLink underline="always">
               {area.name}
@@ -85,35 +123,38 @@ const RoomPage: CampPage<RoomProps> = ({
             </MuiLink>
           </Link>
           <Typography color="text.secondary">{side.name}</Typography>
-          <Typography color="text.secondary">{checkpointName}</Typography>
+          <Typography color="text.secondary">{checkpoint.name}</Typography>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
-        <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
-          <AspectBox>
-            <Image
-              unoptimized
-              src={getCampImageUrl(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
-              alt={`Very large image of room ${room.name}`}
-              layout="fill"
-              style={{
-                imageRendering: "pixelated",
-              }}
-            />
-          </AspectBox>
-        </Dialog>
-        <AspectBox marginTop={2} marginBottom={2}>
-          <Image
-            unoptimized
-            priority
-            onClick={() => isUpMdWidth && setImageOpen(true)}
-            src={getCampImageUrl(`image/${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`)}
-            alt={`Large image of room ${room.name}`}
-            layout="fill"
-            style={{
-              imageRendering: "pixelated",
-            }}
-          />
-        </AspectBox>
+          {imageView === "preview" ? (
+            <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
+              <ImageView image={previewImage} roomName={room.name ?? room.debugId}/>
+            </Dialog>
+          ) : boundingBox && (
+            <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)}>
+              <Box overflow="hidden">
+                <CampCanvas rooms={rooms} boundingBox={boundingBox} />
+              </Box>
+            </Dialog>
+          )}
+        {imageView === "preview" ? (
+          <ImageView image={previewImage} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
+        ) : boundingBox && (
+          <CampCanvas rooms={rooms} boundingBox={boundingBox}/>
+        )}
+        <Box marginBottom={2} display="flex">
+          <StyledToggleButtonGroup fullWidth exclusive size="small" value={imageView} onChange={handleViewChange}>
+            <ToggleButton value="preview">Preview</ToggleButton>
+            <ToggleButton value="room">Room</ToggleButton>
+            <ToggleButton value="checkpoint">Checkpoint</ToggleButton>
+            <ToggleButton value="level">Level</ToggleButton>
+          </StyledToggleButtonGroup>
+          <StyledToggleButtonGroup>
+            <ToggleButton value={false} size="small" onClick={() => setImageOpen(true)}>
+              <Fullscreen />
+            </ToggleButton>
+          </StyledToggleButtonGroup>
+        </Box>
         <Box display="flex" justifyContent="space-between">
           <Typography component="div" variant="h4">{room.name}</Typography>
           <Tooltip enterDelay={750} title={isASide ? "Teleport to room if Everest is installed and running" : "May not work for B and C sides due to Everest bug"}>
@@ -136,7 +177,7 @@ const RoomPage: CampPage<RoomProps> = ({
         </Box>
         <Typography component="div" color="text.secondary">{chapter.name}</Typography>
         <Typography component="div" color="text.secondary">{side.name} Side</Typography>
-        <Typography component="div" color="text.secondary">{checkpointName}</Typography>
+        <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
         <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
         <Typography component="div" color="text.secondary">Debug id: {room.debugId}</Typography>
         <Typography component="div" color="text.secondary">Room id: {room.roomId}</Typography>
@@ -174,7 +215,60 @@ const RoomPage: CampPage<RoomProps> = ({
         </Box>
       </Container >
     </Fragment>
-  )
+  );
+}
+
+const ImageView: FC<{image: string, roomName: string, onClick?: () => void}> = ({image, roomName, onClick}) => {
+  return (
+    <AspectBox>
+      <NextImage
+        unoptimized
+        src={getCampImageUrl(image)}
+        onClick={onClick}
+        alt={`Very large image of room ${roomName}`}
+        layout="fill"
+        style={{
+          imageRendering: "pixelated",
+        }}
+      />
+    </AspectBox>
+  );
+}
+
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  '& .MuiToggleButtonGroup-grouped': {
+    margin: theme.spacing(0.5),
+    border: 0,
+    fontSize: "0.7rem",
+    '&.Mui-disabled': {
+      border: 0,
+    },
+    '&:not(:first-of-type)': {
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&:first-of-type': {
+      borderRadius: theme.shape.borderRadius,
+    },
+  },
+}));
+
+export interface RoomProps {
+  area: NamedLink;
+  chapter: NamedLink;
+  side: {
+    id: string;
+    name: string;
+    boundingBox: BoundingBox;
+    rooms: CanvasRoom[];
+  };
+  checkpoint: {
+    name: string;
+    boundingBox: BoundingBox;
+    rooms: CanvasRoom[];
+  };
+  room: RoomPropsRoom;
+  prevRoom?: PartiallyNamedLink;
+  nextRoom?: PartiallyNamedLink;
 }
 
 interface NamedLink {
@@ -188,24 +282,14 @@ interface PartiallyNamedLink {
   link: string;
 }
 
-export interface RoomProps {
-  area: NamedLink;
-  chapter: NamedLink;
-  side: {
-    id: string;
-    name: string;
-  };
-  checkpointName: string;
-  room: {
-    name?: string;
-    debugId: string;
-    roomId: string;
-    checkpointRoomNo: string;
-    levelRoomNo: string;
-    teleportParams: string;
-  };
-  prevRoom?: PartiallyNamedLink;
-  nextRoom?: PartiallyNamedLink;
+export interface RoomPropsRoom {
+  name?: string;
+  debugId: string;
+  roomId: string;
+  checkpointRoomNo: string;
+  levelRoomNo: string;
+  teleportParams: string;
+  canvas: Canvas;
 }
 
 interface RoomParams extends ParsedUrlQuery {
@@ -287,8 +371,20 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
       side: {
         id: sideId,
         name: side.name,
+        boundingBox: side.canvas.boundingBox,
+        rooms: Object.entries(side.rooms).map(([sideRoomId, sideRoom]) => ({
+          position: sideRoom.canvas.position,
+          image: `${area.id}/rooms/${chapter.id}/${side.id}/${sideRoomId}`,
+        }))
       },
-      checkpointName: checkpoint.name,
+      checkpoint: {
+        name: checkpoint.name,
+        boundingBox: checkpoint.canvas.boundingBox,
+        rooms: Object.entries(side.rooms).filter(([_, sideRoom]) => sideRoom.checkpointNo === room.checkpointNo).map(([checkpointRoomId, checkpointRoom]) => ({
+          position: checkpointRoom.canvas.position,
+          image: `${area.id}/rooms/${chapter.id}/${side.id}/${checkpointRoomId}`,
+        })),
+      },
       room: {
         ...room.name && {name: room.name},
         debugId: roomId,
@@ -296,6 +392,7 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
         checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
         teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.entities.spawn && room.entities.spawn[0]?.x && room.entities.spawn[0]?.y) ? `&x=${room.entities.spawn[0].x}&y=${room.entities.spawn[0].y}` : ""}`,
+        canvas: room.canvas,
       },
       ...prevRoom && {
         prevRoom: {

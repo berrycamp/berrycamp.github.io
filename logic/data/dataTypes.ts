@@ -68,16 +68,20 @@ export interface BerryPoint extends Point {
   order: number;
 }
 
+export interface BoundingBox {
+  top: number;
+  left: number;
+  bottom: number;
+  right: number;
+}
+
+export interface Box {
+  width: number;
+  height: number;
+}
+
 export interface Canvas {
   position: Point;
-  size: {
-    width: number,
-    height: number,
-  };
-  boundingBox: {
-    top: number;
-    left: number;
-    bottom: number;
-    right: number;
-  };
+  size: Box;
+  boundingBox: BoundingBox;
 }
