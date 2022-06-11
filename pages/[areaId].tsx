@@ -103,7 +103,7 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
               >
                 <Image
                   unoptimized
-                  src={getCampImageUrl(chapter.image)}
+                  src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
                   alt={`Image of chapter ${chapter.name}`}
                   width={80}
                   height={45}
