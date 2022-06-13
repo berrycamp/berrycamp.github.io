@@ -1,21 +1,19 @@
-import {Fullscreen, Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, styled, Theme, ToggleButton, ToggleButtonGroup, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {Area, BoundingBox, Canvas, Chapter, Checkpoint, Room, Side} from "modules/data/dataTypes";
-import {VALID_AREAS} from "modules/data/validAreas";
-import {fetchArea, fetchChapter, fetchSide} from "modules/fetch/dataApi";
-import {useCampContext} from "modules/provide/CampContext";
-import {CampCanvas, CanvasRoom} from "modules/canvas/CampCanvas";
-import {AspectBox} from "modules/common/aspectBox/AspectBox";
-import {CampHead} from "modules/head/CampHead";
+import {Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
+import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next";
 import NextImage from "next/image";
 import Link from "next/link";
 import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, MouseEvent, useEffect, useState} from "react";
-
-type IMAGE_VIEW = "preview" | "room" | "checkpoint" | "level";
+import {FC, Fragment, useEffect, useState} from "react";
+import {AspectBox} from "~/modules/common/aspectBox/AspectBox";
+import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
+import {VALID_AREAS} from "~/modules/data/validAreas";
+import {fetchArea, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
+import {CampHead} from "~/modules/head/CampHead";
+import {useCampContext} from "~/modules/provide/CampContext";
+import {AreaData, ChapterData, CheckpointData, NavRoomData, RoomData, SideData} from "~/modules/room";
 
 const RoomPage: CampPage<RoomProps> = ({
   area,
@@ -29,15 +27,12 @@ const RoomPage: CampPage<RoomProps> = ({
   const {settings} = useCampContext();
   const router: NextRouter = useRouter();
 
-  const [rooms, setRooms] = useState<CanvasRoom[]>([]);
-  const [boundingBox, setBoundingBox] = useState<BoundingBox | undefined>();
-
-  const [imageView, setImageView] = useState<IMAGE_VIEW>("preview");
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  const previewImage: string = `${area.id}/previews/${chapter.id}/${side.id}/${room.debugId}`;
+  const image: string = getRoomPreviewUrl(area.id, chapter.id, side.id, room.debugId);
+  const isASide: boolean = side.name === "A";
 
   /**
    * Send a request to open the room in Everest.
@@ -51,36 +46,6 @@ const RoomPage: CampPage<RoomProps> = ({
       await fetch(`${baseUrl}/focus`);
     } catch (e) {
       // Do nothing.
-    }
-  }
-
-  /**
-   * Update the image view.
-   */
-  const handleViewChange = (_: MouseEvent, value: IMAGE_VIEW): void => {
-    setImageView(value);
-    
-    switch(value) {
-      case "preview": {
-        setRooms([]);
-        setBoundingBox(undefined);
-        break;
-      };
-      case "room": {
-        setRooms([{position: room.canvas.position, image: `${area.id}/rooms/${chapter.id}/${side.id}/${room.debugId}`}])
-        setBoundingBox(room.canvas.boundingBox);
-        break;
-      };
-      case "checkpoint": {
-        setRooms(checkpoint.rooms)
-        setBoundingBox(checkpoint.boundingBox);
-        break;
-      };
-      case "level": {
-        setRooms(side.rooms)
-        setBoundingBox(side.boundingBox);
-        break;
-      };
     }
   }
 
@@ -100,14 +65,12 @@ const RoomPage: CampPage<RoomProps> = ({
     return () => window.removeEventListener("keydown", listener);
   }, [nextRoom?.link, prevRoom?.link, router])
 
-  const isASide: boolean = side.name === "A";
-
   return (
     <Fragment>
       <CampHead
         title={`${room.name} (${room.debugId})`}
         description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpoint.name}`}
-        image={previewImage}
+        image={image}
       />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2, marginBottom: 2}}>
@@ -125,36 +88,11 @@ const RoomPage: CampPage<RoomProps> = ({
           <Typography color="text.secondary">{checkpoint.name}</Typography>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
-          {imageView === "preview" ? (
-            <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
-              <ImageView image={previewImage} roomName={room.name ?? room.debugId}/>
-            </Dialog>
-          ) : boundingBox && (
-            <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)}>
-              <Box overflow="hidden">
-                <CampCanvas rooms={rooms} boundingBox={boundingBox} />
-              </Box>
-            </Dialog>
-          )}
-        {imageView === "preview" ? (
-          <ImageView image={previewImage} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
-        ) : boundingBox && (
-          <CampCanvas rooms={rooms} boundingBox={boundingBox}/>
-        )}
-        <Box marginBottom={2} display="flex">
-          <StyledToggleButtonGroup fullWidth exclusive size="small" value={imageView} onChange={handleViewChange}>
-            <ToggleButton value="preview">Preview</ToggleButton>
-            <ToggleButton value="room">Room</ToggleButton>
-            <ToggleButton value="checkpoint">Checkpoint</ToggleButton>
-            <ToggleButton value="level">Level</ToggleButton>
-          </StyledToggleButtonGroup>
-          <StyledToggleButtonGroup>
-            <ToggleButton value={false} size="small" onClick={() => setImageOpen(true)}>
-              <Fullscreen />
-            </ToggleButton>
-          </StyledToggleButtonGroup>
-        </Box>
-        <Box display="flex" justifyContent="space-between">
+        <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
+          <ImageView image={image} roomName={room.name ?? room.debugId}/>
+        </Dialog>
+        <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
+        <Box display="flex" marginTop={2} justifyContent="space-between">
           <Typography component="div" variant="h4">{room.name}</Typography>
           <Tooltip enterDelay={750} title={isASide ? "Teleport to room if Everest is installed and running" : "May not work for B and C sides due to Everest bug"}>
             <Button
@@ -222,73 +160,14 @@ const ImageView: FC<{image: string, roomName: string, onClick?: () => void}> = (
     <AspectBox>
       <NextImage
         unoptimized
-        src={getCampImageUrl(image)}
+        src={image}
         onClick={onClick}
-        alt={`Very large image of room ${roomName}`}
+        alt={`image of room ${roomName}`}
         layout="fill"
-        style={{
-          imageRendering: "pixelated",
-        }}
+        style={{imageRendering: "pixelated"}}
       />
     </AspectBox>
   );
-}
-
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  '& .MuiToggleButtonGroup-grouped': {
-    margin: theme.spacing(0.5),
-    border: 0,
-    fontSize: "0.7rem",
-    '&.Mui-disabled': {
-      border: 0,
-    },
-    '&:not(:first-of-type)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-of-type': {
-      borderRadius: theme.shape.borderRadius,
-    },
-  },
-}));
-
-export interface RoomProps {
-  area: NamedLink;
-  chapter: NamedLink;
-  side: {
-    id: string;
-    name: string;
-    boundingBox: BoundingBox;
-    rooms: CanvasRoom[];
-  };
-  checkpoint: {
-    name: string;
-    boundingBox: BoundingBox;
-    rooms: CanvasRoom[];
-  };
-  room: RoomPropsRoom;
-  prevRoom?: PartiallyNamedLink;
-  nextRoom?: PartiallyNamedLink;
-}
-
-interface NamedLink {
-  id: string;
-  name: string;
-  link: string;
-}
-
-interface PartiallyNamedLink {
-  name?: string;
-  link: string;
-}
-
-export interface RoomPropsRoom {
-  name?: string;
-  debugId: string;
-  roomId: string;
-  checkpointRoomNo: string;
-  levelRoomNo: string;
-  teleportParams: string;
-  canvas: Canvas;
 }
 
 interface RoomParams extends ParsedUrlQuery {
@@ -302,12 +181,10 @@ export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
   const paths: {params: RoomParams; locale?: string}[] = [];
 
   for (const areaId of VALID_AREAS) {
-    const area: Area = await fetchArea(areaId);
-    for (const chapterId of area.chapters) {
-      const chapter: Chapter = await fetchChapter(areaId, chapterId);
-      for (const sideId of chapter.sides) {
-        const side: Side = await fetchSide(areaId, chapterId, sideId);
-        for (const roomId of Object.keys(side.rooms)) {
+    const {chapters}: Area = await fetchArea(areaId);
+    for (const {id: chapterId, sides} of chapters) {
+      for (const {id: sideId, rooms} of sides) {
+        for (const roomId in rooms) {
           paths.push({params: {areaId, chapterId, sideId, roomId}});
         }
       }
@@ -320,6 +197,16 @@ export const getStaticPaths: GetStaticPaths<RoomParams> = async () => {
   }
 }
 
+interface RoomProps {
+  area: AreaData;
+  chapter: ChapterData;
+  side: SideData;
+  checkpoint: CheckpointData;
+  room: RoomData;
+  prevRoom?: NavRoomData;
+  nextRoom?: NavRoomData;
+}
+
 export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({params}) => {
   if (params === undefined) {
     throw Error("Params was not defined.")
@@ -327,14 +214,17 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
 
   const {areaId, chapterId, sideId, roomId} = params;
 
-  const area: Area = await fetchArea(areaId);
-  area.id = areaId;
+  const area: Area =  await fetchArea(areaId);
 
-  const chapter: Chapter = await fetchChapter(areaId, chapterId);
-  chapter.id = chapterId;
+  const chapter: Chapter | undefined = area.chapters.find(chapter => chapter.id === chapterId);
+  if (chapter === undefined) {
+    throw Error(`Chapter not found for ${chapterId}`);
+  }
 
-  const side: Side = await fetchSide(areaId, chapterId, sideId);
-  side.id = sideId;
+  const side: Side | undefined = chapter.sides.find(side => side.id === sideId);
+  if (side === undefined) {
+    throw Error(`Side not found for ${sideId} in chpater ${chapterId}`);
+  }
 
   const room: Room | undefined = side.rooms[roomId];
   if (room === undefined) {
@@ -370,19 +260,9 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
       side: {
         id: sideId,
         name: side.name,
-        boundingBox: side.canvas.boundingBox,
-        rooms: Object.entries(side.rooms).map(([sideRoomId, sideRoom]) => ({
-          position: sideRoom.canvas.position,
-          image: `${area.id}/rooms/${chapter.id}/${side.id}/${sideRoomId}`,
-        }))
       },
       checkpoint: {
         name: checkpoint.name,
-        boundingBox: checkpoint.canvas.boundingBox,
-        rooms: Object.entries(side.rooms).filter(([_, sideRoom]) => sideRoom.checkpointNo === room.checkpointNo).map(([checkpointRoomId, checkpointRoom]) => ({
-          position: checkpointRoom.canvas.position,
-          image: `${area.id}/rooms/${chapter.id}/${side.id}/${checkpointRoomId}`,
-        })),
       },
       room: {
         ...room.name && {name: room.name},
@@ -391,7 +271,6 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
         checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
         teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.entities.spawn && room.entities.spawn[0]?.x && room.entities.spawn[0]?.y) ? `&x=${room.entities.spawn[0].x}&y=${room.entities.spawn[0].y}` : ""}`,
-        canvas: room.canvas,
       },
       ...prevRoom && {
         prevRoom: {

@@ -1,18 +1,19 @@
-import {Clear, NavigateBefore, NavigateNext, Search} from "@mui/icons-material";
-import {alpha, Box, Breadcrumbs, Button, Container, IconButton, Link as MuiLink, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
-import {AreaData, ChapterData, CheckpointData, SideData} from "modules/chapter/types";
-import {VALID_AREAS} from "modules/data/validAreas";
-import {fetchArea, getChapterImageUrl} from "modules/fetch/dataApi";
-import {CampHead} from "modules/head/CampHead";
-import {useCampContext} from "modules/provide/CampContext";
-import Image from "next/image";
-import Link from "next/link";
+import {Clear, Search} from "@mui/icons-material";
+import {Box, Container, IconButton, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {createElement, Fragment, useEffect, useState} from "react";
 import {ChapterGridView, ChapterListView, filterCheckpoints} from "~/modules/chapter";
+import {ChapterBreadcrumbs} from "~/modules/chapter/Breadcrumbs";
+import {ChapterHeaderImage} from "~/modules/chapter/HeaderImage";
+import {HeaderNav} from "~/modules/chapter/HeaderNav";
+import {AreaData, ChapterData, ChapterNav, CheckpointData, SideData} from "~/modules/chapter/types";
 import {pluralize} from "~/modules/common/pluralize";
+import {VALID_AREAS} from "~/modules/data/validAreas";
+import {fetchArea, getChapterImageUrl} from "~/modules/fetch/dataApi";
+import {CampHead} from "~/modules/head/CampHead";
+import {useCampContext} from "~/modules/provide/CampContext";
 import {generateRoomTags} from "~/modules/room/generateTags";
 import {Area, Chapter, Room} from "../../modules/data/dataTypes";
 
@@ -24,7 +25,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
   const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
 
   /**
-   * Update the filtered rooms.
+   * Filter the checkpoint rooms.
    */
   useEffect(() => {
     setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
@@ -38,103 +39,9 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         image={getChapterImageUrl(area.id, chapter.id)}
       />
       <Container>
-        <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
-          <Link passHref href={`/${area.id}`}>
-            <MuiLink underline="always">
-              {area.name}
-            </MuiLink>
-          </Link>
-          <Typography color="text.primary">{chapter.name}</Typography>
-        </Breadcrumbs>
-        <Box
-          sx={{
-            position: "relative",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
-            gridGap: "0.5rem",
-            width: "100%",
-            marginBottom: "0.5rem",
-            height: {
-              xs: 250,
-              md: 400,
-            },
-            "& .MuiPaper-root": {
-              borderRadius: 0,
-            }
-          }}
-        >
-          <Image
-            unoptimized
-            priority
-            src={getChapterImageUrl(area.id, chapter.id)}
-            alt={`Image of chapter ${chapter.name}`}
-            objectFit="cover"
-            layout="fill"
-            style={{
-              imageRendering: "pixelated",
-            }}
-          />
-          <Paper
-            elevation={0}
-            sx={theme => ({
-              position: "absolute",
-              maxWidth: {
-                md: 500,
-              },
-              padding: 3,
-              margin: {
-                xs: 0,
-                md: 2,
-              },
-              top: {
-                xs: 0,
-                md: "40%",
-              },
-              bottom: 0,
-              left: 0,
-              right: 0,
-              backgroundColor: alpha(theme.palette.background.paper, 0.5),
-              backdropFilter: "blur(4px)",
-              color: theme.palette.mode === "dark" ? "white" : "black",
-            })}
-          >
-            <Typography component="div" variant="h5">{`${chapter.no ? `Chapter ${chapter.no} - ` : ""}${chapter.name}`}</Typography>
-            <Typography component="div">{chapter.gameId}</Typography>
-            <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
-          </Paper>
-        </Box>
-        <Box display="flex" gap={1} marginTop={1}>
-          <Box width="100%">
-            {prevChapter && (
-              <Link passHref href={`/${area.id}/${prevChapter.id}`}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  startIcon={<NavigateBefore />}
-                  aria-label={`Go to previous chapter ${prevChapter.name}`}
-                  sx={{width: "100%"}}
-                >
-                  {prevChapter.name}
-                </Button>
-              </Link>
-            )}
-          </Box>
-          <Box width="100%">
-            {nextChapter && (
-              <Link passHref href={`/${area.id}/${nextChapter.id}`}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  endIcon={<NavigateNext />}
-                  aria-label={`Go to previous chapter ${nextChapter.name}`}
-                  sx={{width: "100%"}}
-                >
-                  {nextChapter.name}
-                </Button>
-              </Link>
-            )}
-          </Box>
-        </Box>
+        <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
+        <ChapterHeaderImage area={area} chapter={chapter} />
+        <HeaderNav areaId={area.id} {...prevChapter && {prevChapter}} {...nextChapter && {nextChapter}}/>
         <TextField
           fullWidth
           placeholder="Search rooms"
@@ -162,15 +69,10 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
             }
           }}
           aria-label="search rooms"
-          sx={{
-            marginTop: 2,
-            marginBottom: 2,
-          }}
+          sx={{marginTop: 2, marginBottom: 2}}
         />
         <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => setSide(newSide)}>
-          {sides.map(side => (
-            <Tab key={side.name} value={side} label={`${side.name}-side`} />
-          ))}
+          {sides.map(side => <Tab key={side.name} value={side} label={`${side.name}-side`}/>)}
         </Tabs>
         {side && (
           <Fragment>
@@ -220,8 +122,8 @@ interface ChapterProps {
   area: AreaData;
   chapter: ChapterData;
   sides: SideData[];
-  prevChapter?: Pick<ChapterData, "id" | "name">;
-  nextChapter?: Pick<ChapterData, "id" | "name">;
+  prevChapter?: ChapterNav;
+  nextChapter?: ChapterNav;
 };
 
 export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async ({params}) => {

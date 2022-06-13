@@ -1,5 +1,5 @@
-import {Area} from "modules/data/dataTypes";
 import {fetchJson} from 'modules/fetch/fetchJson';
+import {Area} from "~/modules/data/dataTypes";
 
 const baseUrl = "https://cdn.berry.camp/file/berrycamp";
 

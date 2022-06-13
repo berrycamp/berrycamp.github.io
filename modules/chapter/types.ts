@@ -44,3 +44,5 @@ export interface ChapterViewItemProps {
   href: string,
   image: string
 };
+
+export type ChapterNav = Pick<ChapterData, "id" | "name">;

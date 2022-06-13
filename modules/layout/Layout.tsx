@@ -1,9 +1,9 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
-import {useCampContext} from "modules/provide/CampContext";
-import {SettingsMenu} from "modules/settings/SettingsMenu";
 import Image from "next/image";
 import Link from "next/link";
 import {FC, Fragment} from "react";
+import {useCampContext} from "~/modules/provide/CampContext";
+import {SettingsMenu} from "~/modules/settings/SettingsMenu";
 
 export const Layout: FC = ({children}) => {
   const {settings} = useCampContext();

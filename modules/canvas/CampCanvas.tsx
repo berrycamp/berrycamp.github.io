@@ -1,19 +1,9 @@
 import {Box, Theme, useTheme} from "@mui/material";
-import {Point, useExtentCanvas, View} from "modules/canvas/useExtentCanvas";
-import {BoundingBox} from "modules/data/dataTypes";
-import {getCampImageUrl} from "logic/fetch/image";
 import {FC, Fragment, memo, useCallback, useEffect, useRef, useState} from "react";
 import AutoSizer, {Size} from "react-virtualized-auto-sizer";
-
-export interface CampCanvasProps {
-  rooms: CanvasRoom[];
-  boundingBox: BoundingBox;
-}
-
-export interface CanvasRoom {
-  position: Point;
-  image: string;
-}
+import {Point, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
+import {BoundingBox} from "~/modules/data/dataTypes";
+import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({rooms, boundingBox}) => {
   const theme: Theme = useTheme();
@@ -41,7 +31,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({rooms, boundingBox}) => {
     setImgs([]);
     rooms.forEach(({image, position}) => {
       const img = new Image();
-      img.src = getCampImageUrl(image)
+      img.src = image;
       img.onload = () => setImgs(prev => [...prev, {img, position}]);
     });
   }, [rooms]);

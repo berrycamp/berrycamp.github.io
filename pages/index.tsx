@@ -1,9 +1,9 @@
 import {Container, Link as MuiLink, List, Paper, Typography} from "@mui/material";
-import {Area} from "modules/data/dataTypes";
-import {fetchArea} from "modules/fetch/dataApi";
-import {CampHead} from "modules/head/CampHead";
 import {GetStaticProps} from "next";
 import {Fragment} from "react";
+import {Area} from "~/modules/data/dataTypes";
+import {fetchArea} from "~/modules/fetch/dataApi";
+import {CampHead} from "~/modules/head/CampHead";
 import {AreaProps, AreaView} from "./[areaId]";
 import {CampPage} from "./_app";
 
