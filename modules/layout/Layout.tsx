@@ -1,5 +1,5 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
-import {useCampContext} from "logic/provide/CampContext";
+import {useCampContext} from "modules/provide/CampContext";
 import {SettingsMenu} from "modules/settings/SettingsMenu";
 import Image from "next/image";
 import Link from "next/link";

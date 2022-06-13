@@ -1,6 +1,6 @@
 import {Box, Theme, useTheme} from "@mui/material";
-import {Point, useExtentCanvas, View} from "logic/canvas/useExtentCanvas";
-import {BoundingBox} from "logic/data/dataTypes";
+import {Point, useExtentCanvas, View} from "modules/canvas/useExtentCanvas";
+import {BoundingBox} from "modules/data/dataTypes";
 import {getCampImageUrl} from "logic/fetch/image";
 import {FC, Fragment, memo, useCallback, useEffect, useRef, useState} from "react";
 import AutoSizer, {Size} from "react-virtualized-auto-sizer";

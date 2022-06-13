@@ -1,39 +1,33 @@
 import {Clear, NavigateBefore, NavigateNext, Search} from "@mui/icons-material";
-import {alpha, Box, Breadcrumbs, Button, Card, CardActionArea, CardMedia, Container, Divider, IconButton, ImageListItemBar, Link as MuiLink, List, ListItemButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
-import {VALID_AREAS} from "logic/data/validAreas";
-import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
-import {getCampImageUrl} from "logic/fetch/image";
-import {useCampContext} from "logic/provide/CampContext";
-import {pluralize} from "logic/utils/pluralize";
+import {alpha, Box, Breadcrumbs, Button, Container, IconButton, Link as MuiLink, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
+import {AreaData, ChapterData, CheckpointData, SideData} from "modules/chapter/types";
+import {VALID_AREAS} from "modules/data/validAreas";
+import {fetchArea, getChapterImageUrl} from "modules/fetch/dataApi";
 import {CampHead} from "modules/head/CampHead";
+import {useCampContext} from "modules/provide/CampContext";
 import Image from "next/image";
 import Link from "next/link";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {createElement, FC, Fragment, useEffect, useState} from "react";
-import {Area, Chapter, Checkpoint, Room, Side} from "../../logic/data/dataTypes";
+import {createElement, Fragment, useEffect, useState} from "react";
+import {ChapterGridView, ChapterListView, filterCheckpoints} from "~/modules/chapter";
+import {pluralize} from "~/modules/common/pluralize";
+import {generateRoomTags} from "~/modules/room/generateTags";
+import {Area, Chapter, Room} from "../../modules/data/dataTypes";
 
 const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter, nextChapter}) => {
   const {settings} = useCampContext();
 
-  const [sideIndex, setSideIndex] = useState<number>(0);
-
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filteredRooms, setFilteredRooms] = useState<Map<number, Set<string>> | undefined>();
-
-  const side: Side | undefined = sides[sideIndex];
-  const roomCount: number | undefined = side?.roomCount;
+  const [side, setSide] = useState<SideData | undefined>(sides[0]);
+  const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
 
   /**
    * Update the filtered rooms.
    */
   useEffect(() => {
-    if (side !== undefined) {
-      setFilteredRooms(filterRooms(searchValue, side));
-    } else {
-      setFilteredRooms(undefined);
-    }
+    setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
   }, [searchValue, side])
 
   return (
@@ -41,7 +35,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
       <CampHead
         title={chapter.name}
         description={chapter.desc}
-        image={`${area.id}/chapters/${chapter.id}`}
+        image={getChapterImageUrl(area.id, chapter.id)}
       />
       <Container>
         <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
@@ -72,7 +66,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           <Image
             unoptimized
             priority
-            src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
+            src={getChapterImageUrl(area.id, chapter.id)}
             alt={`Image of chapter ${chapter.name}`}
             objectFit="cover"
             layout="fill"
@@ -104,13 +98,13 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
               color: theme.palette.mode === "dark" ? "white" : "black",
             })}
           >
-            <Typography component="div" variant="h5">{`${chapter.chapterNo ? `Chapter ${chapter.chapterNo} - ` : ""}${chapter.name}`}</Typography>
+            <Typography component="div" variant="h5">{`${chapter.no ? `Chapter ${chapter.no} - ` : ""}${chapter.name}`}</Typography>
             <Typography component="div">{chapter.gameId}</Typography>
             <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
           </Paper>
         </Box>
         <Box display="flex" gap={1} marginTop={1}>
-          <Box sx={{width: "100%"}}>
+          <Box width="100%">
             {prevChapter && (
               <Link passHref href={`/${area.id}/${prevChapter.id}`}>
                 <Button
@@ -125,7 +119,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
               </Link>
             )}
           </Box>
-          <Box sx={{width: "100%"}}>
+          <Box width="100%">
             {nextChapter && (
               <Link passHref href={`/${area.id}/${nextChapter.id}`}>
                 <Button
@@ -164,7 +158,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           onChange={event => setSearchValue(event.target.value)}
           onKeyDown={event => {
             if (event.key === "Enter" && side !== undefined) {
-              setFilteredRooms(filterRooms(searchValue, side, true))
+              setCheckpoints(filterCheckpoints(searchValue, side, true))
             }
           }}
           aria-label="search rooms"
@@ -173,297 +167,32 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
             marginBottom: 2,
           }}
         />
-        <Tabs variant="fullWidth" value={sideIndex} onChange={(_, value) => setSideIndex(value)}>
-          {sides.map((side, index) => (
-            <Tab key={side.name} value={index} label={`${side.name}-side`} />
+        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => setSide(newSide)}>
+          {sides.map(side => (
+            <Tab key={side.name} value={side} label={`${side.name}-side`} />
           ))}
         </Tabs>
-        {roomCount && (
-          <Typography component="div" variant="body1" color="text.secondary" marginTop={2} marginBottom={2} textAlign="center">
-            {pluralize(roomCount, "room")}
-          </Typography>
-        )}
         {side && (
           <Fragment>
-            {Boolean(searchValue) && filteredRooms && filteredRooms.size === 0 && (
+            <Typography component="div" variant="body1" color="text.secondary" marginTop={2} marginBottom={2} textAlign="center">
+              {pluralize(side.roomCount, "room")}
+            </Typography>
+            {Boolean(searchValue) && checkpoints && checkpoints.length === 0 && (
               <Box display="flex" justifyContent="center" padding={3}>
                 <Typography component="div" fontSize="large" color="text.secondary">{`No rooms found for '${searchValue}'`}</Typography>
               </Box>
             )}
-            {createElement(settings.listMode ? ListChapterView : GridChapterView, {
+            {createElement(settings.listMode ? ChapterListView : ChapterGridView, {
               areaId: area.id,
               chapterId: chapter.id,
-              side,
-              searchPerformed: Boolean(searchValue),
-              filteredRooms,
+              sideId: side.id,
+              checkpoints,
             })}
           </Fragment>
         )}
       </Container>
     </Fragment>
   )
-}
-
-/**
- * Filters a sides rooms to only those matching the search term.
- * 
- * @param searchValue The search term.
- * @param side The side to search.
- * @param exact If the rooms should be filtered with an exact value.
- * @returns A map of checkpoints to a set of roomId's matching the search term.
- */
-const filterRooms = (searchValue: string, side: Side, exact: boolean = false): Map<number, Set<string>> => {
-  const filteredRooms = new Map<number, Set<string>>();
-
-  side.checkpoints.forEach((checkpoint, checkpointIndex) => {
-    checkpoint.roomOrder.forEach((roomId, roomIndex) => {
-      const room: Room | undefined = side.rooms[roomId];
-      if (room === undefined) {
-        return;
-      }
-
-      const normalisedSearchValue: string = searchValue.toLowerCase();
-      const roomNo: number = roomIndex + 1;
-
-      if (showRoom(normalisedSearchValue, checkpoint, roomId, room, roomNo, exact)) {
-        addToCheckpointRoomSet(filteredRooms, checkpointIndex, roomId);
-      }
-    });
-  });
-
-  return filteredRooms;
-}
-
-/**
- * Add the roomId to the appropriate checkpoint room set.
- * 
- * @param filteredRooms The filtered rooms map containing the checkpoint room sets.
- * @param checkpointIndex The index of the checkpoint to get the set for.
- * @param roomId The room id to add to the checkpoint room set.
- */
-const addToCheckpointRoomSet = (filteredRooms: Map<number, Set<string>>, checkpointIndex: number, roomId: string) => {
-
-  // Get the previous or create a new set if required.
-  let checkpointRoomSet: Set<string> | undefined = filteredRooms.get(checkpointIndex);
-  if (checkpointRoomSet === undefined) {
-    checkpointRoomSet = new Set<string>();
-  }
-
-  checkpointRoomSet.add(roomId);
-
-  filteredRooms.set(checkpointIndex, checkpointRoomSet);
-}
-
-/**
- * Determine if a room should e shown if value matches specific room values.
- * 
- * @param value The search value.
- * @param checkpoint The checkpoint.
- * @param roomId The room id.
- * @param room The room.
- * @param roomNo The room number.
- * @returns If the room should be shown.
- */
-const showRoom = (value: string, checkpoint: Checkpoint, roomId: string, room: Room, roomNo: number, exact: boolean = false): boolean => {
-  if (exact) {
-    return showCommonRoom(value, checkpoint, roomId, roomNo)
-      || room.name?.toLowerCase() === value.trim()
-      || Boolean(room.entities.spawn?.some(spawn => spawn.name?.toLowerCase() === value.trim()));
-  } else {
-    return showCommonRoom(value, checkpoint, roomId, roomNo)
-      || room.name?.toLowerCase().includes(value)
-      || Boolean(room.entities.spawn?.some(spawn => spawn.name?.toLowerCase().includes(value)));
-  }
-}
-
-/**
- * Determine if a room should be shown if the value matches common values.
- * 
- * @param value The search value.
- * @param checkpoint The checkpoint.
- * @param roomId The room id.
- * @param roomNo The room number.
- * @param exact If the search should be exact.
- * @returns If the room should be shown based on the common values.
- */
-const showCommonRoom = (value: string, checkpoint: Checkpoint, roomId: string, roomNo: number, exact: boolean = false): boolean => {
-  if (exact) {
-    return roomId.toLowerCase() === value
-      || checkpoint.name.toLowerCase() === value
-      || checkpoint.abbreviation.toLowerCase() === value
-      || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}` === value;
-  } else {
-    return roomId.toLowerCase().includes(value)
-      || checkpoint.name.toLowerCase().includes(value)
-      || checkpoint.abbreviation.toLowerCase().includes(value)
-      || `${checkpoint.abbreviation.toLocaleLowerCase()}-${roomNo}` === value;
-  }
-}
-
-interface ViewProps {
-  areaId: string;
-  chapterId: string;
-  side: Side;
-  searchPerformed: boolean;
-  filteredRooms: Map<number, Set<string>> | undefined;
-}
-
-interface ViewItemProps {
-  roomId: string;
-  roomName?: string;
-  href: string,
-  image: string
-}
-
-const GridChapterView: FC<ViewProps> = ({areaId, chapterId, side, searchPerformed, filteredRooms}) => {
-  return (
-    <Fragment>
-      {side.checkpoints.map((checkpoint, checkpointIndex) => {
-
-        // Filter out any checkpoints with no results for any searches.
-        const checkpointFilteredRooms: Set<string> | undefined = filteredRooms?.get(checkpointIndex)
-        if (searchPerformed && !checkpointFilteredRooms) {
-          return undefined;
-        }
-
-        return (
-          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
-            <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
-              {checkpointIndex + 1}. {checkpoint.name}
-            </Typography>
-            <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
-              {checkpoint.roomOrder.map(roomId => {
-                const room: Room | undefined = side.rooms[roomId];
-                if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
-                  return undefined;
-                }
-
-                return (
-                  <GridChapterItem
-                    key={roomId}
-                    roomId={roomId}
-                    {...room.name && {roomName: room.name}}
-                    image={`${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
-                    href={`/${areaId}/${chapterId}/${side.id}/${roomId}`}
-                  />
-                );
-              })}
-            </Box>
-            <Divider flexItem />
-          </Box>
-        );
-      })}
-    </Fragment>
-  );
-}
-
-const GridChapterItem: FC<ViewItemProps> = ({roomId, roomName, href, image}) => {
-  const [hover, setHover] = useState<boolean>(false);
-
-  return (
-    <Card sx={{width: 320, height: 180}}>
-      <Link passHref href={href}>
-        <CardActionArea
-          sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{
-            imageRendering: "pixelated",
-          }}
-        >
-          <CardMedia
-            component="img"
-            src={getCampImageUrl(image)}
-            alt={`Thumbnail for room ${roomName}`}
-            style={{
-              imageRendering: "pixelated",
-            }}
-          />
-          {hover && (
-            <ImageListItemBar
-              title={roomName}
-              subtitle={roomId}
-              sx={{fontSize: 26}}
-            />
-          )}
-        </CardActionArea>
-      </Link>
-    </Card>
-  );
-}
-
-const ListChapterView: FC<ViewProps> = ({areaId, chapterId, side, searchPerformed, filteredRooms}) => {
-  return (
-    <Fragment>
-      {side.checkpoints.map((checkpoint, checkpointIndex) => {
-
-        // Filter out any checkpoints with no results.
-        const checkpointFilteredRooms: Set<string> | undefined = filteredRooms?.get(checkpointIndex)
-        if (searchPerformed && checkpointFilteredRooms === undefined) {
-          return undefined;
-        }
-
-        return (
-          <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
-            <Typography component="div" variant="h5" color="text.secondary" marginTop={1} marginBottom={1}>
-              {checkpointIndex + 1}. {checkpoint.name}
-            </Typography>
-            <List disablePadding>
-              {checkpoint.roomOrder.map((roomId, roomIndex) => {
-                const room: Room | undefined = side.rooms[roomId];
-                if (room === undefined || (searchPerformed && checkpointFilteredRooms && !checkpointFilteredRooms.has(roomId))) {
-                  return undefined;
-                }
-
-                return (
-                  <ListChapterItem
-                    key={roomId}
-                    roomId={roomId}
-                    {...room.name && {roomName: room.name}}
-                    roomNo={roomIndex + 1}
-                    image={`${areaId}/previews/${chapterId}/${side.id}/${roomId}`}
-                    href={`/${areaId}/${chapterId}/${side.id}/${roomId}`}
-                  />
-                );
-              })}
-            </List>
-            <Divider flexItem sx={{marginTop: 2, marginBottom: 1}} />
-          </Box>
-        );
-      })}
-    </Fragment>
-  );
-}
-
-const ListChapterItem: FC<ViewItemProps & {roomNo: number}> = ({roomId, roomName, roomNo, href, image}) => {
-  return (
-    <Link passHref href={href}>
-      <ListItemButton
-        disableGutters
-        component="a"
-        sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
-      >
-        <Image
-          unoptimized
-          src={getCampImageUrl(image)}
-          alt={`Image of room ${roomName}`}
-          width={80}
-          height={45}
-        />
-        <Typography component="div" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
-        <Typography component="div" marginLeft={1} flexGrow={1}>{roomName}</Typography>
-        <Typography component="div" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
-      </ListItemButton>
-    </Link>
-  )
-}
-
-interface ChapterProps {
-  area: Area;
-  chapter: Chapter;
-  sides: Side[];
-  nextChapter?: Chapter;
-  prevChapter?: Chapter;
 }
 
 interface ChapterParams extends ParsedUrlQuery {
@@ -476,8 +205,8 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
 
   for (const areaId of VALID_AREAS) {
     const area: Area = await fetchArea(areaId);
-    for (const chapterId of area.chapters) {
-      paths.push({params: {areaId, chapterId}});
+    for (const {id} of area.chapters) {
+      paths.push({params: {areaId, chapterId: id}});
     }
   }
 
@@ -487,6 +216,14 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
   }
 }
 
+interface ChapterProps {
+  area: AreaData;
+  chapter: ChapterData;
+  sides: SideData[];
+  prevChapter?: Pick<ChapterData, "id" | "name">;
+  nextChapter?: Pick<ChapterData, "id" | "name">;
+};
+
 export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async ({params}) => {
   if (params === undefined) {
     throw Error("Params was not defined.")
@@ -494,45 +231,52 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
 
   const {areaId, chapterId} = params;
 
-  const area: Area = await fetchArea(areaId);
-  area.id = areaId;
+  const area: Area =  await fetchArea(areaId);
 
-  const chapter: Chapter = await fetchChapter(areaId, chapterId);
-  chapter.id = chapterId;
-
-  const chapterIndex: number = area.chapters.indexOf(chapter.id);
-
-  const prevChapterIndex: number = chapterIndex - 1;
-  let prevChapter: Chapter | undefined;
-  if (prevChapterIndex >= 0) {
-    const prevChapterId: string | undefined = area.chapters[prevChapterIndex];
-    if (prevChapterId) {
-      prevChapter = await fetchChapter(areaId, prevChapterId);
-      prevChapter.id = prevChapterId;
-    }
+  const chapterIndex: number = area.chapters.findIndex(chapter => chapter.id === chapterId);
+  const chapter: Chapter | undefined = area.chapters[chapterIndex];
+  if (chapter === undefined) {
+    throw Error(`Chapter not found for ${chapterId}`);
   }
 
-  const nextChapterIndex: number = chapterIndex + 1;
-  let nextChapter: Chapter | undefined;
-  if (prevChapterIndex < area.chapters.length) {
-    const nextChapterId: string | undefined = area.chapters[nextChapterIndex];
-    if (nextChapterId) {
-      nextChapter = await fetchChapter(areaId, nextChapterId);
-      nextChapter.id = nextChapterId;
-    }
-  }
-
-  const sides: Side[] = await Promise.all(chapter.sides.map(async sideId => {
-    const side: Side = await fetchSide(areaId, chapterId, sideId);
-    side.id = sideId;
-    return side;
-  }));
+  const prevChapter: Chapter | undefined = area.chapters[chapterIndex - 1];
+  const nextChapter: Chapter | undefined = area.chapters[chapterIndex + 1];
 
   return {
     props: {
-      area,
-      chapter,
-      sides,
+      area: {
+        id: area.id,
+        name: area.name,
+        desc: area.desc,
+      },
+      chapter: {
+        id: chapter.id,
+        gameId: chapter.gameId,
+        name: chapter.name,
+        desc: chapter.desc,
+        ...chapter.chapterNo && {no: chapter?.chapterNo},
+      },
+      sides: chapter.sides.map<SideData>(side => ({
+        id: side.id,
+        name: side.name,
+        roomCount: side.roomCount,
+        checkpoints: side.checkpoints.map<CheckpointData>(checkpoint => ({
+          name: checkpoint.name,
+          abbreviation: checkpoint.abbreviation,
+          rooms: checkpoint.roomOrder.map(id => {
+            const room: Room | undefined = side.rooms[id];
+            if (room === undefined) {
+              throw Error(`Room ${id} not found`);
+            }
+            return {
+              id,
+              ...room.name && {name: room.name},
+              checkpointNo: room.checkpointNo,
+              tags: generateRoomTags(room),
+            };
+          }),
+        })),
+      })),
       ...prevChapter && {prevChapter},
       ...nextChapter && {nextChapter},
     }

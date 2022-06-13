@@ -3,7 +3,7 @@ export interface Area {
   gameId: string;
   name: string;
   desc: string;
-  chapters: string[];
+  chapters: Chapter[];
 }
 
 export interface Chapter {
@@ -12,7 +12,7 @@ export interface Chapter {
   name: string
   desc: string;
   chapterNo?: number;
-  sides: string[];
+  sides: Side[];
 }
 
 export interface Side {

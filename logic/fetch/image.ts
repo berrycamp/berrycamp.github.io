@@ -1,1 +1,0 @@
-export const getCampImageUrl = (path: string): string => `https://cdn.berry.camp/file/berrycamp/images/${path}.png`

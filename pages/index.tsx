@@ -1,6 +1,6 @@
 import {Container, Link as MuiLink, List, Paper, Typography} from "@mui/material";
-import {Area, Chapter} from "logic/data/dataTypes";
-import {fetchArea, fetchChapter} from "logic/fetch/dataApi";
+import {Area} from "modules/data/dataTypes";
+import {fetchArea} from "modules/fetch/dataApi";
 import {CampHead} from "modules/head/CampHead";
 import {GetStaticProps} from "next";
 import {Fragment} from "react";
@@ -53,21 +53,17 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
 
 export default HomePage;
 
-export const getStaticProps: GetStaticProps<AreaProps> = async () => {
-  const areaId = "celeste"
-  const area: Area =  await fetchArea(areaId);
-  area.id = areaId;
+export const getStaticProps: GetStaticProps<AreaProps> = async ({params}) => {
+  if (params === undefined) {
+    throw Error("Params is not defined");
+  }
 
-  const chapters: Chapter[] = await Promise.all(area.chapters.map(async chapterId => {
-    const chapter: Chapter = await fetchChapter(areaId, chapterId);
-    chapter.id = chapterId;
-    return chapter;
-  }));
+  const {id, name, desc, chapters}: Area =  await fetchArea("celeste");
 
   return {
     props: {
-      area,
-      chapters,
-    }
+      area: {id, name, desc},
+      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...no && {no}})),
+    },
   }
 };

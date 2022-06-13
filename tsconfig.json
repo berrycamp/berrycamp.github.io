@@ -21,6 +21,9 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "baseUrl": ".",
+    "paths": {
+      "~/*": ["*"]
+    }
   },
   "include": [
     "next-env.d.ts",

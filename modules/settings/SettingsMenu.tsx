@@ -1,6 +1,6 @@
 import {BrightnessAuto, DarkMode, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
 import {Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Tooltip} from "@mui/material";
-import {useCampContext} from "logic/provide/CampContext";
+import {useCampContext} from "modules/provide/CampContext";
 import {EVEREST_ICON} from "modules/layout/everest";
 import {FC, Fragment, MouseEvent, useState} from "react";
 

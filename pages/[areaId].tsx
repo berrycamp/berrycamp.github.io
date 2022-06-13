@@ -1,15 +1,14 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
-import {VALID_AREAS} from 'logic/data/validAreas'
-import {fetchArea, fetchChapter} from 'logic/fetch/dataApi'
-import {getCampImageUrl} from 'logic/fetch/image'
-import {useCampContext} from 'logic/provide/CampContext'
+import {VALID_AREAS} from 'modules/data/validAreas'
+import {fetchArea, getAreaImageUrl, getChapterImageUrl} from 'modules/fetch/dataApi'
+import {useCampContext} from 'modules/provide/CampContext'
 import {CampHead} from 'modules/head/CampHead'
 import Image from "next/image"
 import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
-import {Area, Chapter} from '../logic/data/dataTypes'
+import {Area} from '../modules/data/dataTypes'
 import {CampPage} from './_app'
 
 const AreaPage: CampPage<AreaProps> = ({area, chapters}) => {
@@ -18,7 +17,7 @@ const AreaPage: CampPage<AreaProps> = ({area, chapters}) => {
       <CampHead
         title={area.name}
         description={area.desc}
-        image={`${area.id}/${area.id}`}
+        image={getAreaImageUrl(area.id)}
       />
       <AreaView area={area} chapters={chapters}/>
     </Fragment>
@@ -63,7 +62,7 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
+                      src={getChapterImageUrl(area.id, chapter.id)}
                       alt={`An image of chapter ${chapter.name}`}
                       style={{
                         imageRendering: "pixelated",
@@ -71,7 +70,7 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
                     />
                     <CardContent>
                       <Typography component="div" variant="h6">
-                        {chapter.chapterNo && `Chapter ${chapter.chapterNo} - `}
+                        {chapter.no && `Chapter ${chapter.no} - `}
                         {chapter.name}
                       </Typography>
                       <Typography component="div" variant="body2" color="textSecondary">{chapter.gameId}</Typography>
@@ -103,12 +102,12 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
               >
                 <Image
                   unoptimized
-                  src={getCampImageUrl(`${area.id}/chapters/${chapter.id}`)}
+                  src={getChapterImageUrl(area.id, chapter.id)}
                   alt={`Image of chapter ${chapter.name}`}
                   width={80}
                   height={45}
                 />
-                <Typography component="div" marginLeft={2} color="text.secondary" width="1rem">{chapter.chapterNo ? chapter.chapterNo : ""}</Typography>
+                <Typography component="div" marginLeft={2} color="text.secondary" width="1rem">{chapter.no ? chapter.no : ""}</Typography>
                 <Typography component="div" marginLeft={1} flexGrow={1}>{chapter.name}</Typography>
                 <Typography component="div" color="text.secondary" marginRight={0.5}>{chapter.gameId}</Typography>
               </ListItemButton>
@@ -121,8 +120,21 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
 }
 
 export interface AreaProps {
-  area: Area;
-  chapters: Chapter[]; 
+  area: AreaData;
+  chapters: ChapterData[]; 
+}
+
+interface AreaData {
+  id: string;
+  name: string;
+  desc: string;
+};
+
+interface ChapterData {
+  id: string;
+  gameId: string;
+  name: string;
+  no?: number;
 }
 
 interface AreaParams extends ParsedUrlQuery {
@@ -141,22 +153,13 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
     throw Error("Params is not defined");
   }
 
-  const {areaId} = params;
-
-  const area: Area =  await fetchArea(areaId);
-  area.id = areaId;
-
-  const chapters: Chapter[] = await Promise.all(area.chapters.map(async chapterId => {
-    const chapter: Chapter = await fetchChapter(areaId, chapterId);
-    chapter.id = chapterId;
-    return chapter;
-  }));
+  const {id, name, desc, chapters}: Area =  await fetchArea(params.areaId);
 
   return {
     props: {
-      area,
-      chapters,
-    }
+      area: {id, name, desc},
+      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...no && {no}})),
+    },
   }
 };
 

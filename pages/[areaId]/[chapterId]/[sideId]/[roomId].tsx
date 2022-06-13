@@ -1,10 +1,9 @@
 import {Fullscreen, Info, Launch, NavigateBefore, NavigateNext} from "@mui/icons-material";
 import {Box, Breadcrumbs, Button, Container, Dialog, Divider, Link as MuiLink, styled, Theme, ToggleButton, ToggleButtonGroup, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {Area, BoundingBox, Canvas, Chapter, Checkpoint, Room, Side} from "logic/data/dataTypes";
-import {VALID_AREAS} from "logic/data/validAreas";
-import {fetchArea, fetchChapter, fetchSide} from "logic/fetch/dataApi";
-import {getCampImageUrl} from "logic/fetch/image";
-import {useCampContext} from "logic/provide/CampContext";
+import {Area, BoundingBox, Canvas, Chapter, Checkpoint, Room, Side} from "modules/data/dataTypes";
+import {VALID_AREAS} from "modules/data/validAreas";
+import {fetchArea, fetchChapter, fetchSide} from "modules/fetch/dataApi";
+import {useCampContext} from "modules/provide/CampContext";
 import {CampCanvas, CanvasRoom} from "modules/canvas/CampCanvas";
 import {AspectBox} from "modules/common/aspectBox/AspectBox";
 import {CampHead} from "modules/head/CampHead";
