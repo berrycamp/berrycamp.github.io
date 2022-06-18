@@ -42,15 +42,16 @@ export interface Room {
   name?: string;
   checkpointNo: number;
   defaultSpawn: Point;
-  entities: Partial<{
-    spawn: SpawnPoint[];
-    berry: BerryPoint[];
-    golden: Point[];
-    moon: Point[];
-    heart: Point[];
-    cassette: Point[];
-  }>;
+  entities: Partial<Entities>;
   canvas: Canvas;
+}
+
+export interface Entities {
+  spawn: SpawnPoint[];
+  berry: BerryPoint[];
+  golden: Point[];
+  heart: Point[];
+  cassette: Point[];
 }
 
 export interface Point {
@@ -65,6 +66,8 @@ export interface SpawnPoint extends Point {
 export interface BerryPoint extends Point {
   id: number;
   checkpointId: number;
+
+  // Currently broken.
   order: number;
 }
 

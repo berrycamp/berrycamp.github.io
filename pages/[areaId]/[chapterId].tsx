@@ -1,5 +1,7 @@
 import {Clear, Search} from "@mui/icons-material";
-import {Box, Container, IconButton, Tab, Tabs, TextField, Typography} from "@mui/material";
+import {Box, Button, Container, IconButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
+import Link from "next/link";
+import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
@@ -19,17 +21,35 @@ import {Area, Chapter, Room} from "../../modules/data/dataTypes";
 
 const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter, nextChapter}) => {
   const {settings} = useCampContext();
+  const {query} = useRouter();
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [side, setSide] = useState<SideData | undefined>(sides[0]);
+
   const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
+
+  const handleChangeSide = (newSide: SideData) => {
+    setSide(newSide);
+    setCheckpoints(filterCheckpoints(searchValue, newSide));
+  }
 
   /**
    * Filter the checkpoint rooms.
    */
   useEffect(() => {
     setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
-  }, [searchValue, side])
+  }, [searchValue, side]);
+
+  /**
+   * Search from the query.
+   */
+  useEffect(() => {
+    if (typeof query.search !== "string") {
+      return;
+    }
+
+    setSearchValue(query.search);
+  }, [query.search]);
 
   return (
     <Fragment>
@@ -42,6 +62,16 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
         <ChapterHeaderImage area={area} chapter={chapter} />
         <HeaderNav areaId={area.id} {...prevChapter && {prevChapter}} {...nextChapter && {nextChapter}}/>
+        {side && (
+          <Paper elevation={1} sx={{display: "flex", alignItems: "center", justifyContent: "space-between", p: 1, mt: 2, mb: 2}}>
+          <Typography component="div" variant="body1" color="text.secondary" textAlign="center">
+              {pluralize(side.roomCount, "room")}
+            </Typography>
+            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
+              <Button variant="contained">View Map</Button>
+            </Link>
+          </Paper>
+        )}
         <TextField
           fullWidth
           placeholder="Search rooms"
@@ -71,16 +101,13 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           aria-label="search rooms"
           sx={{marginTop: 2, marginBottom: 2}}
         />
-        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => setSide(newSide)}>
+        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => handleChangeSide(newSide)} sx={{mb: 2}}>
           {sides.map(side => <Tab key={side.name} value={side} label={`${side.name}-side`}/>)}
         </Tabs>
         {side && (
           <Fragment>
-            <Typography component="div" variant="body1" color="text.secondary" marginTop={2} marginBottom={2} textAlign="center">
-              {pluralize(side.roomCount, "room")}
-            </Typography>
             {Boolean(searchValue) && checkpoints && checkpoints.length === 0 && (
-              <Box display="flex" justifyContent="center" padding={3}>
+              <Box display="flex" justifyContent="center" padding={2}>
                 <Typography component="div" fontSize="large" color="text.secondary">{`No rooms found for '${searchValue}'`}</Typography>
               </Box>
             )}

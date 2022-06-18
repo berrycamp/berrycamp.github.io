@@ -1,25 +1,30 @@
 import {RefObject, useCallback, useEffect, useRef, useState} from "react";
 
+export type UseExtentCanvas = (options: CanvasOptions) => ExtentCanvas
+
+export interface CanvasOptions {
+  canvasRef: RefObject<HTMLCanvasElement>,
+  defaultView?: View,
+  onDraw?: (context: CanvasRenderingContext2D) => void,
+  onViewChange?: (view: View) => void,
+}
+
 /**
  * Give a canvas an extent that can be panned and zoomed.
- * 
- * @param canvasRef The ref of the canvas element.
- * @param onDraw Callback to draw content to the canvas.
  */
-export const useExtentCanvas = (
-  canvasRef: RefObject<HTMLCanvasElement>,
-  onDraw: (context: CanvasRenderingContext2D) => void,
-  fillStyle: string,
-  initialOffset?: Point,
-  initialScale?: number,
-): ExtentCanvas => {
+export const useExtentCanvas: UseExtentCanvas = ({
+  canvasRef,
+  onDraw,
+  onViewChange,
+  defaultView,
+}) => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
-  const cursorPosRef = useRef<Point>(ORIGIN);
-  const prevCursorPosRef = useRef<Point>(ORIGIN);
+  const cursorPosRef = useRef<Point>(origin);
+  const prevCursorPosRef = useRef<Point>(origin);
 
-  const offsetRef = useRef<Point>(initialOffset ?? ORIGIN);
-  const scaleRef = useRef<number>(initialScale ?? 1);
+  const offsetRef = useRef<Point>(defaultView?.offset ?? origin);
+  const scaleRef = useRef<number>(defaultView?.scale ?? 1);
 
   const isDraggingRef = useRef<boolean>(false);
 
@@ -53,16 +58,17 @@ export const useExtentCanvas = (
     context.translate(offsetRef.current.x, offsetRef.current.y);
 
     // Wipe slightly more than the visible canvas to prevent visual issues on mouse leave.
-    context.fillStyle = fillStyle;
-    context.fillRect(
+    context.clearRect(
       -offsetRef.current.x - width,
       -offsetRef.current.y - height,
       (width / scaleRef.current) + 2 * width,
       (height / scaleRef.current) + 2 * height,
     );
 
-    onDraw(context);
-  }, [context, fillStyle, onDraw]);
+    if (onDraw) {
+      onDraw(context);
+    }
+  }, [context, onDraw]);
 
   /**
    * Set the context.
@@ -72,7 +78,7 @@ export const useExtentCanvas = (
       return;
     }
 
-    setContext(canvasRef.current.getContext("2d", {alpha: false}));
+    setContext(canvasRef.current.getContext("2d"));
   }, [canvasRef]);
 
   /**
@@ -106,6 +112,10 @@ export const useExtentCanvas = (
       offsetRef.current = add(offsetRef.current, newDiff);
 
       redraw();
+
+      if (onViewChange) {
+        onViewChange({offset: offsetRef.current, scale: scaleRef.current});
+      }
     }
 
     /**
@@ -125,8 +135,8 @@ export const useExtentCanvas = (
       cursorPosRef.current = getCursorOffset(event.pageX, event.pageY, context);
 
       const newScale: number = Math.max(
-        Math.min(scaleRef.current * (1 - event.deltaY / SCALE_SENSITIVITY), MAX_SCALE),
-        MIN_SCALE
+        Math.min(scaleRef.current * (1 - event.deltaY / scrollSensitivity), maxScale),
+        minScale
       );
 
       const newOffset = diff(
@@ -138,6 +148,10 @@ export const useExtentCanvas = (
       scaleRef.current = newScale;
 
       redraw();
+
+      if (onViewChange) {
+        onViewChange({offset: offsetRef.current, scale: scaleRef.current});
+      }
     };
 
     // let prevPinchDistance: number | null = null;
@@ -180,7 +194,7 @@ export const useExtentCanvas = (
       context.canvas.removeEventListener("pointerleave", handlePointerUp);
       context.canvas.removeEventListener("wheel", handleWheel);
     }
-  }, [context, redraw]);
+  }, [context, onViewChange, redraw]);
 
   /**
    * Init the context.
@@ -213,12 +227,10 @@ export interface View {
 
 export type ViewCallback = (view: Partial<View>) => void;
 
-const ORIGIN: Point = {x: 0, y: 0};
-
-const SCALE_SENSITIVITY = 320;
-
-const MIN_SCALE = 1 / 32;
-const MAX_SCALE = 4;
+const origin: Point = {x: 0, y: 0};
+const scrollSensitivity = 320;
+const minScale = 1 / 512;
+const maxScale = 64;
 
 /**
  * Get the mouse cursor offset relative to the canvas origin.

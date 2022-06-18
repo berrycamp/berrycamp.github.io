@@ -1,11 +1,15 @@
+import {Entities} from "../data/dataTypes";
+
 export interface AreaData {
   id: string;
+  gameId: string;
   name: string;
   link: string;
 }
 
 export interface ChapterData {
   id: string;
+  gameId: string;
   name: string;
   link: string;
 }
@@ -26,6 +30,8 @@ export interface RoomData {
   checkpointRoomNo: string;
   levelRoomNo: string;
   teleportParams: string;
+  tags: string[]
+  entities: Partial<Entities>;
 }
 
 export interface NavRoomData {

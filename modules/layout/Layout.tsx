@@ -1,7 +1,7 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import {FC, Fragment} from "react";
+import {FC} from "react";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {SettingsMenu} from "~/modules/settings/SettingsMenu";
 
@@ -9,7 +9,7 @@ export const Layout: FC = ({children}) => {
   const {settings} = useCampContext();
 
   return (
-    <main>
+    <>
       <AppBar position="sticky">
         <Toolbar
           variant="dense"
@@ -67,10 +67,10 @@ export const Layout: FC = ({children}) => {
       {/* {settings.cozyMode ? (
         <Cozy />
       ) : ( */}
-        <Fragment>
+        <main>
           {children}
-        </Fragment>
+        </main>
       {/* )} */}
-    </main>
+      </>
   );
 }

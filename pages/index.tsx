@@ -53,11 +53,7 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
 
 export default HomePage;
 
-export const getStaticProps: GetStaticProps<AreaProps> = async ({params}) => {
-  if (params === undefined) {
-    throw Error("Params is not defined");
-  }
-
+export const getStaticProps: GetStaticProps<AreaProps> = async () => {
   const {id, name, desc, chapters}: Area =  await fetchArea("celeste");
 
   return {

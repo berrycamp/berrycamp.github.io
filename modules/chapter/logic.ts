@@ -10,6 +10,9 @@ import {CheckpointData, RoomData, SideData} from './types';
  */
  export const filterCheckpoints = (searchValue: string, side: SideData, exact: boolean = false): CheckpointData[] => {
   const value: string = searchValue.toLowerCase();
+  if (value === "") {
+    return side.checkpoints;
+  }
 
   return side.checkpoints.reduce<CheckpointData[]>((prev, checkpoint) => {
     const rooms: RoomData[] = checkpoint.rooms.filter((room, index) => {
@@ -23,7 +26,7 @@ import {CheckpointData, RoomData, SideData} from './types';
   }, []);
 }
 
-const showRoom = (value: string, room: RoomData, exact: boolean = false): boolean => {
+export const showRoom = (value: string, room: RoomData, exact: boolean = false): boolean => {
   return exact ? matchesRoomExact(value, room) : matchesRoom(value, room);
 };
 
