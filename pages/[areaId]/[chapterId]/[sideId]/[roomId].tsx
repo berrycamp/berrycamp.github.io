@@ -153,7 +153,7 @@ const RoomPage: CampPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
         <Stack direction="row" marginTop={1} marginBottom={1}>
           {room.tags.map(tag => (
-            <Link key={tag} passHref href={`/${area.id}/${chapter.id}?side=${side.id}search=${tag}`}>
+            <Link key={tag} passHref href={`/${area.id}/${chapter.id}?side=${side.id}&search=${tag}`}>
               <Chip component="a" size="small" label={tag} sx={{textTransform: "capitalize"}}/>
             </Link>
           ))}

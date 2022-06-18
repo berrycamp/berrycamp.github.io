@@ -1,4 +1,4 @@
-import {Clear, Search} from "@mui/icons-material";
+import {Clear, Search, TravelExplore} from "@mui/icons-material";
 import {Box, Button, Container, IconButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -68,7 +68,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
               {pluralize(side.roomCount, "room")}
             </Typography>
             <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
-              <Button variant="contained">View Map</Button>
+              <Button variant="contained" endIcon={<TravelExplore/>}>View Map</Button>
             </Link>
           </Paper>
         )}
