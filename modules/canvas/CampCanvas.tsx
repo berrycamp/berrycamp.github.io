@@ -1,5 +1,5 @@
-import {Menu, MenuItem, Theme, useTheme} from "@mui/material";
-import {FC, memo, MouseEvent, useCallback, useEffect, useRef, useState} from "react";
+import {Theme, useTheme} from "@mui/material";
+import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import AutoSizer, {Size} from "react-virtualized-auto-sizer";
 import {Point, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
 import {BoundingBox} from "~/modules/data/dataTypes";
@@ -12,23 +12,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({rooms, boundingBox, url}) 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [size, setSize] = useState<Size>();
   const [imgs, setImgs] = useState<{img: CanvasImageSource, position: Point}[]>([]);
-
-  const [contextMenu, setContextMenu] = useState<{mouseX: number, mouseY: number} | null>(null);
-
-  const handleContextMenu = (event: MouseEvent) => {
-    event.preventDefault();
-    setContextMenu(contextMenu === null ? {mouseX: event.clientX, mouseY: event.clientY} : null);
-  }
-
-  const handleContextMenuClose = () => {
-    setContextMenu(null);
-  }
-
-  const handleCopyViewLink = () => {
-    handleContextMenuClose();
-    const {left, right, top, bottom} = boundingBox;
-    navigator.clipboard.writeText(url + `&left=${left}&right=${right}&top=${top}&bottom=${bottom}`);
-  }
 
   /**
    * Draw images to the canvas
@@ -89,7 +72,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({rooms, boundingBox, url}) 
             ref={canvasRef}
             width={width}
             height={height}
-            onContextMenu={handleContextMenu}
             style={{
               background,
               width: "100%",
@@ -100,14 +82,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({rooms, boundingBox, url}) 
           />
         )}
       </AutoSizer>
-      <Menu
-        open={Boolean(contextMenu)}
-        onClose={handleContextMenuClose}
-        anchorReference="anchorPosition"
-        {...contextMenu !== null && {anchorPosition: {top: contextMenu.mouseY, left: contextMenu.mouseX}}}
-      >
-        <MenuItem onClick={handleCopyViewLink}>Copy View Link</MenuItem>
-      </Menu>
     </>
   );
 });
