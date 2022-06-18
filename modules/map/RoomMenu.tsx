@@ -122,7 +122,7 @@ export const RoomItem: FC<RoomItemProps> = ({room, onViewChange, onRoomSelect, s
    */
   useEffect(() => {
     if (selected && ref.current) {
-      ref.current.scrollIntoView({block: "center"})
+      ref.current.scrollIntoView({block: "nearest", behavior: "smooth"})
     }
   }, [selected]);
 
