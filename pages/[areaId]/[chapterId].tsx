@@ -28,17 +28,13 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
 
   const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
 
-  const handleChangeSide = (newSide: SideData) => {
-    setSide(newSide);
-    setCheckpoints(filterCheckpoints(searchValue, newSide));
-  }
-
   /**
    * Filter the checkpoint rooms.
    */
   useEffect(() => {
+    setSide(sides.find(newSide => newSide.id === side?.id) ?? sides[0]);
     setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
-  }, [searchValue, side]);
+  }, [searchValue, side, sides]);
 
   /**
    * Search from the query.
@@ -101,7 +97,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           aria-label="search rooms"
           sx={{marginTop: 2, marginBottom: 2}}
         />
-        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => handleChangeSide(newSide)} sx={{mb: 2}}>
+        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => setSide(newSide)} sx={{mb: 2}}>
           {sides.map(side => <Tab key={side.name} value={side} label={`${side.name}-side`}/>)}
         </Tabs>
         {side && (

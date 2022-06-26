@@ -14,7 +14,7 @@ export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
         <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
           {checkpoint.rooms.map(room => (
             <ChapterGridItem
-              key={room.id}
+              key={`${sideId}-${room.id}`}
               roomId={room.id}
               {...room.name && {roomName: room.name}}
               image={getRoomPreviewUrl(areaId, chapterId, sideId, room.id)}

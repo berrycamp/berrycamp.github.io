@@ -15,7 +15,7 @@ export const ChapterListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
         <List disablePadding>
           {checkpoint.rooms.map((room, roomIndex) => (
             <ChapterListViewItem
-              key={room.id}
+              key={`${sideId}-${room.id}`}
               roomId={room.id}
               {...room.name && {roomName: room.name}}
               roomNo={roomIndex + 1}
