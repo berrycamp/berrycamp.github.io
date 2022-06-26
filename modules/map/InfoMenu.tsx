@@ -23,7 +23,7 @@ export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, 
   const teleportParams: string = `?area=${areaGameId}/${chapterGameId}&side=${sideId}&level=${room.id}`
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${process.env.CAMP_URL}/map/${areaId}/${chapterId}/${sideId}?room=${room.id}`);
+    navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_CAMP_URL}/map/${areaId}/${chapterId}/${sideId}?room=${room.id}`);
   }
 
   return (
