@@ -2,7 +2,7 @@ import {Container, Link as MuiLink, List, Paper, Typography} from "@mui/material
 import {GetStaticProps} from "next";
 import {Fragment} from "react";
 import {Area} from "~/modules/data/dataTypes";
-import {fetchArea} from "~/modules/fetch/dataApi";
+import {fetchArea, getRootImageUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {AreaProps, AreaView} from "./[areaId]";
 import {CampPage} from "./_app";
@@ -12,7 +12,7 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
     <Fragment>
       <CampHead
         description="Browse rooms from the video game Celeste"
-        image="city/1/2/3"
+        image={getRootImageUrl()}
       />
       <Container sx={{marginTop: 4}}>
         <Paper elevation={2} sx={{padding: 2}}>
