@@ -26,7 +26,7 @@ export const fetchArea = async (areaId: string): Promise<Area> => {
 };
 
 export const getRootImageUrl = (): string => {
-  return `${baseUrl}/images/celeste/city.png`
+  return `${baseUrl}/images/celeste/chapters/city.png`
 }
 
 export const getAreaImageUrl = (areaId: string): string => {
