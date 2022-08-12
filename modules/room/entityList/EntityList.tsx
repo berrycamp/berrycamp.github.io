@@ -1,4 +1,4 @@
-import {ExpandLess, ExpandMore, Launch} from "@mui/icons-material";
+import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
 import {Box, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Paper, Tooltip} from "@mui/material";
 import Link from "next/link";
 import {FC, useState} from "react";
@@ -119,9 +119,9 @@ const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) 
       disablePadding
       {...teleportParams && {
         secondaryAction: (
-          <Tooltip title="Teleport" enterDelay={750} placement="right">
+          <Tooltip title="Launch to spawn point" enterDelay={750} placement="right">
             <IconButton size="small" onClick={handleTeleport} color="primary">
-              <Launch fontSize="small"/>
+              <RocketLaunch fontSize="small"/>
             </IconButton>
           </Tooltip>
         ),

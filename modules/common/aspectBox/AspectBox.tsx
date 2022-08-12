@@ -8,5 +8,5 @@ export const AspectBox: FC<AspectBoxProps> = ({aspectRatio, children, ...boxProp
 );
 
 interface AspectBoxProps extends BoxProps {
-  aspectRatio?: "string";
+  aspectRatio?: string;
 }

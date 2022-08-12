@@ -119,6 +119,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         </Box>
         <Box flex={1}>
           <CampCanvas
+            name={`${area.id}-${chapter.id}-${side.id}.png`}
             boundingBox={boundingBox}
             rooms={rooms}
             url={`/map/${area.id}/${chapter.id}/${side.id}`}

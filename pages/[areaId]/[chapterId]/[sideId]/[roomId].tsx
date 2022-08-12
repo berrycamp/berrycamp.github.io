@@ -1,5 +1,5 @@
-import {Launch, NavigateBefore, NavigateNext, TravelExplore} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Chip, Container, Dialog, Divider, Link as MuiLink, Stack, Theme, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Fullscreen, FullscreenExit, NavigateBefore, NavigateNext, RocketLaunch, TravelExplore} from "@mui/icons-material";
+import {Box, Breadcrumbs, Button, Chip, Container, Dialog, Divider, Link as MuiLink, Paper, Stack, Theme, ToggleButton, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next";
 import NextImage from "next/image";
 import Link from "next/link";
@@ -7,10 +7,9 @@ import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useEffect, useState} from "react";
-import {AspectBox} from "~/modules/common/aspectBox/AspectBox";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
-import {fetchArea, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
+import {fetchArea, getRoomImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {AreaData, ChapterData, CheckpointData, generateRoomTags, NavRoomData, RoomData, SideData} from "~/modules/room";
@@ -29,11 +28,14 @@ const RoomPage: CampPage<RoomProps> = ({
   const {settings} = useCampContext();
   const router: NextRouter = useRouter();
 
+  const [fullImage, setFullImage] = useState<boolean>(false);
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const theme: Theme = useTheme();
   const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
-  const image: string = getRoomPreviewUrl(area.id, chapter.id, side.id, room.debugId);
+  const image: string = fullImage
+    ? getRoomImageUrl(area.id, chapter.id, side.id, room.debugId)
+    : getRoomPreviewUrl(area.id, chapter.id, side.id, room.debugId);
 
   /**
    * Send a request to open the room in Everest.
@@ -84,7 +86,19 @@ const RoomPage: CampPage<RoomProps> = ({
         <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
           <ImageView image={image} roomName={room.name ?? room.debugId}/>
         </Dialog>
-        <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
+        <Paper sx={{position: "relative"}}>
+          <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
+            <Tooltip title={fullImage ? "View preview" : "View full image"}>
+              <ToggleButton
+                sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none"}}
+                size="small"
+                value="full"
+                onChange={() => setFullImage(f => !f)}
+              >
+                {fullImage ? <Fullscreen fontSize="small"/>: <FullscreenExit fontSize="small"/>}
+              </ToggleButton>
+            </Tooltip>
+        </Paper>
         <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
           <Box width="50%">
             {prevRoom?.link && (
@@ -135,15 +149,15 @@ const RoomPage: CampPage<RoomProps> = ({
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip enterDelay={750} title={"Teleport to room if Everest is installed and running"}>
+            <Tooltip enterDelay={750} title={"Launch room in Celeste (Everest)"}>
               <Button
                 variant="contained"
                 color="primary"
-                endIcon={<Launch />}
+                endIcon={<RocketLaunch />}
                 onClick={handleOpenRoom}
-                aria-label="Teleports to the current room in Celeste"
+                aria-label="Launch room in Celeste (Everest)"
               >
-                Teleport
+                Launch
               </Button>
             </Tooltip>
           </Box>
@@ -177,18 +191,25 @@ const RoomPage: CampPage<RoomProps> = ({
   );
 }
 
-const ImageView: FC<{image: string, roomName: string, onClick?: () => void}> = ({image, roomName, onClick}) => {
+interface ImageViewProps {
+  image: string;
+  roomName: string;
+  onClick?: () => void;
+}
+
+const ImageView: FC<ImageViewProps> = ({image, roomName, onClick}) => {
   return (
-    <AspectBox>
-      <NextImage
-        unoptimized
-        src={image}
-        onClick={onClick}
-        alt={`image of room ${roomName}`}
-        layout="fill"
-        style={{imageRendering: "pixelated"}}
-      />
-    </AspectBox>
+    <NextImage
+      unoptimized
+      src={image}
+      onClick={onClick}
+      alt={`image of room ${roomName}`}
+      layout="responsive"
+      width={320}
+      height={180}
+      objectFit="contain"
+      style={{imageRendering: "pixelated"}}
+    />
   );
 }
 

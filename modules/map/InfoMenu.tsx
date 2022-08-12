@@ -1,4 +1,4 @@
-import {ExpandLess, ExpandMore, InsertLink, Launch} from "@mui/icons-material";
+import {ExpandLess, ExpandMore, InsertLink, RocketLaunch} from "@mui/icons-material";
 import {Collapse, IconButton, Link as MuiLink, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
 import {FC, useState} from "react";
@@ -161,7 +161,7 @@ export const EntityItem: FC<EntityItemProps> = ({
         secondaryAction: (
           <Tooltip title="Teleport" enterDelay={750}>
             <IconButton size="small" onClick={handleTeleport} color="primary">
-              <Launch fontSize="small"/>
+              <RocketLaunch fontSize="small"/>
             </IconButton>
           </Tooltip>
         ),

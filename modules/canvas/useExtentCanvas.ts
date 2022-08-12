@@ -227,6 +227,11 @@ export interface View {
 
 export type ViewCallback = (view: Partial<View>) => void;
 
+export interface CanvasImage {
+  img: CanvasImageSource;
+  position: Point;
+}
+
 const origin: Point = {x: 0, y: 0};
 const scrollSensitivity = 320;
 const minScale = 1 / 512;

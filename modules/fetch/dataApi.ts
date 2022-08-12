@@ -1,7 +1,9 @@
 import {fetchJson} from 'modules/fetch/fetchJson';
 import {Area} from "~/modules/data/dataTypes";
 
-const baseUrl = "https://cdn.berry.camp/file/berrycamp";
+const baseDataUrl = "https://wishcresp.github.io/berrycamp-data";
+
+const baseImageUrl = "https://wishcresp.github.io/berrycamp-images";
 
 /**
  * Cache the areas.
@@ -17,7 +19,7 @@ const areaCache: Record<string, Area> = {};
 export const fetchArea = async (areaId: string): Promise<Area> => {
   let area: Area | undefined = areaCache[areaId];
   if (area === undefined) {
-    area = await fetchJson<Area>(`${baseUrl}/areas/${areaId}.json`);
+    area = await fetchJson<Area>(`${baseDataUrl}/${areaId}.json`);
     areaCache[areaId] = area;
   } else {
     console.log("fetched from cache");
@@ -26,21 +28,21 @@ export const fetchArea = async (areaId: string): Promise<Area> => {
 };
 
 export const getRootImageUrl = (): string => {
-  return `${baseUrl}/images/celeste/chapters/city.png`
+  return `${baseImageUrl}/celeste/chapters/city.png`
 }
 
 export const getAreaImageUrl = (areaId: string): string => {
-  return `${baseUrl}/images/${areaId}/${areaId}.png`;
+  return `${baseImageUrl}/${areaId}/${areaId}.png`;
 };
 
 export const getChapterImageUrl = (areaId: string, chapterId: string): string => {
-  return `${baseUrl}/images/${areaId}/chapters/${chapterId}.png`;
+  return `${baseImageUrl}/${areaId}/chapters/${chapterId}.png`;
 };
 
 export const getRoomPreviewUrl = (areaId: string, chapterId: string, sideId: string, roomId: string): string => {
-  return `${baseUrl}/images/${areaId}/previews/${chapterId}/${sideId}/${roomId}.png`;
+  return `${baseImageUrl}/${areaId}/previews/${chapterId}/${sideId}/${roomId}.png`;
 };
 
 export const getRoomImageUrl = (areaId: string, chapterId: string, sideId: string, roomId: string): string => {
-  return `${baseUrl}/images/${areaId}/rooms/${chapterId}/${sideId}/${roomId}.png`
+  return `${baseImageUrl}/${areaId}/rooms/${chapterId}/${sideId}/${roomId}.png`
 };
