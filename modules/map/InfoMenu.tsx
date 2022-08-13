@@ -28,7 +28,7 @@ export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, 
 
   return (
     <>
-      <List dense disablePadding>
+      <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
         <ListItem
           secondaryAction={(
             <Tooltip title="Copy room map link" placement="right">
@@ -45,7 +45,7 @@ export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, 
           </Link>
         </ListItem>
       </List>
-      <List dense disablePadding>
+      <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
         {room.entities.spawn && (
           <EntityGroup
             name="Spawns"
@@ -159,7 +159,7 @@ export const EntityItem: FC<EntityItemProps> = ({
       disablePadding
       {...teleportParams && {
         secondaryAction: (
-          <Tooltip title="Teleport" enterDelay={750}>
+          <Tooltip title="Launch" enterDelay={750}>
             <IconButton size="small" onClick={handleTeleport} color="primary">
               <RocketLaunch fontSize="small"/>
             </IconButton>

@@ -58,15 +58,23 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         description="View an interactive fully rendered map."
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Box display="flex" height="100%" overflow="hidden">
-        <Box display="flex" flexDirection="column">
+      <Box
+        display="flex"
+        height="100%"
+        overflow="hidden"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          sx={{overflowX: "hidden", overflowY: "auto", resize: "horizontal"}}
+        >
           <Box
             height="70%"
             display="flex"
             flexDirection="column"
             width={300}
             minHeight={0}
-            sx={{overflowX: "hidden", overflowY: "auto", resize: "both"}}
+            sx={{overflowX: "hidden", overflowY: "auto", width: "100%"}}
           >
             <TextField
               fullWidth
@@ -102,8 +110,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
               onRoomSelect={setSelectedRoom}
             />
           </Box>
-          <Divider sx={{borderBottomWidth: 8}}/>
-          <Box sx={{overflowY: "auto", overflowX: "hidden"}}>
+          <Divider sx={{borderBottomWidth: 4}}/>
+          <Box sx={{overflowY: "auto", overflowX: "hidden", height: "30%"}}>
             {selectedRoom && (
               <EntityList
                 areaId={area.id}

@@ -38,9 +38,11 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
     const maxSizePx = 32767;
     const sizeFixPx = 16384;
 
+    const {left, right, top, bottom} = boundingBox;
+
     const size: Size = {
-      width: boundingBox.right - boundingBox.left,
-      height: boundingBox.bottom - boundingBox.top,
+      width: right - left,
+      height: bottom - top,
     };
 
     if (
@@ -51,8 +53,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
       size.width = sizeFixPx;
       size.height = sizeFixPx;
     }
-
-    console.log(size, boundingBox);
 
     virtualCanvas.width = size.width;
     virtualCanvas.height = size.height;
@@ -67,7 +67,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
     link.href = virtualCanvas.toDataURL("data:image/png");
     link.download = name;
     link.click();
-  }, [boundingBox.bottom, boundingBox.left, boundingBox.right, boundingBox.top, imgs, name])
+  }, [boundingBox, imgs, name])
 
   /**
    * Load the room images.

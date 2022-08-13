@@ -1,4 +1,4 @@
-import {ExpandLess, ExpandMore, Launch} from "@mui/icons-material";
+import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
 import {Button, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
 import {FC, useEffect, useRef, useState} from "react";
@@ -131,9 +131,9 @@ export const RoomItem: FC<RoomItemProps> = ({room, onViewChange, onRoomSelect, s
       ref={ref}
       disablePadding
       secondaryAction={(
-        <Tooltip title="Teleport" enterDelay={750} placement="right">
+        <Tooltip title="Launch" enterDelay={750} placement="right">
           <IconButton size="small" onClick={handleTeleport} color="primary">
-            <Launch fontSize="small"/>
+            <RocketLaunch fontSize="small"/>
           </IconButton>
         </Tooltip>
       )}
