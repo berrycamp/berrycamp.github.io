@@ -1,12 +1,13 @@
+import {debounce} from "@mui/material";
 import {RefObject, useCallback, useEffect, useRef, useState} from "react";
 
 export type UseExtentCanvas = (options: CanvasOptions) => ExtentCanvas
 
 export interface CanvasOptions {
-  canvasRef: RefObject<HTMLCanvasElement>,
-  defaultView?: View,
-  onDraw?: (context: CanvasRenderingContext2D) => void,
-  onViewChange?: (view: View) => void,
+  canvasRef: RefObject<HTMLCanvasElement>;
+  setView?: SetViewCallback;
+  onDraw?: (context: CanvasRenderingContext2D) => void;
+  onViewChange?: (view: View) => void;
 }
 
 /**
@@ -16,29 +17,14 @@ export const useExtentCanvas: UseExtentCanvas = ({
   canvasRef,
   onDraw,
   onViewChange,
-  defaultView,
 }) => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
-  const cursorPosRef = useRef<Point>(origin);
-  const prevCursorPosRef = useRef<Point>(origin);
-
-  const offsetRef = useRef<Point>(defaultView?.offset ?? origin);
-  const scaleRef = useRef<number>(defaultView?.scale ?? 1);
+  const cursorPosRef = useRef<Point>(ORIGIN);
+  const prevCursorPosRef = useRef<Point>(ORIGIN);
+  const viewRef = useRef<CanvasView>({offset: ORIGIN, scale: 1});
 
   const isDraggingRef = useRef<boolean>(false);
-
-  /**
-   * Update the canvas view.
-   */
-  const setView: ViewCallback = useCallback(({offset, scale}) => {
-    if (offset) {
-      offsetRef.current = offset;
-    }
-    if (scale) {
-      scaleRef.current = scale;
-    }
-  }, [])
 
   /**
    * Redraw the canvas.
@@ -50,25 +36,44 @@ export const useExtentCanvas: UseExtentCanvas = ({
     
     context.imageSmoothingEnabled = false;
 
-    const width: number = context.canvas.width;
-    const height: number = context.canvas.height;
-
     context.resetTransform();
-    context.scale(scaleRef.current, scaleRef.current);
-    context.translate(offsetRef.current.x, offsetRef.current.y);
+    
+    context.scale(viewRef.current.scale, viewRef.current.scale);
+    context.translate(viewRef.current.offset.x, viewRef.current.offset.y);
+
+    const {width, height} = context.canvas;
 
     // Wipe slightly more than the visible canvas to prevent visual issues on mouse leave.
     context.clearRect(
-      -offsetRef.current.x - width,
-      -offsetRef.current.y - height,
-      (width / scaleRef.current) + 2 * width,
-      (height / scaleRef.current) + 2 * height,
+      -viewRef.current.offset.x - width,
+      -viewRef.current.offset.y - height,
+      (width / viewRef.current.scale) + 2 * width,
+      (height / viewRef.current.scale) + 2 * height,
     );
 
     if (onDraw) {
       onDraw(context);
     }
   }, [context, onDraw]);
+
+  /**
+   * Update the canvas view.
+   */
+  const setView: SetViewCallback = useCallback((view): void => {
+    if (context === null) {
+      return;
+    }
+
+    const canvasView: CanvasView = calculateCanvasView(context.canvas, view);
+    viewRef.current.offset = canvasView.offset;
+    viewRef.current.scale = canvasView.scale;
+
+    if (onViewChange) {
+      onViewChange(view);
+    }
+
+    redraw();
+  }, [context, onViewChange, redraw])
 
   /**
    * Set the context.
@@ -108,13 +113,13 @@ export const useExtentCanvas: UseExtentCanvas = ({
       prevCursorPosRef.current = cursorPosRef.current;
       cursorPosRef.current = getCursorOffset(pageX, pageY, context);
 
-      const newDiff: Point = scale(diff(cursorPosRef.current, prevCursorPosRef.current), scaleRef.current);
-      offsetRef.current = add(offsetRef.current, newDiff);
+      const newDiff: Point = scale(diff(cursorPosRef.current, prevCursorPosRef.current), viewRef.current.scale);
+      viewRef.current.offset = add(viewRef.current.offset, newDiff);
 
       redraw();
 
       if (onViewChange) {
-        onViewChange({offset: offsetRef.current, scale: scaleRef.current});
+        onViewChange(calculateView(context.canvas, viewRef.current));
       }
     }
 
@@ -135,22 +140,22 @@ export const useExtentCanvas: UseExtentCanvas = ({
       cursorPosRef.current = getCursorOffset(event.pageX, event.pageY, context);
 
       const newScale: number = Math.max(
-        Math.min(scaleRef.current * (1 - event.deltaY / scrollSensitivity), maxScale),
-        minScale
+        Math.min(viewRef.current.scale * (1 - event.deltaY / SCROLL_SENSITIVITY), MAX_SCALE),
+        MIN_SCALE
       );
 
       const newOffset = diff(
-        offsetRef.current,
-        diff(scale(cursorPosRef.current, scaleRef.current), scale(cursorPosRef.current, newScale))
+        viewRef.current.offset,
+        diff(scale(cursorPosRef.current, viewRef.current.scale), scale(cursorPosRef.current, newScale))
       );
 
-      offsetRef.current = newOffset;
-      scaleRef.current = newScale;
+      viewRef.current.offset = newOffset;
+      viewRef.current.scale = newScale;
 
       redraw();
 
       if (onViewChange) {
-        onViewChange({offset: offsetRef.current, scale: scaleRef.current});
+        onViewChange(calculateView(context.canvas, viewRef.current));
       }
     };
 
@@ -207,12 +212,40 @@ export const useExtentCanvas: UseExtentCanvas = ({
     redraw();
   }, [context, redraw])
 
-  return {redraw, setView};
+  /**
+   * Redraw the canvas on resize.
+   */
+    useEffect(() => {
+    if (context === null) {
+      return;
+    }
+
+    const observer = new ResizeObserver(debounce(redraw, 50));
+    observer.observe(context.canvas);
+
+    return () => {
+      observer.disconnect();
+    }
+  }, [context, redraw]);
+
+  return {setView, redraw};
 }
 
 export interface ExtentCanvas {
+  setView: SetViewCallback;
   redraw: () => void;
-  setView: ViewCallback;
+}
+
+export interface CanvasSize {
+  width: number;
+  height: number;
+}
+
+export interface View {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
 }
 
 export interface Point {
@@ -220,22 +253,22 @@ export interface Point {
   y: number;
 }
 
-export interface View {
+export interface CanvasView {
   offset: Point;
   scale: number;
 }
 
-export type ViewCallback = (view: Partial<View>) => void;
+export type SetViewCallback = (view: View) => void;
 
 export interface CanvasImage {
   img: CanvasImageSource;
   position: Point;
 }
 
-const origin: Point = {x: 0, y: 0};
-const scrollSensitivity = 320;
-const minScale = 1 / 512;
-const maxScale = 64;
+const ORIGIN: Point = {x: 0, y: 0};
+const SCROLL_SENSITIVITY = 320;
+const MIN_SCALE = 1 / 512;
+const MAX_SCALE = 64;
 
 /**
  * Get the mouse cursor offset relative to the canvas origin.
@@ -272,3 +305,48 @@ const add = (p1: Point, p2: Point): Point => ({x: p1.x + p2.x, y: p1.y + p2.y});
  * @returns The scaled point.
  */
 const scale = (p: Point, scale: number): Point => ({x: p.x / scale, y: p.y / scale});
+
+/**
+ * Calculate the view from the canvas size and canvas view.
+ * 
+ * @param - The size of the canvas.
+ * @param - The canvas view.
+ * @returns The view.
+ */
+const calculateView = ({width, height}: CanvasSize, {offset: {x, y}, scale}: CanvasView): View => {
+  x *= -1;
+  y *= -1;
+  
+  const left: number = Math.round(x);
+  const right: number = Math.round(2 * x + (width / scale) - x);
+  const top: number = Math.round(y);
+  const bottom: number = Math.round(2 * y + (height / scale) - y);
+
+  return {top, bottom, left, right};
+}
+
+/**
+ * Calculate the canvas view from the canvas size and bounding box.
+ * 
+ * @param - The size of the canvas.
+ * @param - The view.
+ * @returns The canvas view.
+ */
+const calculateCanvasView = ({width, height}: CanvasSize, {top, bottom, left, right}: View): CanvasView => {
+  // Calculate the dimensions of the box.
+  const boxWidth: number = right - left;
+  const boxHeight: number = bottom - top - 4;
+  
+  // Scale to the min of width or height.
+  const scale = Math.min(width / boxWidth, height / boxHeight);
+
+  // Calculate the scaled offset.
+  let x = left + (right - left) / 2 - width / (2 * scale);
+  let y = top + boxHeight / 2 - height / (2 * scale);
+
+  // Reverse the offset signs.
+  x *= -1;
+  y *= -1;
+
+  return {scale, offset: {x, y}};
+}

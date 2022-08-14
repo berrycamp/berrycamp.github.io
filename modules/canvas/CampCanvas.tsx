@@ -1,8 +1,7 @@
 import {Button, Theme, useTheme} from "@mui/material";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
-import AutoSizer, {Size} from "react-virtualized-auto-sizer";
+import AutoSizer from "react-virtualized-auto-sizer";
 import {Point, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
-import {BoundingBox} from "~/modules/data/dataTypes";
 import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, url}) => {
@@ -10,8 +9,10 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
   const background = theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[200];
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [size, setSize] = useState<Size>();
+
   const [imgs, setImgs] = useState<{img: HTMLImageElement, position: Point}[]>([]);
+
+  const [currView, setCurrView] = useState<View>();
 
   /**
    * Draw images to the canvas
@@ -28,38 +29,27 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
    * Save the canvas content as a full image.
    */
   const save = useCallback(async () => {
+    console.log(currView);
+    if (currView === undefined) {
+      return;
+    }
+
     const virtualCanvas: HTMLCanvasElement = document.createElement("canvas");
     const virtualContext: CanvasRenderingContext2D | null = virtualCanvas.getContext("2d");
     if (virtualContext === null) {
       return;
     }
 
-    const maxPx = 268435456;
-    const maxSizePx = 32767;
-    const sizeFixPx = 16384;
-
-    const {left, right, top, bottom} = boundingBox;
-
-    const size: Size = {
-      width: right - left,
-      height: bottom - top,
-    };
-
-    if (
-      size.width > maxSizePx
-      || size.height > maxSizePx
-      || (size.width * size.height > maxPx)
-    ) {
-      size.width = sizeFixPx;
-      size.height = sizeFixPx;
+    const {left, right, top, bottom} = currView;
+    const width: number = right - left;
+    const height: number = bottom - top;
+    if (width * height > 268435456) {
+      throw Error("Too large");
     }
 
-    virtualCanvas.width = size.width;
-    virtualCanvas.height = size.height;
-
-    const {offset, scale} = calculateView(size, boundingBox);
-    virtualContext.scale(scale, scale);
-    virtualContext.translate(offset.x, offset.y);
+    virtualCanvas.width = width;
+    virtualCanvas.height = height;
+    virtualContext.translate(-left, -top);
 
     imgs.forEach(({img, position: {x, y}}) => virtualContext.drawImage(img, x, y));
 
@@ -67,7 +57,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
     link.href = virtualCanvas.toDataURL("data:image/png");
     link.download = name;
     link.click();
-  }, [boundingBox, imgs, name])
+  }, [currView, imgs, name])
 
   /**
    * Load the room images.
@@ -82,10 +72,10 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
     });
   }, [rooms]);
 
-  const {redraw, setView} = useExtentCanvas({
+  const {setView, redraw} = useExtentCanvas({
     canvasRef,
-    ...size && {view: calculateView(size, boundingBox)},
     onDraw: handleDraw,
+    onViewChange: setCurrView,
   });
 
   /**
@@ -93,26 +83,21 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
    * 
    * @param size The new size.
    */
-  const handleResize = (size: Size) => {
-    setSize(size);
-    redraw();
-  };
+  // const handleResize = (): void => {
+  //   redraw();
+  // };
 
   /**
    * Redraw on resize;
    */
   useEffect(() => {
-    if (size === undefined) {
-      return;
-    }
-
-    setView(calculateView(size, boundingBox));
-    redraw();
-  }, [boundingBox, redraw, setView, size]);
+    setView(boundingBox);
+    setCurrView(boundingBox);
+  }, [boundingBox, redraw, setView]);
 
   return (
     <>
-      <AutoSizer style={{width: "100%",  height: "100%"}} onResize={handleResize} defaultWidth={320} defaultHeight={180}>
+      <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
         {({width, height}) => (
           <canvas
             ref={canvasRef}
@@ -132,10 +117,3 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({name, rooms, boundingBox, 
     </>
   );
 });
-
-const calculateView = ({width, height}: Size, {top, bottom, left, right}: BoundingBox): View => {
-  const scale = Math.min(height / (bottom - top - 4), width / (right - left));
-  const x = -((left + ((right - left) / 2)) - (width / (2 * scale)));
-  const y = -((top + ((bottom - top - 4) / 2)) - (height / (2 * scale)));
-  return {scale, offset: {x, y}};
-}

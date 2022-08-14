@@ -21,8 +21,6 @@ export const fetchArea = async (areaId: string): Promise<Area> => {
   if (area === undefined) {
     area = await fetchJson<Area>(`${baseDataUrl}/${areaId}.json`);
     areaCache[areaId] = area;
-  } else {
-    console.log("fetched from cache");
   }
   return area;
 };
