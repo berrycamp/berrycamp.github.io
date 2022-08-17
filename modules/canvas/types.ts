@@ -1,13 +1,14 @@
-import {BoundingBox, Point} from "../data/dataTypes";
+import {Point, View} from "./useExtentCanvas";
 
 export interface CampCanvasProps {
   name: string;
   url: string;
   rooms: CanvasRoom[];
-  boundingBox: BoundingBox;
+  view: View | undefined;
 }
 
 export interface CanvasRoom {
   position: Point;
+  view: View;
   image: string;
 }

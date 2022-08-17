@@ -33,7 +33,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     if (context === null) {
       return;
     }
-    
+
     context.imageSmoothingEnabled = false;
 
     context.resetTransform();
@@ -116,11 +116,11 @@ export const useExtentCanvas: UseExtentCanvas = ({
       const newDiff: Point = scale(diff(cursorPosRef.current, prevCursorPosRef.current), viewRef.current.scale);
       viewRef.current.offset = add(viewRef.current.offset, newDiff);
 
-      redraw();
-
       if (onViewChange) {
         onViewChange(calculateView(context.canvas, viewRef.current));
       }
+
+      redraw();
     }
 
     /**
@@ -152,11 +152,11 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.offset = newOffset;
       viewRef.current.scale = newScale;
 
-      redraw();
-
       if (onViewChange) {
         onViewChange(calculateView(context.canvas, viewRef.current));
       }
+
+      redraw();
     };
 
     // let prevPinchDistance: number | null = null;
@@ -263,6 +263,7 @@ export type SetViewCallback = (view: View) => void;
 export interface CanvasImage {
   img: CanvasImageSource;
   position: Point;
+  view: View;
 }
 
 const ORIGIN: Point = {x: 0, y: 0};

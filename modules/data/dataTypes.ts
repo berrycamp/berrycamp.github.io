@@ -1,3 +1,5 @@
+import type {CanvasSize, Point, View} from "../canvas";
+
 export interface Area {
   id: string;
   gameId: string;
@@ -54,11 +56,6 @@ export interface Entities {
   cassette: Point[];
 }
 
-export interface Point {
-  x: number;
-  y: number;
-}
-
 export interface SpawnPoint extends Point {
   name?: string;
 }
@@ -71,20 +68,8 @@ export interface BerryPoint extends Point {
   order: number;
 }
 
-export interface BoundingBox {
-  top: number;
-  left: number;
-  bottom: number;
-  right: number;
-}
-
-export interface Box {
-  width: number;
-  height: number;
-}
-
 export interface Canvas {
   position: Point;
-  size: Box;
-  boundingBox: BoundingBox;
+  size: CanvasSize;
+  boundingBox: View;
 }

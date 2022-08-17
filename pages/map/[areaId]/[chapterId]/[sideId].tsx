@@ -4,9 +4,9 @@ import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {useCallback, useMemo, useState} from "react";
-import {CampCanvas, CanvasRoom} from "~/modules/canvas";
+import {CampCanvas, CanvasRoom, View} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
-import {Area, BoundingBox, Chapter, Side} from "~/modules/data/dataTypes";
+import {Area, Chapter, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getChapterImageUrl, getRoomImageUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
@@ -20,7 +20,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRoom, setSelectedRoom] = useState<RoomData | undefined>();
-  const [boundingBox, setBoundingBox] = useState<BoundingBox>(side.boundingBox);
+  const [view, setView] = useState<View | undefined>();
 
   const checkpoints = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint) => {
     const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
@@ -30,9 +30,9 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         if (typeof query.room === "string" && query.room === newRoom.id) {
           setSelectedRoom(newRoom);
           if (typeof query.x === "string" && typeof query.y === "string") {
-            setBoundingBox(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
+            setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
           } else {
-            setBoundingBox(newRoom.canvas.boundingBox);
+            setView(newRoom.canvas.boundingBox);
           }
         }
       }
@@ -42,14 +42,15 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     return prev;
   }, []), [query.room, query.x, query.y, searchValue, side.checkpoints, side.rooms])
 
-  const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(room => ({
-    position: room.canvas.position,
-    image: getRoomImageUrl(area.id, chapter.id, side.id, room.id),
+  const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
+    position,
+    view,
+    image: getRoomImageUrl(area.id, chapter.id, side.id, id),
   })), [area.id, chapter.id, side.id, side.rooms]);
 
-  const handleViewChange = useCallback((box: BoundingBox): void => {
-    setBoundingBox({...box});
-  }, [])
+  const handleViewChange = useCallback((view: View): void => {
+    setView({...view});
+  }, []);
 
   return (
     <>
@@ -128,7 +129,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         <Box flex={1}>
           <CampCanvas
             name={`${area.id}-${chapter.id}-${side.id}.png`}
-            boundingBox={boundingBox}
+            view={view}
             rooms={rooms}
             url={`/map/${area.id}/${chapter.id}/${side.id}`}
           />
