@@ -34,13 +34,15 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
           } else {
             setView(newRoom.canvas.boundingBox);
           }
+        } else {
+          setView(side.boundingBox);
         }
       }
       return prev;
     }, []);
     rooms.length > 0 && prev.push({...checkpoint, rooms});
     return prev;
-  }, []), [query.room, query.x, query.y, searchValue, side.checkpoints, side.rooms])
+  }, []), [query.room, query.x, query.y, searchValue, side.boundingBox, side.checkpoints, side.rooms])
 
   const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
     position,
@@ -128,10 +130,9 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         </Box>
         <Box flex={1}>
           <CampCanvas
-            name={`${area.id}-${chapter.id}-${side.id}.png`}
+            name={`${area.id}-${chapter.id}-${side.id}`}
             view={view}
             rooms={rooms}
-            url={`/map/${area.id}/${chapter.id}/${side.id}`}
           />
         </Box>
       </Box>
@@ -225,6 +226,6 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
 /**
  * Calculate the bounding box for viewing an entity.
  */
-export const getEntityViewBox = ({left, top}: BoundingBox, x: number, y: number): BoundingBox => {
+export const getEntityViewBox = ({left, top}: View, x: number, y: number): View => {
   return {left: left + x - 160, right: left + x + 160, top: top + y - 90, bottom: top + y + 90}
 }

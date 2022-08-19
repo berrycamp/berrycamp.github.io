@@ -2,7 +2,6 @@ import {Point, View} from "./useExtentCanvas";
 
 export interface CampCanvasProps {
   name: string;
-  url: string;
   rooms: CanvasRoom[];
   view: View | undefined;
 }
