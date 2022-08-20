@@ -1,4 +1,4 @@
-import {Clear, Download, Search} from "@mui/icons-material";
+import {Clear, ScreenshotMonitor, Search} from "@mui/icons-material";
 import {Box, Button, Divider, IconButton, TextField} from "@mui/material";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
@@ -201,12 +201,12 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             <Button
               fullWidth
               variant="contained"
-              endIcon={<Download/>}
+              endIcon={!oversized && <ScreenshotMonitor/>}
               sx={{borderRadius: 0}}
               onClick={handleSave}
               disabled={oversized}
             >
-              Download
+              {oversized ? "Oversized" : "Save Image"}
             </Button>
           </Box>
           <Box
