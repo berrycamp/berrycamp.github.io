@@ -12,7 +12,9 @@ export const CampPreferencesProvider: FC = ({children}) => {
   * Retrieve and validate user settings from localstorage.
   */
   useEffect(() => {
-    const storageSettings: ICampSettings = {};
+    const storageSettings: ICampSettings = {
+      showWatermark: true,
+    };
 
     const theme: string | null = localStorage.getItem(THEME_KEY);
     if (theme !== null) {

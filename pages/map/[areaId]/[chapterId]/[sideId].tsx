@@ -32,29 +32,39 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
   const {width, enableResize} = useResize({initialWidth: 400, minWidth: 0});
 
-  const checkpoints = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint) => {
-    const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
-      const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
-      if (!newRoom) {
-        return prev;
-      }
-
-      showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
-      if (typeof query.room === "string" && query.room === newRoom.id) {
-        setSelectedRoom(newRoom);
-        if (typeof query.x === "string" && typeof query.y === "string") {
-          setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
-        } else {
-          setView(newRoom.canvas.boundingBox);
+  const checkpoints = useMemo(() => {
+    let viewNotSet: boolean = true;
+    
+    const checkpoints = side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint) => {
+      const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
+        const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
+        if (!newRoom) {
+          return prev;
         }
-      } else {
-        setView(side.boundingBox);
-      }
+
+        showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
+        if (query.room === newRoom.id && typeof query.room === "string") {
+          setSelectedRoom(newRoom);
+          if (typeof query.x === "string" && typeof query.y === "string") {
+            setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
+          } else {
+            setView(newRoom.canvas.boundingBox);
+          }
+          viewNotSet = false;
+        }
+        return prev;
+      }, []);
+
+      rooms.length > 0 && prev.push({...checkpoint, rooms});
       return prev;
     }, []);
-    rooms.length > 0 && prev.push({...checkpoint, rooms});
-    return prev;
-  }, []), [query.room, query.x, query.y, searchValue, side.boundingBox, side.checkpoints, side.rooms])
+
+    if (viewNotSet) {
+      setView(side.boundingBox);
+    }
+
+    return checkpoints;
+  }, [query.room, query.x, query.y, searchValue, side.boundingBox, side.checkpoints, side.rooms])
 
   const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
     position,
@@ -112,7 +122,18 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
     // Apply logo watermark
     if (showWatermark && size.width >= 320 && size.height >= 184) {
-      const textHeight: number = Math.floor(0.05 * size.height);
+      const minTextHeight = 10;
+      const horizontalScaleFactor = 2.157;
+      const textHeight: number = Math.floor(
+        Math.max(
+          minTextHeight,
+          0.05 * Math.min(
+            size.height,
+            size.width * horizontalScaleFactor,
+          ),
+        ),
+      );
+
       const textPadding: number = Math.floor(0.25 * textHeight);
       context.font = `${textHeight}px Calibri`;
       context.fillStyle = "#FFFFFF"
@@ -122,8 +143,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   
       context.fillText(
         watermark,
-        contentViewRef.current.left + size.width - Math.floor(logoWidth) - textPadding,
-        contentViewRef.current.top + size.height - textPadding * 2,
+        Math.floor(contentViewRef.current.left + size.width - logoWidth - textPadding),
+        Math.floor(contentViewRef.current.top + size.height - textPadding * 1.75),
       );
     }
 
