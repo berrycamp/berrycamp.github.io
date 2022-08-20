@@ -1,11 +1,11 @@
-import {BrightnessAuto, DarkMode, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
+import {BrandingWatermarkSharp, BrightnessAuto, DarkMode, GridViewSharp, LightMode, RectangleSharp, Restore, Settings, ViewListSharp} from "@mui/icons-material";
 import {Box, Divider, Icon, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Tooltip} from "@mui/material";
 import {FC, Fragment, MouseEvent, useState} from "react";
 import {EVEREST_ICON} from "~/modules/layout/everest";
 import {useCampContext} from "~/modules/provide/CampContext";
 
 export const SettingsMenu: FC = () => {
-  const {settings, changeTheme, toggleListMode, toggleCozyMode, setPort} = useCampContext();
+  const {settings, changeTheme, toggleListMode, setPort, toggleShowWatermark} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -50,13 +50,17 @@ export const SettingsMenu: FC = () => {
           </ListItemIcon>
           {settings.listMode ? "List view" : "Grid view"}
         </MenuItem>
-        {/* <Divider />
-        <MenuItem onClick={toggleCozyMode}>
+        <MenuItem onClick={toggleShowWatermark}>
           <ListItemIcon>
-            {settings.cozyMode ? <Fireplace fontSize="small" /> : <CropDinSharp sx={{fontSize: "1.4rem", marginLeft: "-1px"}} />}
+            {settings.showWatermark ? (
+              <BrandingWatermarkSharp fontSize="small"/>
+            ) : (
+              <RectangleSharp fontSize="small" sx={{transform: "scale(1.1)"}}/>
+            )}
           </ListItemIcon>
-          {settings.cozyMode ? "Cozy mode on" : "Cozy mode off"}
-        </MenuItem> */}
+          {settings.showWatermark ? "Watermark" : "No Watermark"}
+        </MenuItem>
+        
         <Divider />
         <ListItem>
           <Tooltip title="Everest Debug RC Port for opening rooms in game" enterDelay={500}>

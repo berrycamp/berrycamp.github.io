@@ -220,11 +220,15 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
-    const observer = new ResizeObserver(debounce(redraw, 10));
+    const resize = debounce(redraw, 10);
+
+    const observer = new ResizeObserver(resize);
     observer.observe(context.canvas);
+    window.addEventListener("resize", resize);
 
     return () => {
       observer.disconnect();
+      window.removeEventListener("resize", resize);
     }
   }, [context, redraw]);
 

@@ -13,13 +13,16 @@ import {fetchArea, getChapterImageUrl, getRoomImageUrl} from "~/modules/fetch/da
 import {CampHead} from "~/modules/head/CampHead";
 import {AreaData, ChapterData, CheckpointData, CheckpointDataExtended, MapRoomMenu, RoomData, SideData} from "~/modules/map";
 import {EntityList} from "~/modules/map/InfoMenu";
+import {useCampContext} from "~/modules/provide/CampContext";
 import {generateRoomTags} from "~/modules/room";
 import {CampPage} from "~/pages/_app";
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
-  const {query, replace} = useRouter();
+  const {settings: {showWatermark}} = useCampContext();
+  const {query} = useRouter();
 
   const [searchValue, setSearchValue] = useState<string>("");
+
   const [selectedRoom, setSelectedRoom] = useState<RoomData | undefined>();
   const [view, setView] = useState<View | undefined>();
   const [oversized, setOversized] = useState<boolean>(false);
@@ -107,26 +110,28 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
       context.drawImage(img, x, y);
     });
 
-
-    // context.font = "100px Calibri";
-    // context.fillStyle = "#FFFFFF"
-
-    // const watermark: string = "🍓camp";
-    // const watermarkWidth: TextMetrics = context.measureText(watermark);
-
-    // console.log(context.measureText(watermark));
-    // context.fillText(
-    //   "🍓camp",
-    //   -contentViewRef.current.left + (size.width / 2) - Math.floor(watermarkWidth.width),
-    //   // -viewRef.current.top - size.height + 5,
-    //   0,
-    // );
+    // Apply logo watermark
+    if (showWatermark && size.width >= 320 && size.height >= 184) {
+      const textHeight: number = Math.floor(0.05 * size.height);
+      const textPadding: number = Math.floor(0.25 * textHeight);
+      context.font = `${textHeight}px Calibri`;
+      context.fillStyle = "#FFFFFF"
+  
+      const watermark: string = "🍓camp";
+      const {width: logoWidth}: TextMetrics = context.measureText(watermark);
+  
+      context.fillText(
+        watermark,
+        contentViewRef.current.left + size.width - Math.floor(logoWidth) - textPadding,
+        contentViewRef.current.top + size.height - textPadding * 2,
+      );
+    }
 
     const link: HTMLAnchorElement = document.createElement("a");
     link.href = virtualCanvas.toDataURL("data:image/png");
     link.download = `${area.id}-${chapter.id}-${side.id}_${size.width}x${size.height}.png`;
     link.click();
-  }, [area.id, chapter.id, side.id]);
+  }, [area.id, chapter.id, side.id, showWatermark]);
 
   return (
     <>
@@ -142,6 +147,30 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             flexDirection="column"
             style={{width}}
           >
+            <TextField
+              fullWidth
+              id="room-search"
+              size="small"
+              variant="standard"
+              placeholder="Search rooms"
+              value={searchValue}
+              onChange={({target: {value}}) => setSearchValue(value)}
+              sx={{p: 1}}
+              InputProps={{
+                endAdornment: (
+                  <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setSearchValue("")}
+                      aria-label="clear search"
+                    >
+                      <Clear fontSize="small"/>
+                    </IconButton>
+                    <Search color="primary" fontSize="small"/>
+                  </Box>
+                ),
+              }}
+            />
             <Box
               height="70%"
               display="flex"
@@ -150,30 +179,6 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
               minHeight={0}
               sx={{overflowX: "hidden", overflowY: "auto", width: "100%"}}
             >
-              <TextField
-                fullWidth
-                id="room-search"
-                size="small"
-                variant="standard"
-                placeholder="Search rooms"
-                value={searchValue}
-                onChange={({target: {value}}) => setSearchValue(value)}
-                sx={{p: 2}}
-                InputProps={{
-                  endAdornment: (
-                    <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
-                      <IconButton
-                        size="small"
-                        onClick={() => setSearchValue("")}
-                        aria-label="clear search"
-                      >
-                        <Clear fontSize="small"/>
-                      </IconButton>
-                      <Search color="primary" fontSize="small"/>
-                    </Box>
-                  ),
-                }}
-              />
               <MapRoomMenu
                 area={area}
                 chapter={chapter}
