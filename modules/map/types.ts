@@ -35,9 +35,8 @@ export interface CheckpointData {
 }
 
 export interface CheckpointDataExtended extends CheckpointData {
+  id: number;
   rooms: RoomData[];
 }
-
-export type OnViewChangeFn = (box: View) => void;
 
 export type OnRoomSelectFn = (room: RoomData) => void;

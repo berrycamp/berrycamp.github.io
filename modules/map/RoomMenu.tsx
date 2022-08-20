@@ -1,8 +1,9 @@
 import {ExpandLess, ExpandMore, Info, RocketLaunch} from "@mui/icons-material";
 import {Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
+import {useRouter} from "next/router";
 import {FC, memo, useEffect, useRef, useState} from "react";
-import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, OnViewChangeFn, RoomData, SideData} from ".";
+import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, RoomData, SideData} from ".";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
 
@@ -11,13 +12,18 @@ interface MapRoomMenuProps {
   chapter: ChapterData;
   side: SideData;
   checkpoints: CheckpointDataExtended[];
-  onViewChange: OnViewChangeFn;
   selectedRoom: string;
   onRoomSelect: OnRoomSelectFn
 }
 
-export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, checkpoints, onViewChange, selectedRoom, onRoomSelect}) => {
+export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, checkpoints, selectedRoom, onRoomSelect}) => {
   const teleportParams = `?area=${area.gameId}/${chapter.gameId}&side=${side.id}`;
+  const router = useRouter();
+
+  const handleViewChange = (): void => {
+    const {areaId, chapterId, sideId} = router.query
+    router.replace({query: {areaId, chapterId, sideId}}, undefined, {shallow: true});
+  }
 
   return (
     <>
@@ -32,7 +38,7 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, che
             </Link>
           )}
         >
-          <ListItemButton onClick={() => onViewChange(side.boundingBox)} sx={{overflow: "hidden", textOverflow: "ellipsis"}}>
+          <ListItemButton onClick={handleViewChange} sx={{overflow: "hidden", textOverflow: "ellipsis"}}>
             <ListItemText>{chapter.name} - {side.name} side</ListItemText>
           </ListItemButton>
         </ListItem>
@@ -42,7 +48,6 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, che
           <CheckpointItem
             key={index}
             checkpoint={checkpoint}
-            onViewChange={onViewChange}
             onRoomSelect={onRoomSelect}
             selectedRoom={selectedRoom}
             teleportParams={teleportParams}
@@ -55,25 +60,26 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, che
 
 interface CheckpointItemProps {
   checkpoint: CheckpointDataExtended;
-  onViewChange: OnViewChangeFn;
   selectedRoom: string;
   onRoomSelect: OnRoomSelectFn;
   teleportParams: string;
 }
 
-export const CheckpointItem: FC<CheckpointItemProps> = ({checkpoint, onViewChange, onRoomSelect, selectedRoom, teleportParams}) => {
+export const CheckpointItem: FC<CheckpointItemProps> = ({checkpoint, onRoomSelect, selectedRoom, teleportParams}) => {
   const [open, setOpen] = useState<boolean>(true);
+  const router = useRouter();
 
-  const handleClick = (): void => {
+  const handleViewChange = (): void => {
     setOpen(prev => !prev);
-    onViewChange(checkpoint.boundingBox)
+    const {areaId, chapterId, sideId} = router.query;
+    router.replace({query: {areaId, chapterId, sideId, checkpoint: checkpoint.id}}, undefined, {shallow: true});
   }
 
   return (
     <>
       <ListItemButton
         key={checkpoint.name}
-        onClick={handleClick}
+        onClick={handleViewChange}
         sx={{whiteSpace: "nowrap"}}
       >
         <ListItemText>{checkpoint.name}</ListItemText>
@@ -82,14 +88,13 @@ export const CheckpointItem: FC<CheckpointItemProps> = ({checkpoint, onViewChang
       <Collapse in={open} unmountOnExit>
         <List dense disablePadding>
           {checkpoint.rooms.map(room => (
-           <RoomItem
-            key={room.id}
-            room={room}
-            onViewChange={onViewChange}
-            selectedRoom={selectedRoom}
-            onRoomSelect={onRoomSelect}
-            teleportParams={teleportParams}
-           />
+            <RoomItem
+              key={room.id}
+              room={room}
+              selectedRoom={selectedRoom}
+              onRoomSelect={onRoomSelect}
+              teleportParams={teleportParams}
+            />
           ))}
         </List>
       </Collapse>
@@ -99,19 +104,20 @@ export const CheckpointItem: FC<CheckpointItemProps> = ({checkpoint, onViewChang
 
 interface RoomItemProps {
   room: RoomData;
-  onViewChange: OnViewChangeFn;
   selectedRoom: string;
   onRoomSelect: OnRoomSelectFn;
   teleportParams: string
 }
 
-export const RoomItem: FC<RoomItemProps> = ({room, onViewChange, onRoomSelect, selectedRoom, teleportParams}) => {
+export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, teleportParams}) => {
+  const router = useRouter();
+
   const {settings: {port}} = useCampContext();
   const ref = useRef<HTMLLIElement | null>(null);
   const selected: boolean = selectedRoom === room.id;
 
   const handleClick = (): void => {
-    onViewChange(room.canvas.boundingBox)
+    router.replace({query: {room: room.id, areaId: "celeste", chapterId: "city", sideId: "a"}}, undefined, {shallow: true});
     onRoomSelect(room);
   };
 

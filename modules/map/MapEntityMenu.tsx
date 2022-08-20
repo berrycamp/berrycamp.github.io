@@ -1,43 +1,31 @@
-import {ExpandLess, ExpandMore, InsertLink, RocketLaunch} from "@mui/icons-material";
+import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
 import {Collapse, IconButton, Link as MuiLink, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
+import {useRouter} from "next/router";
 import {FC, memo, useState} from "react";
-import {OnViewChangeFn, RoomData} from ".";
-import {Point, View} from "../canvas";
+import {RoomData} from ".";
+import {Point} from "../canvas";
 import {BerryPoint} from "../data/dataTypes";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
 
-interface EntityListProps {
-  areaId: string;
+interface MapEntityMenuProps {
   areaGameId: string;
-  chapterId: string;
   chapterGameId: string;
+  areaId: string;
+  chapterId: string;
   sideId: string;
   room: RoomData;
-  onViewChange: OnViewChangeFn;
   teleportParams?: string;
 }
 
-export const EntityList: FC<EntityListProps> = memo(({areaId, areaGameId, chapterId, chapterGameId, sideId, room, onViewChange}) => {
+export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterGameId, areaId, chapterId, sideId, room}) => {
   const teleportParams: string = `?area=${areaGameId}/${chapterGameId}&side=${sideId}&level=${room.id}`
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_CAMP_URL}/map/${areaId}/${chapterId}/${sideId}?room=${room.id}`);
-  }
 
   return (
     <>
       <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
-        <ListItem
-          secondaryAction={(
-            <Tooltip title="Copy room map link" placement="right">
-              <IconButton size="small" onClick={handleCopyLink}>
-                <InsertLink fontSize="small"/>
-              </IconButton>
-            </Tooltip>
-          )}
-        >
+        <ListItem>
           <Link passHref href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}>
             <MuiLink underline="hover" color="inherit">
               {room.id}{room.name && ` - ${room.name}`}
@@ -47,38 +35,30 @@ export const EntityList: FC<EntityListProps> = memo(({areaId, areaGameId, chapte
       </List>
       <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
         {room.entities.spawn && (
-          <EntityGroup
+          <MapEntityMenuGroup
             name="Spawns"
             entities={room.entities.spawn}
-            roomBox={room.canvas.boundingBox}
-            onViewChange={onViewChange}
             createItemName={(({x, y, name}: Record<string, unknown>) => `(${x}, ${y})${name ? ` - ${name}` : ""}`) as never}
             teleportParams={teleportParams}
           />
         )}
         {room.entities.berry && (
-          <EntityGroup
+          <MapEntityMenuGroup
             name="Strawberries"
             entities={room.entities.berry}
-            roomBox={room.canvas.boundingBox}
-            onViewChange={onViewChange}
             createItemName={((berry: BerryPoint) => `${room.id}:${berry.id}`) as never}
           />
         )}
         {room.entities.cassette && room.entities.cassette[0] && (
-          <EntityItem
+          <MapEntityMenuItem
             name="Cassette"
             entity={room.entities.cassette[0]}
-            roomBox={room.canvas.boundingBox}
-            onViewChange={onViewChange}
           />
         )}
         {room.entities.heart && room.entities.heart[0] && (
-          <EntityItem
+          <MapEntityMenuItem
             name="Crystal Heart"
             entity={room.entities.heart[0]}
-            roomBox={room.canvas.boundingBox}
-            onViewChange={onViewChange}
           />
         )}
       </List>
@@ -86,16 +66,19 @@ export const EntityList: FC<EntityListProps> = memo(({areaId, areaGameId, chapte
   );
 });
 
-interface EntityGroupProps {
+interface MapEntityMenuGroupProps {
   name: string;
   entities: Point[];
-  roomBox: View;
-  onViewChange: OnViewChangeFn;
   createItemName: (entity: Point, index: number) => string;
   teleportParams?: string;
 }
 
-export const EntityGroup: FC<EntityGroupProps> = ({name, entities, roomBox, onViewChange, createItemName, teleportParams}) => {
+export const MapEntityMenuGroup: FC<MapEntityMenuGroupProps> = ({
+  name,
+  entities,
+  createItemName,
+  teleportParams,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = (): void => {
@@ -111,12 +94,10 @@ export const EntityGroup: FC<EntityGroupProps> = ({name, entities, roomBox, onVi
       <Collapse in={open}>
         <List dense disablePadding>
           {entities.map((entity, index) => (
-            <EntityItem
+            <MapEntityMenuItem
               key={index}
               name={createItemName(entity, index)}
               entity={entity}
-              roomBox={roomBox}
-              onViewChange={onViewChange}
               indent={3}
               {...teleportParams && {teleportParams}}
             />
@@ -127,27 +108,25 @@ export const EntityGroup: FC<EntityGroupProps> = ({name, entities, roomBox, onVi
   )
 }
 
-interface EntityItemProps {
+interface MapEntityMenuItemProps {
   name: string;
   entity: Point;
-  roomBox: View;
   indent?: number;
-  onViewChange: OnViewChangeFn;
   teleportParams?: string;
 }
 
-export const EntityItem: FC<EntityItemProps> = ({
+export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   name,
   entity: {x, y},
-  roomBox: {left, top},
-  onViewChange,
   indent,
   teleportParams,
 }) => { 
   const {settings: {port}} = useCampContext();
+  const router = useRouter();
 
   const handleClick = () => {
-    onViewChange({left: left + x - 160, right: left + x + 160, top: top + y - 90, bottom: top + y + 90});
+    const {areaId, chapterId, sideId, room} = router.query;
+    router.replace({query: {areaId, chapterId, sideId, room, x, y}}, undefined, {shallow: true});
   }
 
   const handleTeleport = () => {

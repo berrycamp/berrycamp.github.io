@@ -12,7 +12,7 @@ import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getChapterImageUrl, getRoomImageUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {AreaData, ChapterData, CheckpointData, CheckpointDataExtended, MapRoomMenu, RoomData, SideData} from "~/modules/map";
-import {EntityList} from "~/modules/map/InfoMenu";
+import {MapEntityMenu} from "~/modules/map/MapEntityMenu";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {generateRoomTags} from "~/modules/room";
 import {CampPage} from "~/pages/_app";
@@ -35,7 +35,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   const checkpoints = useMemo(() => {
     let viewNotSet: boolean = true;
     
-    const checkpoints = side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint) => {
+    const checkpoints = side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint, index) => {
       const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
         const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
         if (!newRoom) {
@@ -43,7 +43,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         }
 
         showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
-        if (query.room === newRoom.id && typeof query.room === "string") {
+        if (query.room === newRoom.id) {
           setSelectedRoom(newRoom);
           if (typeof query.x === "string" && typeof query.y === "string") {
             setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
@@ -51,11 +51,14 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             setView(newRoom.canvas.boundingBox);
           }
           viewNotSet = false;
+        } else if (query.checkpoint === String(index + 1)) {
+          setView(checkpoint.boundingBox);
+          viewNotSet = false;
         }
         return prev;
       }, []);
 
-      rooms.length > 0 && prev.push({...checkpoint, rooms});
+      rooms.length > 0 && prev.push({...checkpoint, id: index + 1, rooms});
       return prev;
     }, []);
 
@@ -64,7 +67,16 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     }
 
     return checkpoints;
-  }, [query.room, query.x, query.y, searchValue, side.boundingBox, side.checkpoints, side.rooms])
+  }, [
+    query.checkpoint,
+    query.room,
+    query.x,
+    query.y,
+    searchValue,
+    side.boundingBox,
+    side.checkpoints,
+    side.rooms
+  ]);
 
   const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
     position,
@@ -205,7 +217,6 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
                 chapter={chapter}
                 side={side}
                 checkpoints={checkpoints}
-                onViewChange={handleViewChange}
                 selectedRoom={selectedRoom?.id ?? ""}
                 onRoomSelect={setSelectedRoom}
               />
@@ -213,14 +224,13 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             <Divider sx={{borderBottomWidth: 4}}/>
             <Box sx={{overflowY: "auto", overflowX: "hidden", height: "30%"}}>
               {selectedRoom && (
-                <EntityList
+                <MapEntityMenu
                   areaId={area.id}
                   areaGameId={area.gameId}
                   chapterId={chapter.id}
                   chapterGameId={chapter.gameId}
                   sideId={side.id}
                   room={selectedRoom}
-                  onViewChange={handleViewChange}
                 />
               )}
             </Box>
@@ -291,6 +301,16 @@ interface SideMapPageProps {
   chapter: ChapterData;
   side: SideData;
 };
+
+export interface MapParams {
+  areaId: string;
+  chapterId: string;
+  sideId: string;
+}
+
+export interface MapRoomParams extends MapParams {
+  room: string;
+}
 
 export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams> = async ({params}) => {
   if (params === undefined) {
