@@ -1,9 +1,12 @@
-import {Point, View} from "./useExtentCanvas";
+import {MutableRefObject} from "react";
+import {CanvasImage, Point, View} from "./useExtentCanvas";
 
 export interface CampCanvasProps {
-  name: string;
   rooms: CanvasRoom[];
   view: View | undefined;
+  imagesRef: MutableRefObject<CanvasImage[]>;
+  contentViewRef: MutableRefObject<View | undefined>;
+  onViewChange: () => void;
 }
 
 export interface CanvasRoom {

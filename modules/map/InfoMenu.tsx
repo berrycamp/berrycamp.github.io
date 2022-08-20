@@ -1,10 +1,10 @@
 import {ExpandLess, ExpandMore, InsertLink, RocketLaunch} from "@mui/icons-material";
 import {Collapse, IconButton, Link as MuiLink, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
-import {FC, useState} from "react";
+import {FC, memo, useState} from "react";
 import {OnViewChangeFn, RoomData} from ".";
-import {Point} from "../canvas";
-import {BerryPoint, BoundingBox} from "../data/dataTypes";
+import {Point, View} from "../canvas";
+import {BerryPoint} from "../data/dataTypes";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
 
@@ -19,7 +19,7 @@ interface EntityListProps {
   teleportParams?: string;
 }
 
-export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, chapterGameId, sideId, room, onViewChange}) => {
+export const EntityList: FC<EntityListProps> = memo(({areaId, areaGameId, chapterId, chapterGameId, sideId, room, onViewChange}) => {
   const teleportParams: string = `?area=${areaGameId}/${chapterGameId}&side=${sideId}&level=${room.id}`
 
   const handleCopyLink = () => {
@@ -84,12 +84,12 @@ export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, 
       </List>
     </>
   );
-}
+});
 
 interface EntityGroupProps {
   name: string;
   entities: Point[];
-  roomBox: BoundingBox;
+  roomBox: View;
   onViewChange: OnViewChangeFn;
   createItemName: (entity: Point, index: number) => string;
   teleportParams?: string;
@@ -130,7 +130,7 @@ export const EntityGroup: FC<EntityGroupProps> = ({name, entities, roomBox, onVi
 interface EntityItemProps {
   name: string;
   entity: Point;
-  roomBox: BoundingBox;
+  roomBox: View;
   indent?: number;
   onViewChange: OnViewChangeFn;
   teleportParams?: string;

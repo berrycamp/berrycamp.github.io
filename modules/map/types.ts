@@ -1,4 +1,5 @@
-import {BoundingBox, Room} from './../data/dataTypes';
+import {View} from '../canvas';
+import {Room} from './../data/dataTypes';
 
 export interface AreaData {
   id: string;
@@ -16,7 +17,7 @@ export interface ChapterData {
 export interface SideData {
   id: string;
   name: string;
-  boundingBox: BoundingBox;
+  boundingBox: View;
   rooms: RoomData[];
   checkpoints: CheckpointData[];
 }
@@ -29,7 +30,7 @@ export interface RoomData extends Room {
 
 export interface CheckpointData {
   name: string;
-  boundingBox: BoundingBox;
+  boundingBox: View;
   roomOrder: string[];
 }
 
@@ -37,6 +38,6 @@ export interface CheckpointDataExtended extends CheckpointData {
   rooms: RoomData[];
 }
 
-export type OnViewChangeFn = (box: BoundingBox) => void;
+export type OnViewChangeFn = (box: View) => void;
 
 export type OnRoomSelectFn = (room: RoomData) => void;

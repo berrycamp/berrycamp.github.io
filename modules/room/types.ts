@@ -1,4 +1,4 @@
-import {Box, Entities} from "../data/dataTypes";
+import {Entities} from "../data/dataTypes";
 
 export interface AreaData {
   id: string;

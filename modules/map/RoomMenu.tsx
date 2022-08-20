@@ -1,7 +1,7 @@
-import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
-import {Button, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
+import {ExpandLess, ExpandMore, Info, RocketLaunch} from "@mui/icons-material";
+import {Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
 import Link from "next/link";
-import {FC, useEffect, useRef, useState} from "react";
+import {FC, memo, useEffect, useRef, useState} from "react";
 import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, OnViewChangeFn, RoomData, SideData} from ".";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
@@ -16,7 +16,7 @@ interface MapRoomMenuProps {
   onRoomSelect: OnRoomSelectFn
 }
 
-export const MapRoomMenu: FC<MapRoomMenuProps> = ({area, chapter, side, checkpoints, onViewChange, selectedRoom, onRoomSelect}) => {
+export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, checkpoints, onViewChange, selectedRoom, onRoomSelect}) => {
   const teleportParams = `?area=${area.gameId}/${chapter.gameId}&side=${side.id}`;
 
   return (
@@ -26,7 +26,9 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = ({area, chapter, side, checkpoi
           disablePadding
           secondaryAction={(
             <Link passHref href={`/${area.id}/${chapter.id}?side=${side.id}`}>
-              <Button component="a" size="small" variant="contained">Details</Button>
+              <IconButton component="a" size="small" color="primary">
+                <Info fontSize="small"/>
+              </IconButton>
             </Link>
           )}
         >
@@ -49,7 +51,7 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = ({area, chapter, side, checkpoi
       </List>
     </>
   );
-};
+});
 
 interface CheckpointItemProps {
   checkpoint: CheckpointDataExtended;

@@ -1,11 +1,12 @@
-import {Clear, Search} from "@mui/icons-material";
-import {Box, Divider, IconButton, TextField} from "@mui/material";
+import {Clear, Download, Search} from "@mui/icons-material";
+import {Box, Button, Divider, IconButton, TextField} from "@mui/material";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
-import {useCallback, useMemo, useState} from "react";
-import {CampCanvas, CanvasRoom, View} from "~/modules/canvas";
+import {useCallback, useMemo, useRef, useState} from "react";
+import {CampCanvas, CanvasImage, CanvasRoom, CanvasSize, View, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
+import {useResize} from "~/modules/common/useResize";
 import {Area, Chapter, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getChapterImageUrl, getRoomImageUrl} from "~/modules/fetch/dataApi";
@@ -16,27 +17,35 @@ import {generateRoomTags} from "~/modules/room";
 import {CampPage} from "~/pages/_app";
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
-  const {query} = useRouter();
+  const {query, replace} = useRouter();
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRoom, setSelectedRoom] = useState<RoomData | undefined>();
   const [view, setView] = useState<View | undefined>();
+  const [oversized, setOversized] = useState<boolean>(false);
+
+  const imagesRef = useRef<CanvasImage[]>([]);
+  const contentViewRef = useRef<View | undefined>();
+
+  const {width, enableResize} = useResize({initialWidth: 400, minWidth: 0});
 
   const checkpoints = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint) => {
     const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
       const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
-      if (newRoom) {
-        showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
-        if (typeof query.room === "string" && query.room === newRoom.id) {
-          setSelectedRoom(newRoom);
-          if (typeof query.x === "string" && typeof query.y === "string") {
-            setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
-          } else {
-            setView(newRoom.canvas.boundingBox);
-          }
+      if (!newRoom) {
+        return prev;
+      }
+
+      showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
+      if (typeof query.room === "string" && query.room === newRoom.id) {
+        setSelectedRoom(newRoom);
+        if (typeof query.x === "string" && typeof query.y === "string") {
+          setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
         } else {
-          setView(side.boundingBox);
+          setView(newRoom.canvas.boundingBox);
         }
+      } else {
+        setView(side.boundingBox);
       }
       return prev;
     }, []);
@@ -50,9 +59,74 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     image: getRoomImageUrl(area.id, chapter.id, side.id, id),
   })), [area.id, chapter.id, side.id, side.rooms]);
 
+  /**
+   * Handle setting the view.
+   */
   const handleViewChange = useCallback((view: View): void => {
     setView({...view});
   }, []);
+
+  /**
+   * Handle changes to the canvas view for save button updates.
+   */
+  const handleContentViewChange = useCallback(() => {
+    if (contentViewRef.current === undefined) {
+      return;
+    }
+
+    setOversized(oversizedCanvas(calculateCanvasSize(contentViewRef.current)));
+  }, []);
+
+  /**
+   * Draw images to a virtual canvas to save the canvas view as a full res image.
+   */
+  const handleSave = useCallback(async () => {
+    if (contentViewRef.current === undefined) {
+      return;
+    }
+
+    const size: CanvasSize = calculateCanvasSize(contentViewRef.current)
+    if (oversizedCanvas(size)) {
+      return;
+    }
+
+    const virtualCanvas: HTMLCanvasElement = document.createElement("canvas");
+    const context: CanvasRenderingContext2D | null = virtualCanvas.getContext("2d");
+    if (context === null) {
+      return;
+    }
+
+    virtualCanvas.width = size.width;
+    virtualCanvas.height = size.height;
+    context.translate(-contentViewRef.current.left, -contentViewRef.current.top);
+    
+    imagesRef.current.forEach(({img, position: {x, y}, view}) => {
+      if (contentViewRef.current === undefined || !viewsCollide(view, contentViewRef.current)) {
+        return;
+      }
+      context.drawImage(img, x, y);
+    });
+
+
+    // context.font = "100px Calibri";
+    // context.fillStyle = "#FFFFFF"
+
+    // const watermark: string = "🍓camp";
+    // const watermarkWidth: TextMetrics = context.measureText(watermark);
+
+    // console.log(context.measureText(watermark));
+    // context.fillText(
+    //   "🍓camp",
+    //   -contentViewRef.current.left + (size.width / 2) - Math.floor(watermarkWidth.width),
+    //   // -viewRef.current.top - size.height + 5,
+    //   0,
+    // );
+
+    const link: HTMLAnchorElement = document.createElement("a");
+    link.href = virtualCanvas.toDataURL("data:image/png");
+    link.download = `${area.id}-${chapter.id}-${side.id}_${size.width}x${size.height}.png`;
+    link.click();
+  }, [area.id, chapter.id, side.id]);
 
   return (
     <>
@@ -61,78 +135,98 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         description="View an interactive fully rendered map."
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Box
-        display="flex"
-        height="100%"
-        overflow="hidden"
-      >
-        <Box
-          display="flex"
-          flexDirection="column"
-          sx={{overflowX: "hidden", overflowY: "auto", resize: "horizontal"}}
-        >
+      <Box display="flex" height="100%" overflow="hidden">
+        <Box display="flex" height="100%">
           <Box
-            height="70%"
             display="flex"
             flexDirection="column"
-            width={300}
-            minHeight={0}
-            sx={{overflowX: "hidden", overflowY: "auto", width: "100%"}}
+            style={{width}}
           >
-            <TextField
-              fullWidth
-              id="room-search"
-              size="small"
-              variant="standard"
-              placeholder="Search rooms"
-              value={searchValue}
-              onChange={({target: {value}}) => setSearchValue(value)}
-              sx={{p: 2}}
-              InputProps={{
-                endAdornment: (
-                  <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
-                    <IconButton
-                      size="small"
-                      onClick={() => setSearchValue("")}
-                      aria-label="clear search"
-                    >
-                      <Clear fontSize="small"/>
-                    </IconButton>
-                    <Search color="primary" fontSize="small"/>
-                  </Box>
-                ),
-              }}
-            />
-            <MapRoomMenu
-              area={area}
-              chapter={chapter}
-              side={side}
-              checkpoints={checkpoints}
-              onViewChange={handleViewChange}
-              selectedRoom={selectedRoom?.id ?? ""}
-              onRoomSelect={setSelectedRoom}
-            />
-          </Box>
-          <Divider sx={{borderBottomWidth: 4}}/>
-          <Box sx={{overflowY: "auto", overflowX: "hidden", height: "30%"}}>
-            {selectedRoom && (
-              <EntityList
-                areaId={area.id}
-                areaGameId={area.gameId}
-                chapterId={chapter.id}
-                chapterGameId={chapter.gameId}
-                sideId={side.id}
-                room={selectedRoom}
-                onViewChange={handleViewChange}
+            <Box
+              height="70%"
+              display="flex"
+              flexDirection="column"
+              width={300}
+              minHeight={0}
+              sx={{overflowX: "hidden", overflowY: "auto", width: "100%"}}
+            >
+              <TextField
+                fullWidth
+                id="room-search"
+                size="small"
+                variant="standard"
+                placeholder="Search rooms"
+                value={searchValue}
+                onChange={({target: {value}}) => setSearchValue(value)}
+                sx={{p: 2}}
+                InputProps={{
+                  endAdornment: (
+                    <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
+                      <IconButton
+                        size="small"
+                        onClick={() => setSearchValue("")}
+                        aria-label="clear search"
+                      >
+                        <Clear fontSize="small"/>
+                      </IconButton>
+                      <Search color="primary" fontSize="small"/>
+                    </Box>
+                  ),
+                }}
               />
-            )}
+              <MapRoomMenu
+                area={area}
+                chapter={chapter}
+                side={side}
+                checkpoints={checkpoints}
+                onViewChange={handleViewChange}
+                selectedRoom={selectedRoom?.id ?? ""}
+                onRoomSelect={setSelectedRoom}
+              />
+            </Box>
+            <Divider sx={{borderBottomWidth: 4}}/>
+            <Box sx={{overflowY: "auto", overflowX: "hidden", height: "30%"}}>
+              {selectedRoom && (
+                <EntityList
+                  areaId={area.id}
+                  areaGameId={area.gameId}
+                  chapterId={chapter.id}
+                  chapterGameId={chapter.gameId}
+                  sideId={side.id}
+                  room={selectedRoom}
+                  onViewChange={handleViewChange}
+                />
+              )}
+            </Box>
+            <Button
+              fullWidth
+              variant="contained"
+              endIcon={<Download/>}
+              sx={{borderRadius: 0}}
+              onClick={handleSave}
+              disabled={oversized}
+            >
+              Download
+            </Button>
           </Box>
+          <Box
+            onPointerDown={enableResize}
+            sx={{
+              cursor: "col-resize",
+              touchAction: "none",
+              width: 4,
+              zIndex: 1,
+              bgcolor: "divider"
+            }}
+          />
         </Box>
         <Box flex={1}>
           <CampCanvas
-            name={`${area.id}-${chapter.id}-${side.id}`}
             view={view}
             rooms={rooms}
+            imagesRef={imagesRef}
+            contentViewRef={contentViewRef}
+            onViewChange={handleContentViewChange}
           />
         </Box>
       </Box>
@@ -229,3 +323,24 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
 export const getEntityViewBox = ({left, top}: View, x: number, y: number): View => {
   return {left: left + x - 160, right: left + x + 160, top: top + y - 90, bottom: top + y + 90}
 }
+
+/**
+ * Calculate the canvas size from a view.
+ * @param view The view.
+ * @returns The canvas size.
+ */
+ const calculateCanvasSize = ({top, bottom, left, right}: View): CanvasSize => ({
+  width: right - left, 
+  height: bottom - top,
+}) 
+
+/**
+ * Determine if the view is too large to render.
+ * 
+ * @param width The image width.
+ * @param height The image height.
+ * @returns If the view is too large.
+ */
+ const oversizedCanvas = ({width, height}: CanvasSize): boolean => {
+  return width * height > 268435456;
+};
