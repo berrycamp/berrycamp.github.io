@@ -117,7 +117,8 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
   const selected: boolean = selectedRoom === room.id;
 
   const handleClick = (): void => {
-    router.replace({query: {room: room.id, areaId: "celeste", chapterId: "city", sideId: "a"}}, undefined, {shallow: true});
+    const {areaId, chapterId, sideId} = router.query;
+    router.replace({query: {areaId, chapterId, sideId, room: room.id}}, undefined, {shallow: true});
     onRoomSelect(room);
   };
 
