@@ -1,9 +1,9 @@
 import {fetchJson} from 'modules/fetch/fetchJson';
 import {Area} from "~/modules/data/dataTypes";
 
-const baseDataUrl = "https://data.berrycamp.com";
+const baseDataUrl = "https://data.berry.camp";
 
-const baseImageUrl = "https://img.berrycamp.com";
+const baseImageUrl = "https://img.berry.camp";
 
 /**
  * Cache the areas.
