@@ -39,6 +39,7 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
             name="Spawns"
             entities={room.entities.spawn}
             createItemName={(({x, y, name}: Record<string, unknown>) => `(${x}, ${y})${name ? ` - ${name}` : ""}`) as never}
+            roomId={room.id}
             teleportParams={teleportParams}
           />
         )}
@@ -46,6 +47,7 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
           <MapEntityMenuGroup
             name="Strawberries"
             entities={room.entities.berry}
+            roomId={room.id}
             createItemName={((berry: BerryPoint) => `${room.id}:${berry.id}`) as never}
           />
         )}
@@ -53,12 +55,14 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
           <MapEntityMenuItem
             name="Cassette"
             entity={room.entities.cassette[0]}
+            roomId={room.id}
           />
         )}
         {room.entities.heart && room.entities.heart[0] && (
           <MapEntityMenuItem
             name="Crystal Heart"
             entity={room.entities.heart[0]}
+            roomId={room.id}
           />
         )}
       </List>
@@ -70,6 +74,7 @@ interface MapEntityMenuGroupProps {
   name: string;
   entities: Point[];
   createItemName: (entity: Point, index: number) => string;
+  roomId: string;
   teleportParams?: string;
 }
 
@@ -77,6 +82,7 @@ export const MapEntityMenuGroup: FC<MapEntityMenuGroupProps> = ({
   name,
   entities,
   createItemName,
+  roomId,
   teleportParams,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -98,6 +104,7 @@ export const MapEntityMenuGroup: FC<MapEntityMenuGroupProps> = ({
               key={index}
               name={createItemName(entity, index)}
               entity={entity}
+              roomId={roomId}
               indent={3}
               {...teleportParams && {teleportParams}}
             />
@@ -111,6 +118,7 @@ export const MapEntityMenuGroup: FC<MapEntityMenuGroupProps> = ({
 interface MapEntityMenuItemProps {
   name: string;
   entity: Point;
+  roomId: string;
   indent?: number;
   teleportParams?: string;
 }
@@ -119,14 +127,15 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   name,
   entity: {x, y},
   indent,
+  roomId,
   teleportParams,
 }) => { 
   const {settings: {port}} = useCampContext();
   const router = useRouter();
 
   const handleClick = () => {
-    const {areaId, chapterId, sideId, room} = router.query;
-    router.replace({query: {areaId, chapterId, sideId, room, x, y}}, undefined, {shallow: true});
+    const {areaId, chapterId, sideId} = router.query;
+    router.replace({query: {areaId, chapterId, sideId, room: roomId, x, y}}, undefined, {shallow: true});
   }
 
   const handleTeleport = () => {

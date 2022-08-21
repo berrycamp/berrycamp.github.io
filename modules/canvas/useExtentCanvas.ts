@@ -7,7 +7,7 @@ export interface CanvasOptions {
   canvasRef: RefObject<HTMLCanvasElement>;
   setView?: SetViewCallback;
   onDraw?: (context: CanvasRenderingContext2D) => void;
-  onViewChange?: (view: View) => void;
+  onViewChange?: OnViewChangeCallback;
 }
 
 /**
@@ -69,7 +69,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     viewRef.current.scale = canvasView.scale;
 
     if (onViewChange) {
-      onViewChange(view);
+      onViewChange(view, "jump");
     }
 
     redraw();
@@ -117,7 +117,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.offset = add(viewRef.current.offset, newDiff);
 
       if (onViewChange) {
-        onViewChange(calculateView(context.canvas, viewRef.current));
+        onViewChange(calculateView(context.canvas, viewRef.current), "move");
       }
 
       redraw();
@@ -153,7 +153,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.scale = newScale;
 
       if (onViewChange) {
-        onViewChange(calculateView(context.canvas, viewRef.current));
+        onViewChange(calculateView(context.canvas, viewRef.current), "zoom");
       }
 
       redraw();
@@ -264,11 +264,18 @@ export interface CanvasView {
 
 export type SetViewCallback = (view: View) => void;
 
+export type OnViewChangeCallback = (view: View, reason: ViewChangeReason) => void
+
 export interface CanvasImage {
   img: CanvasImageSource;
   position: Point;
   view: View;
 }
+
+/**
+ * The reasons the view was changed
+ */
+export type ViewChangeReason = "move" | "zoom" | "jump"
 
 const ORIGIN: Point = {x: 0, y: 0};
 const SCROLL_SENSITIVITY = 320;

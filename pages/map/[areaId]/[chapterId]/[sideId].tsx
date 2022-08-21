@@ -3,8 +3,8 @@ import {Box, Button, Divider, IconButton, TextField} from "@mui/material";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
-import {useCallback, useMemo, useRef, useState} from "react";
-import {CampCanvas, CanvasImage, CanvasRoom, CanvasSize, View, viewsCollide} from "~/modules/canvas";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, CanvasSize, View, ViewChangeReason, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
 import {useResize} from "~/modules/common/useResize";
 import {Area, Chapter, Side} from "~/modules/data/dataTypes";
@@ -19,12 +19,15 @@ import {CampPage} from "~/pages/_app";
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
   const {settings: {showWatermark}} = useCampContext();
-  const {query} = useRouter();
+  const router = useRouter();
+
+  const [channel, setChannel] = useState<BroadcastChannel | undefined>();
+
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
 
   const [searchValue, setSearchValue] = useState<string>("");
 
   const [selectedRoom, setSelectedRoom] = useState<RoomData | undefined>();
-  const [view, setView] = useState<View | undefined>();
   const [oversized, setOversized] = useState<boolean>(false);
 
   const imagesRef = useRef<CanvasImage[]>([]);
@@ -32,69 +35,28 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
   const {width, enableResize} = useResize({initialWidth: 400, minWidth: 0});
 
-  const checkpoints = useMemo(() => {
-    let viewNotSet: boolean = true;
-    
-    const checkpoints = side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint, index) => {
-      const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
-        const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
-        if (!newRoom) {
-          return prev;
-        }
-
-        showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
-        if (query.room === newRoom.id) {
-          setSelectedRoom(newRoom);
-          if (typeof query.x === "string" && typeof query.y === "string") {
-            setView(getEntityViewBox(newRoom.canvas.boundingBox, Number(query.x), Number(query.y)));
-          } else {
-            setView(newRoom.canvas.boundingBox);
-          }
-          viewNotSet = false;
-        } else if (query.checkpoint === String(index + 1)) {
-          setView(checkpoint.boundingBox);
-          viewNotSet = false;
-        }
-        return prev;
-      }, []);
-
-      rooms.length > 0 && prev.push({...checkpoint, id: index + 1, rooms});
+  const checkpoints: CheckpointDataExtended[] = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint, index) => {
+    const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
+      const newRoom: RoomData | undefined = side.rooms.find(room => room.id === order);
+      newRoom && showRoom(searchValue.toLowerCase(), newRoom) && prev.push(newRoom);
       return prev;
     }, []);
 
-    if (viewNotSet) {
-      setView(side.boundingBox);
-    }
-
-    return checkpoints;
-  }, [
-    query.checkpoint,
-    query.room,
-    query.x,
-    query.y,
-    searchValue,
-    side.boundingBox,
-    side.checkpoints,
-    side.rooms
-  ]);
+    rooms.length > 0 && prev.push({...checkpoint, id: index + 1, rooms});
+    return prev;
+  }, []), [searchValue, side.checkpoints, side.rooms]);
 
   const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
+    id,
     position,
     view,
     image: getRoomImageUrl(area.id, chapter.id, side.id, id),
   })), [area.id, chapter.id, side.id, side.rooms]);
 
   /**
-   * Handle setting the view.
+   * Handle changes to the canvas view.
    */
-  const handleViewChange = useCallback((view: View): void => {
-    setView({...view});
-  }, []);
-
-  /**
-   * Handle changes to the canvas view for save button updates.
-   */
-  const handleContentViewChange = useCallback(() => {
+  const handleViewChange = useCallback((reason: ViewChangeReason) => {
     if (contentViewRef.current === undefined) {
       return;
     }
@@ -165,6 +127,91 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     link.download = `${area.id}-${chapter.id}-${side.id}_${size.width}x${size.height}.png`;
     link.click();
   }, [area.id, chapter.id, side.id, showWatermark]);
+
+  /**
+   * Create the broadcast channel for requests to the canvas.
+   */
+  useEffect(() => {
+    const channel: BroadcastChannel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
+    setChannel(channel);
+
+    return () => {
+      channel.close();
+    }
+  }, []);
+
+  /**
+   * Update the canvas from the router query.
+   */
+  useEffect(() => {
+    if (channel === undefined) {
+      return;
+    }
+
+    if (!router.isReady) {
+      return;
+    }
+
+    setIsFirstLoad(false);
+
+    // Go to room if valid.
+    if (typeof router.query.room === "string") {
+      const canvasRoom: CanvasRoom | undefined = rooms.find(room => room.id === router.query.room);
+      if (canvasRoom === undefined) {
+        return;
+      }
+
+      channel.postMessage(typeof router.query.x === "string" && typeof router.query.y === "string"
+        ? getEntityViewBox(canvasRoom.view, Number(router.query.x), Number(router.query.y))
+        : canvasRoom.view);
+      return;
+    }
+    
+    // Go to checkpoint if valid.
+    if (typeof router.query.checkpoint === "string") {
+      const checkpoint: CheckpointData | undefined = side.checkpoints[Number(router.query.checkpoint) - 1];
+      if (checkpoint === undefined) {
+        return;
+      }
+      channel.postMessage(checkpoint.boundingBox);
+      return;
+    }
+    
+    // Go to view box only on first load.
+    if (
+      typeof router.query.top === "string"
+      && typeof router.query.bottom === "string"
+      && typeof router.query.left === "string"
+      && typeof router.query.right === "string"
+    ) {
+      isFirstLoad && channel.postMessage({
+        top: Number(router.query.top),
+        bottom: Number(router.query.bottom),
+        left: Number(router.query.left),
+        right: Number(router.query.right),
+      })
+      return;
+    }
+    
+    // Go to side.
+    channel.postMessage(side.boundingBox);
+  }, [
+    channel,
+    isFirstLoad,
+    rooms,
+    router.isReady,
+    router.query.bottom,
+    router.query.checkpoint,
+    router.query.left,
+    router.query.right,
+    router.query.room,
+    router.query.top,
+    router.query.x,
+    router.query.y,
+    side.boundingBox,
+    side.checkpoints,
+    side.rooms,
+  ]);
 
   return (
     <>
@@ -258,11 +305,10 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         </Box>
         <Box flex={1}>
           <CampCanvas
-            view={view}
             rooms={rooms}
             imagesRef={imagesRef}
             contentViewRef={contentViewRef}
-            onViewChange={handleContentViewChange}
+            onViewChange={handleViewChange}
           />
         </Box>
       </Box>
@@ -351,7 +397,7 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
         rooms: Object.entries(side.rooms).map(([id, room]) => ({
           id,
           tags: generateRoomTags(room),
-          ...room
+          ...room,
         })),
         checkpoints: side.checkpoints.map<CheckpointData>(checkpoint => ({
           name: checkpoint.name,

@@ -1,28 +1,43 @@
-import {Theme, useTheme} from "@mui/material";
+import {debounce, Theme, useTheme} from "@mui/material";
+import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef} from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
-import {CanvasImage, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
+import {CanvasImage, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
 import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({
   rooms,
-  view,
   imagesRef,
   contentViewRef,
   onViewChange,
 }) => {
+  const router: NextRouter = useRouter();
+  
   const theme: Theme = useTheme();
   const background = theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[200];
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const viewRef = useRef<View | undefined>(view);
+  const viewRef = useRef<View | undefined>();
+
+  const updateViewParams = useRef<() => void>(debounce(() => {
+    if (viewRef.current === undefined) {
+      return;
+    }
+
+    const {areaId, chapterId, sideId} = router.query;
+    router.replace({query: {areaId, chapterId, sideId, ...viewRef.current}}, undefined, {shallow: true})
+  }, 100));
 
   /**
    * Set the current view.
    */
-  const handleSetView = useCallback((view: View) => {
+  const handleViewChange: OnViewChangeCallback = useCallback((view, reason) => {
+    if (reason !== "jump") {
+      updateViewParams.current();
+    }
+    
     viewRef.current = view;
-    onViewChange();
+    onViewChange(reason);
   }, [onViewChange]);
 
   /**
@@ -96,19 +111,23 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   const {setView} = useExtentCanvas({
     canvasRef,
     onDraw: handleDraw,
-    onViewChange: handleSetView,
+    onViewChange: handleViewChange,
   });
 
   /**
-   * Redraw on resize;
+   * Listen for canvas update requests.
    */
   useEffect(() => {
-    if (view !== undefined) {
+    const channel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
+    channel.onmessage = ({data: view}: {data: View}) => {
       setView(view);
+      viewRef.current = view;
     }
 
-    viewRef.current = view;
-  }, [view, setView]);
+    return () => {
+      channel.close();
+    }
+  }, [setView]);
 
   return (
     <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
@@ -129,6 +148,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     </AutoSizer>
   );
 });
+
+export const CAMP_CANVAS_CHANNEL = "campcanvas" as const;
 
 /**
  * Determine if two views collide.
