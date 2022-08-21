@@ -1,9 +1,9 @@
 import {fetchJson} from 'modules/fetch/fetchJson';
 import {Area} from "~/modules/data/dataTypes";
 
-const baseDataUrl = "https://wishcresp.github.io/berrycamp-data";
+const baseDataUrl = "https://cdn.berrycamp.com/berrycamp-data";
 
-const baseImageUrl = "https://wishcresp.github.io/berrycamp-images";
+const baseImageUrl = "https://cdn.berrycamp.com/berrycamp-images";
 
 /**
  * Cache the areas.
