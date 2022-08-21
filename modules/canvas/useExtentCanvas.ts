@@ -34,7 +34,11 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
+    // Render pixelated.
     context.imageSmoothingEnabled = false;
+
+    // Hide seams between images.
+    context.globalCompositeOperation = "lighter";
 
     context.resetTransform();
     
