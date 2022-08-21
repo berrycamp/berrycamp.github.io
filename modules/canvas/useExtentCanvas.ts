@@ -69,7 +69,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     viewRef.current.scale = canvasView.scale;
 
     if (onViewChange) {
-      onViewChange(view, "jump");
+      onViewChange(calculateView(context.canvas, canvasView), "jump");
     }
 
     redraw();
