@@ -235,7 +235,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
               placeholder="Search rooms"
               value={searchValue}
               onChange={({target: {value}}) => setSearchValue(value)}
-              sx={{p: 1}}
+              sx={{p: [1, 2, 1, 2]}}
               InputProps={{
                 endAdornment: (
                   <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>

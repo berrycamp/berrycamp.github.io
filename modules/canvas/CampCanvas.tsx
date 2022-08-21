@@ -26,7 +26,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
     const {areaId, chapterId, sideId} = router.query;
     router.replace({query: {areaId, chapterId, sideId, ...viewRef.current}}, undefined, {shallow: true})
-  }, 100));
+  }, 1000));
 
   /**
    * Set the current view.
