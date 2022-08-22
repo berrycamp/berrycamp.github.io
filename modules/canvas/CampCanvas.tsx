@@ -1,8 +1,8 @@
-import {debounce, Theme, useTheme} from "@mui/material";
+import {debounce, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
 import {NextRouter, useRouter} from "next/router";
-import {FC, memo, useCallback, useEffect, useRef} from "react";
+import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
-import {CanvasImage, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
+import {CanvasImage, OnRightClickCallback, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
 import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({
@@ -10,6 +10,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   imagesRef,
   contentViewRef,
   onViewChange,
+  onTeleport,
+  onSelectRoom,
 }) => {
   const router: NextRouter = useRouter();
   
@@ -18,6 +20,13 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const viewRef = useRef<View | undefined>();
+
+  const [contextMenu, setContextMenu] = useState<{
+    mouseX: number,
+    mouseY: number,
+    x: number,
+    y: number,
+  } | null>(null);
 
   const updateViewParams = useRef<() => void>(debounce(() => {
     if (viewRef.current === undefined) {
@@ -102,6 +111,45 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   }, [contentViewRef, imagesRef, rooms]);
 
   /**
+   * Open the context menu.
+   */
+  const handleContextMenu: OnRightClickCallback = useCallback(({clientX, clientY, x, y}) => {
+    setContextMenu(contextMenu === null ? {
+      mouseX: clientX + 2,
+      mouseY: clientY - 6,
+      x,
+      y,
+    } : null);
+  }, [contextMenu]);
+
+  /**
+   * Close the context menu;
+   */
+  const handleClose = () => {
+    setContextMenu(null);
+  }
+
+  /**
+   * Teleport and close the context menu.
+   */
+  const handleTeleport = () => {
+    if (contextMenu) {
+      onTeleport(contextMenu.x, contextMenu.y);
+    }
+    handleClose();
+  };
+
+  /**
+   * Find the room and close the context menu.
+   */
+  const handleSelectRoom = () => {
+    if (contextMenu) {
+      onSelectRoom(contextMenu.x, contextMenu.y);
+    }
+    handleClose();
+  };
+
+  /**
    * Initialise the room image array.
    */
   useEffect(() => {
@@ -112,6 +160,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     canvasRef,
     onDraw: handleDraw,
     onViewChange: handleViewChange,
+    onRightClick: handleContextMenu,
   });
 
   /**
@@ -130,22 +179,37 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   }, [setView]);
 
   return (
-    <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
-      {({width, height}) => (
-        <canvas
-          ref={canvasRef}
-          width={width}
-          height={height}
-          style={{
-            background,
-            width: "100%",
-            height: "100%",
-            imageRendering: "pixelated",
-            touchAction: "none",
-          }}
-        />
-      )}
-    </AutoSizer>
+    <>
+      <Menu
+        open={Boolean(contextMenu)}
+        onClose={handleClose}
+        anchorReference="anchorPosition"
+        {...contextMenu && {anchorPosition: {top: contextMenu.mouseY, left: contextMenu.mouseX}}}
+      >
+        <MenuItem onClick={handleSelectRoom}>
+          <ListItemText>Select room</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={handleTeleport}>
+          <ListItemText>Teleport here</ListItemText>
+        </MenuItem>
+      </Menu>
+      <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
+        {({width, height}) => (
+          <canvas
+            ref={canvasRef}
+            width={width}
+            height={height}
+            style={{
+              background,
+              width: "100%",
+              height: "100%",
+              imageRendering: "pixelated",
+              touchAction: "none",
+            }}
+          />
+        )}
+      </AutoSizer>
+    </>
   );
 });
 

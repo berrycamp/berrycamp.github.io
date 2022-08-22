@@ -15,10 +15,11 @@ import {AreaData, ChapterData, CheckpointData, CheckpointDataExtended, MapRoomMe
 import {MapEntityMenu} from "~/modules/map/MapEntityMenu";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {generateRoomTags} from "~/modules/room";
+import {teleport} from "~/modules/teleport/teleport";
 import {CampPage} from "~/pages/_app";
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
-  const {settings: {showWatermark}} = useCampContext();
+  const {settings: {port, showWatermark}} = useCampContext();
   const router = useRouter();
 
   const [channel, setChannel] = useState<BroadcastChannel | undefined>();
@@ -46,20 +47,15 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     return prev;
   }, []), [searchValue, side.checkpoints, side.rooms]);
 
-  const {rooms, canvasRooms}: {rooms: Map<string, RoomData>, canvasRooms: CanvasRoom[]} = useMemo(() => {
-    const rooms = new Map<string, RoomData>();
-    const canvasRooms: CanvasRoom[] = side.rooms.map(room => {
-      rooms.set(room.id, room);
-      const {id, canvas: {position, boundingBox: view}} = room;
-      return ({
-        id,
-        position,
-        view,
-        image: getRoomImageUrl(area.id, chapter.id, side.id, id),
-      })
-    });
-    return {rooms, canvasRooms};
-  }, [area.id, chapter.id, side.id, side.rooms]);
+  const canvasRooms: CanvasRoom[] = useMemo(() => side.rooms.map(room => {
+    const {id, canvas: {position, boundingBox: view}} = room;
+    return ({
+      id,
+      position,
+      view,
+      image: getRoomImageUrl(area.id, chapter.id, side.id, id),
+    })
+  }), [area.id, chapter.id, side.id, side.rooms]);
 
   /**
    * Handle changes to the canvas view.
@@ -137,6 +133,33 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   }, [area.id, chapter.id, side.id, showWatermark]);
 
   /**
+   * Try to teleport to the room at the coordinates.
+   */
+  const handleTeleport = useCallback(async (x: number, y: number): Promise<void> => {
+    const room: RoomData | undefined = findRoom(side.rooms, x, y);
+    if (room === undefined) {
+      return;
+    }
+
+    const roomX: number = x - room.canvas.position.x;
+    const roomY: number = y - room.canvas.position.y;
+    await teleport(port, `?area=${area.gameId}/${chapter.gameId}&side=${side.id}&level=${room.id}&x=${roomX}&y=${roomY}`);
+  }, [area.gameId, chapter.gameId, port, side.id, side.rooms]);
+
+  /**
+   * Try to select the room at the coorindates.
+   */
+  const handleSelectRoom = useCallback((x: number, y: number): void => {
+    const room: RoomData | undefined = findRoom(side.rooms, x, y);
+    console.log(x, y, room?.canvas.boundingBox);
+    if (room === undefined) {
+      return;
+    }
+
+    setSelectedRoom(room);
+  }, [side.rooms]);
+
+  /**
    * Create the broadcast channel for requests to the canvas.
    */
   useEffect(() => {
@@ -169,7 +192,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         return;
       }
 
-      setSelectedRoom(rooms.get(canvasRoom.id));
+      setSelectedRoom(side.rooms.find(room => room.id === canvasRoom.id));
       channel.postMessage(typeof router.query.x === "string" && typeof router.query.y === "string"
         ? getEntityViewBox(canvasRoom.view, Number(router.query.x), Number(router.query.y))
         : canvasRoom.view);
@@ -208,7 +231,6 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     canvasRooms,
     channel,
     isFirstLoad,
-    rooms,
     router.isReady,
     router.query.bottom,
     router.query.checkpoint,
@@ -319,6 +341,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             imagesRef={imagesRef}
             contentViewRef={contentViewRef}
             onViewChange={handleViewChange}
+            onTeleport={handleTeleport}
+            onSelectRoom={handleSelectRoom}
           />
         </Box>
       </Box>
@@ -445,4 +469,13 @@ export const getEntityViewBox = ({left, top}: View, x: number, y: number): View 
  */
  const oversizedCanvas = ({width, height}: CanvasSize): boolean => {
   return width * height > 268435456;
+};
+
+/**
+ * Find a room for the given coordinates.
+ */
+const findRoom = (rooms: RoomData[], x: number, y: number): RoomData | undefined => {
+  return rooms.find(({canvas: {boundingBox: {top, bottom, left, right}}}) => (
+    left <= x && x <= right && top <= y && y <= bottom
+  ));
 };

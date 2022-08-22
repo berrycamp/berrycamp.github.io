@@ -7,6 +7,8 @@ export interface CampCanvasProps {
   imagesRef: MutableRefObject<CanvasImage[]>;
   contentViewRef: MutableRefObject<View | undefined>;
   onViewChange: (reason: ViewChangeReason) => void;
+  onSelectRoom: (x: number, y: number) => void;
+  onTeleport: (x: number, y: number) => void;
 }
 
 export interface CanvasRoom {

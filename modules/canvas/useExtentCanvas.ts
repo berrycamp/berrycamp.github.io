@@ -225,7 +225,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
         const {left, top} = context.canvas.getBoundingClientRect();
         onRightClick({clientX, clientY, ...calculateCanvasPosition({
           view: viewRef.current,
-          canvasX: clientY - left,
+          canvasX: clientX - left,
           canvasY: clientY - top,
         })});
       }
@@ -376,8 +376,6 @@ const calculateView = ({width, height}: CanvasSize, {offset: {x, y}, scale}: Can
   const right: number = Math.round(x + (width / scale));
   const top: number = Math.round(y);
   const bottom: number = Math.round(y + (height / scale));
-
-  console.log(left, right, top, bottom);
 
   return {top, bottom, left, right};
 }
