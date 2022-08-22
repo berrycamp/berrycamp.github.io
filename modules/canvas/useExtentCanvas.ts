@@ -8,6 +8,7 @@ export interface CanvasOptions {
   setView?: SetViewCallback;
   onDraw?: (context: CanvasRenderingContext2D) => void;
   onViewChange?: OnViewChangeCallback;
+  onRightClick?: OnRightClickCallback;
 }
 
 /**
@@ -17,6 +18,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
   canvasRef,
   onDraw,
   onViewChange,
+  onRightClick,
 }) => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
@@ -91,7 +93,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
   }, [canvasRef]);
 
   /**
-   * Attach context listeners.
+   * Attach draw context listeners.
    */
   useEffect(() => {
     if (context === null) {
@@ -206,6 +208,37 @@ export const useExtentCanvas: UseExtentCanvas = ({
   }, [context, onViewChange, redraw]);
 
   /**
+   * Attach other listeners.
+   */
+  useEffect(() => {
+    if (context === null) {
+      return;
+    }
+
+    /**
+     * Handle right click events on the canvas.
+     */
+    const handleRightClick = (event: MouseEvent): void => {
+      event.preventDefault();
+      if (onRightClick) {
+        const {clientX, clientY} = event;
+        const {left, top} = context.canvas.getBoundingClientRect();
+        onRightClick({clientX, clientY, ...calculateCanvasPosition({
+          view: viewRef.current,
+          canvasX: clientY - left,
+          canvasY: clientY - top,
+        })});
+      }
+    }
+
+    context.canvas.addEventListener("contextmenu", handleRightClick);
+
+    return () => {
+      context.canvas.removeEventListener("contextmenu", handleRightClick);
+    }
+  }, [context, onRightClick]);
+
+  /**
    * Init the context.
    */
    useEffect(() => {
@@ -269,6 +302,12 @@ export interface CanvasView {
 export type SetViewCallback = (view: View) => void;
 
 export type OnViewChangeCallback = (view: View, reason: ViewChangeReason) => void
+
+export type OnRightClickCallback = ({
+  clientX, clientY, x, y,
+}: {
+  clientX: number, clientY: number, x: number, y: number,
+}) => void;
 
 export interface CanvasImage {
   img: CanvasImageSource;
@@ -334,9 +373,11 @@ const calculateView = ({width, height}: CanvasSize, {offset: {x, y}, scale}: Can
   y *= -1;
   
   const left: number = Math.round(x);
-  const right: number = Math.round(2 * x + (width / scale) - x);
+  const right: number = Math.round(x + (width / scale));
   const top: number = Math.round(y);
-  const bottom: number = Math.round(2 * y + (height / scale) - y);
+  const bottom: number = Math.round(y + (height / scale));
+
+  console.log(left, right, top, bottom);
 
   return {top, bottom, left, right};
 }
@@ -366,3 +407,21 @@ const calculateCanvasView = ({width, height}: CanvasSize, {top, bottom, left, ri
 
   return {scale, offset: {x, y}};
 }
+
+/**
+ * Calculate the position on the canvas.
+ * 
+ * @returns The x, y canvas position.
+ */
+const calculateCanvasPosition = ({
+  view: {offset, scale},
+  canvasX,
+  canvasY,
+}: {
+  view: CanvasView;
+  canvasX: number;
+  canvasY: number;
+}): {x: number, y: number} => ({
+  x: Math.round(offset.x * -1 + canvasX / scale),
+  y: Math.round(offset.y * -1 + canvasY / scale),
+});
