@@ -114,13 +114,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
    * Open the context menu.
    */
   const handleContextMenu: OnRightClickCallback = useCallback(({clientX, clientY, x, y}) => {
-    setContextMenu(contextMenu === null ? {
-      mouseX: clientX + 2,
-      mouseY: clientY - 6,
-      x,
-      y,
-    } : null);
-  }, [contextMenu]);
+    setContextMenu({mouseX: clientX + 2, mouseY: clientY - 6, x, y});
+  }, []);
 
   /**
    * Close the context menu;
@@ -185,6 +180,10 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
         onClose={handleClose}
         anchorReference="anchorPosition"
         {...contextMenu && {anchorPosition: {top: contextMenu.mouseY, left: contextMenu.mouseX}}}
+        onContextMenu={event => {
+          event.preventDefault();
+          handleClose();
+        }}
       >
         <MenuItem onClick={handleSelectRoom}>
           <ListItemText>Select room</ListItemText>

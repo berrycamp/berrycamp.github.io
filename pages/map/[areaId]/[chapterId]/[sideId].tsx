@@ -151,7 +151,6 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
    */
   const handleSelectRoom = useCallback((x: number, y: number): void => {
     const room: RoomData | undefined = findRoom(side.rooms, x, y);
-    console.log(x, y, room?.canvas.boundingBox);
     if (room === undefined) {
       return;
     }

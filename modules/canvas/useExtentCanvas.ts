@@ -220,6 +220,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
      */
     const handleRightClick = (event: MouseEvent): void => {
       event.preventDefault();
+      
       if (onRightClick) {
         const {clientX, clientY} = event;
         const {left, top} = context.canvas.getBoundingClientRect();
