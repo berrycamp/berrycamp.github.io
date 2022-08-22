@@ -46,12 +46,20 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     return prev;
   }, []), [searchValue, side.checkpoints, side.rooms]);
 
-  const rooms: CanvasRoom[] = useMemo(() => side.rooms.map(({id, canvas: {position, boundingBox: view}}) => ({
-    id,
-    position,
-    view,
-    image: getRoomImageUrl(area.id, chapter.id, side.id, id),
-  })), [area.id, chapter.id, side.id, side.rooms]);
+  const {rooms, canvasRooms}: {rooms: Map<string, RoomData>, canvasRooms: CanvasRoom[]} = useMemo(() => {
+    const rooms = new Map<string, RoomData>();
+    const canvasRooms: CanvasRoom[] = side.rooms.map(room => {
+      rooms.set(room.id, room);
+      const {id, canvas: {position, boundingBox: view}} = room;
+      return ({
+        id,
+        position,
+        view,
+        image: getRoomImageUrl(area.id, chapter.id, side.id, id),
+      })
+    });
+    return {rooms, canvasRooms};
+  }, [area.id, chapter.id, side.id, side.rooms]);
 
   /**
    * Handle changes to the canvas view.
@@ -156,11 +164,12 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
     // Go to room if valid.
     if (typeof router.query.room === "string") {
-      const canvasRoom: CanvasRoom | undefined = rooms.find(room => room.id === router.query.room);
+      const canvasRoom: CanvasRoom | undefined = canvasRooms.find(room => room.id === router.query.room);
       if (canvasRoom === undefined) {
         return;
       }
 
+      setSelectedRoom(rooms.get(canvasRoom.id));
       channel.postMessage(typeof router.query.x === "string" && typeof router.query.y === "string"
         ? getEntityViewBox(canvasRoom.view, Number(router.query.x), Number(router.query.y))
         : canvasRoom.view);
@@ -196,6 +205,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     // Go to side.
     channel.postMessage(side.boundingBox);
   }, [
+    canvasRooms,
     channel,
     isFirstLoad,
     rooms,
@@ -305,7 +315,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         </Box>
         <Box flex={1}>
           <CampCanvas
-            rooms={rooms}
+            rooms={canvasRooms}
             imagesRef={imagesRef}
             contentViewRef={contentViewRef}
             onViewChange={handleViewChange}
