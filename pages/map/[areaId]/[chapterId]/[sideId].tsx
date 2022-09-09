@@ -328,8 +328,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             sx={{
               cursor: "col-resize",
               touchAction: "none",
-              width: 4,
-              zIndex: 1,
+              width: 24,
+              zIndex: "tooltip",
               bgcolor: "divider"
             }}
           />

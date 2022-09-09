@@ -7,6 +7,8 @@ import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {FC, Fragment, useEffect, useState} from "react";
+import {DesktopBox} from "~/modules/common/desktopBox/DesktopBox";
+import {EverestOnly} from "~/modules/common/everestOnly/EverestOnly";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getRoomImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
@@ -90,12 +92,12 @@ const RoomPage: CampPage<RoomProps> = ({
           <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
             <Tooltip title={fullImage ? "View preview" : "View full image"}>
               <ToggleButton
-                sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none"}}
+                sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
                 size="small"
                 value="full"
                 onChange={() => setFullImage(f => !f)}
               >
-                {fullImage ? <Fullscreen fontSize="small"/>: <FullscreenExit fontSize="small"/>}
+                {fullImage ? <Fullscreen color="primary"/>: <FullscreenExit color="primary"/>}
               </ToggleButton>
             </Tooltip>
         </Paper>
@@ -135,7 +137,7 @@ const RoomPage: CampPage<RoomProps> = ({
         </Box>
         <Box display="flex" marginTop={2} justifyContent="space-between">
           <Typography component="div" variant="h4">{room.name}</Typography>
-          <Box sx={{display: {xs: "none", sm: "flex"}}} gap={1}>
+          <Box display="flex" gap={1}>
             <Tooltip enterDelay={750} title={"View room in interactive map viewer"}>
               <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}>
                 <Button
@@ -149,17 +151,21 @@ const RoomPage: CampPage<RoomProps> = ({
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip enterDelay={750} title={"Launch room in Celeste (Everest)"}>
-              <Button
-                variant="contained"
-                color="primary"
-                endIcon={<RocketLaunch />}
-                onClick={handleOpenRoom}
-                aria-label="Launch room in Celeste (Everest)"
-              >
-                Launch
-              </Button>
-            </Tooltip>
+            <EverestOnly>
+              <DesktopBox>
+                <Tooltip enterDelay={750} title={"Launch room in Celeste (Everest)"}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    endIcon={<RocketLaunch />}
+                    onClick={handleOpenRoom}
+                    aria-label="Launch room in Celeste (Everest)"
+                  >
+                    Launch
+                  </Button>
+                </Tooltip>
+              </DesktopBox>
+            </EverestOnly>
           </Box>
         </Box>
         <Typography component="div" color="text.secondary">{chapter.name}</Typography>

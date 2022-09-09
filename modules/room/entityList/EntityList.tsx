@@ -3,6 +3,7 @@ import {Box, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText,
 import Link from "next/link";
 import {FC, useState} from "react";
 import {Point} from "~/modules/canvas";
+import {useDesktop} from "~/modules/common/useDesktop";
 import {BerryPoint} from "~/modules/data/dataTypes";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {teleport} from "~/modules/teleport/teleport";
@@ -108,7 +109,8 @@ interface EntityItem {
 }
 
 const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) => {
-  const {settings: {port}} = useCampContext();
+  const {settings: {port, everest}} = useCampContext();
+  const {isDesktop} = useDesktop();
 
   const handleTeleport = async () => {
     await teleport(port, `${teleportParams}&x=${entity.x}&y=${entity.y}`);
@@ -118,9 +120,9 @@ const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) 
     <ListItem
       component={Paper}
       disablePadding
-      {...teleportParams && {
+      {...isDesktop && everest && teleportParams && {
         secondaryAction: (
-          <Tooltip title="Launch to spawn point" enterDelay={750} placement="right">
+          <Tooltip title="Launch to spawn" enterDelay={750} placement="right">
             <IconButton size="small" onClick={handleTeleport} color="primary">
               <RocketLaunch fontSize="small"/>
             </IconButton>

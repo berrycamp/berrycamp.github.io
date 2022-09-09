@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {FC, memo, useEffect, useRef, useState} from "react";
 import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, RoomData, SideData} from ".";
+import {useDesktop} from "../common/useDesktop";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
 
@@ -112,7 +113,9 @@ interface RoomItemProps {
 export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, teleportParams}) => {
   const router = useRouter();
 
-  const {settings: {port}} = useCampContext();
+  const {settings: {port, everest}} = useCampContext();
+  const {isDesktop} = useDesktop();
+
   const ref = useRef<HTMLLIElement | null>(null);
   const selected: boolean = selectedRoom === room.id;
 
@@ -139,13 +142,15 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
     <ListItem
       ref={ref}
       disablePadding
-      secondaryAction={(
-        <Tooltip title="Launch" enterDelay={750} placement="right">
-          <IconButton size="small" onClick={handleTeleport} color="primary">
-            <RocketLaunch fontSize="small"/>
-          </IconButton>
-        </Tooltip>
-      )}
+      {...isDesktop && everest && {
+        secondaryAction: (
+          <Tooltip title="Launch" enterDelay={750} placement="right">
+            <IconButton size="small" onClick={handleTeleport} color="primary">
+              <RocketLaunch fontSize="small"/>
+            </IconButton>
+          </Tooltip>
+        )
+      }}
     >
       <ListItemButton
         selected={selectedRoom === room.id}

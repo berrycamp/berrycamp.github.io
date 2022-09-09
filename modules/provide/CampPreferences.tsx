@@ -14,6 +14,7 @@ export const CampPreferencesProvider: FC = ({children}) => {
   useEffect(() => {
     const storageSettings: ICampSettings = {
       showWatermark: true,
+      everest: true,
     };
 
     const theme: string | null = localStorage.getItem(THEME_KEY);
