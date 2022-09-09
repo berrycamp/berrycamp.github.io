@@ -4,8 +4,9 @@ import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, CanvasSize, View, ViewChangeReason, viewsCollide} from "~/modules/canvas";
+import {CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, CanvasSize, View, ViewChangeReason, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
+import {useDesktop} from "~/modules/common/useDesktop";
 import {useResize} from "~/modules/common/useResize";
 import {Area, Chapter, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
@@ -21,6 +22,7 @@ import {CampPage} from "~/pages/_app";
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
   const {settings: {port, showWatermark}} = useCampContext();
   const router = useRouter();
+  const {isDesktop} = useDesktop();
 
   const [channel, setChannel] = useState<BroadcastChannel | undefined>();
 
@@ -34,7 +36,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   const imagesRef = useRef<CanvasImage[]>([]);
   const contentViewRef = useRef<View | undefined>();
 
-  const {width, enableResize} = useResize({initialWidth: 400, minWidth: 0});
+  const {size, enableResize} = useResize({initialSize: 400, horizontal: !isDesktop});
+  const {size: roomMenuSize, enableResize: enableRoomMenuResize} = useResize({initialSize: 600, minSize: 48, horizontal: true});
 
   const checkpoints: CheckpointDataExtended[] = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint, index) => {
     const rooms: RoomData[] = checkpoint.roomOrder.reduce<RoomData[]>((prev, order) => {
@@ -251,56 +254,70 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         description="View an interactive fully rendered map."
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Box display="flex" height="100%" overflow="hidden">
-        <Box display="flex" height="100%">
+      <Box display="flex" height="100%" overflow="hidden" flexDirection={isDesktop ? "row" : "column-reverse"}>
+        <Box display="flex" style={{...isDesktop ? {width: size} : {height: size}}}>
           <Box
             display="flex"
             flexDirection="column"
-            style={{width}}
+            width="100%"
           >
-            <TextField
-              fullWidth
-              id="room-search"
-              size="small"
-              variant="standard"
-              placeholder="Search rooms"
-              value={searchValue}
-              onChange={({target: {value}}) => setSearchValue(value)}
-              sx={{p: [1, 2, 1, 2]}}
-              InputProps={{
-                endAdornment: (
-                  <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
-                    <IconButton
-                      size="small"
-                      onClick={() => setSearchValue("")}
-                      aria-label="clear search"
-                    >
-                      <Clear fontSize="small"/>
-                    </IconButton>
-                    <Search color="primary" fontSize="small"/>
-                  </Box>
-                ),
-              }}
-            />
             <Box
-              height="70%"
               display="flex"
               flexDirection="column"
-              width={300}
-              minHeight={0}
-              sx={{overflowX: "hidden", overflowY: "auto", width: "100%"}}
+              height={`${Math.round(roomMenuSize - 48)}px`}
+              sx={{
+                bgcolor: "background.paper",
+              }}
             >
-              <MapRoomMenu
-                area={area}
-                chapter={chapter}
-                side={side}
-                checkpoints={checkpoints}
-                selectedRoom={selectedRoom?.id ?? ""}
-                onRoomSelect={setSelectedRoom}
+              <TextField
+                fullWidth
+                id="room-search"
+                size="small"
+                variant="standard"
+                placeholder="Search rooms"
+                value={searchValue}
+                onChange={({target: {value}}) => setSearchValue(value)}
+                sx={{
+                  p: [1, 2, 1, 2],
+                  overflow: "hidden",
+                  pointerEvents: "none",
+                }}
+                InputProps={{
+                  sx: {
+                    overflow: "hidden",
+                    pointerEvents: "auto",
+                  },
+                  endAdornment: (
+                    <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
+                      <IconButton
+                        size="small"
+                        onClick={() => setSearchValue("")}
+                        aria-label="clear search"
+                      >
+                        <Clear fontSize="small"/>
+                      </IconButton>
+                      <Search color="primary" fontSize="small"/>
+                    </Box>
+                  ),
+                }}
               />
+              <Box
+                display="flex"
+                flexDirection="column"
+                sx={{overflowX: "hidden", overflowY: "auto", height: "100%"}}
+              >
+                <MapRoomMenu
+                  area={area}
+                  chapter={chapter}
+                  side={side}
+                  checkpoints={checkpoints}
+                  selectedRoom={selectedRoom?.id ?? ""}
+                  onRoomSelect={setSelectedRoom}
+                />
+              </Box>
             </Box>
-            <Divider sx={{borderBottomWidth: 4}}/>
-            <Box sx={{overflowY: "auto", overflowX: "hidden", height: "30%"}}>
+            <Divider sx={{borderBottomWidth: isDesktop ? 4 : 24, cursor: "row-resize"}} onPointerDown={enableRoomMenuResize}/>
+            <Box sx={{overflowY: "auto", overflowX: "hidden", flex: 1, zIndex: 1, bgcolor: "background.paper"}}>
               {selectedRoom && (
                 <MapEntityMenu
                   areaId={area.id}
@@ -323,26 +340,33 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
               {oversized ? "Oversized" : "Save Image"}
             </Button>
           </Box>
-          <Box
-            onPointerDown={enableResize}
-            sx={{
-              cursor: "col-resize",
-              touchAction: "none",
-              width: 24,
-              zIndex: "tooltip",
-              bgcolor: "divider"
-            }}
-          />
         </Box>
+        <Box
+          onPointerDown={enableResize}
+          sx={{
+            ...isDesktop ? {
+              cursor:  "col-resize",
+              width: 4,
+              height: "100%",
+            } : {
+              cursor: "row-resize",
+              width: "100%",
+              height: 24,
+            },
+            touchAction: "none",
+            zIndex: "tooltip",
+            bgcolor: "divider",
+          }}
+        />
         <Box flex={1}>
-          <CampCanvas
+          {/* <CampCanvas
             rooms={canvasRooms}
             imagesRef={imagesRef}
             contentViewRef={contentViewRef}
             onViewChange={handleViewChange}
             onTeleport={handleTeleport}
             onSelectRoom={handleSelectRoom}
-          />
+          /> */}
         </Box>
       </Box>
     </>

@@ -39,4 +39,4 @@ export interface CheckpointDataExtended extends CheckpointData {
   rooms: RoomData[];
 }
 
-export type OnRoomSelectFn = (room: RoomData) => void;
+export type OnRoomSelectFn = (room: RoomData | undefined) => void;

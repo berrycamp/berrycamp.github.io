@@ -1,19 +1,26 @@
-import {useCallback, useEffect, useState} from "react";
+import {EventHandler, MouseEvent, SyntheticEvent, useCallback, useEffect, useState} from "react";
 
 /**
  * Make an element resizable. From: https://stackoverflow.com/a/68742668
+ * Defaults to vertical.
  */
 export const useResize = ({
-  initialWidth,
-  minWidth
+  initialSize,
+  maxSize,
+  minSize = 0,
+  horizontal = false,
 }: {
-  initialWidth: number,
-  minWidth: number,
-}): {width: number, enableResize: () => void} => {
-  const [width, setWidth] = useState<number>(initialWidth)
+  initialSize: number,
+  maxSize?: number,
+  minSize?: number,
+  horizontal?: boolean,
+}): {size: number, enableResize: EventHandler<SyntheticEvent>} => {
+  const [size, setSize] = useState<number>(initialSize)
   const [resizing, setResizing] = useState<boolean>(false);
 
-  const enableResize = useCallback((): void => {
+  const enableResize = useCallback((event: MouseEvent<HTMLElement>): void => {
+    console.log(event.clientX, event.pageX, event.screenX)
+    event.preventDefault();
     setResizing(true);
   }, []);
 
@@ -21,12 +28,15 @@ export const useResize = ({
     setResizing(false);
   }, []);
 
-  const resize = useCallback(({clientX}: MouseEvent) => {
-    if (!resizing || clientX < minWidth) {
+  const resize = useCallback(({clientX, clientY}: MouseEvent) => {
+    if (!resizing) {
       return;
     }
-    setWidth(clientX);
-  }, [minWidth, resizing]);
+    const clientVal = horizontal ? clientY : clientX;
+    const minBounded = Math.max(clientVal, minSize);
+    const minMaxBounded = maxSize ? Math.min(minBounded, maxSize) : minBounded;
+    setSize(minMaxBounded);
+  }, [horizontal, maxSize, minSize, resizing]);
 
   useEffect(() => {
     document.addEventListener("pointermove", resize);
@@ -38,5 +48,5 @@ export const useResize = ({
     }
   }, [disableResize, resize])
 
-  return {width, enableResize};
+  return {size, enableResize};
 }

@@ -25,7 +25,7 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
 
   return (
     <>
-      <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
+      <List dense disablePadding sx={{whiteSpace: "nowrap", flex: 1}}>
         <ListItem>
           <Link passHref href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}>
             <MuiLink underline="hover" color="inherit">

@@ -24,6 +24,7 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, che
   const handleViewChange = (): void => {
     const {areaId, chapterId, sideId} = router.query
     router.replace({query: {areaId, chapterId, sideId}}, undefined, {shallow: true});
+    onRoomSelect(undefined);
   }
 
   return (
@@ -74,6 +75,7 @@ export const CheckpointItem: FC<CheckpointItemProps> = ({checkpoint, onRoomSelec
     setOpen(prev => !prev);
     const {areaId, chapterId, sideId} = router.query;
     router.replace({query: {areaId, chapterId, sideId, checkpoint: checkpoint.id}}, undefined, {shallow: true});
+    onRoomSelect(undefined);
   }
 
   return (
