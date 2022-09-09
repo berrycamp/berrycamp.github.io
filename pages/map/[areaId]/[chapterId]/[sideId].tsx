@@ -279,6 +279,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
                 onChange={({target: {value}}) => setSearchValue(value)}
                 sx={{
                   p: [1, 2, 1, 2],
+                  minHeight: 70,
                   overflow: "hidden",
                   pointerEvents: "none",
                 }}
