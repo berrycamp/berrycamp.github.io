@@ -22,11 +22,9 @@ export const useExtentCanvas: UseExtentCanvas = ({
 }) => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
-  const cursorPosRef = useRef<Point>(ORIGIN);
-  const prevCursorPosRef = useRef<Point>(ORIGIN);
+  const posRef = useRef<Point>(ORIGIN);
+  const prevPosRef = useRef<Point>(ORIGIN);
   const viewRef = useRef<CanvasView>({offset: ORIGIN, scale: 1});
-
-  const isDraggingRef = useRef<boolean>(false);
 
   /**
    * Redraw the canvas.
@@ -57,9 +55,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       (height / viewRef.current.scale) + 2 * height,
     );
 
-    if (onDraw) {
-      onDraw(context);
-    }
+    onDraw?.(context);
   }, [context, onDraw]);
 
   /**
@@ -74,10 +70,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     viewRef.current.offset = canvasView.offset;
     viewRef.current.scale = canvasView.scale;
 
-    if (onViewChange) {
-      onViewChange(calculateView(context.canvas, canvasView), "jump");
-    }
-
+    onViewChange?.(calculateView(context.canvas, canvasView), "jump");
     redraw();
   }, [context, onViewChange, redraw])
 
@@ -100,40 +93,40 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
+    let isDragging: boolean = false;
+    let prevPinchDistance: number = 0;
+
     /**
      * Handle mouse down on the canvas.
      */
-    const handlePointerDown = ({pageX, pageY}: PointerEvent) => {
-      isDraggingRef.current = true;
-      cursorPosRef.current = getCursorOffset(pageX, pageY, context);
+    const handleMouseDown = ({clientX, clientY}: MouseEvent) => {
+      isDragging = true;
+      posRef.current = getCursorOffset(clientX, clientY, context);
     }
 
     /**
      * Handle panning on mouse move on the canvas.
      */
-    const handlePointerMove = ({pageX, pageY}: MouseEvent) => {
-      if (!isDraggingRef.current) {
+    const handleMouseMove = ({clientX, clientY}: MouseEvent) => {
+      if (!isDragging) {
         return;
       }
 
-      prevCursorPosRef.current = cursorPosRef.current;
-      cursorPosRef.current = getCursorOffset(pageX, pageY, context);
+      prevPosRef.current = posRef.current;
+      posRef.current = getCursorOffset(clientX, clientY, context);
 
-      const newDiff: Point = scale(diff(cursorPosRef.current, prevCursorPosRef.current), viewRef.current.scale);
+      const newDiff: Point = scale(diff(posRef.current, prevPosRef.current), viewRef.current.scale);
       viewRef.current.offset = add(viewRef.current.offset, newDiff);
 
-      if (onViewChange) {
-        onViewChange(calculateView(context.canvas, viewRef.current), "move");
-      }
-
+      onViewChange?.(calculateView(context.canvas, viewRef.current), "move");
       redraw();
     }
 
     /**
      * Handle mouse up on the canvas.
      */
-    const handlePointerUp = (): void => {
-      isDraggingRef.current = false;
+    const handleMouseUp = (): void => {
+      isDragging = false;
     }
 
     /**
@@ -142,8 +135,8 @@ export const useExtentCanvas: UseExtentCanvas = ({
     const handleWheel = (event: WheelEvent): void => {
       event.preventDefault();
 
-      prevCursorPosRef.current = cursorPosRef.current;
-      cursorPosRef.current = getCursorOffset(event.pageX, event.pageY, context);
+      prevPosRef.current = posRef.current;
+      posRef.current = getCursorOffset(event.clientX, event.clientY, context);
 
       const newScale: number = Math.max(
         Math.min(viewRef.current.scale * (1 - event.deltaY / SCROLL_SENSITIVITY), MAX_SCALE),
@@ -152,58 +145,85 @@ export const useExtentCanvas: UseExtentCanvas = ({
 
       const newOffset = diff(
         viewRef.current.offset,
-        diff(scale(cursorPosRef.current, viewRef.current.scale), scale(cursorPosRef.current, newScale))
+        diff(scale(posRef.current, viewRef.current.scale), scale(posRef.current, newScale))
       );
 
       viewRef.current.offset = newOffset;
       viewRef.current.scale = newScale;
 
-      if (onViewChange) {
-        onViewChange(calculateView(context.canvas, viewRef.current), "zoom");
-      }
-
+      onViewChange?.(calculateView(context.canvas, viewRef.current), "zoom");
       redraw();
     };
 
-    // let prevPinchDistance: number | null = null;
-    
-    // const handleTouchMove = ({touches}: TouchEvent) => {
-    //   const touch1: Touch | undefined = touches[0];
-    //   const touch2: Touch | undefined = touches[1];
-    //   if (touches.length !== 2 || touch1 === undefined || touch2 === undefined) {
-    //     return;
-    //   }
-
-    //   const distance: number = Math.sqrt(Math.pow(touch2.pageX - touch1.pageX, 2) + Math.pow(touch2.pageY - touch1.pageY, 2));
+    const handleTouchStart = ({touches, timeStamp}: TouchEvent) => {
+      const [touch1 = EMPTY_TOUCH, touch2 = EMPTY_TOUCH] = touches;
+      const diviser = touches.length === 2 ? 2 : 1;
+      const x: number = (touch1.clientX + touch2.clientX) / diviser;
+      const y: number = (touch1.clientY + touch2.clientY) / diviser;
       
-    //   if (prevPinchDistance === null) {
-    //     prevPinchDistance = distance;
-    //   } else {
-    //     const scaledDistance = distance / SCALE_SENSITIVITY;
-    //     const newScale: number = Math.max(
-    //       Math.min(scaleRef.current + (1 - (scaledDistance / prevPinchDistance)), MAX_SCALE),
-    //       MIN_SCALE
-    //     );
+      posRef.current = getCursorOffset(x, y, context);
+      prevPosRef.current = posRef.current;
 
-    //     scaleRef.current = newScale;
-    //     redraw();
-    //   }
-    // };
+      if (touches.length > 1) {
+        prevPinchDistance = getTouchDistance(touch1, touch2);
+      }
+    }
+    
+    const handleTouchMove = ({touches, timeStamp}: TouchEvent) => {
+      const [touch1 = EMPTY_TOUCH, touch2 = EMPTY_TOUCH] = touches;
+      const diviser = touches.length === 2 ? 2 : 1;
+      const x: number = (touch1.clientX + touch2.clientX) / diviser;
+      const y: number = (touch1.clientY + touch2.clientY) / diviser;
 
-    // context.canvas.addEventListener("touchmove", handleTouchMove);
-    context.canvas.addEventListener("pointerdown", handlePointerDown);
-    context.canvas.addEventListener("pointermove", handlePointerMove);
-    context.canvas.addEventListener("pointerup", handlePointerUp);
-    context.canvas.addEventListener("pointerleave", handlePointerUp);
+      const newDiff: Point = scale(diff(posRef.current, prevPosRef.current), viewRef.current.scale);
+      viewRef.current.offset = add(viewRef.current.offset, newDiff);
+
+      prevPosRef.current = posRef.current;
+      posRef.current = getCursorOffset(x, y, context);
+
+      let pinchRatio = 1;
+      if (touches.length > 1) {
+        const pinchDistance: number = touches.length === 1 ? 1 : getTouchDistance(touch1, touch2);
+        pinchRatio =  pinchDistance / prevPinchDistance;
+        prevPinchDistance = pinchDistance;
+      }
+      
+      const newScale: number = Math.max(
+        Math.min(viewRef.current.scale * pinchRatio, MAX_SCALE),
+        MIN_SCALE
+      );
+
+      const newOffset = diff(
+        viewRef.current.offset,
+        diff(scale(posRef.current, viewRef.current.scale), scale(posRef.current, newScale))
+      );
+
+      viewRef.current.offset = newOffset;
+      viewRef.current.scale = newScale;
+
+
+      onViewChange?.(calculateView(context.canvas, viewRef.current), "zoom");
+      redraw();
+    };
+
+    context.canvas.addEventListener("mousedown", handleMouseDown);
+    context.canvas.addEventListener("mousemove", handleMouseMove);
+    context.canvas.addEventListener("mouseup", handleMouseUp);
+    context.canvas.addEventListener("mouseleave", handleMouseUp);
     context.canvas.addEventListener("wheel", handleWheel);
+    context.canvas.addEventListener("touchstart", handleTouchStart);
+    context.canvas.addEventListener("touchmove", handleTouchMove);
+    context.canvas.addEventListener("touchend", handleTouchStart);
 
     return () => {
-      // context.canvas.removeEventListener("touchmove", handleTouchMove);
-      context.canvas.removeEventListener("pointerdown", handlePointerDown);
-      context.canvas.removeEventListener("pointermove", handlePointerMove);
-      context.canvas.removeEventListener("pointerup", handlePointerUp)
-      context.canvas.removeEventListener("pointerleave", handlePointerUp);
+      context.canvas.removeEventListener("mousedown", handleMouseDown);
+      context.canvas.removeEventListener("mousemove", handleMouseMove);
+      context.canvas.removeEventListener("mouseup", handleMouseUp)
+      context.canvas.removeEventListener("mouseleave", handleMouseUp);
       context.canvas.removeEventListener("wheel", handleWheel);
+      context.canvas.removeEventListener("touchstart", handleTouchStart);
+      context.canvas.removeEventListener("touchmove", handleTouchMove);
+      context.canvas.removeEventListener("touchend", handleTouchStart);
     }
   }, [context, onViewChange, redraw]);
 
@@ -325,14 +345,15 @@ const ORIGIN: Point = {x: 0, y: 0};
 const SCROLL_SENSITIVITY = 320;
 const MIN_SCALE = 1 / 512;
 const MAX_SCALE = 64;
+const EMPTY_TOUCH: PartialTouch = {clientX: 0, clientY: 0};
 
 /**
  * Get the mouse cursor offset relative to the canvas origin.
  * @returns The offset point.
  */
-const getCursorOffset = (pageX: number, pageY: number, context: CanvasRenderingContext2D): Point => {
+const getCursorOffset = (clientX: number, clientY: number, context: CanvasRenderingContext2D): Point => {
   const {left, top}: DOMRect = context.canvas.getBoundingClientRect();
-  return diff({x: pageX, y: pageY}, {x: left, y: top});
+  return diff({x: clientX, y: clientY}, {x: left, y: top});
 }
 
 /**
@@ -424,3 +445,16 @@ const calculateCanvasPosition = ({
   x: Math.round(offset.x * -1 + canvasX / scale),
   y: Math.round(offset.y * -1 + canvasY / scale),
 });
+
+type PartialTouch = Pick<Touch, "clientX" | "clientY">;
+
+/**
+ * Get the distance between two touches.
+ * 
+ * @param touch1 The first touch.
+ * @param touch2 The second touch.
+ * @returns The distance.
+ */
+const getTouchDistance = (touch1: PartialTouch, touch2: PartialTouch): number => {
+  return Math.sqrt(Math.pow(touch1.clientX - touch2.clientX, 2) + Math.pow(touch1.clientY - touch2.clientY, 2))
+}
