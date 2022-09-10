@@ -271,7 +271,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
    * Update the layout for desktop/mobile.
    */
   useEffect(() => {
-    setSidebarSize(isLargeScreen ? window.innerWidth / 3 : window.innerHeight * 2 / 5);
+    setSidebarSize(isLargeScreen ? window.innerWidth / 4 : window.innerHeight / 2);
     setRoomMenuSize(isLargeScreen ? window.innerHeight / 2 : window.innerWidth / 2);
   }, [isLargeScreen, setRoomMenuSize, setSidebarSize]);
 

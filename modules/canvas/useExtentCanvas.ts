@@ -34,13 +34,13 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
+    context.resetTransform();
+
     // Render pixelated.
     context.imageSmoothingEnabled = false;
 
     // Hide seams between images.
     context.globalCompositeOperation = "lighter";
-
-    context.resetTransform();
     
     context.scale(viewRef.current.scale, viewRef.current.scale);
     context.translate(viewRef.current.offset.x, viewRef.current.offset.y);
@@ -82,8 +82,8 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
-    setContext(canvasRef.current.getContext("2d"));
-  }, [canvasRef]);
+    setContext(canvasRef.current.getContext("2d", {alpha: true}));
+  }, [canvasRef, redraw]);
 
   /**
    * Attach draw context listeners.

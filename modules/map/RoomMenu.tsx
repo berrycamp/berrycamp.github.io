@@ -1,6 +1,5 @@
-import {ExpandLess, ExpandMore, Info, RocketLaunch} from "@mui/icons-material";
+import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
 import {Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
-import Link from "next/link";
 import {useRouter} from "next/router";
 import {FC, memo, useEffect, useRef, useState} from "react";
 import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, RoomData, SideData} from ".";
@@ -30,16 +29,7 @@ export const MapRoomMenu: FC<MapRoomMenuProps> = memo(({area, chapter, side, che
   return (
     <>
       <List dense disablePadding sx={{width: "100%", whiteSpace: "nowrap"}}>
-        <ListItem
-          disablePadding
-          secondaryAction={(
-            <Link passHref href={`/${area.id}/${chapter.id}?side=${side.id}`}>
-              <IconButton component="a" size="small" color="primary">
-                <Info fontSize="small"/>
-              </IconButton>
-            </Link>
-          )}
-        >
+        <ListItem disablePadding>
           <ListItemButton onClick={handleViewChange} sx={{overflow: "hidden", textOverflow: "ellipsis"}}>
             <ListItemText>{chapter.name} - {side.name} side</ListItemText>
           </ListItemButton>
