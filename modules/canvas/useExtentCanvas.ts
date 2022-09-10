@@ -201,7 +201,6 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.offset = newOffset;
       viewRef.current.scale = newScale;
 
-
       onViewChange?.(calculateView(context.canvas, viewRef.current), "zoom");
       redraw();
     };

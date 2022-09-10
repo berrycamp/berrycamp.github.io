@@ -3,6 +3,7 @@ import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {CanvasImage, OnRightClickCallback, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
+import {useCampContext} from "../provide/CampContext";
 import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({
@@ -13,6 +14,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   onTeleport,
   onSelectRoom,
 }) => {
+  const {settings: {everest}} = useCampContext();
+
   const router: NextRouter = useRouter();
   
   const theme: Theme = useTheme();
@@ -188,9 +191,11 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
         <MenuItem onClick={handleSelectRoom}>
           <ListItemText>Select room</ListItemText>
         </MenuItem>
-        <MenuItem onClick={handleTeleport}>
-          <ListItemText>Teleport here</ListItemText>
-        </MenuItem>
+        {everest && (
+          <MenuItem onClick={handleTeleport}>
+            <ListItemText>Teleport here</ListItemText>
+          </MenuItem>
+        )}
       </Menu>
       <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
         {({width, height}) => (

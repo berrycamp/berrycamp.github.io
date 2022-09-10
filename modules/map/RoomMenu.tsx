@@ -4,7 +4,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {FC, memo, useEffect, useRef, useState} from "react";
 import {AreaData, ChapterData, CheckpointDataExtended, OnRoomSelectFn, RoomData, SideData} from ".";
-import {useDesktop} from "../common/useDesktop";
+import {useMobile} from "../common/useMobile";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
 
@@ -116,7 +116,7 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
   const router = useRouter();
 
   const {settings: {port, everest}} = useCampContext();
-  const {isDesktop} = useDesktop();
+  const {isMobile} = useMobile();
 
   const ref = useRef<HTMLLIElement | null>(null);
   const selected: boolean = selectedRoom === room.id;
@@ -144,7 +144,7 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
     <ListItem
       ref={ref}
       disablePadding
-      {...isDesktop && everest && {
+      {...!isMobile && everest && {
         secondaryAction: (
           <Tooltip title="Launch" enterDelay={750} placement="right">
             <IconButton size="small" onClick={handleTeleport} color="primary">

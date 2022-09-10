@@ -1,52 +1,92 @@
-import {EventHandler, MouseEvent, SyntheticEvent, useCallback, useEffect, useState} from "react";
+import {MouseEvent, TouchEvent, useCallback, useEffect, useState} from "react";
 
 /**
- * Make an element resizable. From: https://stackoverflow.com/a/68742668
- * Defaults to vertical.
+ * Make an element resizable. Adapted from: https://stackoverflow.com/a/68742668
+ * Defaults to horizontally
  */
 export const useResize = ({
-  initialSize,
   maxSize,
   minSize = 0,
-  horizontal = false,
+  horizontal = true,
 }: {
-  initialSize: number,
   maxSize?: number,
   minSize?: number,
   horizontal?: boolean,
-}): {size: number, enableResize: EventHandler<SyntheticEvent>} => {
-  const [size, setSize] = useState<number>(initialSize)
+}): {
+  size: number,
+  setSize: (newSize: number) => void,
+  enableMouse: (event: MouseEvent) => void,
+  enableTouch: (event: TouchEvent) => void,
+} => {
+  const [size, setSize] = useState<number>(0)
   const [resizing, setResizing] = useState<boolean>(false);
 
-  const enableResize = useCallback((event: MouseEvent<HTMLElement>): void => {
-    console.log(event.clientX, event.pageX, event.screenX)
+  const [touchTarget, setTouchTarget] = useState<EventTarget | undefined>();
+  
+  const enableMouse = useCallback((event: MouseEvent): void => {
     event.preventDefault();
     setResizing(true);
   }, []);
 
-  const disableResize = useCallback((): void => {
-    setResizing(false);
+  const enableTouch = useCallback((event: TouchEvent): void => {
+    setResizing(true);
+    setTouchTarget(event.currentTarget)
   }, []);
 
-  const resize = useCallback(({clientX, clientY}: MouseEvent) => {
-    if (!resizing) {
-      return;
-    }
-    const clientVal = horizontal ? clientY : clientX;
+  const disableResize = useCallback((): void => {
+    setResizing(false);
+    setTouchTarget(undefined);
+  }, []);
+
+  const resize = useCallback((clientVal: number) => {
     const minBounded = Math.max(clientVal, minSize);
     const minMaxBounded = maxSize ? Math.min(minBounded, maxSize) : minBounded;
     setSize(minMaxBounded);
-  }, [horizontal, maxSize, minSize, resizing]);
+  }, [maxSize, minSize]);
+
+  const mouseResize = useCallback(({clientX, clientY}: MouseEvent) => {
+    if (!resizing) {
+      return;
+    }
+    resize(horizontal ? clientX : clientY)
+  }, [horizontal, resize, resizing]);
+
+  const touchResize = useCallback(({touches}: TouchEvent) => {
+    if (!resizing) {
+      return;
+    }
+
+    const touch = touches[0];
+    if (touch === undefined) {
+      return;
+    }
+
+    resize(horizontal ? touch.clientX : touch.clientY)
+  }, [horizontal, resize, resizing]);
 
   useEffect(() => {
-    document.addEventListener("pointermove", resize);
-    document.addEventListener("pointerup", disableResize);
+    document.addEventListener("mousemove", mouseResize as never);
+    document.addEventListener("mouseup", disableResize);
 
     return () => {
-      document.removeEventListener("pointermove", resize);
-      document.removeEventListener("pointerup", disableResize);
-    }
-  }, [disableResize, resize])
+      document.removeEventListener("mousemove", mouseResize as never);
+      document.removeEventListener("mouseup", disableResize);
+    };
+  }, [disableResize, mouseResize]);
 
-  return {size, enableResize};
+  useEffect(() => {
+    if (touchTarget === undefined) {
+      return;
+    }
+
+    touchTarget.addEventListener("touchmove", touchResize as never);
+    touchTarget.addEventListener("touchend", disableResize);
+
+    return () => {
+      touchTarget.removeEventListener("touchmove", touchResize as never);
+      touchTarget.removeEventListener("touchend", disableResize);
+    }
+  }, [disableResize, mouseResize, touchResize, touchTarget]);
+
+  return {size, enableMouse, enableTouch, setSize};
 }

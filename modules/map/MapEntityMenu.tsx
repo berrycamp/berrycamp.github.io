@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 import {FC, memo, useState} from "react";
 import {RoomData} from ".";
 import {Point} from "../canvas";
-import {useDesktop} from "../common/useDesktop";
+import {useMobile} from "../common/useMobile";
 import {BerryPoint} from "../data/dataTypes";
 import {useCampContext} from "../provide/CampContext";
 import {teleport} from "../teleport/teleport";
@@ -132,7 +132,7 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   teleportParams,
 }) => { 
   const {settings: {port, everest}} = useCampContext();
-  const {isDesktop} = useDesktop();
+  const {isMobile} = useMobile();
   const router = useRouter();
 
   const handleClick = () => {
@@ -147,7 +147,7 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   return (
     <ListItem
       disablePadding
-      {...isDesktop && everest && teleportParams && {
+      {...!isMobile && everest && teleportParams && {
         secondaryAction: (
           <Tooltip title="Launch" enterDelay={750}>
             <IconButton size="small" onClick={handleTeleport} color="primary">
