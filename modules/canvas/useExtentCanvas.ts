@@ -283,13 +283,11 @@ export const useExtentCanvas: UseExtentCanvas = ({
      * @param entries The resize observer entries.
      */
     const handleResize = (entries: ResizeObserverEntry[]) => {
-      if (context.canvas.width === 0 || context.canvas.height === 0) {
-        return;
-      }
-
       const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
       const tempContext: CanvasRenderingContext2D = tempCanvas.getContext("2d", {alpha: true}) as CanvasRenderingContext2D;
-      tempContext.drawImage(context.canvas, 0, 0);
+      if (context.canvas.width > 0 && context.canvas.height > 0) {
+        tempContext.drawImage(context.canvas, 0, 0);
+      }
 
       const entry: ResizeObserverEntry | undefined = entries[0];
       if(entry) {
@@ -297,7 +295,9 @@ export const useExtentCanvas: UseExtentCanvas = ({
         context.canvas.height = entry.contentRect.height;
       }
 
-      context.drawImage(tempContext.canvas, viewRef.current.offset.x, viewRef.current.offset.y);
+      if (context.canvas.width > 0 && context.canvas.height > 0) {
+        context.drawImage(tempContext.canvas, viewRef.current.offset.x, viewRef.current.offset.y);
+      }
       draw();
     };
 
