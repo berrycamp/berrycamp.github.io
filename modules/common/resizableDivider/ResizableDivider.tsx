@@ -25,7 +25,7 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
         }
       }}
     >
-      {props.orientation === "vertical" ? "🡘" : "🡙"}
+      {props.orientation === "vertical" ? "+" : "+"}
     </Divider>
   );
 });
