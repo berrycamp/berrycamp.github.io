@@ -1,11 +1,12 @@
 import {Clear, ScreenshotMonitor, Search} from "@mui/icons-material";
-import {Box, Button, Divider, IconButton, TextField} from "@mui/material";
+import {Box, Button, IconButton, TextField} from "@mui/material";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, CanvasSize, View, ViewChangeReason, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
+import {ResizableDivider} from "~/modules/common/resizableDivider/ResizableDivider";
 import {useMobile} from "~/modules/common/useMobile";
 import {useResize} from "~/modules/common/useResize";
 import {Area, Chapter, Side} from "~/modules/data/dataTypes";
@@ -271,7 +272,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
    * Update the layout for desktop/mobile.
    */
   useEffect(() => {
-    setSidebarSize(isLargeScreen ? window.innerWidth / 4 : window.innerHeight / 2);
+    setSidebarSize(isLargeScreen ? window.innerWidth / 2 : window.innerHeight / 2);
     setRoomMenuSize(isLargeScreen ? window.innerHeight / 2 : window.innerWidth / 2);
   }, [isLargeScreen, setRoomMenuSize, setSidebarSize]);
 
@@ -352,22 +353,10 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
               />
             </Box>
           </Box>
-          <Divider
+          <ResizableDivider
             onMouseDown={enableRoomMenuMouseResize}
             onTouchStart={enableRoomMenuTouchResize}
             orientation={isLargeScreen ? "horizontal": "vertical"}
-            sx={{
-              zIndex: 2,
-              border: "none",
-              bgcolor: "divider",
-              ...isLargeScreen ? {
-                cursor: "row-resize",
-                height: isMobile ? mobileDividerSize : desktopDividerSize,
-              } : {
-                cursor: "col-resize",
-                width: isMobile ? mobileDividerSize : desktopDividerSize,
-              },
-            }}
           />
           <Box
             display="flex"
@@ -405,23 +394,10 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             </Button>
           </Box>
         </Box>
-        <Divider
+        <ResizableDivider
           onMouseDown={enableSidebarMouseResize}
           onTouchStart={enableSidebarTouchResize}
           orientation={isLargeScreen ? "vertical" : "horizontal"}
-          sx={{
-            touchAction: "none",
-            zIndex: 2,
-            border: "none",
-            bgcolor: "divider",
-            ...isLargeScreen ? {
-              cursor: "col-resize",
-              width: isMobile ? mobileDividerSize : desktopDividerSize,
-            } : {
-              cursor: "row-resize",
-              height: isMobile ? mobileDividerSize : desktopDividerSize,
-            }
-          }}
         />
         <Box {...isLargeScreen ? {flex: 1} : {height: `${sidebarSize - headerSize}px`}}>
           <CampCanvas
