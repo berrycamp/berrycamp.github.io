@@ -276,7 +276,13 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
-    const observer = new ResizeObserver((entries) => {
+    /**
+     * Resize the canvas, draw the current view to an offscreen canvas and copy it back after resize
+     * to reduce flicker.
+     * 
+     * @param entries The resize observer entries.
+     */
+    const handleResize = (entries: ResizeObserverEntry[]) => {
       const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
       const tempContext: CanvasRenderingContext2D | null = tempCanvas.getContext("2d", {alpha: true});
       if (tempContext) {
@@ -294,8 +300,9 @@ export const useExtentCanvas: UseExtentCanvas = ({
       }
 
       redraw();
-    });
+    };
 
+    const observer = new ResizeObserver(handleResize);
     observer.observe(context.canvas.parentElement);
 
     return () => {
