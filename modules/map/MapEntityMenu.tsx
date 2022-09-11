@@ -147,6 +147,11 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   return (
     <ListItem
       disablePadding
+      sx={{
+        "& .MuiListItemSecondaryAction-root": {
+          right: 4,
+        }
+      }}
       {...!isMobile && everest && teleportParams && {
         secondaryAction: (
           <Tooltip title="Launch" enterDelay={750}>

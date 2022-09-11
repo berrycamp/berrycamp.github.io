@@ -29,6 +29,7 @@ export const useResize = ({
   }, []);
 
   const enableTouch = useCallback((event: TouchEvent): void => {
+    event.preventDefault();
     setResizing(true);
     setTouchTarget(event.currentTarget)
   }, []);

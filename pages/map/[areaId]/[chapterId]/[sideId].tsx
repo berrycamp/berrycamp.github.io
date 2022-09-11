@@ -23,10 +23,13 @@ import {CampPage} from "~/pages/_app";
 const headerSize: number = 48;
 const halfDividerSize: number = 16;
 
+const ROOM_WIDTH = 320;
+const ROOM_HEIGHT = 184;
+
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
   const {settings: {port, showWatermark}} = useCampContext();
   const router = useRouter();
-  const {isLargeScreen, isMobile} = useMobile();
+  const {isLargeScreen} = useMobile();
 
   const [channel, setChannel] = useState<BroadcastChannel | undefined>();
 
@@ -122,7 +125,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     });
 
     // Apply logo watermark
-    if (showWatermark && size.width >= 320 && size.height >= 184) {
+    if (showWatermark && size.width >= ROOM_HEIGHT && size.height >= ROOM_WIDTH) {
       const minTextHeight = 10;
       const horizontalScaleFactor = 2.157;
       const textHeight: number = Math.floor(
@@ -271,7 +274,10 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
    * Update the layout for desktop/mobile.
    */
   useEffect(() => {
-    setSidebarSize(isLargeScreen ? window.innerWidth / 2 : window.innerHeight / 2);
+    setSidebarSize(
+      calculateLayoutSize(isLargeScreen, window.innerWidth, window.innerHeight)
+      + (isLargeScreen ? halfDividerSize * 2 : headerSize + halfDividerSize)
+    );
     setRoomMenuSize(isLargeScreen ? window.innerHeight / 2 : window.innerWidth / 2);
   }, [isLargeScreen, setRoomMenuSize, setSidebarSize]);
 
@@ -550,3 +556,17 @@ const findRoom = (rooms: RoomData[], x: number, y: number): RoomData | undefined
     left <= x && x <= right && top <= y && y <= bottom
   ));
 };
+
+/**
+ * Calculate a best fit size for the layout by trying to fit the map to a celeste room
+ * aspect ratio and keep the sidebar size to a reasonable minimum.
+ * 
+ * For a large screen this is the sidebar size. For a small screen, it's the map size.
+ */
+const calculateLayoutSize = (isLargeScreen: boolean, width: number, height: number): number => {
+  if (isLargeScreen) {
+    return width - ((height * ROOM_WIDTH) / ROOM_HEIGHT);
+  } else {
+    return (width * ROOM_HEIGHT) / ROOM_WIDTH;
+  }
+}

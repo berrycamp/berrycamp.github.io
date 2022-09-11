@@ -6,6 +6,8 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
   onTouchStart,
   ...other
 }, ref) => {
+  const isVertical: boolean = other.orientation === "vertical";
+
   return (
     <Divider
       ref={ref}
@@ -18,24 +20,26 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
         ...other.sx,
         position: "relative",
         color: "primary.main",
-        ...other.orientation === "vertical" ? {
+        ...isVertical ? {
           cursor: "col-resize",
-          width: 36,
+          width: 24,
         } : {
           cursor: "row-resize",
-          height: 36,
+          height: 24,
         },
         "&.MuiDivider-root::before": {
           top: 0,
+          ...isVertical && {marginBottom: "-16px"}
         },
         "&.MuiDivider-root::after": {
           top: 0,
+          ...isVertical && {marginTop: "-10px"}
         },
         "& .MuiDivider-wrapper": {
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: other.orientation === "vertical" ? "1.4rem" : "1.2rem",
+          fontSize: isVertical ? "1.4rem" : "1.2rem",
           userSelect: "none",
         },
       }}
@@ -44,6 +48,7 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
         sx={{
+          touchAction: "none",
           position: "absolute",
           ...other.orientation === "vertical" ? {
             top: 0,

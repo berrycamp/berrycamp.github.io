@@ -134,6 +134,11 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
     <ListItem
       ref={ref}
       disablePadding
+      sx={{
+        "& .MuiListItemSecondaryAction-root": {
+          right: 4,
+        }
+      }}
       {...!isMobile && everest && {
         secondaryAction: (
           <Tooltip title="Launch" enterDelay={750} placement="right">
