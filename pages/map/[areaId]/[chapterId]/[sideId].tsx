@@ -21,8 +21,7 @@ import {teleport} from "~/modules/teleport/teleport";
 import {CampPage} from "~/pages/_app";
 
 const headerSize: number = 48;
-const desktopDividerSize: number = 4;
-const mobileDividerSize: number = 24;
+const halfDividerSize: number = 16;
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
   const {settings: {port, showWatermark}} = useCampContext();
@@ -48,7 +47,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     enableTouch: enableSidebarTouchResize,
   } = useResize({
     horizontal: isLargeScreen,
-    ...!isLargeScreen && {minSize: headerSize},
+    minSize: isLargeScreen ? halfDividerSize : halfDividerSize + headerSize,
   });
   const {
     size: roomMenuSize,
@@ -57,7 +56,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
     enableTouch: enableRoomMenuTouchResize,
   } = useResize({
     horizontal: !isLargeScreen,
-    ...isLargeScreen && {minSize: headerSize},
+    minSize: isLargeScreen ? halfDividerSize + headerSize : halfDividerSize,
   });
 
   const checkpoints: CheckpointDataExtended[] = useMemo(() => side.checkpoints.reduce<CheckpointDataExtended[]>((prev, checkpoint, index) => {
@@ -294,7 +293,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
           display="flex"
           flexDirection={isLargeScreen ? "column" : "row"}
           {...isLargeScreen ? {
-            width: `${sidebarSize}px`
+            width: `${sidebarSize - halfDividerSize}px`
           } : {
             flex: 1,
             overflow: "hidden"
@@ -304,9 +303,9 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             display="flex"
             flexDirection="column"
             {...isLargeScreen ? {
-              height: `${roomMenuSize - headerSize}px`
+              height: `${roomMenuSize - headerSize - halfDividerSize}px`
             } : {
-              width: `${roomMenuSize}px`
+              width: `${roomMenuSize - halfDividerSize}px`
             }}
           >
             <TextField
@@ -357,6 +356,10 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
             onMouseDown={enableRoomMenuMouseResize}
             onTouchStart={enableRoomMenuTouchResize}
             orientation={isLargeScreen ? "horizontal": "vertical"}
+            sx={{
+              zIndex: 1,
+              bgcolor: "background.paper",
+            }}
           />
           <Box
             display="flex"
@@ -398,8 +401,12 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
           onMouseDown={enableSidebarMouseResize}
           onTouchStart={enableSidebarTouchResize}
           orientation={isLargeScreen ? "vertical" : "horizontal"}
+          sx={{
+            zIndex: 2,
+            bgcolor: "background.paper",
+          }}
         />
-        <Box {...isLargeScreen ? {flex: 1} : {height: `${sidebarSize - headerSize}px`}}>
+        <Box {...isLargeScreen ? {flex: 1} : {height: `${sidebarSize - headerSize - halfDividerSize}px`}}>
           <CampCanvas
             rooms={canvasRooms}
             imagesRef={imagesRef}

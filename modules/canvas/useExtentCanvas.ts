@@ -28,15 +28,15 @@ export const useExtentCanvas: UseExtentCanvas = ({
   /**
    * Redraw the canvas.
    */
-  const redraw = useCallback(() => {
-    if (context === null) {
+  const draw = useCallback(() => {
+    if (context === null || context.canvas.width === 0 || context.canvas.height === 0) {
       return;
     }
 
     context.resetTransform();
 
     // Render pixelated.
-    context.imageSmoothingEnabled = false;
+    context.imageSmoothingEnabled = viewRef.current.scale < 0.5;
 
     // Hide seams between images.
     context.globalCompositeOperation = "lighter";
@@ -70,8 +70,8 @@ export const useExtentCanvas: UseExtentCanvas = ({
     viewRef.current.scale = canvasView.scale;
 
     onViewChange?.(calculateView(context.canvas, canvasView), "jump");
-    redraw();
-  }, [context, onViewChange, redraw])
+    draw();
+  }, [context, onViewChange, draw])
 
   /**
    * Set the context.
@@ -82,7 +82,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     }
 
     setContext(canvasRef.current.getContext("2d", {alpha: true}));
-  }, [canvasRef, redraw]);
+  }, [canvasRef, draw]);
 
   /**
    * Attach draw context listeners.
@@ -118,7 +118,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.offset = add(viewRef.current.offset, newDiff);
 
       onViewChange?.(calculateView(context.canvas, viewRef.current), "move");
-      redraw();
+      draw();
     }
 
     /**
@@ -137,21 +137,21 @@ export const useExtentCanvas: UseExtentCanvas = ({
       prevPosRef.current = posRef.current;
       posRef.current = getCursorOffset(event.clientX, event.clientY, context);
 
-      const newScale: number = Math.max(
-        Math.min(viewRef.current.scale * (1 - event.deltaY / SCROLL_SENSITIVITY), MAX_SCALE),
-        MIN_SCALE
-      );
+      const absDelta: number = 1 - (Math.abs(event.deltaY) / SCROLL_SENSITIVITY);
+      const positive: boolean = event.deltaY > 0;
+      const unclamedScale: number = positive ? viewRef.current.scale * absDelta : viewRef.current.scale / absDelta;
+      const clampedScale: number = Math.max(Math.min(unclamedScale, MAX_SCALE), MIN_SCALE);
 
       const newOffset = diff(
         viewRef.current.offset,
-        diff(scale(posRef.current, viewRef.current.scale), scale(posRef.current, newScale))
+        diff(scale(posRef.current, viewRef.current.scale), scale(posRef.current, clampedScale))
       );
 
       viewRef.current.offset = newOffset;
-      viewRef.current.scale = newScale;
+      viewRef.current.scale = clampedScale;
 
       onViewChange?.(calculateView(context.canvas, viewRef.current), "zoom");
-      redraw();
+      draw();
     };
 
     const handleTouchStart = ({touches, timeStamp}: TouchEvent) => {
@@ -201,7 +201,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       viewRef.current.scale = newScale;
 
       onViewChange?.(calculateView(context.canvas, viewRef.current), "zoom");
-      redraw();
+      draw();
     };
 
     context.canvas.addEventListener("mousedown", handleMouseDown);
@@ -223,7 +223,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       context.canvas.removeEventListener("touchmove", handleTouchMove);
       context.canvas.removeEventListener("touchend", handleTouchStart);
     }
-  }, [context, onViewChange, redraw]);
+  }, [context, onViewChange, draw]);
 
   /**
    * Attach other listeners.
@@ -265,8 +265,8 @@ export const useExtentCanvas: UseExtentCanvas = ({
       return;
     }
 
-    redraw();
-  }, [context, redraw])
+    draw();
+  }, [context, draw])
 
   /**
    * Redraw the canvas on resize.
@@ -283,11 +283,13 @@ export const useExtentCanvas: UseExtentCanvas = ({
      * @param entries The resize observer entries.
      */
     const handleResize = (entries: ResizeObserverEntry[]) => {
-      const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
-      const tempContext: CanvasRenderingContext2D | null = tempCanvas.getContext("2d", {alpha: true});
-      if (tempContext) {
-        tempContext.drawImage(context.canvas, 0, 0);
+      if (context.canvas.width === 0 || context.canvas.height === 0) {
+        return;
       }
+
+      const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
+      const tempContext: CanvasRenderingContext2D = tempCanvas.getContext("2d", {alpha: true}) as CanvasRenderingContext2D;
+      tempContext.drawImage(context.canvas, 0, 0);
 
       const entry: ResizeObserverEntry | undefined = entries[0];
       if(entry) {
@@ -295,11 +297,8 @@ export const useExtentCanvas: UseExtentCanvas = ({
         context.canvas.height = entry.contentRect.height;
       }
 
-      if (tempContext) {
-        context.drawImage(tempContext.canvas, viewRef.current.offset.x, viewRef.current.offset.y);
-      }
-
-      redraw();
+      context.drawImage(tempContext.canvas, viewRef.current.offset.x, viewRef.current.offset.y);
+      draw();
     };
 
     const observer = new ResizeObserver(handleResize);
@@ -308,9 +307,9 @@ export const useExtentCanvas: UseExtentCanvas = ({
     return () => {
       observer.disconnect();
     }
-  }, [context, redraw]);
+  }, [context, draw]);
 
-  return {setView, redraw};
+  return {setView, redraw: draw};
 }
 
 export interface ExtentCanvas {
