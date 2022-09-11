@@ -1,4 +1,3 @@
-import {debounce} from "@mui/material";
 import {RefObject, useCallback, useEffect, useRef, useState} from "react";
 
 export type UseExtentCanvas = (options: CanvasOptions) => ExtentCanvas
@@ -273,19 +272,34 @@ export const useExtentCanvas: UseExtentCanvas = ({
    * Redraw the canvas on resize.
    */
   useEffect(() => {
-    if (context === null) {
+    if (context === null || context.canvas.parentElement === null) {
       return;
     }
 
-    const resize = debounce(redraw, 10);
+    const observer = new ResizeObserver((entries) => {
+      const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
+      const tempContext: CanvasRenderingContext2D | null = tempCanvas.getContext("2d", {alpha: true});
+      if (tempContext) {
+        tempContext.drawImage(context.canvas, 0, 0);
+      }
 
-    const observer = new ResizeObserver(resize);
-    observer.observe(context.canvas);
-    window.addEventListener("resize", resize);
+      const entry: ResizeObserverEntry | undefined = entries[0];
+      if(entry) {
+        context.canvas.width = entry.contentRect.width;
+        context.canvas.height = entry.contentRect.height;
+      }
+
+      if (tempContext) {
+        context.drawImage(tempContext.canvas, viewRef.current.offset.x, viewRef.current.offset.y);
+      }
+
+      redraw();
+    });
+
+    observer.observe(context.canvas.parentElement);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", resize);
     }
   }, [context, redraw]);
 

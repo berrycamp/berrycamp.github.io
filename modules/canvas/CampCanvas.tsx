@@ -1,7 +1,6 @@
 import {debounce, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
-import AutoSizer from "react-virtualized-auto-sizer";
 import {CanvasImage, OnRightClickCallback, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
 import {useCampContext} from "../provide/CampContext";
 import {CampCanvasProps} from "./types";
@@ -176,6 +175,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     }
   }, [setView]);
 
+
   return (
     <>
       <Menu
@@ -197,22 +197,16 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
           </MenuItem>
         )}
       </Menu>
-      <AutoSizer style={{width: "100%",  height: "100%"}} defaultWidth={320} defaultHeight={180}>
-        {({width, height}) => (
-          <canvas
-            ref={canvasRef}
-            width={width}
-            height={height}
-            style={{
-              background,
-              width: "100%",
-              height: "100%",
-              imageRendering: "pixelated",
-              touchAction: "none",
-            }}
-          />
-        )}
-      </AutoSizer>
+      <canvas
+        ref={canvasRef}
+        style={{
+          background,
+          width: "100%",
+          height: "100%",
+          imageRendering: "pixelated",
+          touchAction: "none",
+        }}
+      />
     </>
   );
 });
