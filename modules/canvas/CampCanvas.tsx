@@ -1,4 +1,5 @@
-import {debounce, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
+import {Fullscreen} from "@mui/icons-material";
+import {Box, debounce, IconButton, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import {CanvasImage, OnRightClickCallback, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
@@ -160,6 +161,10 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     onRightClick: handleContextMenu,
   });
 
+  const handleFullscreen = async () => {
+    await canvasRef.current?.requestFullscreen();
+  }
+
   /**
    * Listen for canvas update requests.
    */
@@ -177,7 +182,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
 
   return (
-    <>
+    <Box position="relative" width="100%" height="100%">
       <Menu
         open={Boolean(contextMenu)}
         onClose={handleClose}
@@ -201,13 +206,27 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
         ref={canvasRef}
         style={{
           background,
+          position: "relative",
           width: "100%",
           height: "100%",
           imageRendering: "pixelated",
           touchAction: "none",
         }}
       />
-    </>
+      <IconButton
+          color="primary"
+          size="small"
+          sx={{
+            position: "absolute",
+            top: 4,
+            right: 4,
+            zIndex: 1,
+          }}
+          onClick={handleFullscreen}
+        >
+          <Fullscreen/>
+        </IconButton>
+    </Box>
   );
 });
 

@@ -168,7 +168,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
       }
     }
     
-    const handleTouchMove = ({touches, timeStamp}: TouchEvent) => {
+    const handleTouchMove = ({touches}: TouchEvent) => {
       const [touch1 = EMPTY_TOUCH, touch2 = EMPTY_TOUCH] = touches;
       const diviser = touches.length === 2 ? 2 : 1;
       const x: number = (touch1.clientX + touch2.clientX) / diviser;
@@ -289,8 +289,12 @@ export const useExtentCanvas: UseExtentCanvas = ({
         tempContext.drawImage(context.canvas, 0, 0);
       }
 
+      const isFullscreen: boolean = Boolean(document.fullscreenElement);
       const entry: ResizeObserverEntry | undefined = entries[0];
-      if(entry) {
+      if (isFullscreen) {
+        context.canvas.width = window.innerWidth;
+        context.canvas.height = window.innerHeight;
+      } else if(entry) {
         context.canvas.width = entry.contentRect.width;
         context.canvas.height = entry.contentRect.height;
       }
@@ -302,7 +306,7 @@ export const useExtentCanvas: UseExtentCanvas = ({
     };
 
     const observer = new ResizeObserver(handleResize);
-    observer.observe(context.canvas.parentElement);
+    observer.observe(context.canvas);
 
     return () => {
       observer.disconnect();
