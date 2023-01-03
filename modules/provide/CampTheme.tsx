@@ -1,6 +1,6 @@
 import {createTheme, darkScrollbar, PaletteColorOptions, Theme} from "@mui/material";
 import {ThemeProvider} from "@mui/system";
-import {FC, useEffect} from "react";
+import {FC, PropsWithChildren, useEffect} from "react";
 import {useCampContext} from "./CampContext";
 
 export const PREFERS_DARK_QUERY = "(prefers-color-scheme: dark)";
@@ -8,7 +8,7 @@ export const PREFERS_DARK_QUERY = "(prefers-color-scheme: dark)";
 /**
  * Provide the MUI theme.
  */
-export const CampThemeProvider: FC = ({children}) => {
+export const CampThemeProvider: FC<PropsWithChildren> = ({children}) => {
   const {settings, setPrefersDark} = useCampContext();
 
   let provideDarkTheme: boolean = settings.prefersDark ?? false;

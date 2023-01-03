@@ -1,11 +1,11 @@
-import {FC, Fragment, useEffect} from "react";
+import {FC, Fragment, PropsWithChildren, useEffect} from "react";
 import {ICampSettings, useCampContext} from "./CampContext";
 
 const THEME_KEY = "theme";
 const LIST_MODE_KEY = "listMode";
 const PORT_KEY = "port";
 
-export const CampPreferencesProvider: FC = ({children}) => {
+export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   const {settings, setSettings} = useCampContext();
 
   /**

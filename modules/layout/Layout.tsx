@@ -1,10 +1,10 @@
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import {FC} from "react";
+import {FC, PropsWithChildren} from "react";
 import {SettingsMenu} from "~/modules/settings/SettingsMenu";
 
-export const Layout: FC = ({children}) => (
+export const Layout: FC<PropsWithChildren> = ({children}) => (
   <>
     <AppBar position="sticky">
       <Toolbar

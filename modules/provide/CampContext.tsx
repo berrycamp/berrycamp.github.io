@@ -1,4 +1,4 @@
-import {createContext, FC, useCallback, useContext, useState} from "react";
+import {createContext, FC, PropsWithChildren, useCallback, useContext, useState} from "react";
 
 export interface ICampContext {
   settings: ICampSettings;
@@ -34,7 +34,7 @@ const CampContext = createContext<ICampContext>({
   setSettings: () => undefined,
 });
 
-export const CampContextProvider: FC = ({children}) => {
+export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
   const [settings, setSettings] = useState<ICampSettings>({showWatermark: true, everest: true});
 
   const changeTheme = useCallback(() => {

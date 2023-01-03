@@ -4,7 +4,7 @@ import {useCampContext} from "~/modules/provide/CampContext";
 /**
  * Show when everest mode is enabled.
  */
-export const EverestOnly: FC<PropsWithChildren<unknown>> = ({children}) => {
+export const EverestOnly: FC<PropsWithChildren> = ({children}) => {
   const {settings: {everest}} = useCampContext();
   if (!everest) {
     return null;
