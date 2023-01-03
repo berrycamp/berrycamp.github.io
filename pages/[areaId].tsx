@@ -1,8 +1,8 @@
 import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
 import {VALID_AREAS} from 'modules/data/validAreas'
 import {fetchArea, getAreaImageUrl, getChapterImageUrl} from 'modules/fetch/dataApi'
-import {useCampContext} from 'modules/provide/CampContext'
 import {CampHead} from 'modules/head/CampHead'
+import {useCampContext} from 'modules/provide/CampContext'
 import Image from "next/image"
 import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
