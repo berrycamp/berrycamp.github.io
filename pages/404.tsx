@@ -5,7 +5,7 @@ import {Fragment} from "react";
 import {CampHead} from "~/modules/head/CampHead";
 import {GlobalCampProps} from "./_app";
 
-const image = "https://img.berry.camp/404.png";
+const image = `${process.env.NEXT_PUBLIC_BASE_URL}/img/404.png`;
 
 export const Custom404: NextPage<GlobalCampProps> = () => (
   <Fragment>

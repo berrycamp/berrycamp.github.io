@@ -1,7 +1,7 @@
 import area from "~/data/celeste.json";
 import {Area} from "../data/dataTypes";
 
-const baseImgUrl = "https://berrycamp.github.io/img";
+const baseImgUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/img`;
 
 /**
  * Fetch the area during build.
