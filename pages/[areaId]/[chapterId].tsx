@@ -63,7 +63,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           <Typography component="div" variant="body1" color="text.secondary" textAlign="center">
               {pluralize(side.roomCount, "room")}
             </Typography>
-            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
+            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`} legacyBehavior>
               <Button variant="contained" endIcon={<TravelExplore/>}>View Map</Button>
             </Link>
           </Paper>
@@ -117,7 +117,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         )}
       </Container>
     </Fragment>
-  )
+  );
 }
 
 interface ChapterParams extends ParsedUrlQuery {
@@ -179,7 +179,7 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
         gameId: chapter.gameId,
         name: chapter.name,
         desc: chapter.desc,
-        ...chapter.chapterNo && {no: chapter?.chapterNo},
+        ...(chapter.chapterNo && {no: chapter?.chapterNo}),
       },
       sides: chapter.sides.map<SideData>(side => ({
         id: side.id,
@@ -195,17 +195,17 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
             }
             return {
               id,
-              ...room.name && {name: room.name},
+              ...(room.name && {name: room.name}),
               checkpointNo: room.checkpointNo,
               tags: generateRoomTags(room),
             };
           }),
         })),
       })),
-      ...prevChapter && {prevChapter},
-      ...nextChapter && {nextChapter},
+      ...(prevChapter && {prevChapter}),
+      ...(nextChapter && {nextChapter}),
     }
-  }
+  };
 }
 
 export default ChapterPage;

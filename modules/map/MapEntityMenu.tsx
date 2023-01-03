@@ -23,52 +23,53 @@ interface MapEntityMenuProps {
 export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterGameId, areaId, chapterId, sideId, room}) => {
   const teleportParams: string = `?area=${areaGameId}/${chapterGameId}&side=${sideId}&level=${room.id}`
 
-  return (
-    <>
-      <List dense disablePadding sx={{whiteSpace: "nowrap", flex: 1}}>
-        <ListItem>
-          <Link passHref href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}>
-            <MuiLink underline="hover" color="inherit">
-              {room.id}{room.name && ` - ${room.name}`}
-            </MuiLink>
-          </Link>
-        </ListItem>
-      </List>
-      <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
-        {room.entities.spawn && (
-          <MapEntityMenuGroup
-            name="Spawns"
-            entities={room.entities.spawn}
-            createItemName={(({x, y, name}: Record<string, unknown>) => `(${x}, ${y})${name ? ` - ${name}` : ""}`) as never}
-            roomId={room.id}
-            teleportParams={teleportParams}
-          />
-        )}
-        {room.entities.berry && (
-          <MapEntityMenuGroup
-            name="Strawberries"
-            entities={room.entities.berry}
-            roomId={room.id}
-            createItemName={((berry: BerryPoint) => `${room.id}:${berry.id}`) as never}
-          />
-        )}
-        {room.entities.cassette && room.entities.cassette[0] && (
-          <MapEntityMenuItem
-            name="Cassette"
-            entity={room.entities.cassette[0]}
-            roomId={room.id}
-          />
-        )}
-        {room.entities.heart && room.entities.heart[0] && (
-          <MapEntityMenuItem
-            name="Crystal Heart"
-            entity={room.entities.heart[0]}
-            roomId={room.id}
-          />
-        )}
-      </List>
-    </>
-  );
+  return <>
+    <List dense disablePadding sx={{whiteSpace: "nowrap", flex: 1}}>
+      <ListItem>
+        <Link
+          passHref
+          href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
+          legacyBehavior>
+          <MuiLink underline="hover" color="inherit">
+            {room.id}{room.name && ` - ${room.name}`}
+          </MuiLink>
+        </Link>
+      </ListItem>
+    </List>
+    <List dense disablePadding sx={{whiteSpace: "nowrap"}}>
+      {room.entities.spawn && (
+        <MapEntityMenuGroup
+          name="Spawns"
+          entities={room.entities.spawn}
+          createItemName={(({x, y, name}: Record<string, unknown>) => `(${x}, ${y})${name ? ` - ${name}` : ""}`) as never}
+          roomId={room.id}
+          teleportParams={teleportParams}
+        />
+      )}
+      {room.entities.berry && (
+        <MapEntityMenuGroup
+          name="Strawberries"
+          entities={room.entities.berry}
+          roomId={room.id}
+          createItemName={((berry: BerryPoint) => `${room.id}:${berry.id}`) as never}
+        />
+      )}
+      {room.entities.cassette && room.entities.cassette[0] && (
+        <MapEntityMenuItem
+          name="Cassette"
+          entity={room.entities.cassette[0]}
+          roomId={room.id}
+        />
+      )}
+      {room.entities.heart && room.entities.heart[0] && (
+        <MapEntityMenuItem
+          name="Crystal Heart"
+          entity={room.entities.heart[0]}
+          roomId={room.id}
+        />
+      )}
+    </List>
+  </>;
 });
 
 interface MapEntityMenuGroupProps {

@@ -499,7 +499,7 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
         id: chapter.id,
         gameId: chapter.gameId,
         name: chapter.name,
-        ...chapter.chapterNo && {no: chapter?.chapterNo},
+        ...(chapter.chapterNo && {no: chapter?.chapterNo}),
       },
       side: {
         id: side.id,
@@ -517,7 +517,7 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
         })),
       },
     }
-  }
+  };
 }
 
 /**

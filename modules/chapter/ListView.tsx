@@ -31,7 +31,7 @@ export const ChapterListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
 );
 
 const ChapterListViewItem: FC<ChapterViewItemProps & {roomNo: number}> = ({roomId, roomName, href, image, roomNo}) => (
-  <Link passHref href={href}>
+  <Link passHref href={href} legacyBehavior>
     <ListItemButton
       disableGutters
       component="a"

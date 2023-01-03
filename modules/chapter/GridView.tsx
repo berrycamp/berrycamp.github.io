@@ -33,7 +33,7 @@ export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, hre
 
   return (
     <Card sx={{width: 320, height: 180}}>
-      <Link passHref href={href}>
+      <Link passHref href={href} legacyBehavior>
         <CardActionArea
           sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
           onMouseOver={() => setHover(true)}

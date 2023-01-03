@@ -58,7 +58,7 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
             </Box>
             {chapters.map(chapter => (
               <Card key={chapter.id}>
-                <Link passHref href={`/${area.id}/${chapter.id}`}>
+                <Link passHref href={`/${area.id}/${chapter.id}`} legacyBehavior>
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -94,7 +94,11 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
         <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
         <List disablePadding>
           {chapters.map(chapter => (
-            <Link key={chapter.id} passHref href={`/${area.id}/${chapter.id}`}>
+            <Link
+              key={chapter.id}
+              passHref
+              href={`/${area.id}/${chapter.id}`}
+              legacyBehavior>
               <ListItemButton
                 disableGutters
                 component="a"
@@ -116,7 +120,7 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
         </List>
       </Container>
     </Fragment>
-  )
+  );
 }
 
 export interface AreaProps {
@@ -158,9 +162,9 @@ export const getStaticProps: GetStaticProps<AreaProps, AreaParams> = async ({par
   return {
     props: {
       area: {id, name, desc},
-      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...no && {no}})),
+      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...(no && {no})})),
     },
-  }
+  };
 };
 
 export default AreaPage;

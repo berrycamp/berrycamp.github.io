@@ -109,7 +109,7 @@ export const SettingsMenu: FC = () => {
 }
 
 const StyledIconButton = styled(IconButton)(({theme}) => ({
-  ...theme.palette.mode === "light" && {
+  ...(theme.palette.mode === "light" && {
     '&.MuiIconButton-root': {
       borderColor: "rgb(255, 255, 255, 0.2)",
       "&:hover": {
@@ -127,5 +127,5 @@ const StyledIconButton = styled(IconButton)(({theme}) => ({
         }
       },
     },
-  },
+  }),
 }));

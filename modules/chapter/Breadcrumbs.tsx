@@ -4,7 +4,7 @@ import {FC} from "react";
 
 export const ChapterBreadcrumbs: FC<ChapterBreadcrumbsProps> = ({areaId, areaName, chapterName}) => (
   <Breadcrumbs sx={{marginTop: 1, marginBottom: 1}}>
-    <Link passHref href={`/${areaId}`}>
+    <Link passHref href={`/${areaId}`} legacyBehavior>
       <MuiLink underline="always">
         {areaName}
       </MuiLink>

@@ -20,20 +20,20 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
         ...other.sx,
         position: "relative",
         color: "primary.main",
-        ...isVertical ? {
+        ...(isVertical ? {
           cursor: "col-resize",
           width: 24,
         } : {
           cursor: "row-resize",
           height: 24,
-        },
+        }),
         "&.MuiDivider-root::before": {
           top: 0,
-          ...isVertical && {marginBottom: "-16px"}
+          ...(isVertical && {marginBottom: "-16px"})
         },
         "&.MuiDivider-root::after": {
           top: 0,
-          ...isVertical && {marginTop: "-10px"}
+          ...(isVertical && {marginTop: "-10px"})
         },
         "& .MuiDivider-wrapper": {
           display: "inline-flex",
@@ -50,7 +50,7 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
         sx={{
           touchAction: "none",
           position: "absolute",
-          ...other.orientation === "vertical" ? {
+          ...(other.orientation === "vertical" ? {
             top: 0,
             bottom: 0,
             left: -8,
@@ -60,7 +60,7 @@ export const ResizableDivider: ForwardRefExoticComponent<DividerProps> = forward
             bottom: -8,
             left: 0,
             right: 0,
-          }, 
+          }), 
         }}
       />
       {other.orientation === "vertical" ? "↔" : "↕"}

@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<AreaProps> = async () => {
   return {
     props: {
       area: {id, name, desc},
-      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...no && {no}})),
+      chapters: chapters.map(({id, gameId, chapterNo: no, name}) => ({id, gameId, name, ...(no && {no})})),
     },
-  }
+  };
 };

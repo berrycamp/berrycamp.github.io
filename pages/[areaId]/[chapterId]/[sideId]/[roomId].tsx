@@ -71,12 +71,12 @@ const RoomPage: CampPage<RoomProps> = ({
       />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2, marginBottom: 2}}>
-          <Link passHref href={area.link}>
+          <Link passHref href={area.link} legacyBehavior>
             <MuiLink underline="always">
               {area.name}
             </MuiLink>
           </Link>
-          <Link passHref href={chapter.link}>
+          <Link passHref href={chapter.link} legacyBehavior>
             <MuiLink underline="always">
               {chapter.name}
             </MuiLink>
@@ -104,7 +104,7 @@ const RoomPage: CampPage<RoomProps> = ({
         <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
           <Box width="50%">
             {prevRoom?.link && (
-              <Link passHref href={prevRoom.link}>
+              <Link passHref href={prevRoom.link} legacyBehavior>
                 <Button
                   variant="outlined"
                   startIcon={<NavigateBefore />}
@@ -120,7 +120,7 @@ const RoomPage: CampPage<RoomProps> = ({
           </Box>
           <Box width="50%">
             {nextRoom?.link && (
-              <Link passHref href={nextRoom.link}>
+              <Link passHref href={nextRoom.link} legacyBehavior>
                 <Button
                   variant="outlined"
                   endIcon={<NavigateNext />}
@@ -139,7 +139,10 @@ const RoomPage: CampPage<RoomProps> = ({
           <Typography component="div" variant="h4">{room.name}</Typography>
           <Box display="flex" gap={1}>
             <Tooltip enterDelay={750} title={"View room in interactive map viewer"}>
-              <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}>
+              <Link
+                passHref
+                href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}
+                legacyBehavior>
                 <Button
                   component="a"
                   variant="contained"
@@ -173,7 +176,11 @@ const RoomPage: CampPage<RoomProps> = ({
         <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
         <Stack direction="row" marginTop={1} marginBottom={1}>
           {room.tags.map(tag => (
-            <Link key={tag} passHref href={`/${area.id}/${chapter.id}?side=${side.id}&search=${tag}`}>
+            <Link
+              key={tag}
+              passHref
+              href={`/${area.id}/${chapter.id}?side=${side.id}&search=${tag}`}
+              legacyBehavior>
               <Chip component="a" size="small" label={tag} sx={{textTransform: "capitalize"}}/>
             </Link>
           ))}
@@ -316,7 +323,7 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         name: checkpoint.name,
       },
       room: {
-        ...room.name && {name: room.name},
+        ...(room.name && {name: room.name}),
         debugId: roomId,
         roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
         levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
@@ -325,20 +332,20 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         entities: room.entities,
         tags: generateRoomTags(room),
       },
-      ...prevRoom && {
+      ...(prevRoom && {
         prevRoom: {
-          ...prevRoom.name && {name: prevRoom.name},
+          ...(prevRoom.name && {name: prevRoom.name}),
           link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
         }
-      },
-      ...nextRoom && {
+      }),
+      ...(nextRoom && {
         nextRoom: {
-          ...nextRoom.name && {name: nextRoom.name},
+          ...(nextRoom.name && {name: nextRoom.name}),
           link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
         }
-      },
+      }),
     }
-  }
+  };
 }
 
 export default RoomPage;

@@ -38,15 +38,15 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
   const [settings, setSettings] = useState<ICampSettings>({showWatermark: true, everest: true});
 
   const changeTheme = useCallback(() => {
-    setSettings(({theme, ...other}) => ({...other, ...theme !== "dark" && {theme: theme === undefined ? "light" : "dark"}}));
+    setSettings(({theme, ...other}) => ({...other, ...(theme !== "dark" && {theme: theme === undefined ? "light" : "dark"})}));
   }, []);
 
   const setPrefersDark = useCallback((prefersDark: boolean) => {
-    setSettings(({prefersDark: _, ...other}) => ({...other, ...prefersDark && {prefersDark}}));
+    setSettings(({prefersDark: _, ...other}) => ({...other, ...(prefersDark && {prefersDark})}));
   }, []);
 
   const toggleListMode = useCallback(() => {
-    setSettings(({listMode, ...other}) => ({...other, ...!listMode && {listMode: true}}));
+    setSettings(({listMode, ...other}) => ({...other, ...(!listMode && {listMode: true})}));
   }, [])
 
   const toggleShowWatermark = useCallback(() => {
@@ -58,7 +58,7 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
   }, []);
 
   const setPort = useCallback((port?: number) => {
-    setSettings(({port: _, ...other}) => ({...other, ...port !== undefined && {port}}));
+    setSettings(({port: _, ...other}) => ({...other, ...(port !== undefined && {port})}));
   }, [])
 
   return (
