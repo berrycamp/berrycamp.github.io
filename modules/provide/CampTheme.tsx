@@ -30,9 +30,14 @@ export const CampThemeProvider: FC<PropsWithChildren> = ({children}) => {
     const updatePrefersDarkMode = (event: MediaQueryListEvent): void => setPrefersDark(event.matches);
 
     const darkQuery = matchMedia(PREFERS_DARK_QUERY);
-    darkQuery.addEventListener("change", updatePrefersDarkMode)
-
-    return () => darkQuery.removeEventListener("change", updatePrefersDarkMode)
+    // Add event listener does not work on safari 12.5.6
+    if (darkQuery.addEventListener) {
+      darkQuery.addEventListener("change", updatePrefersDarkMode)
+      return () => darkQuery.removeEventListener("change", updatePrefersDarkMode)
+    } else {
+      darkQuery.addListener(updatePrefersDarkMode)
+      return () => darkQuery.removeListener(updatePrefersDarkMode)
+    }
   }, [setPrefersDark]);
 
   return (

@@ -71,12 +71,12 @@ const RoomPage: CampPage<RoomProps> = ({
       />
       <Container maxWidth="md">
         <Breadcrumbs separator="›" sx={{marginTop: 2, marginBottom: 2}}>
-          <Link passHref href={area.link} legacyBehavior>
+          <Link passHref href={area.link}>
             <MuiLink underline="always">
               {area.name}
             </MuiLink>
           </Link>
-          <Link passHref href={chapter.link} legacyBehavior>
+          <Link passHref href={chapter.link}>
             <MuiLink underline="always">
               {chapter.name}
             </MuiLink>
@@ -104,7 +104,7 @@ const RoomPage: CampPage<RoomProps> = ({
         <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
           <Box width="50%">
             {prevRoom?.link && (
-              <Link passHref href={prevRoom.link} legacyBehavior>
+              <Link passHref href={prevRoom.link}>
                 <Button
                   variant="outlined"
                   startIcon={<NavigateBefore />}
@@ -120,7 +120,7 @@ const RoomPage: CampPage<RoomProps> = ({
           </Box>
           <Box width="50%">
             {nextRoom?.link && (
-              <Link passHref href={nextRoom.link} legacyBehavior>
+              <Link passHref href={nextRoom.link}>
                 <Button
                   variant="outlined"
                   endIcon={<NavigateNext />}
@@ -142,7 +142,7 @@ const RoomPage: CampPage<RoomProps> = ({
               <Link
                 passHref
                 href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}
-                legacyBehavior>
+              >
                 <Button
                   component="a"
                   variant="contained"
@@ -180,7 +180,7 @@ const RoomPage: CampPage<RoomProps> = ({
               key={tag}
               passHref
               href={`/${area.id}/${chapter.id}?side=${side.id}&search=${tag}`}
-              legacyBehavior>
+            >
               <Chip component="a" size="small" label={tag} sx={{textTransform: "capitalize"}}/>
             </Link>
           ))}

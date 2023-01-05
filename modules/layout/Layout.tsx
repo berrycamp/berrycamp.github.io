@@ -16,47 +16,44 @@ export const Layout: FC<PropsWithChildren> = ({children}) => (
           }
         }}
       >
-        <Box flexGrow={1}>
+        <Box flexGrow={1} minWidth={0}>
           <Box height={48} width={288} position="relative">
             <Link
               passHref
               href="/"
-              style={{position: "relative", display: "flex", alignItems: "center", width: "100%", height: "100%"}}>
-
-              <Box sx={{position: "relative", width: "100%", height: "100%", display: {xs: "none", sm: "block"}}}>
+              style={{position: "relative", display: "flex", alignItems: "center", width: "100%", height: "100%"}}
+            >
+              <Box sx={{position: "relative", width: "100%", height: "100%"}}>
                 <Image
                   unoptimized
                   priority
                   src={'/img/logo.png'}
                   alt=""
                   layout="fill"
-                  style={{
-                    imageRendering: "pixelated",
-                  }}
+                  style={{imageRendering: "pixelated"}}
                 />
+                <Box display="flex" position="absolute" left={12} height="100%" alignItems="center">
+                  <Typography
+                    sx={{
+                      fontSize: 28,
+                      paddingRight: 1,
+                    }}
+                  >
+                    <span role='img' aria-label='Berry'>🍓</span>
+                  </Typography>
+                  <Typography
+                    component="div"
+                    sx={{
+                      letterSpacing: 4,
+                      color: "white",
+                      fontSize: 28,
+                      textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                    }}
+                  >
+                    camp
+                  </Typography>
+                </Box>
               </Box>
-              <Box display="flex" position="absolute" left={12}>
-                <Typography
-                  sx={{
-                    fontSize: 28,
-                    paddingRight: 1,
-                  }}
-                >
-                  <span role='img' aria-label='Berry'>🍓</span>
-                </Typography>
-                <Typography
-                  component="div"
-                  sx={{
-                    letterSpacing: 4,
-                    color: "white",
-                    fontSize: 28,
-                    textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                  }}
-                >
-                  camp
-                </Typography>
-              </Box>
-
             </Link>
           </Box>
         </Box>

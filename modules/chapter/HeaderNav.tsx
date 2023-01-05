@@ -8,7 +8,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({areaId, prevChapter, nextChapter}
   <Box display="flex" gap={1} marginTop={1}>
     <Box width="100%">
       {prevChapter && (
-        <Link passHref href={`/${areaId}/${prevChapter.id}`} legacyBehavior>
+        <Link passHref href={`/${areaId}/${prevChapter.id}`}>
           <Button
             size="small"
             variant="outlined"
@@ -23,7 +23,7 @@ export const HeaderNav: FC<HeaderNavProps> = ({areaId, prevChapter, nextChapter}
     </Box>
     <Box width="100%">
       {nextChapter && (
-        <Link passHref href={`/${areaId}/${nextChapter.id}`} legacyBehavior>
+        <Link passHref href={`/${areaId}/${nextChapter.id}`}>
           <Button
             size="small"
             variant="outlined"

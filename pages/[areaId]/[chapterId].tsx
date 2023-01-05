@@ -63,7 +63,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           <Typography component="div" variant="body1" color="text.secondary" textAlign="center">
               {pluralize(side.roomCount, "room")}
             </Typography>
-            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`} legacyBehavior>
+            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
               <Button variant="contained" endIcon={<TravelExplore/>}>View Map</Button>
             </Link>
           </Paper>

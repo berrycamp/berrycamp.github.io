@@ -29,7 +29,7 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
         <Link
           passHref
           href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
-          legacyBehavior>
+        >
           <MuiLink underline="hover" color="inherit">
             {room.id}{room.name && ` - ${room.name}`}
           </MuiLink>

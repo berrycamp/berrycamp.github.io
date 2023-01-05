@@ -133,7 +133,7 @@ const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) 
       <Link
         passHref
         href={`${mapRoomUrl}&x=${entity.x}&y=${entity.y}`}
-        legacyBehavior>
+      >
         <ListItemButton component="a" onClick={handleTeleport}>
           <ListItemText>{name}</ListItemText>
         </ListItemButton>

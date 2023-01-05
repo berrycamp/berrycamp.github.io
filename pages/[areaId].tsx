@@ -58,7 +58,7 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
             </Box>
             {chapters.map(chapter => (
               <Card key={chapter.id}>
-                <Link passHref href={`/${area.id}/${chapter.id}`} legacyBehavior>
+                <Link passHref href={`/${area.id}/${chapter.id}`}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -98,7 +98,7 @@ const ListArea: FC<AreaProps> = ({area, chapters}) => {
               key={chapter.id}
               passHref
               href={`/${area.id}/${chapter.id}`}
-              legacyBehavior>
+            >
               <ListItemButton
                 disableGutters
                 component="a"
