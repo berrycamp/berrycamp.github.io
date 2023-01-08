@@ -1,6 +1,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     domains: [],
   },
   webpack: (config, {isServer}) => {
@@ -11,5 +12,6 @@ const nextConfig = {
     return config;
   },
 }
+
 
 module.exports = nextConfig;
