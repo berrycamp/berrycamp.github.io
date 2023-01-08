@@ -1,4 +1,4 @@
-import {Container, Link as MuiLink, List, Paper, Typography} from "@mui/material";
+import {Avatar, Box, Chip, Container, Paper, Typography} from "@mui/material";
 import {GetStaticProps} from "next";
 import {Fragment} from "react";
 import {Area} from "~/modules/data/dataTypes";
@@ -14,38 +14,39 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
         description="Browse rooms from the video game Celeste"
         image={getRootImageUrl()}
       />
-      <Container sx={{marginTop: 4}}>
-        <Paper elevation={2} sx={{padding: 2}}>
+      <Container>
+        <Paper elevation={2} sx={{padding: 2, mt: 2}}>
           <Typography component="div" variant="h6">
             Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>!
           </Typography>
           <Typography marginTop={1}>
-            Browse rooms from the video game Celeste and open them in-game if <MuiLink underline="hover" href="https://everestapi.github.io/">Everest</MuiLink> is running.
+            Browse rooms from the video game Celeste and open them directly in-game with Everest.
           </Typography>
-          <Typography color="text.secondary" marginTop={1}>
-            Send any feedback to
-            <Typography component="strong" color="secondary"> wishcresp#0141 </Typography>
-            on the <MuiLink underline="hover" href="https://discord.gg/Celeste">Celeste Discord</MuiLink>.
-          </Typography>
-          <Typography marginTop={4}>
-            <strong>This website contains spoilers for Celeste.</strong>
-          </Typography>
-        </Paper>
-        <List>
-        
-        <AreaView area={area} chapters={chapters}/>
-        {/* {VALID_AREAS.map(area => (
-          <Link key={area} passHref href={`/${area}`}>
-            <ListItemButton
-              disableGutters
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={1}
+            pt={2}
+          >
+            <Typography>Made by</Typography>
+            <Chip
+              clickable
               component="a"
-              sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
-            >
-              <Typography component="div" color="text.secondary">{area}</Typography>
-            </ListItemButton>
-          </Link>
-        ))} */}
-      </List>
+              href="https://github.com/wishcresp"
+              avatar={<Avatar src="https://github.com/wishcresp.png?size=24"/>}
+              label="wishcresp"
+            />
+            <Typography>and powered by</Typography>
+            <Chip
+              clickable
+              component="a"
+              href="https://github.com/berrycamp/berrycamp.github.io"
+              avatar={<Avatar src="https://github.com/berrycamp.png?size=24"/>}
+              label="GitHub"
+            />
+          </Box>
+        </Paper>
+        <AreaView area={area} chapters={chapters}/>
       </Container>
     </Fragment>
   )

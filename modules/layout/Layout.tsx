@@ -23,7 +23,7 @@ export const Layout: FC<PropsWithChildren> = ({children}) => (
               href="/"
               style={{position: "relative", display: "flex", alignItems: "center", width: "100%", height: "100%"}}
             >
-              <Box sx={{position: "relative", width: "100%", height: "100%"}}>
+              <a>
                 <Image
                   unoptimized
                   priority
@@ -53,7 +53,7 @@ export const Layout: FC<PropsWithChildren> = ({children}) => (
                     camp
                   </Typography>
                 </Box>
-              </Box>
+              </a>
             </Link>
           </Box>
         </Box>

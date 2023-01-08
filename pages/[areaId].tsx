@@ -1,4 +1,5 @@
-import {Box, Card, CardActionArea, CardContent, CardMedia, Container, List, ListItemButton, Typography} from '@mui/material'
+import {Box, Card, CardActionArea, CardContent, CardMedia, List, ListItemButton, Typography} from '@mui/material'
+import {Container} from '@mui/system'
 import {VALID_AREAS} from 'modules/data/validAreas'
 import {fetchArea, getAreaImageUrl, getChapterImageUrl} from 'modules/fetch/dataApi'
 import {CampHead} from 'modules/head/CampHead'
@@ -19,7 +20,9 @@ const AreaPage: CampPage<AreaProps> = ({area, chapters}) => {
         description={area.desc}
         image={getAreaImageUrl(area.id)}
       />
-      <AreaView area={area} chapters={chapters}/>
+      <Container>
+        <AreaView area={area} chapters={chapters}/>
+      </Container>
     </Fragment>
   )
 }
@@ -40,86 +43,80 @@ export const AreaView: FC<AreaProps> = ({area, chapters}) => {
 
 const GridArea: FC<AreaProps> = ({area, chapters}) => {
   return (
-    <Fragment>
-      <Container>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(285px, 1fr))",
-              gridGap: "0.5rem",
-              width: "100%",
-              marginBottom: "0.5rem",
-            }}
-          >
-            <Box gridColumn="1 / -1">
-              <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
-              <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
-            </Box>
-            {chapters.map(chapter => (
-              <Card key={chapter.id}>
-                <Link passHref href={`/${area.id}/${chapter.id}`}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      src={getChapterImageUrl(area.id, chapter.id)}
-                      alt={`An image of chapter ${chapter.name}`}
-                      style={{
-                        imageRendering: "pixelated",
-                      }}
-                    />
-                    <CardContent>
-                      <Typography component="div" variant="h6">
-                        {chapter.no && `Chapter ${chapter.no} - `}
-                        {chapter.name}
-                      </Typography>
-                      <Typography component="div" variant="body2" color="textSecondary">{chapter.gameId}</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Link>
-              </Card>
-            ))}
-          </Box>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(285px, 1fr))",
+          gridGap: "0.5rem",
+          width: "100%",
+          marginBottom: "0.5rem",
+        }}
+      >
+        <Box gridColumn="1 / -1">
+          <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
+          <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
         </Box>
-      </Container>
-    </Fragment>
+        {chapters.map(chapter => (
+          <Card key={chapter.id}>
+            <Link passHref href={`/${area.id}/${chapter.id}`}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  src={getChapterImageUrl(area.id, chapter.id)}
+                  alt={`An image of chapter ${chapter.name}`}
+                  style={{
+                    imageRendering: "pixelated",
+                  }}
+                />
+                <CardContent>
+                  <Typography component="div" variant="h6">
+                    {chapter.no && `Chapter ${chapter.no} - `}
+                    {chapter.name}
+                  </Typography>
+                  <Typography component="div" variant="body2" color="textSecondary">{chapter.gameId}</Typography>
+                </CardContent>
+              </CardActionArea>
+            </Link>
+          </Card>
+        ))}
+      </Box>
+    </Box>
   );
 }
 
 const ListArea: FC<AreaProps> = ({area, chapters}) => {
   return (
-    <Fragment>
-      <Container>
-        <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
-        <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
-        <List disablePadding>
-          {chapters.map(chapter => (
-            <Link
-              key={chapter.id}
-              passHref
-              href={`/${area.id}/${chapter.id}`}
+    <>
+      <Typography component="div" variant="h4" marginTop={4} marginBottom={1}>{area.name}</Typography>
+      <Typography component="div" color="text.secondary" marginBottom={2}>{area.desc}</Typography>
+      <List disablePadding>
+        {chapters.map(chapter => (
+          <Link
+            key={chapter.id}
+            passHref
+            href={`/${area.id}/${chapter.id}`}
+          >
+            <ListItemButton
+              disableGutters
+              component="a"
+              sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
             >
-              <ListItemButton
-                disableGutters
-                component="a"
-                sx={{padding: 0, marginTop: 0.5, marginBottom: 0.5}}
-              >
-                <Image
-                  unoptimized
-                  src={getChapterImageUrl(area.id, chapter.id)}
-                  alt={`Image of chapter ${chapter.name}`}
-                  width={80}
-                  height={45}
-                />
-                <Typography component="div" marginLeft={2} color="text.secondary" width="1rem">{chapter.no ? chapter.no : ""}</Typography>
-                <Typography component="div" marginLeft={1} flexGrow={1}>{chapter.name}</Typography>
-                <Typography component="div" color="text.secondary" marginRight={0.5}>{chapter.gameId}</Typography>
-              </ListItemButton>
-            </Link>
-          ))}
-        </List>
-      </Container>
-    </Fragment>
+              <Image
+                unoptimized
+                src={getChapterImageUrl(area.id, chapter.id)}
+                alt={`Image of chapter ${chapter.name}`}
+                width={80}
+                height={45}
+              />
+              <Typography component="div" marginLeft={2} color="text.secondary" width="1rem">{chapter.no ? chapter.no : ""}</Typography>
+              <Typography component="div" marginLeft={1} flexGrow={1}>{chapter.name}</Typography>
+              <Typography component="div" color="text.secondary" marginRight={0.5}>{chapter.gameId}</Typography>
+            </ListItemButton>
+          </Link>
+        ))}
+      </List>
+    </>
   );
 }
 
