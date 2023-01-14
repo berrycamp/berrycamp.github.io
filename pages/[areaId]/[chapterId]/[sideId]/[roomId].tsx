@@ -148,14 +148,14 @@ const RoomPage: CampPage<RoomProps> = ({
         </Box>
         <Paper ref={imgRef} sx={{position: "relative"}}>
           <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => !isFullscreen && setFullImage(prev => !prev)}/>
-            <ToggleButton
-              sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
-              size="small"
-              value="full"
-              onChange={() => setIsFullscreen(prev => !prev)}
-            >
-              {isFullscreen ? <FullscreenExit color="primary"/> : <Fullscreen color="primary"/>}
-            </ToggleButton>
+          <ToggleButton
+            sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
+            size="small"
+            value="full"
+            onChange={() => setIsFullscreen(prev => !prev)}
+          >
+            {isFullscreen ? <FullscreenExit color="primary"/> : <Fullscreen color="primary"/>}
+          </ToggleButton>
         </Paper>
         <Typography component="div" variant="h5" mt={1}>{room.name}</Typography>
         <Typography component="div" color="text.secondary">{chapter.name} · {side.name} Side · {checkpoint.name}</Typography>

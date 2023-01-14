@@ -22,7 +22,7 @@ export interface ICampSettings {
 
 const CampContext = createContext<ICampContext>({
   settings: {
-    everest: false,
+    everest: true,
     showWatermark: true,
   },
   changeTheme: () => undefined,
