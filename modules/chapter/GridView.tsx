@@ -1,4 +1,4 @@
-import {Box, Card, CardActionArea, CardMedia, Divider, ImageListItemBar, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardMedia, Divider, Grid, ImageListItemBar, Typography} from "@mui/material";
 import Link from "next/link";
 import {FC, useState} from "react";
 import {getRoomPreviewUrl} from "../fetch/dataApi";
@@ -11,7 +11,7 @@ export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
         <Typography component="div" variant="h5" color="text.secondary" alignSelf="center">
           {checkpointIndex + 1}. {checkpoint.name}
         </Typography>
-        <Box display="flex" flexWrap="wrap" gap={1} paddingTop={2} paddingBottom={2} justifyContent="center">
+        <Grid container spacing={1} pt={2} pb={2}>
           {checkpoint.rooms.map(room => (
             <ChapterGridItem
               key={`${sideId}-${room.id}`}
@@ -21,7 +21,7 @@ export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
               href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
             />
           ))}
-        </Box>
+        </Grid>
         <Divider flexItem />
       </Box>
     ))}
@@ -32,33 +32,33 @@ export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, hre
   const [hover, setHover] = useState<boolean>(false);
 
   return (
-    <Card sx={{width: 320, height: 180}}>
-      <Link passHref href={href}>
-        <CardActionArea
-          sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{
-            imageRendering: "pixelated",
-          }}
-        >
-          <CardMedia
-            component="img"
-            src={image}
-            alt={`Thumbnail for room ${roomName}`}
+    <Grid item xs={12} sm={6} md={4}>
+      <Card sx={{width: "100%", height: "100%"}}>
+        <Link passHref href={href}>
+          <CardActionArea
+            sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+            onMouseOver={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
             style={{
               imageRendering: "pixelated",
             }}
-          />
-          {hover && (
-            <ImageListItemBar
-              title={roomName}
-              subtitle={roomId}
-              sx={{fontSize: 26}}
+          >
+            <CardMedia
+              component="img"
+              src={image}
+              alt={`Thumbnail for room ${roomName}`}
+              style={{
+                imageRendering: "pixelated",
+              }}
             />
-          )}
-        </CardActionArea>
-      </Link>
-    </Card>
+              <ImageListItemBar
+                title={roomName}
+                subtitle={roomId}
+                sx={{fontSize: 26}}
+              />
+          </CardActionArea>
+        </Link>
+      </Card>
+    </Grid>
   );
 }

@@ -20,29 +20,28 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
             Welcome to <Typography component="span" color="secondary" variant="h6">Berry Camp</Typography>!
           </Typography>
           <Typography marginTop={1}>
-            Browse rooms from the video game Celeste and open them directly in-game with Everest.
+            Browse rooms from the video game Celeste and open them in-game with Everest.
           </Typography>
           <Box
             display="flex"
             alignItems="center"
             gap={1}
-            pt={2}
+            pt={3}
           >
-            <Typography>Made by</Typography>
-            <Chip
-              clickable
-              component="a"
-              href="https://github.com/wishcresp"
-              avatar={<Avatar src="https://github.com/wishcresp.png?size=24"/>}
-              label="wishcresp"
-            />
-            <Typography>and powered by</Typography>
             <Chip
               clickable
               component="a"
               href="https://github.com/berrycamp/berrycamp.github.io"
-              avatar={<Avatar src="https://github.com/berrycamp.png?size=24"/>}
-              label="GitHub"
+              avatar={<Avatar src="https://github.com/berrycamp.png?size=64"/>}
+              label="camp"
+            />
+            <Typography>was made by</Typography>
+            <Chip
+              clickable
+              component="a"
+              href="https://github.com/wishcresp"
+              avatar={<Avatar src="https://github.com/wishcresp.png?size=64"/>}
+              label="wishcresp"
             />
           </Box>
         </Paper>
