@@ -1,6 +1,6 @@
 import {Box, Card, CardActionArea, CardMedia, Divider, Grid, ImageListItemBar, Typography} from "@mui/material";
 import Link from "next/link";
-import {FC, useState} from "react";
+import {FC} from "react";
 import {getRoomPreviewUrl} from "../fetch/dataApi";
 import {ChapterViewItemProps, ChapterViewProps} from "./types";
 
@@ -28,37 +28,34 @@ export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
   </>
 );
 
-export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, image})=> {
-  const [hover, setHover] = useState<boolean>(false);
-
-  return (
-    <Grid item xs={12} sm={6} md={4}>
-      <Card sx={{width: "100%", height: "100%"}}>
-        <Link passHref href={href}>
-          <CardActionArea
-            sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
-            onMouseOver={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, image})=> (
+  <Grid item xs={12} sm={6} md={4}>
+    <Card sx={{width: "100%", height: "100%"}}>
+      <Link passHref href={href}>
+        <CardActionArea
+          sx={{flexGrow: 1, flexDirection: "column", alignItems: "stretch", height: "100%"}}
+          style={{
+            imageRendering: "pixelated",
+          }}
+        >
+          <CardMedia
+            component="img"
+            src={image}
+            alt={`Thumbnail for room ${roomName}`}
             style={{
               imageRendering: "pixelated",
             }}
-          >
-            <CardMedia
-              component="img"
-              src={image}
-              alt={`Thumbnail for room ${roomName}`}
-              style={{
-                imageRendering: "pixelated",
-              }}
-            />
-              <ImageListItemBar
-                title={roomName}
-                subtitle={roomId}
-                sx={{fontSize: 26}}
-              />
-          </CardActionArea>
-        </Link>
-      </Card>
-    </Grid>
-  );
-}
+          />
+          <ImageListItemBar
+            title={roomName}
+            subtitle={roomId}
+            sx={{
+              fontSize: 26,
+              background: "linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0))",
+            }}
+          />
+        </CardActionArea>
+      </Link>
+    </Card>
+  </Grid>
+);

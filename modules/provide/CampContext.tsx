@@ -7,7 +7,7 @@ export interface ICampContext {
   toggleListMode: () => void;
   toggleShowWatermark: () => void;
   toggleEverest: () => void;
-  setPort: (port?: number) => void;
+  setEverestUrl: (url?: string) => void;
   setSettings: (settings: ICampSettings) => void;
 }
 
@@ -17,12 +17,12 @@ export interface ICampSettings {
   listMode?: true;
   showWatermark: boolean;
   everest: boolean;
-  port?: number;
+  everestUrl?: string;
 }
 
 const CampContext = createContext<ICampContext>({
   settings: {
-    everest: true,
+    everest: false,
     showWatermark: true,
   },
   changeTheme: () => undefined,
@@ -30,7 +30,7 @@ const CampContext = createContext<ICampContext>({
   toggleListMode: () => undefined,
   toggleShowWatermark: () => undefined,
   toggleEverest: () => undefined,
-  setPort: () => undefined,
+  setEverestUrl: () => undefined,
   setSettings: () => undefined,
 });
 
@@ -57,8 +57,8 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
     setSettings(({everest, ...other}) => ({...other, everest: !everest}));
   }, []);
 
-  const setPort = useCallback((port?: number) => {
-    setSettings(({port: _, ...other}) => ({...other, ...(port !== undefined && {port})}));
+  const setEverestUrl = useCallback((everestUrl?: string) => {
+    setSettings(({everestUrl: _, ...other}) => ({...other, ...(everestUrl !== undefined && {everestUrl})}));
   }, [])
 
   return (
@@ -70,7 +70,7 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
         toggleListMode,
         toggleEverest,
         toggleShowWatermark,
-        setPort,
+        setEverestUrl,
         setSettings
       }}
     >

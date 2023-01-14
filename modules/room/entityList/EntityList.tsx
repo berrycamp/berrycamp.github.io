@@ -109,11 +109,11 @@ interface EntityItem {
 }
 
 const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) => {
-  const {settings: {port, everest}} = useCampContext();
+  const {settings: {everestUrl, everest}} = useCampContext();
   const {isMobile} = useMobile();
 
   const handleTeleport = async () => {
-    await teleport(port, `${teleportParams}&x=${entity.x}&y=${entity.y}`);
+    void teleport({url: everestUrl, params: `${teleportParams}&x=${entity.x}&y=${entity.y}`});
   }
 
   return (
@@ -122,7 +122,7 @@ const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) 
       disablePadding
       {...!isMobile && everest && teleportParams && {
         secondaryAction: (
-          <Tooltip title="Launch to spawn" enterDelay={750} placement="right">
+          <Tooltip title="Go to spawn" enterDelay={750} placement="right">
             <IconButton size="small" onClick={handleTeleport} color="primary">
               <RocketLaunch fontSize="small"/>
             </IconButton>

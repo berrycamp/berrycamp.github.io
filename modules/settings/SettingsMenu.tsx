@@ -1,11 +1,10 @@
-import {BrandingWatermarkSharp, BrightnessAuto, DarkMode, GridViewSharp, LightMode, RectangleSharp, Restore, Settings, ViewListSharp} from "@mui/icons-material";
-import {Box, Divider, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, SvgIcon, TextField, Tooltip, Typography} from "@mui/material";
+import {BrandingWatermarkSharp, BrightnessAuto, DarkMode, Explore, ExploreOff, GridViewSharp, LightMode, RectangleSharp, Restore, Settings, ViewListSharp} from "@mui/icons-material";
+import {Divider, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, TextField, Tooltip} from "@mui/material";
 import {FC, Fragment, MouseEvent, useState} from "react";
-import {EVEREST_ICON} from "~/modules/layout/everest";
 import {useCampContext} from "~/modules/provide/CampContext";
 
 export const SettingsMenu: FC = () => {
-  const {settings, changeTheme, toggleListMode, setPort, toggleShowWatermark, toggleEverest} = useCampContext();
+  const {settings, changeTheme, toggleListMode, setEverestUrl, toggleShowWatermark, toggleEverest} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -28,7 +27,7 @@ export const SettingsMenu: FC = () => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            width: 200,
+            width: 220,
           }
         }}
       >
@@ -62,43 +61,46 @@ export const SettingsMenu: FC = () => {
         </MenuItem>
         <Divider />
         <MenuItem onClick={toggleEverest}>
-            <ListItemIcon>
-              <SvgIcon viewBox="615 1135 2776 1743" color={settings.everest ? "action" : "disabled"} fontSize="small">
-                <path d={EVEREST_ICON} strokeWidth="0.1" />
-              </SvgIcon>
-            </ListItemIcon>
-          <Typography {...!settings.everest && {color: "gray"}}>{settings.everest ? "Everest" : "Disabled"}</Typography>
+          <ListItemIcon>
+            {settings.everest ? (
+              <Explore fontSize="small"/>
+            ) : (
+              <ExploreOff fontSize="small"/>
+            )}
+          </ListItemIcon>
+          {settings.everest ? "Allow Teleporting" : "Disable Teleporting"}
         </MenuItem>
         {settings.everest && (
-          <ListItem>
-            <Box display="flex">
-              <Box sx={{minWidth: 36, height: 20}}/>
-              <Tooltip title="Set a custom Debug RC Port">
-                <TextField
-                  type="number"
-                  size="small"
-                  variant="standard"
-                  placeholder="Custom port"
-                  value={settings.port ?? ""}
-                  onChange={event => setPort(Number(event.target.value) || undefined)}
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                  inputProps={{
-                    min: 0,
-                  }}
-                  sx={{
-                    "& .MuiInput-input": {
-                      padding: 0,
-                      "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-                        WebkitAppearance: "none",
-                      }
-                    },
-                  }}
-                />
-              </Tooltip>
-            </Box>
-            <IconButton size="small" onClick={() => setPort()}>
+          <ListItem sx={{pr: 0.5}}>
+            <Tooltip title="Optionally set a custom Everest debug server URL">
+              <TextField
+                type="url"
+                size="small"
+                variant="standard"
+                placeholder="Custom Everest URL"
+                value={settings.everestUrl ?? ""}
+                onChange={event => setEverestUrl(event.target.value)}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                inputProps={{
+                  min: 0,
+                }}
+                sx={{
+                  "& .MuiInput-input": {
+                    padding: 0,
+                    "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+                      WebkitAppearance: "none",
+                    }
+                  },
+                  "& .MuiInputBase-input": {
+                    overflow: "hidden",
+                    textOverflow: "ellipsis"
+                  }
+                }}
+              />
+            </Tooltip>
+            <IconButton size="small" onClick={() => setEverestUrl()}>
               <Restore fontSize="small" />
             </IconButton>
           </ListItem>

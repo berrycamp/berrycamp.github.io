@@ -33,7 +33,7 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
               component="a"
               href="https://github.com/berrycamp/berrycamp.github.io"
               avatar={<Avatar src="https://github.com/berrycamp.png?size=64"/>}
-              label="camp"
+              label="Berry Camp"
             />
             <Typography>was made by</Typography>
             <Chip

@@ -3,7 +3,7 @@ import {ICampSettings, useCampContext} from "./CampContext";
 
 const THEME_KEY = "theme";
 const LIST_MODE_KEY = "listMode";
-const PORT_KEY = "port";
+const EVEREST_KEY = "everest";
 
 export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   const {settings, setSettings} = useCampContext();
@@ -12,9 +12,11 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   * Retrieve and validate user settings from localstorage.
   */
   useEffect(() => {
+    const everest: boolean = /Windows|Linux|Macintosh/i.test(navigator.userAgent);
+
     const storageSettings: ICampSettings = {
       showWatermark: true,
-      everest: true,
+      everest,
     };
 
     const theme: string | null = localStorage.getItem(THEME_KEY);
@@ -27,9 +29,9 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
       storageSettings.listMode = true;
     }
 
-    const port: string | null = localStorage.getItem(PORT_KEY);
+    const port: string | null = localStorage.getItem(EVEREST_KEY);
     if (port !== null) {
-      storageSettings.port = Number(port);
+      storageSettings.everestUrl = Number(port);
     }
 
     setSettings(storageSettings);
@@ -39,9 +41,9 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
    * Set user settings in localstorage.
    */
   useEffect(() => {
-    [THEME_KEY, LIST_MODE_KEY, PORT_KEY].forEach(key => localStorage.removeItem(key));
+    [THEME_KEY, LIST_MODE_KEY, EVEREST_KEY].forEach(key => localStorage.removeItem(key));
 
-    const {theme, listMode, port} = settings;
+    const {theme, listMode, everestUrl: port} = settings;
 
     if (theme !== undefined) {
       localStorage.setItem(THEME_KEY, theme);
@@ -52,7 +54,7 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
     }
 
     if (port !== undefined) {
-      localStorage.setItem(PORT_KEY, String(port));
+      localStorage.setItem(EVEREST_KEY, String(port));
     }
   }, [settings]);
 
