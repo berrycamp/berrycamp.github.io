@@ -3,7 +3,7 @@ import {ICampSettings, useCampContext} from "./CampContext";
 
 const THEME_KEY = "theme";
 const LIST_MODE_KEY = "listMode";
-const PORT_KEY = "port";
+const EVEREST_URL_KEY = "everestUrl";
 
 export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   const {settings, setSettings} = useCampContext();
@@ -14,7 +14,7 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   useEffect(() => {
     const storageSettings: ICampSettings = {
       showWatermark: true,
-      everest: true,
+      everest: !/Mobi/i.test(navigator.userAgent),
     };
 
     const theme: string | null = localStorage.getItem(THEME_KEY);
@@ -27,9 +27,9 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
       storageSettings.listMode = true;
     }
 
-    const port: string | null = localStorage.getItem(PORT_KEY);
-    if (port !== null) {
-      storageSettings.port = Number(port);
+    const url: string | null = localStorage.getItem(EVEREST_URL_KEY);
+    if (url !== null) {
+      storageSettings.everestUrl = url;
     }
 
     setSettings(storageSettings);
@@ -39,9 +39,9 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
    * Set user settings in localstorage.
    */
   useEffect(() => {
-    [THEME_KEY, LIST_MODE_KEY, PORT_KEY].forEach(key => localStorage.removeItem(key));
+    [THEME_KEY, LIST_MODE_KEY, EVEREST_URL_KEY].forEach(key => localStorage.removeItem(key));
 
-    const {theme, listMode, port} = settings;
+    const {theme, listMode, everest, everestUrl} = settings;
 
     if (theme !== undefined) {
       localStorage.setItem(THEME_KEY, theme);
@@ -51,8 +51,8 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
       localStorage.setItem(LIST_MODE_KEY, String(true));
     }
 
-    if (port !== undefined) {
-      localStorage.setItem(PORT_KEY, String(port));
+    if (everestUrl !== undefined) {
+      localStorage.setItem(EVEREST_URL_KEY, String(everestUrl));
     }
   }, [settings]);
 

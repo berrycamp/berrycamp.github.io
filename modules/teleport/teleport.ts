@@ -1,15 +1,27 @@
 /**
  * The default port EVEREST DEBUG RC runs on.
  */
-const DEFAULT_EVEREST_PORT = 32270;
+const DEFAULT_EVEREST_URL: string = "http://localhost:32270";
+
+const DEFAULT_INIT: RequestInit = {
+  /**
+   * Not hitting the same origin, we can't rely on cors support.
+   */
+  mode: "no-cors",
+}
 
 /**
  * Teleport to a room in everest.
  */
-export const teleport = async (port: number | undefined, params: string): Promise<void> => {
+export const teleport = async ({
+  url = DEFAULT_EVEREST_URL,
+  params
+} : {
+  url?: string | undefined,
+  params: string,
+}): Promise<void> => {
   try {
-    const baseUrl: string = `http://localhost:${port ?? DEFAULT_EVEREST_PORT}`;
-    await fetch(`${baseUrl}/tp${params}`, {mode: "no-cors"});
+    await fetch(`${url}/tp${params}`, DEFAULT_INIT);
   } catch (e) {
     // Do nothing.
   }

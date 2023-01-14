@@ -1,13 +1,12 @@
 import {Fullscreen, FullscreenExit, NavigateBefore, NavigateNext, RocketLaunch, TravelExplore} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Chip, Container, Dialog, Divider, Link as MuiLink, Paper, Stack, Theme, ToggleButton, Tooltip, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Breadcrumbs, Button, Chip, Container, Link as MuiLink, Paper, Stack, ToggleButton, Tooltip, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next";
 import NextImage from "next/image";
 import Link from "next/link";
 import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, useEffect, useState} from "react";
-import {DesktopBox} from "~/modules/common/desktopBox/DesktopBox";
+import {FC, Fragment, useEffect, useRef, useState} from "react";
 import {EverestOnly} from "~/modules/common/everestOnly/EverestOnly";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
@@ -30,10 +29,10 @@ const RoomPage: CampPage<RoomProps> = ({
   const {settings} = useCampContext();
   const router: NextRouter = useRouter();
 
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
   const [fullImage, setFullImage] = useState<boolean>(false);
-  const [imageOpen, setImageOpen] = useState<boolean>(false);
-  const theme: Theme = useTheme();
-  const isUpMdWidth = useMediaQuery(theme.breakpoints.up('md'));
 
   const image: string = fullImage
     ? getRoomImageUrl(area.id, chapter.id, side.id, room.debugId)
@@ -42,8 +41,8 @@ const RoomPage: CampPage<RoomProps> = ({
   /**
    * Send a request to open the room in Everest.
    */
-  const handleOpenRoom = async (): Promise<void> => {
-    await teleport(settings.port, room.teleportParams);
+  const handleOpenRoom = (): void => {
+    void teleport({url: settings.everestUrl, params: room.teleportParams});
   }
 
   /**
@@ -60,7 +59,33 @@ const RoomPage: CampPage<RoomProps> = ({
 
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
-  }, [nextRoom?.link, prevRoom?.link, router])
+  }, [nextRoom?.link, prevRoom?.link, router]);
+
+  /**
+   * Manage image fullscreen state.
+   */
+  useEffect(() => {
+    if (!imgRef.current) {
+      return;
+    }
+
+    if (isFullscreen) {
+      imgRef.current.requestFullscreen();
+    } else if (Boolean(document.fullscreenElement)) {
+      document.exitFullscreen();
+    }
+  }, [isFullscreen]);
+
+  /**
+   * Listen for fullscreen changes and store state locally.
+   */
+  useEffect(() => {
+    const handleFullscreenChange = (event: Event) => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    }
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange)
+  }, []);
 
   return (
     <Fragment>
@@ -70,7 +95,7 @@ const RoomPage: CampPage<RoomProps> = ({
         image={image}
       />
       <Container maxWidth="md">
-        <Breadcrumbs separator="›" sx={{marginTop: 2, marginBottom: 2}}>
+        <Breadcrumbs separator="›" sx={{marginTop: 1, marginBottom: 1}}>
           <Link passHref href={area.link}>
             <MuiLink underline="always">
               {area.name}
@@ -85,28 +110,13 @@ const RoomPage: CampPage<RoomProps> = ({
           <Typography color="text.secondary">{checkpoint.name}</Typography>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
-        <Dialog fullWidth maxWidth="xl" open={imageOpen} onClose={() => setImageOpen(false)} onClick={() => setImageOpen(false)}>
-          <ImageView image={image} roomName={room.name ?? room.debugId}/>
-        </Dialog>
-        <Paper sx={{position: "relative"}}>
-          <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => isUpMdWidth && setImageOpen(true)}/>
-            <Tooltip title={fullImage ? "View preview" : "View full image"}>
-              <ToggleButton
-                sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
-                size="small"
-                value="full"
-                onChange={() => setFullImage(f => !f)}
-              >
-                {fullImage ? <Fullscreen color="primary"/>: <FullscreenExit color="primary"/>}
-              </ToggleButton>
-            </Tooltip>
-        </Paper>
-        <Box display="flex" gap={1} marginTop={1} marginBottom={1}>
+        <Box display="flex" gap={1} mb={1}>
           <Box width="50%">
             {prevRoom?.link && (
               <Link passHref href={prevRoom.link}>
                 <Button
                   variant="outlined"
+                  size="small"
                   startIcon={<NavigateBefore />}
                   aria-label={`Go to previous room ${prevRoom.name}`}
                   sx={{width: "100%"}}
@@ -123,6 +133,7 @@ const RoomPage: CampPage<RoomProps> = ({
               <Link passHref href={nextRoom.link}>
                 <Button
                   variant="outlined"
+                  size="small"
                   endIcon={<NavigateNext />}
                   aria-label={`Go to next room ${nextRoom.name}`}
                   sx={{width: "100%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}
@@ -135,46 +146,21 @@ const RoomPage: CampPage<RoomProps> = ({
             )}
           </Box>
         </Box>
-        <Box display="flex" marginTop={2} justifyContent="space-between">
-          <Typography component="div" variant="h4">{room.name}</Typography>
-          <Box display="flex" gap={1}>
-            <Tooltip enterDelay={750} title={"View room in interactive map viewer"}>
-              <Link
-                passHref
-                href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}
-              >
-                <Button
-                  component="a"
-                  variant="contained"
-                  color="primary"
-                  endIcon={<TravelExplore />}
-                  aria-label="Opens the map viewer"
-                >
-                  Map
-                </Button>
-              </Link>
-            </Tooltip>
-            <EverestOnly>
-              <DesktopBox>
-                <Tooltip enterDelay={750} title={"Launch room in Celeste (Everest)"}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    endIcon={<RocketLaunch />}
-                    onClick={handleOpenRoom}
-                    aria-label="Launch room in Celeste (Everest)"
-                  >
-                    Launch
-                  </Button>
-                </Tooltip>
-              </DesktopBox>
-            </EverestOnly>
-          </Box>
-        </Box>
-        <Typography component="div" color="text.secondary">{chapter.name}</Typography>
-        <Typography component="div" color="text.secondary">{side.name} Side</Typography>
-        <Typography component="div" color="text.secondary">{checkpoint.name}</Typography>
-        <Stack direction="row" marginTop={1} marginBottom={1}>
+        <Paper ref={imgRef} sx={{position: "relative"}}>
+          <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => !isFullscreen && setFullImage(prev => !prev)}/>
+          <ToggleButton
+            sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
+            size="small"
+            value="full"
+            onChange={() => setIsFullscreen(prev => !prev)}
+          >
+            {isFullscreen ? <FullscreenExit color="primary"/> : <Fullscreen color="primary"/>}
+          </ToggleButton>
+        </Paper>
+        <Typography component="div" variant="h5" mt={1}>{room.name}</Typography>
+        <Typography component="div" color="text.secondary">{chapter.name} · {side.name} Side · {checkpoint.name}</Typography>
+        <Typography component="div" color="text.secondary">{room.debugId} · {room.roomId} · {room.levelRoomNo}</Typography>
+        <Stack direction="row" mt={1} mb={1.5} spacing={1}>
           {room.tags.map(tag => (
             <Link
               key={tag}
@@ -185,12 +171,41 @@ const RoomPage: CampPage<RoomProps> = ({
             </Link>
           ))}
         </Stack>
-        <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
-        <Typography component="div" color="text.secondary">Debug id: {room.debugId}</Typography>
-        <Typography component="div" color="text.secondary">Room id: {room.roomId}</Typography>
-        <Typography component="div" color="text.secondary" sx={{marginTop: 1}}>Checkpoint room: {room.checkpointRoomNo}</Typography>
-        <Typography component="div" color="text.secondary">Level room: {room.levelRoomNo}</Typography>
-        <Divider orientation="horizontal" sx={{marginTop: 1, marginBottom: 1}} />
+        <Box display="flex" mt={1} mb={1} justifyContent="flex-end">
+          <Box display="flex" gap={1}>
+            <Tooltip enterDelay={750} title={"View room in interactive map viewer"}>
+              <Link
+                passHref
+                href={`/map/${area.id}/${chapter.id}/${side.id}?room=${room.debugId}`}
+              >
+                <Button
+                  component="a"
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  startIcon={<TravelExplore />}
+                  aria-label="Opens the map viewer"
+                >
+                  View Map
+                </Button>
+              </Link>
+            </Tooltip>
+            <EverestOnly>
+              <Tooltip enterDelay={750} title={"Open room in Celeste (Everest)"}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  startIcon={<RocketLaunch />}
+                  onClick={handleOpenRoom}
+                  aria-label="Open room in Celeste (Everest)"
+                >
+                  Teleport
+                </Button>
+              </Tooltip>
+            </EverestOnly>
+          </Box>
+        </Box>
         <EntityList
           areaId={area.id}
           areaGameId={area.gameId}
@@ -210,21 +225,19 @@ interface ImageViewProps {
   onClick?: () => void;
 }
 
-const ImageView: FC<ImageViewProps> = ({image, roomName, onClick}) => {
-  return (
-    <NextImage
-      unoptimized
-      src={image}
-      onClick={onClick}
-      alt={`image of room ${roomName}`}
-      layout="responsive"
-      width={320}
-      height={180}
-      objectFit="contain"
-      style={{imageRendering: "pixelated"}}
-    />
-  );
-}
+const ImageView: FC<ImageViewProps> = ({image, roomName, onClick}) => (
+  <NextImage
+    unoptimized
+    src={image}
+    onClick={onClick}
+    alt={`image of room ${roomName}`}
+    layout="responsive"
+    width={320}
+    height={180}
+    objectFit="contain"
+    style={{imageRendering: "pixelated"}}
+  />
+);
 
 interface RoomParams extends ParsedUrlQuery {
   areaId: string;

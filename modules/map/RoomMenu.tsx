@@ -105,7 +105,7 @@ interface RoomItemProps {
 export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, teleportParams}) => {
   const router = useRouter();
 
-  const {settings: {port, everest}} = useCampContext();
+  const {settings: {everestUrl, everest}} = useCampContext();
   const {isMobile} = useMobile();
 
   const ref = useRef<HTMLLIElement | null>(null);
@@ -118,7 +118,7 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
   };
 
   const handleTeleport = (): void => {
-    teleport(port, `${teleportParams}&level=${room.id}&x=${room.defaultSpawn.x}&y=${room.defaultSpawn.y}`)
+    void teleport({url: everestUrl, params: `${teleportParams}&level=${room.id}&x=${room.defaultSpawn.x}&y=${room.defaultSpawn.y}`})
   };
 
   /**

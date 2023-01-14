@@ -132,7 +132,7 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   roomId,
   teleportParams,
 }) => { 
-  const {settings: {port, everest}} = useCampContext();
+  const {settings: {everestUrl, everest}} = useCampContext();
   const {isMobile} = useMobile();
   const router = useRouter();
 
@@ -142,7 +142,7 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
   }
 
   const handleTeleport = () => {
-    teleport(port, `${teleportParams}&x=${x}&y=${y}`)
+    void teleport({url: everestUrl, params: `${teleportParams}&x=${x}&y=${y}`});
   }
 
   return (
@@ -155,7 +155,7 @@ export const MapEntityMenuItem: FC<MapEntityMenuItemProps> = ({
       }}
       {...!isMobile && everest && teleportParams && {
         secondaryAction: (
-          <Tooltip title="Launch" enterDelay={750}>
+          <Tooltip title="Open" enterDelay={750}>
             <IconButton size="small" onClick={handleTeleport} color="primary">
               <RocketLaunch fontSize="small"/>
             </IconButton>

@@ -161,8 +161,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     onRightClick: handleContextMenu,
   });
 
-  const handleFullscreen = async () => {
-    await canvasRef.current?.requestFullscreen();
+  const handleFullscreen = () => {
+    void canvasRef.current?.requestFullscreen();
   }
 
   /**

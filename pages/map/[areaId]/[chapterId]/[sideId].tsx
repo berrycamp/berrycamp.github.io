@@ -27,7 +27,7 @@ const ROOM_WIDTH = 320;
 const ROOM_HEIGHT = 184;
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
-  const {settings: {port, showWatermark}} = useCampContext();
+  const {settings: {everestUrl, showWatermark}} = useCampContext();
   const router = useRouter();
   const {isLargeScreen} = useMobile();
 
@@ -169,8 +169,8 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
 
     const roomX: number = x - room.canvas.position.x;
     const roomY: number = y - room.canvas.position.y;
-    await teleport(port, `?area=${area.gameId}/${chapter.gameId}&side=${side.id}&level=${room.id}&x=${roomX}&y=${roomY}`);
-  }, [area.gameId, chapter.gameId, port, side.id, side.rooms]);
+    void teleport({url: everestUrl, params: `?area=${area.gameId}/${chapter.gameId}&side=${side.id}&level=${room.id}&x=${roomX}&y=${roomY}`});
+  }, [area.gameId, chapter.gameId, everestUrl, side.id, side.rooms]);
 
   /**
    * Try to select the room at the coorindates.
