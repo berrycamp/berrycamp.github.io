@@ -80,12 +80,12 @@ const EntityGroup: FC<EntityGroupProps> = ({name, entities, createItemName, mapR
 
   return (
     <Paper sx={{mt: 1}}>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} dense>
         <ListItemText>{name}</ListItemText>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open}>
-        <List disablePadding>
+        <List disablePadding dense>
           {entities.map((entity, index) => (
             <EntityItem
               key={index}
@@ -122,7 +122,7 @@ const EntityItem: FC<EntityItem> = ({name, entity, mapRoomUrl, teleportParams}) 
       disablePadding
       {...!isMobile && everest && teleportParams && {
         secondaryAction: (
-          <Tooltip title="Go to spawn" enterDelay={750} placement="right">
+          <Tooltip title="Teleport to spawn" enterDelay={750} placement="right">
             <IconButton size="small" onClick={handleTeleport} color="primary">
               <RocketLaunch fontSize="small"/>
             </IconButton>
