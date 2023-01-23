@@ -68,7 +68,7 @@ export const SettingsMenu: FC = () => {
               <ExploreOff fontSize="small"/>
             )}
           </ListItemIcon>
-          {settings.everest ? "Allow Teleporting" : "Disable Teleporting"}
+          {settings.everest ? "Teleporting On" : "Teleporting Off"}
         </MenuItem>
         {settings.everest && (
           <ListItem sx={{pr: 0.5}}>
