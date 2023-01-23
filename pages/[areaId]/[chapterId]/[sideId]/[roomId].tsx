@@ -6,7 +6,7 @@ import Link from "next/link";
 import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {FC, Fragment, useEffect, useRef, useState} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 import {EverestOnly} from "~/modules/common/everestOnly/EverestOnly";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
@@ -29,10 +29,12 @@ const RoomPage: CampPage<RoomProps> = ({
   const {settings} = useCampContext();
   const router: NextRouter = useRouter();
 
-  const imgRef = useRef<HTMLImageElement | null>(null);
+  const imgRef = useRef<HTMLElement | null>(null);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   const [fullImage, setFullImage] = useState<boolean>(false);
+
+  const sideLink: string = `${chapter.link}?side=${side.id}`;
 
   const image: string = fullImage
     ? getRoomImageUrl(area.id, chapter.id, side.id, room.debugId)
@@ -87,6 +89,15 @@ const RoomPage: CampPage<RoomProps> = ({
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange)
   }, []);
 
+  /**
+   * Old school because next/image doesn't take a ref.
+   */
+  useEffect(() => {
+    imgRef.current = document.getElementById("room-image");
+  }, []);
+
+  console.log(imgRef.current);
+
   return (
     <Fragment>
       <CampHead
@@ -106,8 +117,16 @@ const RoomPage: CampPage<RoomProps> = ({
               {chapter.name}
             </MuiLink>
           </Link>
-          <Typography color="text.secondary">{side.name}</Typography>
-          <Typography color="text.secondary">{checkpoint.name}</Typography>
+          <Link passHref href={sideLink}>
+            <MuiLink underline="always">
+              {side.name}
+            </MuiLink>
+          </Link>
+          <Link passHref href={`${sideLink}#${checkpoint.name}`}>
+            <MuiLink underline="always">
+              {checkpoint.name}
+            </MuiLink>
+          </Link>
           <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
         </Breadcrumbs>
         <Box display="flex" gap={1} mb={1}>
@@ -146,8 +165,23 @@ const RoomPage: CampPage<RoomProps> = ({
             )}
           </Box>
         </Box>
-        <Paper ref={imgRef} sx={{position: "relative"}}>
-          <ImageView image={image} roomName={room.name ?? room.debugId} onClick={() => !isFullscreen && setFullImage(prev => !prev)}/>
+        <Paper sx={{position: "relative"}}>
+          <NextImage
+            id="room-image"
+            priority
+            unoptimized
+            src={image}
+            onClick={() => !isFullscreen ? setFullImage(prev => !prev) : setIsFullscreen(false)}
+            alt={`image of room ${room.name ?? room.debugId}`}
+            layout="responsive"
+            width={320}
+            height={180}
+            objectFit="contain"
+            style={{
+              imageRendering: "pixelated",
+              cursor: "pointer",
+            }}
+          />
           <ToggleButton
             sx={{position: "absolute", top: 0, right: 0, margin: 0.5, border: "none", background: "background.paper"}}
             size="small"
@@ -158,8 +192,8 @@ const RoomPage: CampPage<RoomProps> = ({
           </ToggleButton>
         </Paper>
         <Typography component="div" variant="h5" mt={1}>{room.name}</Typography>
-        <Typography component="div" color="text.secondary">{chapter.name} · {side.name} Side · {checkpoint.name}</Typography>
-        <Typography component="div" color="text.secondary">{room.debugId} · {room.roomId} · {room.levelRoomNo}</Typography>
+        <Typography component="div" color="text.secondary">{chapter.name} › {side.name} Side › {checkpoint.name}</Typography>
+        <Typography component="div" color="text.secondary">Debug ID: {room.debugId}, Room ID: {room.roomId}, Room: {room.levelRoomNo}</Typography>
         <Stack direction="row" mt={1} mb={1.5} spacing={1}>
           {room.tags.map(tag => (
             <Link
@@ -218,26 +252,6 @@ const RoomPage: CampPage<RoomProps> = ({
     </Fragment>
   );
 }
-
-interface ImageViewProps {
-  image: string;
-  roomName: string;
-  onClick?: () => void;
-}
-
-const ImageView: FC<ImageViewProps> = ({image, roomName, onClick}) => (
-  <NextImage
-    unoptimized
-    src={image}
-    onClick={onClick}
-    alt={`image of room ${roomName}`}
-    layout="responsive"
-    width={320}
-    height={180}
-    objectFit="contain"
-    style={{imageRendering: "pixelated"}}
-  />
-);
 
 interface RoomParams extends ParsedUrlQuery {
   areaId: string;

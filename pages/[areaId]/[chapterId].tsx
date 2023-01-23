@@ -1,4 +1,4 @@
-import {Clear, Search, TravelExplore} from "@mui/icons-material";
+import {Clear, Search, Tag, TravelExplore} from "@mui/icons-material";
 import {Box, Button, Container, IconButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -107,12 +107,38 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
                 <Typography component="div" fontSize="large" color="text.secondary">{`No rooms found for '${searchValue}'`}</Typography>
               </Box>
             )}
-            {createElement(settings.listMode ? ChapterListView : ChapterGridView, {
-              areaId: area.id,
-              chapterId: chapter.id,
-              sideId: side.id,
-              checkpoints,
-            })}
+            {checkpoints.map(checkpoint => (
+              <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
+                <Typography
+                  id={checkpoint.name}
+                  component="a"
+                  href={`#${checkpoint.name}`}
+                  variant="h5"
+                  color="text.secondary"
+                  mt={1}
+                  mb={1}
+                  display="flex"
+                  alignItems="center"
+                  sx={{
+                    ":hover": {
+                      textDecoration: "underline",
+                      "#anchor-link": {
+                        display: "block",
+                      }
+                    }
+                  }}
+                >
+                  {checkpoint.name}
+                  <Tag id="anchor-link" fontSize="small" sx={{display: "none", ml: 0.5}} />
+                </Typography>
+                {createElement(settings.listMode ? ChapterListView : ChapterGridView, {
+                  areaId: area.id,
+                  chapterId: chapter.id,
+                  sideId: side.id,
+                  checkpoint,
+                })}
+              </Box>
+            ))}
           </Fragment>
         )}
       </Container>

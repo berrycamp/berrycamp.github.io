@@ -35,7 +35,7 @@ export interface ChapterViewProps {
   areaId: string;
   chapterId: string;
   sideId: string;
-  checkpoints: CheckpointData[];
+  checkpoint: CheckpointData;
 };
 
 export interface ChapterViewItemProps {
