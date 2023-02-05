@@ -98,8 +98,6 @@ const RoomPage: CampPage<RoomProps> = ({
     imgRef.current = document.getElementById("room-image");
   }, []);
 
-  console.log(imgRef.current);
-
   return (
     <Fragment>
       <CampHead
