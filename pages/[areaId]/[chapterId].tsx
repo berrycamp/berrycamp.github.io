@@ -1,51 +1,22 @@
-import {Clear, Search, Tag, TravelExplore} from "@mui/icons-material";
-import {Box, Button, Container, IconButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
-import Link from "next/link";
-import {useRouter} from "next/router";
+import {Container, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {createElement, Fragment, useEffect, useState} from "react";
-import {ChapterGridView, ChapterListView, filterCheckpoints} from "~/modules/chapter";
-import {ChapterBreadcrumbs} from "~/modules/chapter/Breadcrumbs";
+import {createElement, Fragment} from "react";
+import {Breadcrumbs} from "~/modules/breadcrumbs";
+import {ChapterGridView} from "~/modules/chapter/ChapterGridView";
+import {ChapterListView, ChapterViewProps} from "~/modules/chapter/ChapterListView";
 import {ChapterHeaderImage} from "~/modules/chapter/HeaderImage";
 import {HeaderNav} from "~/modules/chapter/HeaderNav";
-import {AreaData, ChapterData, ChapterNav, CheckpointData, SideData} from "~/modules/chapter/types";
-import {pluralize} from "~/modules/common/pluralize";
+import {AreaData, ChapterData, ChapterNav} from "~/modules/chapter/types";
 import {VALID_AREAS} from "~/modules/data/validAreas";
-import {fetchArea, getChapterImageUrl} from "~/modules/fetch/dataApi";
+import {fetchArea, getChapterImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
-import {generateRoomTags} from "~/modules/room/generateTags";
-import {Area, Chapter, Room} from "../../modules/data/dataTypes";
+import {Area, Chapter} from "../../modules/data/dataTypes";
 
 const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter, nextChapter}) => {
-  const {settings} = useCampContext();
-  const {query} = useRouter();
-
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [side, setSide] = useState<SideData | undefined>(sides[0]);
-
-  const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
-
-  /**
-   * Filter the checkpoint rooms.
-   */
-  useEffect(() => {
-    setSide(sides.find(newSide => newSide.id === side?.id) ?? sides[0]);
-    setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
-  }, [searchValue, side, sides]);
-
-  /**
-   * Search from the query.
-   */
-  useEffect(() => {
-    if (typeof query.search !== "string") {
-      return;
-    }
-
-    setSearchValue(query.search);
-  }, [query.search]);
+  const {settings: {listMode}} = useCampContext();
 
   return (
     <Fragment>
@@ -55,92 +26,29 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         image={getChapterImageUrl(area.id, chapter.id)}
       />
       <Container>
-        <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
-        <ChapterHeaderImage area={area} chapter={chapter} />
-        <HeaderNav areaId={area.id} {...prevChapter && {prevChapter}} {...nextChapter && {nextChapter}}/>
-        {side && (
-          <Paper elevation={1} sx={{display: "flex", alignItems: "center", justifyContent: "space-between", p: 1, mt: 2, mb: 2}}>
-          <Typography component="div" variant="body1" color="text.secondary" textAlign="center">
-              {pluralize(side.roomCount, "room")}
-            </Typography>
-            <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
-              <Button variant="contained" endIcon={<TravelExplore/>}>View Map</Button>
-            </Link>
-          </Paper>
-        )}
-        <TextField
-          fullWidth
-          placeholder="Search rooms"
-          autoComplete="off"
-          variant="standard"
-          value={searchValue}
-          InputProps={{
-            endAdornment: (
-              <Box display="flex" alignItems="center" gap={0.5} margin={0.5}>
-                <IconButton
-                  size="small"
-                  onClick={() => setSearchValue("")}
-                  aria-label="clear search"
-                >
-                  <Clear />
-                </IconButton>
-                <Search color="primary" />
-              </Box>
-            ),
-          }}
-          onChange={event => setSearchValue(event.target.value)}
-          onKeyDown={event => {
-            if (event.key === "Enter" && side !== undefined) {
-              setCheckpoints(filterCheckpoints(searchValue, side, true))
+        <Breadcrumbs
+          crumbs={[
+            {name: area.name, href: `/${area.id}`},
+            {name: chapter.name},
+          ]}
+        />
+        <HeaderNav
+          {...prevChapter && {
+            prev: {
+              label: prevChapter.name,
+              link: `/${area.id}/${prevChapter.id}`
             }
           }}
-          aria-label="search rooms"
-          sx={{marginTop: 2, marginBottom: 2}}
+          {...nextChapter && {
+            next: {
+              label: nextChapter.name,
+              link: `/${area.id}/${nextChapter.id}`
+            }
+          }}
         />
-        <Tabs variant="fullWidth" value={side} onChange={(_, newSide) => setSide(newSide)} sx={{mb: 2}}>
-          {sides.map(side => <Tab key={side.name} value={side} label={`${side.name}-side`}/>)}
-        </Tabs>
-        {side && (
-          <Fragment>
-            {Boolean(searchValue) && checkpoints && checkpoints.length === 0 && (
-              <Box display="flex" justifyContent="center" padding={2}>
-                <Typography component="div" fontSize="large" color="text.secondary">{`No rooms found for '${searchValue}'`}</Typography>
-              </Box>
-            )}
-            {checkpoints.map(checkpoint => (
-              <Box key={checkpoint.name} sx={{display: "flex", flexDirection: "column", marginBottom: 2, padding: 0}}>
-                <Typography
-                  id={checkpoint.name}
-                  component="a"
-                  href={`#${checkpoint.name}`}
-                  variant="h5"
-                  color="text.secondary"
-                  mt={1}
-                  mb={1}
-                  display="flex"
-                  alignItems="center"
-                  sx={{
-                    ":hover": {
-                      textDecoration: "underline",
-                      "#anchor-link": {
-                        display: "block",
-                      }
-                    }
-                  }}
-                >
-                  {checkpoint.name}
-                  <Tag id="anchor-link" fontSize="small" sx={{display: "none", ml: 0.5}} />
-                </Typography>
-                {createElement(settings.listMode ? ChapterListView : ChapterGridView, {
-                  areaId: area.id,
-                  chapterId: chapter.id,
-                  sideId: side.id,
-                  checkpoint,
-                })}
-              </Box>
-            ))}
-          </Fragment>
-        )}
+        <ChapterHeaderImage area={area} chapter={chapter} />
+        <Typography variant="h5" color="text.secondary" pt={2} pb={1}>Sides</Typography>
+        {createElement(listMode ? ChapterListView : ChapterGridView, {sides})}
       </Container>
     </Fragment>
   );
@@ -170,7 +78,7 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
 interface ChapterProps {
   area: AreaData;
   chapter: ChapterData;
-  sides: SideData[];
+  sides: ChapterViewProps["sides"];
   prevChapter?: ChapterNav;
   nextChapter?: ChapterNav;
 };
@@ -207,26 +115,11 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
         desc: chapter.desc,
         ...(chapter.chapterNo && {no: chapter?.chapterNo}),
       },
-      sides: chapter.sides.map<SideData>(side => ({
-        id: side.id,
-        name: side.name,
-        roomCount: side.roomCount,
-        checkpoints: side.checkpoints.map<CheckpointData>(checkpoint => ({
-          name: checkpoint.name,
-          abbreviation: checkpoint.abbreviation,
-          rooms: checkpoint.roomOrder.map(id => {
-            const room: Room | undefined = side.rooms[id];
-            if (room === undefined) {
-              throw Error(`Room ${id} not found`);
-            }
-            return {
-              id,
-              ...(room.name && {name: room.name}),
-              checkpointNo: room.checkpointNo,
-              tags: generateRoomTags(room),
-            };
-          }),
-        })),
+      sides: chapter.sides.map(({name, id, checkpoints, img}) => ({
+        name,
+        href: `/${area.id}/${chapter.id}/${id}`,
+        src: getRoomPreviewUrl(area.id, chapter.id, id, img),
+        roomCount: checkpoints.reduce((a, b) => a + b.roomCount, 0),
       })),
       ...(prevChapter && {prevChapter}),
       ...(nextChapter && {nextChapter}),

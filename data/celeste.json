@@ -14,6 +14,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "0",
           "checkpoints": [
             {
               "name": "Begin",
@@ -281,6 +282,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "1",
           "checkpoints": [
             {
               "name": "Start",
@@ -1915,6 +1917,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Start",
@@ -2561,6 +2564,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -2737,6 +2741,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "0",
           "checkpoints": [
             {
               "name": "Start",
@@ -4666,6 +4671,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Start",
@@ -5345,6 +5351,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -5513,6 +5520,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "s0",
           "checkpoints": [
             {
               "name": "Start",
@@ -8271,6 +8279,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Start",
@@ -9252,6 +9261,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -9424,6 +9434,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -11539,6 +11550,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -12392,6 +12404,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -12568,6 +12581,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "a-00b",
           "checkpoints": [
             {
               "name": "Start",
@@ -16189,6 +16203,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -17223,6 +17238,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -17399,6 +17415,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Start",
@@ -19910,6 +19927,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -21011,6 +21029,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Begin",
@@ -21187,6 +21206,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -25331,6 +25351,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -26617,6 +26638,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "01",
           "checkpoints": [
             {
               "name": "Begin",
@@ -26792,6 +26814,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "outside",
           "checkpoints": [
             {
               "name": "Begin",
@@ -26977,6 +27000,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "00",
           "checkpoints": [
             {
               "name": "Start",
@@ -28539,6 +28563,7 @@
         {
           "id": "b",
           "name": "B",
+          "img": "a-00",
           "checkpoints": [
             {
               "name": "Start",
@@ -29495,6 +29520,7 @@
         {
           "id": "c",
           "name": "C",
+          "img": "02",
           "checkpoints": [
             {
               "name": "Begin",
@@ -29708,6 +29734,7 @@
         {
           "id": "a",
           "name": "A",
+          "img": "g-04",
           "checkpoints": [
             {
               "name": "Start",

@@ -1,5 +1,5 @@
-import {Fullscreen, FullscreenExit, NavigateBefore, NavigateNext, RocketLaunch, TravelExplore} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Chip, Container, Link as MuiLink, Paper, Stack, ToggleButton, Tooltip, Typography} from "@mui/material";
+import {Fullscreen, FullscreenExit, RocketLaunch, TravelExplore} from "@mui/icons-material";
+import {Box, Button, Chip, Container, Paper, Stack, ToggleButton, Tooltip, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next";
 import NextImage from "next/image";
 import Link from "next/link";
@@ -7,13 +7,15 @@ import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useEffect, useRef, useState} from "react";
+import {Breadcrumbs} from "~/modules/breadcrumbs";
+import {HeaderNav, HeaderNavLink} from "~/modules/chapter/HeaderNav";
 import {EverestOnly} from "~/modules/common/everestOnly/EverestOnly";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getRoomImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
-import {AreaData, ChapterData, CheckpointData, generateRoomTags, NavRoomData, RoomData, SideData} from "~/modules/room";
+import {AreaData, ChapterData, CheckpointData, generateRoomTags, RoomData, SideData} from "~/modules/room";
 import {EntityList} from "~/modules/room/entityList/EntityList";
 import {teleport} from "~/modules/teleport/teleport";
 
@@ -106,65 +108,29 @@ const RoomPage: CampPage<RoomProps> = ({
         image={image}
       />
       <Container maxWidth="md">
-        <Breadcrumbs separator="›" sx={{marginTop: 1, marginBottom: 1}}>
-          <Link passHref href={area.link}>
-            <MuiLink underline="always">
-              {area.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={chapter.link}>
-            <MuiLink underline="always">
-              {chapter.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={sideLink}>
-            <MuiLink underline="always">
-              {side.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={`${sideLink}#${checkpoint.name}`}>
-            <MuiLink underline="always">
-              {checkpoint.name}
-            </MuiLink>
-          </Link>
-          <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
-        </Breadcrumbs>
-        <Box display="flex" gap={1} mb={1}>
-          <Box width="50%">
-            {prevRoom?.link && (
-              <Link passHref href={prevRoom.link}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<NavigateBefore />}
-                  aria-label={`Go to previous room ${prevRoom.name}`}
-                  sx={{width: "100%"}}
-                >
-                  <Typography noWrap variant="button" component="span">
-                    {prevRoom.name}
-                  </Typography>
-                </Button>
-              </Link>
-            )}
-          </Box>
-          <Box width="50%">
-            {nextRoom?.link && (
-              <Link passHref href={nextRoom.link}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  endIcon={<NavigateNext />}
-                  aria-label={`Go to next room ${nextRoom.name}`}
-                  sx={{width: "100%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}
-                >
-                  <Typography noWrap variant="button" component="span">
-                    {nextRoom.name}
-                  </Typography>
-                </Button>
-              </Link>
-            )}
-          </Box>
-        </Box>
+        <Breadcrumbs
+          crumbs={[
+            {name: area.name, href: area.link},
+            {name: chapter.name, href: chapter.link},
+            {name: side.name, href: sideLink},
+            {name: checkpoint.name, href: `${sideLink}#${checkpoint.name}`},
+            {name: `${room.name} (${room.debugId})`},
+          ]}
+        />
+        <HeaderNav
+          {...prevRoom && {
+            prev: {
+              label: prevRoom.label,
+              link: prevRoom.link,
+            }
+          }}
+          {...nextRoom && {
+            next: {
+              label: nextRoom.label,
+              link: nextRoom.link,
+            }
+          }}
+        />
         <Paper sx={{position: "relative"}}>
           <NextImage
             id="room-image"
@@ -286,8 +252,8 @@ interface RoomProps {
   side: SideData;
   checkpoint: CheckpointData;
   room: RoomData;
-  prevRoom?: NavRoomData;
-  nextRoom?: NavRoomData;
+  prevRoom?: HeaderNavLink;
+  nextRoom?: HeaderNavLink;
 }
 
 export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({params}) => {
@@ -361,13 +327,13 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
       },
       ...(prevRoom && {
         prevRoom: {
-          ...(prevRoom.name && {name: prevRoom.name}),
+          label: prevRoom.name,
           link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
         }
       }),
       ...(nextRoom && {
         nextRoom: {
-          ...(nextRoom.name && {name: nextRoom.name}),
+          label: nextRoom.name,
           link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
         }
       }),

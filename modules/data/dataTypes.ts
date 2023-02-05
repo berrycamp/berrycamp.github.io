@@ -19,11 +19,12 @@ export interface Chapter {
 
 export interface Side {
   id: string;
-  name: string
+  name: string;
   checkpoints: Checkpoint[];
   rooms: Record<string, Room>;
   roomCount: number;
   canvas: Canvas;
+  img: string;
 }
 
 /**
@@ -41,7 +42,7 @@ export interface Checkpoint {
 }
 
 export interface Room {
-  name?: string;
+  name: string;
   checkpointNo: number;
   defaultSpawn: Point;
   entities: Partial<Entities>;
