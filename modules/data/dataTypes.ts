@@ -41,7 +41,7 @@ export interface Checkpoint {
 }
 
 export interface Room {
-  name?: string;
+  name: string;
   checkpointNo: number;
   defaultSpawn: Point;
   entities: Partial<Entities>;

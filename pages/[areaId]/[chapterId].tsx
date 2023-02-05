@@ -40,12 +40,22 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
    * Search from the query.
    */
   useEffect(() => {
-    if (typeof query.search !== "string") {
-      return;
+    if (typeof query.search === "string") {
+      setSearchValue(query.search);
     }
-
-    setSearchValue(query.search);
   }, [query.search]);
+
+  /**
+   * Select the side.
+   */
+  useEffect(() => {
+    if (typeof query.side === "string" && query.side.length === 1) {
+      const idx: number = query.side.charCodeAt(0) - 97;
+      if (idx >= 0 && idx <= 2) {
+        setSide(sides[idx]);
+      }
+    }
+  }, [query.side, sides])
 
   return (
     <Fragment>
@@ -54,10 +64,23 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         description={chapter.desc}
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Container>
+      <Container maxWidth="md">
         <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
+        <HeaderNav
+          {...prevChapter && {
+            prev: {
+              label: prevChapter.name,
+              link: `/${area.id}/${prevChapter.id}`
+            }
+          }}
+          {...nextChapter && {
+            next: {
+              label: nextChapter.name,
+              link: `/${area.id}/${nextChapter.id}`
+            }
+          }}
+        />
         <ChapterHeaderImage area={area} chapter={chapter} />
-        <HeaderNav areaId={area.id} {...prevChapter && {prevChapter}} {...nextChapter && {nextChapter}}/>
         {side && (
           <Paper elevation={1} sx={{display: "flex", alignItems: "center", justifyContent: "space-between", p: 1, mt: 2, mb: 2}}>
           <Typography component="div" variant="body1" color="text.secondary" textAlign="center">

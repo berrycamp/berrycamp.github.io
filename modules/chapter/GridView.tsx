@@ -5,7 +5,7 @@ import {getRoomPreviewUrl} from "../fetch/dataApi";
 import {ChapterViewItemProps, ChapterViewProps} from "./types";
 
 export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
-  <Grid container spacing={1} alignSelf="center">
+  <Grid container spacing={1} pb={1} alignSelf="center">
     {checkpoint.rooms.map(room => (
       <ChapterGridItem
         key={`${sideId}-${room.id}`}

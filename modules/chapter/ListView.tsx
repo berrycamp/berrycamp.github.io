@@ -6,7 +6,7 @@ import {getRoomPreviewUrl} from "../fetch/dataApi";
 import {ChapterViewItemProps, ChapterViewProps} from "./types";
 
 export const ChapterListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
-  <List disablePadding>
+  <List disablePadding sx={{pb: 1}}>
     {checkpoint.rooms.map((room, roomIndex) => (
       <ChapterListViewItem
         key={`${sideId}-${room.id}`}

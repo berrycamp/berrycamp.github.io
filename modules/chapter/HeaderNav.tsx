@@ -1,37 +1,39 @@
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Button} from "@mui/material";
+import {Box, Button, ButtonProps} from "@mui/material";
 import Link from "next/link";
 import {FC} from "react";
-import {ChapterNav} from ".";
 
-export const HeaderNav: FC<HeaderNavProps> = ({areaId, prevChapter, nextChapter}) => (
-  <Box display="flex" gap={1} marginTop={1}>
+const btnProps: ButtonProps = {
+  fullWidth: true,
+  size: "small",
+  variant: "outlined",
+}
+
+export const HeaderNav: FC<HeaderNavProps> = ({prev, next}) => (
+  <Box display="flex" gap={1} mt={1} mb={1}>
     <Box width="100%">
-      {prevChapter && (
-        <Link passHref href={`/${areaId}/${prevChapter.id}`}>
+      {prev && (
+        <Link passHref href={prev.link}>
           <Button
-            size="small"
-            variant="outlined"
+            {...btnProps}
             startIcon={<NavigateBefore />}
-            aria-label={`Go to previous chapter ${prevChapter.name}`}
+            aria-label={`Go to previous chapter ${prev.label}`}
             sx={{width: "100%"}}
           >
-            {prevChapter.name}
+            {prev.label}
           </Button>
         </Link>
       )}
     </Box>
     <Box width="100%">
-      {nextChapter && (
-        <Link passHref href={`/${areaId}/${nextChapter.id}`}>
+      {next && (
+        <Link passHref href={next.link}>
           <Button
-            size="small"
-            variant="outlined"
+            {...btnProps}
             endIcon={<NavigateNext />}
-            aria-label={`Go to previous chapter ${nextChapter.name}`}
-            sx={{width: "100%"}}
+            aria-label={`Go to previous chapter ${next.label}`}
           >
-            {nextChapter.name}
+            {next.label}
           </Button>
         </Link>
       )}
@@ -39,8 +41,12 @@ export const HeaderNav: FC<HeaderNavProps> = ({areaId, prevChapter, nextChapter}
   </Box>
 );
 
+export interface HeaderNavLink {
+  label: string;
+  link: string;
+}
+
 export interface HeaderNavProps {
-  areaId: string;
-  prevChapter?: ChapterNav;
-  nextChapter?: ChapterNav;
+  prev?: HeaderNavLink;
+  next?: HeaderNavLink
 }

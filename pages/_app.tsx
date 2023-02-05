@@ -1,8 +1,8 @@
 import {CssBaseline} from '@mui/material';
+import {Layout} from 'modules/layout/Layout';
 import {CampContextProvider} from 'modules/provide/CampContext';
 import {CampPreferencesProvider} from 'modules/provide/CampPreferences';
 import {CampThemeProvider} from 'modules/provide/CampTheme';
-import {Layout} from 'modules/layout/Layout';
 import {NextPage} from 'next';
 import {AppProps} from 'next/app';
 import '../styles/globals.css';
