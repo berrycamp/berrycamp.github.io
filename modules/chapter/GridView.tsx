@@ -31,7 +31,7 @@ export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, hre
               imageRendering: "pixelated",
             }}
           >
-            <CardMedia placeholder={"Loading"} component={AspectBox}>
+            <CardMedia component={AspectBox}>
               <Image
                 unoptimized
                 layout="fill"

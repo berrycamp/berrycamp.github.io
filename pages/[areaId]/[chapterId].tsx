@@ -1,4 +1,4 @@
-import {Clear, Search, Tag, TravelExplore} from "@mui/icons-material";
+import {Clear, Map, Search, Tag} from "@mui/icons-material";
 import {Box, Button, Container, IconButton, Paper, Tab, Tabs, TextField, Typography} from "@mui/material";
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -45,18 +45,6 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
     }
   }, [query.search]);
 
-  /**
-   * Select the side.
-   */
-  useEffect(() => {
-    if (typeof query.side === "string" && query.side.length === 1) {
-      const idx: number = query.side.charCodeAt(0) - 97;
-      if (idx >= 0 && idx <= 2) {
-        setSide(sides[idx]);
-      }
-    }
-  }, [query.side, sides])
-
   return (
     <Fragment>
       <CampHead
@@ -64,7 +52,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         description={chapter.desc}
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Container maxWidth="md">
+      <Container>
         <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
         <HeaderNav
           {...prevChapter && {
@@ -87,7 +75,7 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
               {pluralize(side.roomCount, "room")}
             </Typography>
             <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
-              <Button variant="contained" endIcon={<TravelExplore/>}>View Map</Button>
+              <Button variant="contained" endIcon={<Map/>}>Level Map</Button>
             </Link>
           </Paper>
         )}

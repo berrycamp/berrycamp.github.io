@@ -1,8 +1,8 @@
 import {alpha, Box, Paper, Typography} from "@mui/material";
 import Image from "next/image";
 import {FC} from "react";
-import {getChapterImageUrl} from "../fetch/dataApi";
 import {AreaData, ChapterData} from ".";
+import {getChapterImageUrl} from "../fetch/dataApi";
 
 export const ChapterHeaderImage: FC<ChapterHeaderImageProps> = ({area, chapter}) => (
   <Box
@@ -48,8 +48,8 @@ export const ChapterHeaderImage: FC<ChapterHeaderImageProps> = ({area, chapter})
     >
       <Typography component="div" variant="h5">
         {`${chapter.no ? `Chapter ${chapter.no} - ` : ""}${chapter.name}`}
-        </Typography>
-      <Typography component="div">{chapter.gameId}</Typography>
+      </Typography>
+      <Typography component="div" color="text.secondary">{chapter.gameId}</Typography>
       <Typography component="div" marginTop={2}>{chapter.desc}</Typography>
     </Paper>
   </Box>
