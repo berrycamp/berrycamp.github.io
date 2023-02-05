@@ -36,7 +36,7 @@ const RoomPage: CampPage<RoomProps> = ({
 
   const [fullImage, setFullImage] = useState<boolean>(false);
 
-  const sideLink: string = `${chapter.link}?side=${side.id}`;
+  const sideLink: string = `${chapter.link}/${side.id}`;
 
   const image: string = fullImage
     ? getRoomImageUrl(area.id, chapter.id, side.id, room.debugId)

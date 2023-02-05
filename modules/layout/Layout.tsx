@@ -6,7 +6,7 @@ import {SettingsMenu} from "~/modules/settings/SettingsMenu";
 
 export const Layout: FC<PropsWithChildren> = ({children}) => (
   <>
-    <AppBar position="sticky">
+    <AppBar position="fixed">
       <Toolbar
         variant="dense"
         sx={{
@@ -60,6 +60,7 @@ export const Layout: FC<PropsWithChildren> = ({children}) => (
         <SettingsMenu />
       </Toolbar>
     </AppBar>
+    <Toolbar variant="dense"/>
     <main>
       {children}
     </main>

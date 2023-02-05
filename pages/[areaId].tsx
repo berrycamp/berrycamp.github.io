@@ -9,6 +9,7 @@ import Link from "next/link"
 import {GetStaticPaths, GetStaticProps} from 'next/types'
 import {ParsedUrlQuery} from 'querystring'
 import {FC, Fragment} from 'react'
+import {AspectBox} from '~/modules/common/aspectBox/AspectBox'
 import {Area} from '../modules/data/dataTypes'
 import {CampPage} from './_app'
 
@@ -61,14 +62,17 @@ const GridArea: FC<AreaProps> = ({area, chapters}) => {
           <Card key={chapter.id}>
             <Link passHref href={`/${area.id}/${chapter.id}`}>
               <CardActionArea>
-                <CardMedia
-                  component="img"
-                  src={getChapterImageUrl(area.id, chapter.id)}
-                  alt={`An image of chapter ${chapter.name}`}
-                  style={{
-                    imageRendering: "pixelated",
-                  }}
-                />
+                <CardMedia component={AspectBox}>
+                  <Image
+                    unoptimized
+                    layout="fill"
+                    src={getChapterImageUrl(area.id, chapter.id)}
+                    alt={`An image of chapter ${chapter.name}`}
+                    style={{
+                      imageRendering: "pixelated",
+                    }}
+                  />
+                </CardMedia>
                 <CardContent>
                   <Typography component="div" variant="h6">
                     {chapter.no && `Chapter ${chapter.no} - `}
