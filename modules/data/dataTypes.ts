@@ -19,11 +19,12 @@ export interface Chapter {
 
 export interface Side {
   id: string;
-  name: string
+  name: string;
   checkpoints: Checkpoint[];
   rooms: Record<string, Room>;
   roomCount: number;
   canvas: Canvas;
+  img: string;
 }
 
 /**

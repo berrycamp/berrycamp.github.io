@@ -10,7 +10,7 @@ import {ChapterHeaderImage} from "~/modules/chapter/HeaderImage";
 import {HeaderNav} from "~/modules/chapter/HeaderNav";
 import {AreaData, ChapterData, ChapterNav} from "~/modules/chapter/types";
 import {VALID_AREAS} from "~/modules/data/validAreas";
-import {fetchArea, getChapterImageUrl} from "~/modules/fetch/dataApi";
+import {fetchArea, getChapterImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {Area, Chapter} from "../../modules/data/dataTypes";
@@ -115,11 +115,11 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
         desc: chapter.desc,
         ...(chapter.chapterNo && {no: chapter?.chapterNo}),
       },
-      sides: chapter.sides.map(({name, id, checkpoints, rooms}) => ({
+      sides: chapter.sides.map(({name, id, checkpoints, img}) => ({
         name,
         href: `/${area.id}/${chapter.id}/${id}`,
+        src: getRoomPreviewUrl(area.id, chapter.id, id, img),
         roomCount: checkpoints.reduce((a, b) => a + b.roomCount, 0),
-        src: getChapterImageUrl(area.id, chapter.id),
       })),
       ...(prevChapter && {prevChapter}),
       ...(nextChapter && {nextChapter}),

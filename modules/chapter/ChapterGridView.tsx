@@ -47,10 +47,6 @@ const ChapterGridViewItem: FC<ChapterViewItemProps> = ({name, roomCount, href, s
               />
             </CardMedia>
             <ImageListItemBar
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
               title={`${name}`}
               subtitle={`${roomCount} rooms`}
               sx={{
