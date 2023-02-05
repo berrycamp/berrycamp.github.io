@@ -2,13 +2,13 @@ import {List, ListItemButton, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import {FC} from "react";
+import {ChapterViewItemProps, ChapterViewProps} from "../chapter/types";
 import {getRoomPreviewUrl} from "../fetch/dataApi";
-import {ChapterViewItemProps, ChapterViewProps} from "./types";
 
-export const ChapterListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
+export const SideListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
   <List disablePadding sx={{pb: 1}}>
     {checkpoint.rooms.map((room, roomIndex) => (
-      <ChapterListViewItem
+      <SideListViewItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
         {...room.name && {roomName: room.name}}
@@ -20,7 +20,7 @@ export const ChapterListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
   </List>
 );
 
-const ChapterListViewItem: FC<ChapterViewItemProps & {roomNo: number}> = ({roomId, roomName, href, image, roomNo}) => (
+const SideListViewItem: FC<ChapterViewItemProps & {roomNo: number}> = ({roomId, roomName, href, image, roomNo}) => (
   <Link passHref href={href}>
     <ListItemButton
       disableGutters

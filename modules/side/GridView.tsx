@@ -2,14 +2,14 @@ import {Card, CardActionArea, CardMedia, Grid, ImageListItemBar} from "@mui/mate
 import Image from "next/image";
 import Link from "next/link";
 import {FC} from "react";
+import {ChapterViewItemProps, ChapterViewProps} from "../chapter/types";
 import {AspectBox} from "../common/aspectBox/AspectBox";
 import {getRoomPreviewUrl} from "../fetch/dataApi";
-import {ChapterViewItemProps, ChapterViewProps} from "./types";
 
-export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
+export const SideGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
   <Grid container spacing={1} pb={1} alignSelf="center">
     {checkpoint.rooms.map(room => (
-      <ChapterGridItem
+      <SideGridItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
         {...room.name && {roomName: room.name}}
@@ -20,7 +20,7 @@ export const ChapterGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId
   </Grid>
 );
 
-export const ChapterGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, image}) => {
+export const SideGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, image}) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card>

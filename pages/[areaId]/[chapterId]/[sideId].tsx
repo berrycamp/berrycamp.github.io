@@ -6,8 +6,8 @@ import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {createElement, FC, Fragment, useEffect, useState} from "react";
-import {ChapterGridView, ChapterListView, filterCheckpoints} from "~/modules/chapter";
-import {AreaData, ChapterData, ChapterNav, CheckpointData, SideData} from "~/modules/chapter/types";
+import {filterCheckpoints, SideGridView, SideListView} from "~/modules/chapter";
+import {AreaData, ChapterData, CheckpointData, SideData} from "~/modules/chapter/types";
 import {Area, Chapter, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getChapterImageUrl} from "~/modules/fetch/dataApi";
@@ -15,7 +15,7 @@ import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
 import {generateRoomTags} from "~/modules/room/generateTags";
 
-const SidePage: CampPage<SideProps> = ({area, chapter, sides, side, prevChapter, nextChapter}) => {
+const SidePage: CampPage<SideProps> = ({area, chapter, sides, side}) => {
   const {settings} = useCampContext();
   const {query} = useRouter();
 
@@ -129,7 +129,7 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side, prevChapter,
                   {checkpoint.name}
                   <Tag id="anchor-link" fontSize="small" sx={{display: "none", ml: 0.5}} />
                 </Typography>
-                {createElement(settings.listMode ? ChapterListView : ChapterGridView, {
+                {createElement(settings.listMode ? SideListView : SideGridView, {
                   areaId: area.id,
                   chapterId: chapter.id,
                   sideId: side.id,
@@ -183,8 +183,6 @@ interface SideProps {
   chapter: ChapterData;
   sides: Array<{id: string, name: string}>;
   side: SideData;
-  prevChapter?: ChapterNav;
-  nextChapter?: ChapterNav;
 };
 
 export const getStaticProps: GetStaticProps<SideProps, ChapterParams> = async ({params}) => {
@@ -206,9 +204,6 @@ export const getStaticProps: GetStaticProps<SideProps, ChapterParams> = async ({
   if (side === undefined) {
     throw Error(`Side not found for ${sideId}`);
   }
-
-  const prevChapter: Chapter | undefined = area.chapters[chapterIndex - 1];
-  const nextChapter: Chapter | undefined = area.chapters[chapterIndex + 1];
 
   return {
     props: {
@@ -246,8 +241,6 @@ export const getStaticProps: GetStaticProps<SideProps, ChapterParams> = async ({
           }),
         })),
       },
-      ...(prevChapter && {prevChapter}),
-      ...(nextChapter && {nextChapter}),
     }
   };
 }

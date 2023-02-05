@@ -1,4 +1,5 @@
-export * from "./GridView";
-export * from "./ListView";
+export * from "../side/GridView";
+export * from "../side/ListView";
 export * from "./logic";
 export * from "./types";
+
