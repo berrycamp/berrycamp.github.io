@@ -1,11 +1,12 @@
 import {Clear, Map, Search, Tag} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Container, IconButton, Link as MuiLink, Tab, Tabs, TextField, Typography} from "@mui/material";
+import {Box, Button, Container, IconButton, Tab, Tabs, TextField, Typography} from "@mui/material";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {createElement, FC, Fragment, useEffect, useState} from "react";
+import {Breadcrumbs} from "~/modules/breadcrumbs";
 import {filterCheckpoints, SideGridView, SideListView} from "~/modules/chapter";
 import {AreaData, ChapterData, CheckpointData, SideData} from "~/modules/chapter/types";
 import {Area, Chapter, Room, Side} from "~/modules/data/dataTypes";
@@ -23,6 +24,10 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side}) => {
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side.checkpoints);
+
+  const handleTabChange = (_: React.SyntheticEvent, value: string) => {
+    setTabValue(value);
+  }
 
   /**
    * Filter the checkpoint rooms.
@@ -48,22 +53,21 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side}) => {
         image={getChapterImageUrl(area.id, chapter.id)}
       />
       <Container maxWidth="lg">
-        <Breadcrumbs separator="›" sx={{marginTop: 1, marginBottom: 1}}>
-          <Link passHref href={`/${area.id}`}>
-            <MuiLink underline="always">
-              {area.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={`/${area.id}/${chapter.id}`}>
-            <MuiLink underline="always">
-              {chapter.name}
-            </MuiLink>
-          </Link>
-          <Typography color="text.primary">{side.name}</Typography>
-        </Breadcrumbs>
-        <Tabs variant="fullWidth" value={tabValue} sx={{mb: 2}}>
+        <Breadcrumbs
+          crumbs={[
+            {name: area.name, href: `/${area.id}`},
+            {name: chapter.name, href: `/${area.id}/${chapter.id}`},
+            {name: side.name},
+          ]}
+        />
+        <Tabs variant="fullWidth" value={tabValue} sx={{mb: 2}} onChange={handleTabChange}>
           {sides.map(({id, name}) => (
-            <LinkTab key={id} value={id} label={`${name}-side`} href={`/${area.id}/${chapter.id}/${id}`}/>
+            <LinkTab
+              key={id}
+              value={id}
+              label={`${name}-side`}
+              href={`/${area.id}/${chapter.id}/${id}`}
+            />
           ))}
         </Tabs>
         <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>

@@ -1,5 +1,5 @@
 import {Fullscreen, FullscreenExit, RocketLaunch, TravelExplore} from "@mui/icons-material";
-import {Box, Breadcrumbs, Button, Chip, Container, Link as MuiLink, Paper, Stack, ToggleButton, Tooltip, Typography} from "@mui/material";
+import {Box, Button, Chip, Container, Paper, Stack, ToggleButton, Tooltip, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next";
 import NextImage from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import {NextRouter, useRouter} from "next/router";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
 import {Fragment, useEffect, useRef, useState} from "react";
+import {Breadcrumbs} from "~/modules/breadcrumbs";
 import {HeaderNav, HeaderNavLink} from "~/modules/chapter/HeaderNav";
 import {EverestOnly} from "~/modules/common/everestOnly/EverestOnly";
 import {Area, Chapter, Checkpoint, Room, Side} from "~/modules/data/dataTypes";
@@ -107,29 +108,15 @@ const RoomPage: CampPage<RoomProps> = ({
         image={image}
       />
       <Container maxWidth="md">
-        <Breadcrumbs separator="›" sx={{marginTop: 1, marginBottom: 1}}>
-          <Link passHref href={area.link}>
-            <MuiLink underline="always">
-              {area.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={chapter.link}>
-            <MuiLink underline="always">
-              {chapter.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={sideLink}>
-            <MuiLink underline="always">
-              {side.name}
-            </MuiLink>
-          </Link>
-          <Link passHref href={`${sideLink}#${checkpoint.name}`}>
-            <MuiLink underline="always">
-              {checkpoint.name}
-            </MuiLink>
-          </Link>
-          <Typography color="text.primary">{room.name} ({room.debugId})</Typography>
-        </Breadcrumbs>
+        <Breadcrumbs
+          crumbs={[
+            {name: area.name, href: area.link},
+            {name: chapter.name, href: chapter.link},
+            {name: side.name, href: sideLink},
+            {name: checkpoint.name, href: `${sideLink}#${checkpoint.name}`},
+            {name: `${room.name} (${room.debugId})`},
+          ]}
+        />
         <HeaderNav
           {...prevRoom && {
             prev: {

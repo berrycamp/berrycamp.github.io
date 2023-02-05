@@ -1,46 +1,22 @@
-import {Container} from "@mui/material";
-import {useRouter} from "next/router";
+import {Container, Typography} from "@mui/material";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {Fragment, useEffect, useState} from "react";
-import {filterCheckpoints} from "~/modules/chapter";
-import {ChapterBreadcrumbs} from "~/modules/chapter/Breadcrumbs";
+import {createElement, Fragment} from "react";
+import {Breadcrumbs} from "~/modules/breadcrumbs";
+import {ChapterGridView} from "~/modules/chapter/ChapterGridView";
+import {ChapterListView, ChapterViewProps} from "~/modules/chapter/ChapterListView";
 import {ChapterHeaderImage} from "~/modules/chapter/HeaderImage";
 import {HeaderNav} from "~/modules/chapter/HeaderNav";
-import {AreaData, ChapterData, ChapterNav, CheckpointData, SideData} from "~/modules/chapter/types";
+import {AreaData, ChapterData, ChapterNav} from "~/modules/chapter/types";
 import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getChapterImageUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
-import {generateRoomTags} from "~/modules/room/generateTags";
-import {Area, Chapter, Room} from "../../modules/data/dataTypes";
+import {Area, Chapter} from "../../modules/data/dataTypes";
 
 const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter, nextChapter}) => {
-  const {settings} = useCampContext();
-  const {query} = useRouter();
-
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [side, setSide] = useState<SideData | undefined>(sides[0]);
-
-  const [checkpoints, setCheckpoints] = useState<CheckpointData[]>(side?.checkpoints ?? []);
-
-  /**
-   * Filter the checkpoint rooms.
-   */
-  useEffect(() => {
-    setSide(sides.find(newSide => newSide.id === side?.id) ?? sides[0]);
-    setCheckpoints(side ? filterCheckpoints(searchValue, side) : []);
-  }, [searchValue, side, sides]);
-
-  /**
-   * Search from the query.
-   */
-  useEffect(() => {
-    if (typeof query.search === "string") {
-      setSearchValue(query.search);
-    }
-  }, [query.search]);
+  const {settings: {listMode}} = useCampContext();
 
   return (
     <Fragment>
@@ -50,7 +26,12 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
         image={getChapterImageUrl(area.id, chapter.id)}
       />
       <Container>
-        <ChapterBreadcrumbs areaId={area.id} areaName={area.name} chapterName={chapter.name}/>
+        <Breadcrumbs
+          crumbs={[
+            {name: area.name, href: `/${area.id}`},
+            {name: chapter.name},
+          ]}
+        />
         <HeaderNav
           {...prevChapter && {
             prev: {
@@ -66,9 +47,8 @@ const ChapterPage: CampPage<ChapterProps> = ({area, chapter, sides, prevChapter,
           }}
         />
         <ChapterHeaderImage area={area} chapter={chapter} />
-        {sides.map(({id, name, checkpoints, roomCount}) => (
-          <></>
-        ))}
+        <Typography variant="h5" color="text.secondary" pt={2} pb={1}>Sides</Typography>
+        {createElement(listMode ? ChapterListView : ChapterGridView, {sides})}
       </Container>
     </Fragment>
   );
@@ -98,7 +78,7 @@ export const getStaticPaths: GetStaticPaths<ChapterParams> = async () => {
 interface ChapterProps {
   area: AreaData;
   chapter: ChapterData;
-  sides: SideData[];
+  sides: ChapterViewProps["sides"];
   prevChapter?: ChapterNav;
   nextChapter?: ChapterNav;
 };
@@ -135,26 +115,11 @@ export const getStaticProps: GetStaticProps<ChapterProps, ChapterParams> = async
         desc: chapter.desc,
         ...(chapter.chapterNo && {no: chapter?.chapterNo}),
       },
-      sides: chapter.sides.map<SideData>(side => ({
-        id: side.id,
-        name: side.name,
-        roomCount: side.roomCount,
-        checkpoints: side.checkpoints.map<CheckpointData>(checkpoint => ({
-          name: checkpoint.name,
-          abbreviation: checkpoint.abbreviation,
-          rooms: checkpoint.roomOrder.map(id => {
-            const room: Room | undefined = side.rooms[id];
-            if (room === undefined) {
-              throw Error(`Room ${id} not found`);
-            }
-            return {
-              id,
-              ...(room.name && {name: room.name}),
-              checkpointNo: room.checkpointNo,
-              tags: generateRoomTags(room),
-            };
-          }),
-        })),
+      sides: chapter.sides.map(({name, id, checkpoints, rooms}) => ({
+        name,
+        href: `/${area.id}/${chapter.id}/${id}`,
+        roomCount: checkpoints.reduce((a, b) => a + b.roomCount, 0),
+        src: getChapterImageUrl(area.id, chapter.id),
       })),
       ...(prevChapter && {prevChapter}),
       ...(nextChapter && {nextChapter}),
