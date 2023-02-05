@@ -148,14 +148,10 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side}) => {
   );
 }
 
-const LinkTab: FC<{label: string, href: string, value: string}> = (props) =>  (
-  <Tab
-    component="a"
-    onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      event.preventDefault();
-    }}
-    {...props}
-  />
+const LinkTab: FC<{label: string, href: string, value: string}> = ({href, ...other}) =>  (
+  <Link passHref href={href}>
+    <Tab component="a" {...other} />
+  </Link>
 );
 
 interface ChapterParams extends ParsedUrlQuery {
