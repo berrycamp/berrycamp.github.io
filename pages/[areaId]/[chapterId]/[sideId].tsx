@@ -47,7 +47,7 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side, prevChapter,
         description={chapter.desc}
         image={getChapterImageUrl(area.id, chapter.id)}
       />
-      <Container>
+      <Container maxWidth="lg">
         <Breadcrumbs separator="›" sx={{marginTop: 1, marginBottom: 1}}>
           <Link passHref href={`/${area.id}`}>
             <MuiLink underline="always">
@@ -61,14 +61,14 @@ const SidePage: CampPage<SideProps> = ({area, chapter, sides, side, prevChapter,
           </Link>
           <Typography color="text.primary">{side.name}</Typography>
         </Breadcrumbs>
-        <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
-          <Button fullWidth variant="contained" endIcon={<Map/>} size="large">Level Map</Button>
-        </Link>
-        <Tabs variant="fullWidth" value={tabValue}>
+        <Tabs variant="fullWidth" value={tabValue} sx={{mb: 2}}>
           {sides.map(({id, name}) => (
             <LinkTab key={id} value={id} label={`${name}-side`} href={`/${area.id}/${chapter.id}/${id}`}/>
           ))}
         </Tabs>
+        <Link passHref href={`/map/${area.id}/${chapter.id}/${side.id}`}>
+          <Button fullWidth variant="contained" endIcon={<Map/>} size="large">Level Map</Button>
+        </Link>
         <TextField
           fullWidth
           placeholder="Search rooms"
