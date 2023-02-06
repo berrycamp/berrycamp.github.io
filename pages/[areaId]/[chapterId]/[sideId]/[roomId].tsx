@@ -163,7 +163,7 @@ const RoomPage: CampPage<RoomProps> = ({
             <Link
               key={tag}
               passHref
-              href={`/${area.id}/${chapter.id}/${side.id}&search=${tag}`}
+              href={`/${area.id}/${chapter.id}/${side.id}?search=${tag}`}
             >
               <Chip component="a" size="small" label={tag} sx={{textTransform: "capitalize"}}/>
             </Link>
