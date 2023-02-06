@@ -11,7 +11,7 @@ import {useMobile} from "~/modules/common/useMobile";
 import {useResize} from "~/modules/common/useResize";
 import {Area, Chapter, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
-import {fetchArea, getChapterImageUrl, getRoomImageUrl} from "~/modules/fetch/dataApi";
+import {fetchArea, getRoomImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {AreaData, ChapterData, CheckpointData, CheckpointDataExtended, MapRoomMenu, RoomData, SideData} from "~/modules/map";
 import {MapEntityMenu} from "~/modules/map/MapEntityMenu";
@@ -286,13 +286,12 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
       <CampHead
         title={`${chapter.name} (${side.name})`}
         description="View an interactive fully rendered map."
-        image={getChapterImageUrl(area.id, chapter.id)}
+        image={getRoomPreviewUrl(area.id, chapter.id, side.id, side.img)}
       />
       <Box
         display="flex"
         flexDirection={isLargeScreen ? "row" : "column-reverse"}
-        width="100%"
-        height="100%"
+        height={`calc(100vh - ${headerSize}px)`}
         overflow="hidden"
       >
         <Box
@@ -505,6 +504,7 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
         id: side.id,
         name: side.name,
         boundingBox: side.canvas.boundingBox,
+        img: side.img,
         rooms: Object.entries(side.rooms).map(([id, room]) => ({
           id,
           tags: generateRoomTags(room),

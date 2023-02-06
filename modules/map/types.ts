@@ -17,6 +17,7 @@ export interface ChapterData {
 export interface SideData {
   id: string;
   name: string;
+  img: string;
   boundingBox: View;
   rooms: RoomData[];
   checkpoints: CheckpointData[];

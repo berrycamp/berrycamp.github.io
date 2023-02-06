@@ -1,5 +1,5 @@
 import {NavigateBefore, NavigateNext} from "@mui/icons-material";
-import {Box, Button, ButtonProps} from "@mui/material";
+import {Box, Button, ButtonProps, Typography} from "@mui/material";
 import Link from "next/link";
 import {FC} from "react";
 
@@ -11,21 +11,20 @@ const btnProps: ButtonProps = {
 
 export const HeaderNav: FC<HeaderNavProps> = ({prev, next}) => (
   <Box display="flex" gap={1} mt={1} mb={1}>
-    <Box width="100%">
+    <Box width="100%" minWidth={0}>
       {prev && (
         <Link passHref href={prev.link}>
           <Button
             {...btnProps}
             startIcon={<NavigateBefore />}
             aria-label={`Go to previous chapter ${prev.label}`}
-            sx={{width: "100%"}}
           >
-            {prev.label}
+            <Typography noWrap variant="button">{prev.label}</Typography>
           </Button>
         </Link>
       )}
     </Box>
-    <Box width="100%">
+    <Box width="100%" minWidth={0}>
       {next && (
         <Link passHref href={next.link}>
           <Button
@@ -33,7 +32,8 @@ export const HeaderNav: FC<HeaderNavProps> = ({prev, next}) => (
             endIcon={<NavigateNext />}
             aria-label={`Go to previous chapter ${next.label}`}
           >
-            {next.label}
+             <Typography noWrap variant="button">{next.label}</Typography>
+            
           </Button>
         </Link>
       )}
