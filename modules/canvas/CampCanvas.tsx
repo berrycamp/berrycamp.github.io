@@ -1,8 +1,8 @@
 import {Fullscreen} from "@mui/icons-material";
 import {Box, debounce, IconButton, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
+import {ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
-import {CanvasImage, OnRightClickCallback, OnViewChangeCallback, useExtentCanvas, View} from "~/modules/canvas/useExtentCanvas";
 import {useCampContext} from "../provide/CampContext";
 import {CampCanvasProps} from "./types";
 
@@ -14,6 +14,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   onTeleport,
   onSelectRoom,
 }) => {
+  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
+
   const {settings: {everest}} = useCampContext();
 
   const router: NextRouter = useRouter();
@@ -21,8 +23,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   const theme: Theme = useTheme();
   const background = theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[200];
 
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const viewRef = useRef<View | undefined>();
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  const viewRef = useRef<ExtentCanvasViewBox | undefined>();
 
   const [contextMenu, setContextMenu] = useState<{
     mouseX: number,
@@ -43,8 +45,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   /**
    * Set the current view.
    */
-  const handleViewChange: OnViewChangeCallback = useCallback((view, reason) => {
-    if (reason !== "jump") {
+  const handleViewBoxChange: Exclude<ExtentCanvasArgs["onViewBoxChange"], undefined> = useCallback((view, reason) => {
+    if (reason !== "set") {
       updateViewParams.current();
     }
     
@@ -56,7 +58,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
    * Draw images to the canvas
    */
   const handleDraw = useCallback((context: CanvasRenderingContext2D) => {
-    if (canvasRef.current === null) {
+    if (ref.current === null) {
       return;
     }
 
@@ -114,13 +116,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   }, [contentViewRef, imagesRef, rooms]);
 
   /**
-   * Open the context menu.
-   */
-  const handleContextMenu: OnRightClickCallback = useCallback(({clientX, clientY, x, y}) => {
-    setContextMenu({mouseX: clientX + 2, mouseY: clientY - 6, x, y});
-  }, []);
-
-  /**
    * Close the context menu;
    */
   const handleClose = () => {
@@ -147,6 +142,51 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     handleClose();
   };
 
+  const handleFullscreen = () => {
+    void ref.current?.requestFullscreen();
+  }
+
+  const {setViewBox} = useExtentCanvas({
+    ref,
+    onContextInit: setContext,
+    onDraw: handleDraw,
+    onViewBoxChange: handleViewBoxChange,
+  });
+
+ 
+
+  /**
+   * Add a listener for context menu right clicks.
+   */
+  useEffect(() => {
+    if (context === null) {
+      return;
+    }
+
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+      if (viewRef.current === undefined) {
+        return;
+      }
+
+      const {clientX, clientY} = event;
+      const rect: DOMRect = context.canvas.getBoundingClientRect();
+
+      setContextMenu({
+        mouseX: clientX + 2,
+        mouseY: clientY - 6,
+        x: viewRef.current.left + clientX - rect.left,
+        y: viewRef.current.right + clientY - rect.top,
+      });
+    }
+
+    context.canvas.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      context.canvas.removeEventListener("contextmenu", handleContextMenu);
+    }
+  }, [context])
+
   /**
    * Initialise the room image array.
    */
@@ -154,31 +194,20 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     imagesRef.current = [];
   }, [imagesRef, rooms]);
 
-  const {setView} = useExtentCanvas({
-    canvasRef,
-    onDraw: handleDraw,
-    onViewChange: handleViewChange,
-    onRightClick: handleContextMenu,
-  });
-
-  const handleFullscreen = () => {
-    void canvasRef.current?.requestFullscreen();
-  }
-
   /**
    * Listen for canvas update requests.
    */
   useEffect(() => {
     const channel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
-    channel.onmessage = ({data: view}: {data: View}) => {
-      setView(view);
-      viewRef.current = view;
+    channel.onmessage = ({data: viewBox}: {data: ExtentCanvasViewBox}) => {
+      setViewBox(viewBox);
+      viewRef.current = viewBox;
     }
 
     return () => {
       channel.close();
     }
-  }, [setView]);
+  }, [setViewBox]);
 
 
   return (
@@ -203,7 +232,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
         )}
       </Menu>
       <canvas
-        ref={canvasRef}
+        ref={ref}
         style={{
           background,
           position: "relative",
@@ -239,6 +268,12 @@ export const CAMP_CANVAS_CHANNEL = "campcanvas" as const;
  * @param v2 The second view.
  * @returns True if v1 and v2 collide.
  */
-export const viewsCollide = (v1: View, v2: View): boolean => {
+export const viewsCollide = (v1: ExtentCanvasViewBox, v2: ExtentCanvasViewBox): boolean => {
   return v1.left < v2.right && v1.right > v2.left && v1.top < v2.bottom && v1.bottom > v2.top;
+}
+
+export interface CanvasImage {
+  img: CanvasImageSource;
+  position: ExtentCanvasPoint;
+  view: ExtentCanvasViewBox;
 }

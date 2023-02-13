@@ -1,10 +1,11 @@
 import {Clear, ScreenshotMonitor, Search} from "@mui/icons-material";
 import {Box, Button, IconButton, TextField} from "@mui/material";
+import {ExtentCanvasSize, ExtentCanvasViewBox} from "extent-canvas/types";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, CanvasSize, View, ViewChangeReason, viewsCollide} from "~/modules/canvas";
+import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
 import {ResizableDivider} from "~/modules/common/resizableDivider/ResizableDivider";
 import {useMobile} from "~/modules/common/useMobile";
@@ -41,7 +42,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   const [oversized, setOversized] = useState<boolean>(false);
 
   const imagesRef = useRef<CanvasImage[]>([]);
-  const contentViewRef = useRef<View | undefined>();
+  const contentViewRef = useRef<ExtentCanvasViewBox | undefined>();
 
   const {
     size: sidebarSize,
@@ -86,7 +87,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   /**
    * Handle changes to the canvas view.
    */
-  const handleViewChange = useCallback((reason: ViewChangeReason) => {
+  const handleViewChange = useCallback(() => {
     if (contentViewRef.current === undefined) {
       return;
     }
@@ -102,7 +103,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
       return;
     }
 
-    const size: CanvasSize = calculateCanvasSize(contentViewRef.current)
+    const size: ExtentCanvasSize = calculateCanvasSize(contentViewRef.current)
     if (oversizedCanvas(size)) {
       return;
     }
@@ -523,7 +524,7 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
 /**
  * Calculate the bounding box for viewing an entity.
  */
-export const getEntityViewBox = ({left, top}: View, x: number, y: number): View => {
+export const getEntityViewBox = ({left, top}: ExtentCanvasViewBox, x: number, y: number): ExtentCanvasViewBox => {
   return {left: left + x - 160, right: left + x + 160, top: top + y - 90, bottom: top + y + 90}
 }
 
@@ -532,7 +533,7 @@ export const getEntityViewBox = ({left, top}: View, x: number, y: number): View 
  * @param view The view.
  * @returns The canvas size.
  */
- const calculateCanvasSize = ({top, bottom, left, right}: View): CanvasSize => ({
+ const calculateCanvasSize = ({top, bottom, left, right}: ExtentCanvasViewBox): ExtentCanvasSize => ({
   width: right - left, 
   height: bottom - top,
 }) 
@@ -544,7 +545,7 @@ export const getEntityViewBox = ({left, top}: View, x: number, y: number): View 
  * @param height The image height.
  * @returns If the view is too large.
  */
- const oversizedCanvas = ({width, height}: CanvasSize): boolean => {
+ const oversizedCanvas = ({width, height}: ExtentCanvasSize): boolean => {
   return width * height > 268435456;
 };
 
