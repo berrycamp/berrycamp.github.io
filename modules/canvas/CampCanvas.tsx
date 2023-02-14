@@ -1,6 +1,6 @@
 import {Fullscreen} from "@mui/icons-material";
 import {Box, debounce, IconButton, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
-import {calculateCanvasView, ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
+import {calculateCanvasView, ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasView, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import {useCampContext} from "../provide/CampContext";
@@ -24,7 +24,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   const background = theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[200];
 
   const ref = useRef<HTMLCanvasElement | null>(null);
-  const viewRef = useRef<ExtentCanvasViewBox | undefined>();
+  const viewRef = useRef<ExtentCanvasView | undefined>();
+  const viewBoxRef = useRef<ExtentCanvasViewBox | undefined>();
 
   const [contextMenu, setContextMenu] = useState<{
     mouseX: number,
@@ -34,12 +35,12 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
   } | null>(null);
 
   const updateViewParams = useRef<() => void>(debounce(() => {
-    if (viewRef.current === undefined) {
+    if (viewBoxRef.current === undefined) {
       return;
     }
 
     const {areaId, chapterId, sideId} = router.query;
-    router.replace({query: {areaId, chapterId, sideId, ...viewRef.current}}, undefined, {shallow: true})
+    router.replace({query: {areaId, chapterId, sideId, ...viewBoxRef.current}}, undefined, {shallow: true})
   }, 1000));
 
   /**
@@ -50,17 +51,24 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
       updateViewParams.current();
     }
     
-    viewRef.current = view;
+    viewBoxRef.current = view;
     onViewChange(reason);
   }, [onViewChange]);
-
+  
+  const handleViewChange: Exclude<ExtentCanvasArgs["onViewChange"], undefined> = useCallback((view) => {
+    viewRef.current = view;
+  }, [])
 
   /**
    * Handle canvas customization.
    */
   const handleBeforeDraw: Exclude<ExtentCanvasArgs["onBeforeDraw"], undefined> = useCallback((context) => {
+    if (viewRef.current === undefined) {
+      return;
+    }
+
     // Sharp images.
-    context.imageSmoothingEnabled = false;
+    context.imageSmoothingEnabled = viewRef.current.scale <= 1;
     // Hide edge seams.
     context.globalCompositeOperation = "lighter";
   }, []);
@@ -79,35 +87,35 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
      * Load new rooms.
      */
     rooms.forEach(({image, position, view}, i) => {
-      if (viewRef.current === undefined) {
+      if (viewBoxRef.current === undefined) {
         return;
       }
 
       // Don't render if not in view.
-      const inView: boolean = viewsCollide(view, viewRef.current);
+      const inView: boolean = viewsCollide(view, viewBoxRef.current);
       if (!inView) {
         return;
       }
 
       if (contentViewRef.current === undefined) {
         contentViewRef.current = {
-          top: Math.max(view.top, viewRef.current.top),
-          bottom: Math.min(view.bottom, viewRef.current.bottom),
-          left: Math.max(view.left, viewRef.current.left),
-          right: Math.min(view.right, viewRef.current.right),
+          top: Math.max(view.top, viewBoxRef.current.top),
+          bottom: Math.min(view.bottom, viewBoxRef.current.bottom),
+          left: Math.max(view.left, viewBoxRef.current.left),
+          right: Math.min(view.right, viewBoxRef.current.right),
         };
       }
       if (contentViewRef.current.top > view.top) {
-        contentViewRef.current.top = Math.max(view.top, viewRef.current.top)
+        contentViewRef.current.top = Math.max(view.top, viewBoxRef.current.top)
       }
       if (contentViewRef.current.bottom < view.bottom) {
-        contentViewRef.current.bottom = Math.min(view.bottom, viewRef.current.bottom)
+        contentViewRef.current.bottom = Math.min(view.bottom, viewBoxRef.current.bottom)
       }
       if (contentViewRef.current.left > view.left) {
-        contentViewRef.current.left = Math.max(view.left, viewRef.current.left)
+        contentViewRef.current.left = Math.max(view.left, viewBoxRef.current.left)
       }
       if (contentViewRef.current.right < view.right) {
-        contentViewRef.current.right = Math.min(view.right, viewRef.current.right)
+        contentViewRef.current.right = Math.min(view.right, viewBoxRef.current.right)
       }
 
       const loadedImage: CanvasImage | undefined = imagesRef.current[i];
@@ -117,7 +125,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
       } else {
         const img = new Image();
         img.src = image;
-        img.crossOrigin = "anonymous";
         imagesRef.current[i] = {img, position, view};
         img.onload = () => {
           context.drawImage(img, position.x, position.y);
@@ -125,6 +132,15 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
       }
     });
   }, [contentViewRef, imagesRef, rooms]);
+
+  const {setViewBox, draw} = useExtentCanvas({
+    ref,
+    onContextInit: setContext,
+    onBeforeDraw: handleBeforeDraw,
+    onDraw: handleDraw,
+    onViewBoxChange: handleViewBoxChange,
+    onViewChange: handleViewChange,
+  });
 
   /**
    * Close the context menu;
@@ -157,16 +173,6 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     void ref.current?.requestFullscreen();
   }
 
-  const {setViewBox, draw} = useExtentCanvas({
-    ref,
-    onContextInit: setContext,
-    onBeforeDraw: handleBeforeDraw,
-    onDraw: handleDraw,
-    onViewBoxChange: handleViewBoxChange,
-  });
-
- 
-
   /**
    * Add a listener for context menu right clicks.
    */
@@ -177,7 +183,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
     const handleContextMenu = (event: MouseEvent) => {
       event.preventDefault();
-      if (viewRef.current === undefined) {
+      if (viewBoxRef.current === undefined) {
         return;
       }
 
@@ -187,8 +193,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
       setContextMenu({
         mouseX: clientX + 2,
         mouseY: clientY - 6,
-        x: viewRef.current.left + clientX - rect.left,
-        y: viewRef.current.right + clientY - rect.top,
+        x: viewBoxRef.current.left + clientX - rect.left,
+        y: viewBoxRef.current.right + clientY - rect.top,
       });
     }
 
@@ -214,7 +220,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
      * @param entries The resize observer entries.
      */
     const handleResize = (entries: ResizeObserverEntry[]) => {
-      if (viewRef.current === undefined) {
+      if (viewBoxRef.current === undefined) {
         return;
       }
 
@@ -235,7 +241,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
       }
 
       if (context.canvas.width > 0 && context.canvas.height > 0) {
-        const {offset} = calculateCanvasView(tempContext.canvas, viewRef.current);
+        const {offset} = calculateCanvasView(tempContext.canvas, viewBoxRef.current);
         context.drawImage(tempContext.canvas, offset.x, offset.y);
       }
       draw();
@@ -268,7 +274,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     const channel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
     channel.onmessage = ({data: viewBox}: {data: ExtentCanvasViewBox}) => {
       setViewBox(viewBox);
-      viewRef.current = viewBox;
+      viewBoxRef.current = viewBox;
     }
 
     return () => {
