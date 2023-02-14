@@ -1,6 +1,6 @@
 import {Fullscreen} from "@mui/icons-material";
 import {Box, debounce, IconButton, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
-import {ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
+import {calculateCanvasView, ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import {useCampContext} from "../provide/CampContext";
@@ -53,6 +53,17 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     viewRef.current = view;
     onViewChange(reason);
   }, [onViewChange]);
+
+
+  /**
+   * Handle canvas customization.
+   */
+  const handleBeforeDraw: Exclude<ExtentCanvasArgs["onBeforeDraw"], undefined> = useCallback((context) => {
+    // Sharp images.
+    context.imageSmoothingEnabled = false;
+    // Hide edge seams.
+    context.globalCompositeOperation = "lighter";
+  }, []);
 
   /**
    * Draw images to the canvas
@@ -146,9 +157,10 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     void ref.current?.requestFullscreen();
   }
 
-  const {setViewBox} = useExtentCanvas({
+  const {setViewBox, draw} = useExtentCanvas({
     ref,
     onContextInit: setContext,
+    onBeforeDraw: handleBeforeDraw,
     onDraw: handleDraw,
     onViewBoxChange: handleViewBoxChange,
   });
@@ -185,7 +197,62 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     return () => {
       context.canvas.removeEventListener("contextmenu", handleContextMenu);
     }
-  }, [context])
+  }, [context]);
+
+    /**
+   * Redraw the canvas on resize.
+   */
+  useEffect(() => {
+    if (context === null || context.canvas.parentElement === null) {
+      return;
+    }
+
+    /**
+     * Resize the canvas, draw the current view to an offscreen canvas and copy it back after resize
+     * to reduce flicker.
+     * 
+     * @param entries The resize observer entries.
+     */
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      if (viewRef.current === undefined) {
+        return;
+      }
+
+      const tempCanvas: HTMLCanvasElement = document.createElement("canvas");
+      const tempContext: CanvasRenderingContext2D = tempCanvas.getContext("2d", {alpha: true}) as CanvasRenderingContext2D;
+      if (context.canvas.width > 0 && context.canvas.height > 0) {
+        tempContext.drawImage(context.canvas, 0, 0);
+      }
+
+      const isFullscreen: boolean = Boolean(document.fullscreenElement);
+      const entry: ResizeObserverEntry | undefined = entries[0];
+      if (isFullscreen) {
+        context.canvas.width = window.innerWidth;
+        context.canvas.height = window.innerHeight;
+      } else if(entry) {
+        context.canvas.width = entry.contentRect.width;
+        context.canvas.height = entry.contentRect.height;
+      }
+
+      if (context.canvas.width > 0 && context.canvas.height > 0) {
+        const {offset} = calculateCanvasView(tempContext.canvas, viewRef.current);
+        context.drawImage(tempContext.canvas, offset.x, offset.y);
+      }
+      draw();
+    };
+
+    const observer = new ResizeObserver(handleResize);
+    observer.observe(context.canvas);
+
+    // Set the initial size.
+    const {width, height} = context.canvas.getBoundingClientRect();
+    context.canvas.width = width;
+    context.canvas.height = height;
+
+    return () => {
+      observer.disconnect();
+    }
+  }, [context, draw]);
 
   /**
    * Initialise the room image array.

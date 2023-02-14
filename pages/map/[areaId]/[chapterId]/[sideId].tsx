@@ -1,6 +1,7 @@
 import {Clear, ScreenshotMonitor, Search} from "@mui/icons-material";
 import {Box, Button, IconButton, TextField} from "@mui/material";
-import {ExtentCanvasSize, ExtentCanvasViewBox} from "extent-canvas/types";
+import "extent-canvas";
+import {ExtentCanvasSize, ExtentCanvasViewBox} from "extent-canvas";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
