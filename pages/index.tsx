@@ -1,6 +1,5 @@
-import {Alert, Avatar, Box, Chip, Container, Paper, Typography} from "@mui/material";
+import {Avatar, Box, Chip, Container, Paper, Typography} from "@mui/material";
 import {GetStaticProps} from "next";
-import Link from "next/link";
 import {Fragment} from "react";
 import {Area} from "~/modules/data/dataTypes";
 import {fetchArea, getRootImageUrl} from "~/modules/fetch/dataApi";
@@ -46,19 +45,6 @@ export const HomePage: CampPage<AreaProps> = ({area, chapters}) => {
             />
           </Box>
         </Paper>
-        <Alert
-          severity="info"
-          variant="outlined"
-          sx={{mt: 2}}
-        >
-          {"Berry Camp has moved to "}
-          <strong>
-            <Link href="https://berrycamp.github.io">
-              https://berrycamp.github.io
-            </Link>
-          </strong>
-          {". Old links will stop working in April so update your bookmarks!"}
-        </Alert>
         <AreaView area={area} chapters={chapters}/>
       </Container>
     </Fragment>
