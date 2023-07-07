@@ -1,10 +1,10 @@
 import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
-import {Collapse, IconButton, Link as MuiLink, List, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
+import {Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Link as MuiLink, Tooltip} from "@mui/material";
+import {ExtentCanvasPoint} from "extent-canvas";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {FC, memo, useState} from "react";
 import {RoomData} from ".";
-import {Point} from "../canvas";
 import {useMobile} from "../common/useMobile";
 import {BerryPoint} from "../data/dataTypes";
 import {useCampContext} from "../provide/CampContext";
@@ -74,8 +74,8 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
 
 interface MapEntityMenuGroupProps {
   name: string;
-  entities: Point[];
-  createItemName: (entity: Point, index: number) => string;
+  entities: ExtentCanvasPoint[];
+  createItemName: (entity: ExtentCanvasPoint, index: number) => string;
   roomId: string;
   teleportParams?: string;
 }
@@ -119,7 +119,7 @@ export const MapEntityMenuGroup: FC<MapEntityMenuGroupProps> = ({
 
 interface MapEntityMenuItemProps {
   name: string;
-  entity: Point;
+  entity: ExtentCanvasPoint;
   roomId: string;
   indent?: number;
   teleportParams?: string;

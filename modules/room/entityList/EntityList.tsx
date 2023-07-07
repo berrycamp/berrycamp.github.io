@@ -1,8 +1,8 @@
 import {ExpandLess, ExpandMore, RocketLaunch} from "@mui/icons-material";
 import {Box, Collapse, IconButton, List, ListItem, ListItemButton, ListItemText, Paper, Tooltip} from "@mui/material";
+import {ExtentCanvasPoint} from "extent-canvas/*";
 import Link from "next/link";
 import {FC, useState} from "react";
-import {Point} from "~/modules/canvas";
 import {useMobile} from "~/modules/common/useMobile";
 import {BerryPoint} from "~/modules/data/dataTypes";
 import {useCampContext} from "~/modules/provide/CampContext";
@@ -65,8 +65,8 @@ export const EntityList: FC<EntityListProps> = ({areaId, areaGameId, chapterId, 
 
 interface EntityGroupProps {
   name: string;
-  entities: Point[];
-  createItemName: (entity: Point, index: number) => string;
+  entities: ExtentCanvasPoint[];
+  createItemName: (entity: ExtentCanvasPoint, index: number) => string;
   mapRoomUrl: string;
   teleportParams?: string;
 }
@@ -103,7 +103,7 @@ const EntityGroup: FC<EntityGroupProps> = ({name, entities, createItemName, mapR
 
 interface EntityItem {
   name: string;
-  entity: Point;
+  entity: ExtentCanvasPoint;
   mapRoomUrl: string;
   teleportParams?: string;
 }

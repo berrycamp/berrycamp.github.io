@@ -1,4 +1,4 @@
-import type {CanvasSize, Point, View} from "../canvas";
+import {ExtentCanvasPoint, ExtentCanvasSize, ExtentCanvasViewBox} from "extent-canvas";
 
 export interface Area {
   id: string;
@@ -44,7 +44,7 @@ export interface Checkpoint {
 export interface Room {
   name: string;
   checkpointNo: number;
-  defaultSpawn: Point;
+  defaultSpawn: ExtentCanvasPoint;
   entities: Partial<Entities>;
   canvas: Canvas;
 }
@@ -52,16 +52,16 @@ export interface Room {
 export interface Entities {
   spawn: SpawnPoint[];
   berry: BerryPoint[];
-  golden: Point[];
-  heart: Point[];
-  cassette: Point[];
+  golden: ExtentCanvasPoint[];
+  heart: ExtentCanvasPoint[];
+  cassette: ExtentCanvasPoint[];
 }
 
-export interface SpawnPoint extends Point {
+export interface SpawnPoint extends ExtentCanvasPoint {
   name?: string;
 }
 
-export interface BerryPoint extends Point {
+export interface BerryPoint extends ExtentCanvasPoint {
   id: number;
   checkpointId: number;
 
@@ -70,7 +70,7 @@ export interface BerryPoint extends Point {
 }
 
 export interface Canvas {
-  position: Point;
-  size: CanvasSize;
-  boundingBox: View;
+  position: ExtentCanvasPoint;
+  size: ExtentCanvasSize;
+  boundingBox: ExtentCanvasViewBox;
 }
