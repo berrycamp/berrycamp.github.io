@@ -1,19 +1,20 @@
+import {ExtentCanvasPoint, ExtentCanvasViewBox, ExtentCanvasViewChangeReason} from "extent-canvas";
 import {MutableRefObject} from "react";
-import {ViewChangeReason} from '~/modules/canvas';
-import {CanvasImage, Point, View} from "./useExtentCanvas";
+import {CanvasImage} from "./CampCanvas";
 
 export interface CampCanvasProps {
+  view: ExtentCanvasViewBox | undefined;
   rooms: CanvasRoom[];
   imagesRef: MutableRefObject<CanvasImage[]>;
-  contentViewRef: MutableRefObject<View | undefined>;
-  onViewChange: (reason: ViewChangeReason) => void;
+  contentViewRef: MutableRefObject<ExtentCanvasViewBox | undefined>;
+  onViewChange: (reason: ExtentCanvasViewChangeReason) => void;
   onSelectRoom: (x: number, y: number) => void;
   onTeleport: (x: number, y: number) => void;
 }
 
 export interface CanvasRoom {
   id: string;
-  position: Point;
-  view: View;
+  position: ExtentCanvasPoint;
+  view: ExtentCanvasViewBox;
   image: string;
 }

@@ -5,7 +5,6 @@ export interface ICampContext {
   changeTheme: () => void;
   setPrefersDark: (prefersDark: boolean) => void;
   toggleListMode: () => void;
-  toggleShowWatermark: () => void;
   toggleEverest: () => void;
   setEverestUrl: (url?: string) => void;
   setSettings: (settings: ICampSettings) => void;
@@ -15,7 +14,6 @@ export interface ICampSettings {
   theme?: "light" | "dark";
   prefersDark?: true;
   listMode?: true;
-  showWatermark: boolean;
   everest: boolean;
   everestUrl?: string;
 }
@@ -23,19 +21,17 @@ export interface ICampSettings {
 const CampContext = createContext<ICampContext>({
   settings: {
     everest: true,
-    showWatermark: true,
   },
   changeTheme: () => undefined,
   setPrefersDark: () => undefined,
   toggleListMode: () => undefined,
-  toggleShowWatermark: () => undefined,
   toggleEverest: () => undefined,
   setEverestUrl: () => undefined,
   setSettings: () => undefined,
 });
 
 export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
-  const [settings, setSettings] = useState<ICampSettings>({showWatermark: true, everest: true});
+  const [settings, setSettings] = useState<ICampSettings>({everest: true});
 
   const changeTheme = useCallback(() => {
     setSettings(({theme, ...other}) => ({...other, ...(theme !== "dark" && {theme: theme === undefined ? "light" : "dark"})}));
@@ -48,10 +44,6 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
   const toggleListMode = useCallback(() => {
     setSettings(({listMode, ...other}) => ({...other, ...(!listMode && {listMode: true})}));
   }, [])
-
-  const toggleShowWatermark = useCallback(() => {
-    setSettings(({showWatermark, ...other}) => ({...other, showWatermark: !showWatermark}));
-  }, []);
 
   const toggleEverest = useCallback(() => {
     setSettings(({everest, ...other}) => ({...other, everest: !everest}));
@@ -69,7 +61,6 @@ export const CampContextProvider: FC<PropsWithChildren> = ({children}) => {
         setPrefersDark,
         toggleListMode,
         toggleEverest,
-        toggleShowWatermark,
         setEverestUrl,
         setSettings
       }}

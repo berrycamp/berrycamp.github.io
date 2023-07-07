@@ -1,4 +1,4 @@
-import {View} from '../canvas';
+import {ExtentCanvasViewBox} from 'extent-canvas';
 import {Room} from './../data/dataTypes';
 
 export interface AreaData {
@@ -18,7 +18,7 @@ export interface SideData {
   id: string;
   name: string;
   img: string;
-  boundingBox: View;
+  boundingBox: ExtentCanvasViewBox;
   rooms: RoomData[];
   checkpoints: CheckpointData[];
 }
@@ -31,7 +31,7 @@ export interface RoomData extends Room {
 
 export interface CheckpointData {
   name: string;
-  boundingBox: View;
+  boundingBox: ExtentCanvasViewBox;
   roomOrder: string[];
 }
 

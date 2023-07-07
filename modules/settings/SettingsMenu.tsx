@@ -1,10 +1,10 @@
-import {BrandingWatermarkSharp, BrightnessAuto, DarkMode, Explore, ExploreOff, GridViewSharp, LightMode, RectangleSharp, Restore, Settings, ViewListSharp} from "@mui/icons-material";
-import {Divider, IconButton, ListItem, ListItemIcon, Menu, MenuItem, styled, TextField, Tooltip} from "@mui/material";
+import {BrightnessAuto, DarkMode, Explore, ExploreOff, GridViewSharp, LightMode, Restore, Settings, ViewListSharp} from "@mui/icons-material";
+import {Divider, IconButton, ListItem, ListItemIcon, Menu, MenuItem, TextField, Tooltip, styled} from "@mui/material";
 import {FC, Fragment, MouseEvent, useState} from "react";
 import {useCampContext} from "~/modules/provide/CampContext";
 
 export const SettingsMenu: FC = () => {
-  const {settings, changeTheme, toggleListMode, setEverestUrl, toggleShowWatermark, toggleEverest} = useCampContext();
+  const {settings, changeTheme, toggleListMode, setEverestUrl, toggleEverest} = useCampContext();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
@@ -48,16 +48,6 @@ export const SettingsMenu: FC = () => {
             {settings.listMode ? <ViewListSharp fontSize="small" /> : <GridViewSharp fontSize="small" />}
           </ListItemIcon>
           {settings.listMode ? "List view" : "Grid view"}
-        </MenuItem>
-        <MenuItem onClick={toggleShowWatermark}>
-          <ListItemIcon>
-            {settings.showWatermark ? (
-              <BrandingWatermarkSharp fontSize="small"/>
-            ) : (
-              <RectangleSharp fontSize="small" sx={{transform: "scale(1.1)"}}/>
-            )}
-          </ListItemIcon>
-          {settings.showWatermark ? "Watermark" : "No Watermark"}
         </MenuItem>
         <Divider />
         <MenuItem onClick={toggleEverest}>
