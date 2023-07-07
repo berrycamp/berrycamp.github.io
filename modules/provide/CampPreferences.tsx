@@ -13,7 +13,6 @@ export const CampPreferencesProvider: FC<PropsWithChildren> = ({children}) => {
   */
   useEffect(() => {
     const storageSettings: ICampSettings = {
-      showWatermark: true,
       everest: !/Mobi/i.test(navigator.userAgent),
     };
 

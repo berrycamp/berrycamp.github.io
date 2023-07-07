@@ -28,7 +28,7 @@ const ROOM_WIDTH = 320;
 const ROOM_HEIGHT = 184;
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
-  const {settings: {everestUrl, showWatermark}} = useCampContext();
+  const {settings: {everestUrl}} = useCampContext();
   const {isReady, query} = useRouter();
   const {isLargeScreen} = useMobile();
 
@@ -124,39 +124,11 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
       context.drawImage(img, x, y);
     });
 
-    // Apply logo watermark
-    if (showWatermark && size.width >= ROOM_HEIGHT && size.height >= ROOM_WIDTH) {
-      const minTextHeight = 10;
-      const horizontalScaleFactor = 2.157;
-      const textHeight: number = Math.floor(
-        Math.max(
-          minTextHeight,
-          0.05 * Math.min(
-            size.height,
-            size.width * horizontalScaleFactor,
-          ),
-        ),
-      );
-
-      const textPadding: number = Math.floor(0.25 * textHeight);
-      context.font = `${textHeight}px Calibri`;
-      context.fillStyle = "#FFFFFF"
-  
-      const watermark: string = "🍓camp";
-      const {width: logoWidth}: TextMetrics = context.measureText(watermark);
-  
-      context.fillText(
-        watermark,
-        Math.floor(contentViewRef.current.left + size.width - logoWidth - textPadding),
-        Math.floor(contentViewRef.current.top + size.height - textPadding * 1.75),
-      );
-    }
-
     const link: HTMLAnchorElement = document.createElement("a");
     link.href = virtualCanvas.toDataURL("image/png");
     link.download = `${area.id}-${chapter.id}-${side.id}_${size.width}x${size.height}.png`;
     link.click();
-  }, [area.id, chapter.id, side.id, showWatermark]);
+  }, [area.id, chapter.id, side.id]);
 
   /**
    * Try to teleport to the room at the coordinates.
