@@ -7,6 +7,7 @@ import {useCampContext} from "../provide/CampContext";
 import {CampCanvasProps} from "./types";
 
 export const CampCanvas: FC<CampCanvasProps> = memo(({
+  view,
   rooms,
   imagesRef,
   contentViewRef,
@@ -41,7 +42,7 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
     const {areaId, chapterId, sideId} = router.query;
     router.replace({query: {areaId, chapterId, sideId, ...viewBoxRef.current}}, undefined, {shallow: true})
-  }, 1000));
+  }, 150));
 
   /**
    * Set the current view.
@@ -267,20 +268,14 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     imagesRef.current = [];
   }, [imagesRef, rooms]);
 
-  /**
-   * Listen for canvas update requests.
-   */
   useEffect(() => {
-    const channel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
-    channel.onmessage = ({data: viewBox}: {data: ExtentCanvasViewBox}) => {
-      setViewBox(viewBox);
-      viewBoxRef.current = viewBox;
+    if (view === undefined) {
+      return;
     }
-
-    return () => {
-      channel.close();
-    }
-  }, [setViewBox]);
+    
+    setViewBox(view);
+    viewBoxRef.current = view;
+  }, [setViewBox, view]);
 
 
   return (

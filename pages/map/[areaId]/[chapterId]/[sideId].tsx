@@ -1,12 +1,11 @@
 import {Clear, ScreenshotMonitor, Search} from "@mui/icons-material";
 import {Box, Button, IconButton, TextField} from "@mui/material";
-import "extent-canvas";
 import {ExtentCanvasSize, ExtentCanvasViewBox} from "extent-canvas";
 import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {CampCanvas, CAMP_CANVAS_CHANNEL, CanvasImage, CanvasRoom, viewsCollide} from "~/modules/canvas";
+import {CampCanvas, CanvasImage, CanvasRoom, viewsCollide} from "~/modules/canvas";
 import {showRoom} from "~/modules/chapter";
 import {ResizableDivider} from "~/modules/common/resizableDivider/ResizableDivider";
 import {useMobile} from "~/modules/common/useMobile";
@@ -30,12 +29,11 @@ const ROOM_HEIGHT = 184;
 
 export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) => {
   const {settings: {everestUrl, showWatermark}} = useCampContext();
-  const router = useRouter();
+  const {isReady, query} = useRouter();
   const {isLargeScreen} = useMobile();
 
-  const [channel, setChannel] = useState<BroadcastChannel | undefined>();
-
   const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+  const [view, setView] = useState<ExtentCanvasViewBox | undefined>()
 
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -187,90 +185,53 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   }, [side.rooms]);
 
   /**
-   * Create the broadcast channel for requests to the canvas.
-   */
-  useEffect(() => {
-    const channel: BroadcastChannel = new BroadcastChannel(CAMP_CANVAS_CHANNEL);
-    setChannel(channel);
-
-    return () => {
-      channel.close();
-    }
-  }, []);
-
-  /**
    * Update the canvas from the router query.
    */
   useEffect(() => {
-    if (channel === undefined) {
+    if (!isReady) {
       return;
     }
 
-    if (!router.isReady) {
+    if (isFirstLoad){
+      setIsFirstLoad(false);
+    }
+
+    const {checkpoint, room, top, bottom, left, right, x, y} = query;
+    
+    if (typeof checkpoint === "string") {
+      const data: CheckpointData | undefined = side.checkpoints[Number(query.checkpoint) - 1];
+      if (data !== undefined) {
+        setView(data.boundingBox)
+      }
       return;
     }
 
-    setIsFirstLoad(false);
-
-    // Go to room if valid.
-    if (typeof router.query.room === "string") {
-      const canvasRoom: CanvasRoom | undefined = canvasRooms.find(room => room.id === router.query.room);
+    if (typeof room === "string") {
+      const canvasRoom: CanvasRoom | undefined = canvasRooms.find(({id}) => id === room);
       if (canvasRoom === undefined) {
         return;
       }
 
-      setSelectedRoom(side.rooms.find(room => room.id === canvasRoom.id));
-      channel.postMessage(typeof router.query.x === "string" && typeof router.query.y === "string"
-        ? getEntityViewBox(canvasRoom.view, Number(router.query.x), Number(router.query.y))
-        : canvasRoom.view);
-      return;
-    }
-    
-    // Go to checkpoint if valid.
-    if (typeof router.query.checkpoint === "string") {
-      const checkpoint: CheckpointData | undefined = side.checkpoints[Number(router.query.checkpoint) - 1];
-      if (checkpoint === undefined) {
-        return;
+      setSelectedRoom(side.rooms.find(({id}) => id === canvasRoom.id));
+
+      if (typeof x === "string" && typeof y === "string") {
+        setView(getEntityViewBox(canvasRoom.view, Number(x), Number(y)));
+      } else {
+        setView(canvasRoom.view);
       }
-      channel.postMessage(checkpoint.boundingBox);
+      return;
+    }
+
+    if (typeof top === "string" && typeof bottom === "string" && typeof left === "string" && typeof right === "string") {
+      if (isFirstLoad) {
+        setView({top: Number(top), bottom: Number(bottom), left: Number(left), right: Number(right)});
+        setIsFirstLoad(false);
+      }
       return;
     }
     
-    // Go to view box only on first load.
-    if (
-      typeof router.query.top === "string"
-      && typeof router.query.bottom === "string"
-      && typeof router.query.left === "string"
-      && typeof router.query.right === "string"
-    ) {
-      isFirstLoad && channel.postMessage({
-        top: Number(router.query.top),
-        bottom: Number(router.query.bottom),
-        left: Number(router.query.left),
-        right: Number(router.query.right),
-      })
-      return;
-    }
-    
-    // Go to side.
-    channel.postMessage(side.boundingBox);
-  }, [
-    canvasRooms,
-    channel,
-    isFirstLoad,
-    router.isReady,
-    router.query.bottom,
-    router.query.checkpoint,
-    router.query.left,
-    router.query.right,
-    router.query.room,
-    router.query.top,
-    router.query.x,
-    router.query.y,
-    side.boundingBox,
-    side.checkpoints,
-    side.rooms,
-  ]);
+    setView(side.boundingBox)
+  }, [canvasRooms, isFirstLoad, isReady, query, side.boundingBox, side.checkpoints, side.rooms]);
 
   /**
    * Update the layout for desktop/mobile.
@@ -415,6 +376,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
         />
         <Box {...isLargeScreen ? {flex: 1} : {height: `${sidebarSize - headerSize - halfDividerSize}px`}}>
           <CampCanvas
+            view={view}
             rooms={canvasRooms}
             imagesRef={imagesRef}
             contentViewRef={contentViewRef}
