@@ -33,6 +33,7 @@ export const SideMapPage: CampPage<SideMapPageProps> = ({area, chapter, side}) =
   const {isLargeScreen} = useMobile();
 
   const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+  // Not fully controlled, used for update events only.
   const [view, setView] = useState<ExtentCanvasViewBox | undefined>()
 
   const [searchValue, setSearchValue] = useState<string>("");

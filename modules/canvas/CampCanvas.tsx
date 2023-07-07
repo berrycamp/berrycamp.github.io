@@ -268,15 +268,18 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     imagesRef.current = [];
   }, [imagesRef, rooms]);
 
+  /**
+   * Update the view. Waits for the context to be ready before drawing.
+   */
   useEffect(() => {
-    if (view === undefined) {
+    if (view === undefined || context === null) {
       return;
     }
     
     setViewBox(view);
+    viewRef.current = calculateCanvasView(context.canvas, view);
     viewBoxRef.current = view;
-  }, [setViewBox, view]);
-
+  }, [context, setViewBox, view]);
 
   return (
     <Box position="relative" width="100%" height="100%">
