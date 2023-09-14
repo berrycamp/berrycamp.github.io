@@ -27,6 +27,7 @@ export interface CheckpointData {
 
 export interface RoomData {
   id: string;
+  no: number;
   name?: string;
   tags: string[];
 }

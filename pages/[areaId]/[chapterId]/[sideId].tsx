@@ -5,9 +5,9 @@ import {useRouter} from "next/router";
 import {GetStaticPaths, GetStaticProps} from "next/types";
 import {CampPage} from "pages/_app";
 import {ParsedUrlQuery} from "querystring";
-import {createElement, FC, Fragment, useEffect, useState} from "react";
+import {FC, Fragment, createElement, useEffect, useState} from "react";
 import {Breadcrumbs} from "~/modules/breadcrumbs";
-import {filterCheckpoints, SideGridView, SideListView} from "~/modules/chapter";
+import {SideGridView, SideListView, filterCheckpoints} from "~/modules/chapter";
 import {AreaData, ChapterData, CheckpointData, SideData} from "~/modules/chapter/types";
 import {Area, Chapter, Room, Side} from "~/modules/data/dataTypes";
 import {VALID_AREAS} from "~/modules/data/validAreas";
@@ -227,13 +227,14 @@ export const getStaticProps: GetStaticProps<SideProps, ChapterParams> = async ({
         checkpoints: side.checkpoints.map<CheckpointData>(checkpoint => ({
           name: checkpoint.name,
           abbreviation: checkpoint.abbreviation,
-          rooms: checkpoint.roomOrder.map(id => {
+          rooms: checkpoint.roomOrder.map((id, i) => {
             const room: Room | undefined = side.rooms[id];
             if (room === undefined) {
               throw Error(`Room ${id} not found`);
             }
             return {
               id,
+              no: i + 1,
               ...(room.name && {name: room.name}),
               checkpointNo: room.checkpointNo,
               tags: generateRoomTags(room),

@@ -7,12 +7,12 @@ import {getRoomPreviewUrl} from "../fetch/dataApi";
 
 export const SideListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
   <List disablePadding sx={{pb: 1}}>
-    {checkpoint.rooms.map((room, roomIndex) => (
+    {checkpoint.rooms.map((room) => (
       <SideListViewItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
         abbr={checkpoint.abbreviation}
-        roomNo={roomIndex + 1}
+        roomNo={room.no}
         image={getRoomPreviewUrl(areaId, chapterId, sideId, room.id)}
         href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
       />
