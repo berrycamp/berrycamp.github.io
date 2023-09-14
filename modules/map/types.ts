@@ -25,6 +25,7 @@ export interface SideData {
 
 export interface RoomData extends Room {
   id: string;
+  no: number;
   name: string;
   tags: string[];
 }
