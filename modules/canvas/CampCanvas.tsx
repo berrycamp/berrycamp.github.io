@@ -141,6 +141,8 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
     onDraw: handleDraw,
     onViewBoxChange: handleViewBoxChange,
     onViewChange: handleViewChange,
+    minScale: 0.01,
+    maxScale: 64,
   });
 
   /**
