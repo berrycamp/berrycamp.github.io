@@ -15,7 +15,7 @@ import {VALID_AREAS} from "~/modules/data/validAreas";
 import {fetchArea, getRoomImageUrl, getRoomPreviewUrl} from "~/modules/fetch/dataApi";
 import {CampHead} from "~/modules/head/CampHead";
 import {useCampContext} from "~/modules/provide/CampContext";
-import {AreaData, ChapterData, CheckpointData, generateRoomTags, RoomData, SideData} from "~/modules/room";
+import {AreaData, ChapterData, CheckpointData, RoomData, SideData, generateRoomTags} from "~/modules/room";
 import {EntityList} from "~/modules/room/entityList/EntityList";
 import {teleport} from "~/modules/teleport/teleport";
 
@@ -101,7 +101,7 @@ const RoomPage: CampPage<RoomProps> = ({
   return (
     <Fragment>
       <CampHead
-        title={room.name ? `${room.name} (${room.debugId})` : room.debugId}
+        title={`${chapter.name} (${room.debugId})`}
         description={`${area.name} - ${chapter.name} - ${side.name} side - ${checkpoint.name}`}
         image={image}
       />
@@ -112,7 +112,7 @@ const RoomPage: CampPage<RoomProps> = ({
             {name: chapter.name, href: chapter.link},
             {name: side.name, href: sideLink},
             {name: checkpoint.name, href: `${sideLink}#${checkpoint.name}`},
-            {name: `${room.name} (${room.debugId})`},
+            {name: room.debugId},
           ]}
         />
         <HeaderNav
@@ -155,9 +155,10 @@ const RoomPage: CampPage<RoomProps> = ({
             {isFullscreen ? <FullscreenExit color="primary"/> : <Fullscreen color="primary"/>}
           </ToggleButton>
         </Paper>
-        <Typography component="div" variant="h5" mt={1}>{room.name}</Typography>
+        <Typography component="div" variant="h5" mt={1}>{room.debugId}</Typography>
         <Typography component="div" color="text.secondary">{chapter.name} › {side.name} Side › {checkpoint.name}</Typography>
-        <Typography component="div" color="text.secondary">Debug ID: {room.debugId}, Room ID: {room.roomId}, Room: {room.levelRoomNo}</Typography>
+        <Typography component="div" color="text.secondary">{room.roomId}</Typography>
+        <Typography component="div" color="text.secondary">{room.levelRoomNo}</Typography>
         <Stack direction="row" mt={1} mb={1.5} spacing={1}>
           {room.tags.map(tag => (
             <Link
@@ -287,8 +288,6 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
 
   const prevRoomId: string | undefined = checkpoint.roomOrder[roomIndex - 1] ?? side.checkpoints[room.checkpointNo - 1]?.roomOrder.slice(-1)[0];
   const nextRoomId: string | undefined = checkpoint.roomOrder[roomIndex + 1] ?? side.checkpoints[room.checkpointNo + 1]?.roomOrder[0];
-  const prevRoom: Room | undefined = prevRoomId ? side.rooms[prevRoomId] : undefined;
-  const nextRoom: Room | undefined = nextRoomId ? side.rooms[nextRoomId] : undefined;
 
   const sideRoomIndex = side.checkpoints.slice(0, room.checkpointNo).reduce<number>((prev, curr) => prev + curr.roomCount, 0) + roomIndex;
 
@@ -317,21 +316,21 @@ export const getStaticProps: GetStaticProps<RoomProps, RoomParams> = async ({par
         ...(room.name && {name: room.name}),
         debugId: roomId,
         roomId: `${checkpoint.abbreviation}-${roomIndex + 1}`,
-        levelRoomNo: `${sideRoomIndex + 1}/${side.roomCount}`,
-        checkpointRoomNo: `${roomIndex + 1}/${checkpoint.roomCount}`,
+        levelRoomNo: `${sideRoomIndex + 1} / ${side.roomCount}`,
+        checkpointRoomNo: `${roomIndex + 1} / ${checkpoint.roomCount}`,
         teleportParams: `?area=${area.gameId}/${chapter.gameId}&side=${sideId}&level=${roomId}${(room.entities.spawn && room.entities.spawn[0]?.x && room.entities.spawn[0]?.y) ? `&x=${room.entities.spawn[0].x}&y=${room.entities.spawn[0].y}` : ""}`,
         entities: room.entities,
         tags: generateRoomTags(room),
       },
-      ...(prevRoom && {
+      ...(prevRoomId && {
         prevRoom: {
-          label: prevRoom.name,
+          label: prevRoomId,
           link: `/${areaId}/${chapterId}/${sideId}/${prevRoomId}`,
         }
       }),
-      ...(nextRoom && {
+      ...(nextRoomId && {
         nextRoom: {
-          label: nextRoom.name,
+          label: nextRoomId,
           link: `/${areaId}/${chapterId}/${sideId}/${nextRoomId}`,
         }
       }),

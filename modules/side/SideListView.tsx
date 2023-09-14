@@ -11,7 +11,7 @@ export const SideListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, c
       <SideListViewItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
-        {...room.name && {roomName: room.name}}
+        abbr={checkpoint.abbreviation}
         roomNo={roomIndex + 1}
         image={getRoomPreviewUrl(areaId, chapterId, sideId, room.id)}
         href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
@@ -20,7 +20,7 @@ export const SideListView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, c
   </List>
 );
 
-const SideListViewItem: FC<ChapterViewItemProps & {roomNo: number}> = ({roomId, roomName, href, image, roomNo}) => (
+const SideListViewItem: FC<ChapterViewItemProps & {abbr: string; roomNo: number}> = ({roomId, roomName, href, image, roomNo, abbr}) => (
   <Link passHref href={href}>
     <ListItemButton
       disableGutters
@@ -34,9 +34,8 @@ const SideListViewItem: FC<ChapterViewItemProps & {roomNo: number}> = ({roomId, 
         width={80}
         height={45}
       />
-      <Typography component="div" marginLeft={2} color="text.secondary">{roomNo}.</Typography>
-      <Typography component="div" marginLeft={1} flexGrow={1}>{roomName}</Typography>
-      <Typography component="div" color="text.secondary" marginRight={0.5}>{roomId}</Typography>
+      <Typography component="div" marginLeft={2} flexGrow={1}>{roomId}</Typography>
+      <Typography component="div" color="text.secondary" marginRight={0.5}>{abbr}-{roomNo}</Typography>
     </ListItemButton>
   </Link>
 );

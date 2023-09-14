@@ -8,11 +8,12 @@ import {getRoomPreviewUrl} from "../fetch/dataApi";
 
 export const SideGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
   <Grid container spacing={1} pb={1} alignSelf="center">
-    {checkpoint.rooms.map(room => (
+    {checkpoint.rooms.map((room, i) => (
       <SideGridItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
-        {...room.name && {roomName: room.name}}
+        abbr={checkpoint.abbreviation}
+        roomNo={i + 1}
         image={getRoomPreviewUrl(areaId, chapterId, sideId, room.id)}
         href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
       />
@@ -20,7 +21,7 @@ export const SideGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, c
   </Grid>
 );
 
-export const SideGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, image}) => {
+export const SideGridItem: FC<ChapterViewItemProps & {abbr: string; roomNo: number}> = ({roomId, href, image, abbr, roomNo}) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card>
@@ -36,15 +37,15 @@ export const SideGridItem: FC<ChapterViewItemProps> = ({roomId, roomName, href, 
                 unoptimized
                 layout="fill"
                 src={image}
-                alt={`Thumbnail for room ${roomName}`}
+                alt={`Thumbnail for room ${roomId}`}
                 style={{
                   imageRendering: "pixelated",
                 }}
               />
             </CardMedia>
             <ImageListItemBar
-              title={roomName}
-              subtitle={roomId}
+              title={roomId}
+              subtitle={`${abbr}-${roomNo}`}
               sx={{
                 fontSize: 26,
                 background: "linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0))",
