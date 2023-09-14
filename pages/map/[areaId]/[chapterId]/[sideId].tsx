@@ -442,8 +442,9 @@ export const getStaticProps: GetStaticProps<SideMapPageProps, SideMapPageParams>
         name: side.name,
         boundingBox: side.canvas.boundingBox,
         img: side.img,
-        rooms: Object.entries(side.rooms).map(([id, room]) => ({
+        rooms: Object.entries(side.rooms).map(([id, room], i) => ({
           id,
+          no: i + 1,
           tags: generateRoomTags(room),
           ...room,
         })),
