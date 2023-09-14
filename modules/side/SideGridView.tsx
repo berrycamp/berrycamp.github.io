@@ -8,12 +8,12 @@ import {getRoomPreviewUrl} from "../fetch/dataApi";
 
 export const SideGridView: FC<ChapterViewProps> = ({areaId, chapterId, sideId, checkpoint}) => (
   <Grid container spacing={1} pb={1} alignSelf="center">
-    {checkpoint.rooms.map((room, i) => (
+    {checkpoint.rooms.map((room) => (
       <SideGridItem
         key={`${sideId}-${room.id}`}
         roomId={room.id}
         abbr={checkpoint.abbreviation}
-        roomNo={i + 1}
+        roomNo={room.no}
         image={getRoomPreviewUrl(areaId, chapterId, sideId, room.id)}
         href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
       />
