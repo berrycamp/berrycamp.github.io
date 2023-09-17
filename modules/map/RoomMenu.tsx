@@ -155,7 +155,7 @@ export const RoomItem: FC<RoomItemProps> = ({room, onRoomSelect, selectedRoom, t
         onClick={handleClick}
         sx={{pl: 4, whiteSpace: "nowrap"}}
       >
-        <ListItemText><strong>{room.id}</strong>{room.name && <span> - {room.name}</span>}</ListItemText>
+        <ListItemText>{room.id}</ListItemText>
       </ListItemButton>
     </ListItem>
   );

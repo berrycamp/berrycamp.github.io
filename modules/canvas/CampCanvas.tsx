@@ -190,14 +190,12 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
         return;
       }
 
-      const {clientX, clientY} = event;
-      const rect: DOMRect = context.canvas.getBoundingClientRect();
-
+      const {clientX, clientY, offsetX, offsetY} = event;
       setContextMenu({
         mouseX: clientX + 2,
         mouseY: clientY - 6,
-        x: viewBoxRef.current.left + clientX - rect.left,
-        y: viewBoxRef.current.right + clientY - rect.top,
+        x: viewBoxRef.current.left + offsetX,
+        y: viewBoxRef.current.top + offsetY,
       });
     }
 
