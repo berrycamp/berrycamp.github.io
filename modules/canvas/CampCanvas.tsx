@@ -1,6 +1,6 @@
 import {Fullscreen} from "@mui/icons-material";
 import {Box, debounce, IconButton, ListItemText, Menu, MenuItem, Theme, useTheme} from "@mui/material";
-import {calculateCanvasView, ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasView, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
+import {calculateCanvasPosition, calculateCanvasView, ExtentCanvasArgs, ExtentCanvasPoint, ExtentCanvasView, ExtentCanvasViewBox, useExtentCanvas} from "extent-canvas";
 import {NextRouter, useRouter} from "next/router";
 import {FC, memo, useCallback, useEffect, useRef, useState} from "react";
 import {useCampContext} from "../provide/CampContext";
@@ -186,17 +186,15 @@ export const CampCanvas: FC<CampCanvasProps> = memo(({
 
     const handleContextMenu = (event: MouseEvent) => {
       event.preventDefault();
-      if (viewBoxRef.current === undefined) {
+      if (viewRef.current === undefined) {
         return;
       }
 
-      const {clientX, clientY, offsetX, offsetY} = event;
-      setContextMenu({
-        mouseX: clientX + 2,
-        mouseY: clientY - 6,
-        x: viewBoxRef.current.left + offsetX,
-        y: viewBoxRef.current.top + offsetY,
-      });
+      const {clientX, clientY} = event;
+      const {top, left} = context.canvas.getBoundingClientRect();
+      const {x, y} = calculateCanvasPosition(viewRef.current, clientX - left, clientY - top);
+
+      setContextMenu({mouseX: clientX + 2, mouseY: clientY - 6, x, y});
     }
 
     context.canvas.addEventListener("contextmenu", handleContextMenu);
