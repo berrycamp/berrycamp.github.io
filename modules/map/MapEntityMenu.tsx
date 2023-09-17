@@ -31,7 +31,7 @@ export const MapEntityMenu: FC<MapEntityMenuProps> = memo(({areaGameId, chapterG
           href={`/${areaId}/${chapterId}/${sideId}/${room.id}`}
         >
           <MuiLink underline="hover" color="inherit">
-            {room.id}{room.name && ` - ${room.name}`}
+            <strong>{room.id}</strong>
           </MuiLink>
         </Link>
       </ListItem>
